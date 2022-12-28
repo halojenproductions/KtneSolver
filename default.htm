@@ -32,6 +32,38 @@
 				border-color: #00FF00;
 				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.6);
 			}
+
+			#button_colour1:not(:checked)+.btn {
+				color: #0d6efd;
+			}
+
+			#button_colour1:checked+.btn {
+				background-color: #0d6efd;
+			}
+
+			#button_colour2:not(:checked)+.btn {
+				color: #f8f9fa;
+			}
+
+			#button_colour2:checked+.btn {
+				background-color: #adb5bd;
+			}
+
+			#button_colour3:not(:checked)+.btn {
+				color: #ffc107;
+			}
+
+			#button_colour3:checked+.btn {
+				background-color: #ffc107;
+			}
+
+			#button_colour4:not(:checked)+.btn {
+				color: #dc3545;
+			}
+
+			#button_colour4:checked+.btn {
+				background-color: #dc3545;
+			}
 		</style>
 	</head>
 
@@ -67,115 +99,143 @@
 
 						<div class="col module pt-3" id="MissileButton">
 							<div class="card">
-								<div class="card-header " id="possibles">
+								<div class="card-header ">
 									Button
 								</div>
 								<div class="card-body" id="">
-									This is the missile button module
-								</div>
-							</div>
-						</div>
 
+									<div class="btn-group" role="group">
+										<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off">
+										<label class="btn btn-outline-primary" for="button_word1">Abort</label>
 
-						<div class="col module pt-3">
-							<div class="card">
-								<div class="card-header " id="possibles">
-									Another type of module
-								</div>
-								<div class="card-body" id="">
-									this is another module
-								</div>
-							</div>
-						</div>
+										<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off">
+										<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
 
-
-						<div class="col module pt-3" id="PasswordSolver">
-							<div class="card">
-								<div class="card-header " id="possibles">
-									Passwords
-								</div>
-								<div class="card-body ">
-									<div class="input-group">
-										<input id="letters1" placeholder="1" type="text" onkeyup="solve()"
-											class="possible form-control" />
-										<input id="letters2" placeholder="2" type="text" onkeyup="solve()"
-											class="possible form-control" />
-										<input id="letters3" placeholder="3" type="text" onkeyup="solve()"
-											class="possible form-control" />
-										<input id="letters4" placeholder="4" type="text" onkeyup="solve()"
-											class="possible form-control" />
-										<input id="letters5" placeholder="5" type="text" onkeyup="solve()"
-											class="possible form-control" />
+										<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off">
+										<label class="btn btn-outline-primary" for="button_word3">Hold</label>
 									</div>
-									<hr>
-									<div id="divSolution">
-										<span id="solution"> </span>
+
+									<div class="btn-group" role="group">
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour1" autocomplete="off">
+										<label class="btn btn-outline-primary " for="button_colour1">Blue</label>
+
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off">
+										<label class="btn btn-outline-primary" for="button_colour2">White</label>
+
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off">
+										<label class="btn btn-outline-primary" for="button_colour3">Yellow</label>
+
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off">
+										<label class="btn btn-outline-primary button_red" for="button_colour4">Red</label>
+									</div>
+
+									<div class="input-group" id="button_batteries">
+
 									</div>
 								</div>
 							</div>
+
+
+							<div class="col module pt-3" id="BasicWires">
+								<div class="card">
+									<div class="card-header ">
+										Basic wires
+									</div>
+									<div class="card-body" id="">
+										this is another module
+									</div>
+								</div>
+							</div>
+
+
+							<div class="col module pt-3" id="PasswordSolver">
+								<div class="card">
+									<div class="card-header " id="possibles">
+										Passwords
+									</div>
+									<div class="card-body ">
+										<div class="input-group">
+											<input id="letters1" placeholder="1" type="text" onkeyup="solve()"
+												class="possible form-control" />
+											<input id="letters2" placeholder="2" type="text" onkeyup="solve()"
+												class="possible form-control" />
+											<input id="letters3" placeholder="3" type="text" onkeyup="solve()"
+												class="possible form-control" />
+											<input id="letters4" placeholder="4" type="text" onkeyup="solve()"
+												class="possible form-control" />
+											<input id="letters5" placeholder="5" type="text" onkeyup="solve()"
+												class="possible form-control" />
+										</div>
+										<hr>
+										<div id="divSolution">
+											<span id="solution"> </span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
 						</div>
-
-
 					</div>
 				</div>
 			</div>
-		</div>
 
 
 
-		<script>
-			function setup() {
-				Array.from(document.getElementsByClassName('possible')).forEach(element => {
-					element.addEventListener('keypress', jump);
-				});
-			}
+			<script>
+				function setup() {
+					Array.from(document.getElementsByClassName('possible')).forEach(element => {
+						element.addEventListener('keypress', jump);
+					});
+				}
 
-			const lookups = [
-				'about', 'after', 'again', 'below', 'could',
-				'every', 'first', 'found', 'great', 'house',
-				'large', 'learn', 'never', 'other', 'place',
-				'plant', 'point', 'right', 'small', 'sound',
-				'spell', 'still', 'study', 'their', 'there',
-				'these', 'thing', 'think', 'three', 'water',
-				'where', 'which', 'world', 'would', 'write'
-			];
-
-			function solve(e) {
-				var inputs = [
-					document.getElementById("letters1").value.split(''),
-					document.getElementById("letters2").value.split(''),
-					document.getElementById("letters3").value.split(''),
-					document.getElementById("letters4").value.split(''),
-					document.getElementById("letters5").value.split('')
+				const lookups = [
+					'about', 'after', 'again', 'below', 'could',
+					'every', 'first', 'found', 'great', 'house',
+					'large', 'learn', 'never', 'other', 'place',
+					'plant', 'point', 'right', 'small', 'sound',
+					'spell', 'still', 'study', 'their', 'there',
+					'these', 'thing', 'think', 'three', 'water',
+					'where', 'which', 'world', 'would', 'write'
 				];
-				let matches = lookups.filter(lookupWord => {
-					let wordLetters = lookupWord.split('');
 
-					let hasMatch = true;
-					for (var i = 0; i < 5; i++) {
-						hasMatch &&= inputs[i].length === 0 || inputs[i].includes(wordLetters[i]);
+				function solve(e) {
+					var inputs = [
+						document.getElementById("letters1").value.split(''),
+						document.getElementById("letters2").value.split(''),
+						document.getElementById("letters3").value.split(''),
+						document.getElementById("letters4").value.split(''),
+						document.getElementById("letters5").value.split('')
+					];
+					let matches = lookups.filter(lookupWord => {
+						let wordLetters = lookupWord.split('');
+
+						let hasMatch = true;
+						for (var i = 0; i < 5; i++) {
+							hasMatch &&= inputs[i].length === 0 || inputs[i].includes(wordLetters[i]);
+						}
+						return hasMatch;
+
+					});
+
+					document.getElementById("solution").innerHTML = matches.join('<br>')/*.toUpperCase()*/;
+					console.log(matches);
+				}
+
+				function jump(e) {
+					if ("1234567890".includes(e.key)) {
+						e.preventDefault();
+						e.stopPropagation();
 					}
-					return hasMatch;
-
-				});
-
-				document.getElementById("solution").innerHTML = matches.join('<br>')/*.toUpperCase()*/;
-				console.log(matches);
-			}
-
-			function jump(e) {
-				if ("1234567890".includes(e.key)) {
-					e.preventDefault();
-					e.stopPropagation();
+					if ("12345".includes(e.key)) {
+						document.getElementById("letters" + e.key).focus();
+					}
 				}
-				if ("12345".includes(e.key)) {
-					document.getElementById("letters" + e.key).focus();
-				}
-			}
-		</script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-			crossorigin="anonymous"></script>
+			</script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+				crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/less"></script>
 	</body>
 
 </html>
