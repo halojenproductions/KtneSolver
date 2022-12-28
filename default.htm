@@ -201,11 +201,11 @@
 
 				function solve(e) {
 					var inputs = [
-						document.getElementById("letters1").value.split(''),
-						document.getElementById("letters2").value.split(''),
-						document.getElementById("letters3").value.split(''),
-						document.getElementById("letters4").value.split(''),
-						document.getElementById("letters5").value.split('')
+						document.getElementById("letters1").value.toLowerCase().split(''),
+						document.getElementById("letters2").value.toLowerCase().split(''),
+						document.getElementById("letters3").value.toLowerCase().split(''),
+						document.getElementById("letters4").value.toLowerCase().split(''),
+						document.getElementById("letters5").value.toLowerCase().split('')
 					];
 					let matches = lookups.filter(lookupWord => {
 						let wordLetters = lookupWord.split('');
