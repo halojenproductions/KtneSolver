@@ -1,255 +1,427 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>KTNE Solver</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-		<style>
-			* {
-				font-family: Consolas, 'Courier New', Courier, monospace;
-			}
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>KTNE Solver</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<style>
+		* {
+			font-family: Consolas, 'Courier New', Courier, monospace;
+		}
 
-			body {
-				background-color: black;
-			}
+		body {
+			background-color: black;
+		}
 
-			.module {
-				min-width: 350px;
+		.module {
+			min-width: 350px;
+		}
 
-			}
 
-
-			input[type='text'],
-			#solution {
-				color: rgb(0, 255, 0) !important;
-				text-transform: uppercase;
-			}
+		input[type='text'],
+		#solution {
+			color: rgb(0, 255, 0) !important;
+			text-transform: uppercase;
+		}
 
 			input[type='text']:focus {
 				border-color: #00FF00;
 				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.6);
 			}
 
-			#button_colour1:not(:checked)+.btn {
-				color: #0d6efd;
-			}
+		#button_colour1:not(:checked)+.btn {
+			color: #0d6efd;
+		}
 
-			#button_colour1:checked+.btn {
-				background-color: #0d6efd;
-			}
+		#button_colour1:checked+.btn {
+			background-color: #0d6efd;
+		}
 
-			#button_colour2:not(:checked)+.btn {
-				color: #f8f9fa;
-			}
+		#button_colour2:not(:checked)+.btn {
+			color: #f8f9fa;
+		}
 
-			#button_colour2:checked+.btn {
-				background-color: #adb5bd;
-			}
+		#button_colour2:checked+.btn {
+			background-color: #adb5bd;
+		}
 
-			#button_colour3:not(:checked)+.btn {
-				color: #ffc107;
-			}
+		#button_colour3:not(:checked)+.btn {
+			color: #ffc107;
+		}
 
-			#button_colour3:checked+.btn {
-				background-color: #ffc107;
-			}
+		#button_colour3:checked+.btn {
+			background-color: #ffc107;
+		}
 
-			#button_colour4:not(:checked)+.btn {
-				color: #dc3545;
-			}
+		#button_colour4:not(:checked)+.btn {
+			color: #dc3545;
+		}
 
-			#button_colour4:checked+.btn {
-				background-color: #dc3545;
-			}
-		</style>
-	</head>
+		#button_colour4:checked+.btn {
+			background-color: #dc3545;
+		}
 
-	<body onload="setup()">
-		<div class="container-fluid">
-			<div class="row align-items-start">
-				<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-					<div class="d-flex flex-column align-items-left align-items-sm-start px-3 pt-2  min-vh-100">
-						<p>
-							Version: 1<br>
-							Verification Code: 241
-						</p>
-						<ul class="nav nav-pills flex-column mb-auto">
-							<li class="nav-item">
-								<a class="nav-link" href="#MissileButton">Button</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#BasicWires">Basic wires</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#PasswordSolver">Password</a>
-							</li>
-						</ul>
-					</div>
+		.btn-group-sm {
+			margin-top: 6px; /*TODO : better solution to spacing*/
+		}
+
+		.btn-label {
+			min-width: 70px; /*TODO : innapropriately using button style for label but i thought it looked clean, ideally would disable rollover style and better solution for uniform sizing*/
+		}
+	</style>
+</head>
+
+<body onload="setup()">
+	<div class="container-fluid">
+		<div class="row align-items-start">
+			<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+				<div class="d-flex flex-column align-items-left align-items-sm-start px-3 pt-2  min-vh-100">
+					<p>
+						Version: 1<br>
+						Verification Code: 241
+					</p>
+					<ul class="nav nav-pills flex-column mb-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="#MissileButton">Button</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#BasicWires">Basic wires</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#PasswordSolver">Password</a>
+						</li>
+					</ul>
 				</div>
+			</div>
 
-				<div class="col overflow-scroll">
-					<div class="row  overflow-scroll">
-						<div class=" pt-3 w-100">
-							<h3>Keep Talking and Nobody Explodes</h3>
+			<div class="col overflow-scroll">
+				<div class="row  overflow-scroll">
+					<div class=" pt-3 w-100">
+						<h3>Keep Talking and Nobody Explodes</h3>
 
 
+					</div>
+
+					<div class="col module pt-3" id="MissileButton">
+						<div class="card">
+							<div class="card-header ">
+								Button
+							</div>
+							<div class="card-body " id="">
+
+								<div class="btn-group-vertical align-top" role="group">
+									<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off">
+									<label class="btn btn-outline-primary" for="button_word1">Abort</label>
+
+									<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off">
+									<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
+
+									<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off">
+									<label class="btn btn-outline-primary" for="button_word3">Hold</label>
+								</div>
+
+								<div class="btn-group-vertical" role="group">
+									<input type="radio" class="btn-check" name="button_colour" id="button_colour1" autocomplete="off">
+									<label class="btn btn-outline-primary " for="button_colour1">Blue</label>
+
+									<input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off">
+									<label class="btn btn-outline-primary" for="button_colour2">White</label>
+
+									<input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off">
+									<label class="btn btn-outline-primary" for="button_colour3">Yellow</label>
+
+									<input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off">
+									<label class="btn btn-outline-primary" for="button_colour4">Red</label>
+								</div>
+
+								<div class="input-group-vertical" id="button_batteries">
+
+								</div>
+							</div>
 						</div>
+					</div>
 
-						<div class="col module pt-3" id="MissileButton">
-							<div class="card">
-								<div class="card-header ">
-									Button
+					<div class="col module pt-3" id="BasicWires"> <!--TODO: create a loop for generating these buttons instead of spamming lines of repeating elements-->
+						<div class="card">
+							<div class="card-header ">
+								Basic wires
+							</div>
+							<div class="card-body" id="">
+								<div class="btn-group  btn-group-sm" role="group">
+									<label class="btn btn-outline-danger btn-label">Red</label>
+
+									<input type="radio" class="btn-check" name="button_redwires" id="button_redwires0" autocomplete="off" value="0">
+									<label class="btn btn-outline-danger" for="button_redwires0">0</label>
+
+									<input type="radio" class="btn-check" name="button_redwires" id="button_redwires1" autocomplete="off" value="1">
+									<label class="btn btn-outline-danger" for="button_redwires1">1</label>
+
+									<input type="radio" class="btn-check" name="button_redwires" id="button_redwires2" autocomplete="off" value="2">
+									<label class="btn btn-outline-danger" for="button_redwires2">2</label>
+
+									<input type="radio" class="btn-check" name="button_redwires" id="button_redwires3" autocomplete="off" value="3">
+									<label class="btn btn-outline-danger" for="button_redwires3">3</label>
+
+									<input type="radio" class="btn-check" name="button_redwires" id="button_redwires4" autocomplete="off" value="4">
+									<label class="btn btn-outline-danger" for="button_redwires4">4</label>
+
+									<input type="radio" class="btn-check" name="button_redwires" id="button_redwires5" autocomplete="off" value="5">
+									<label class="btn btn-outline-danger" for="button_redwires5">5</label>
+
+									<input type="radio" class="btn-check" name="button_redwires" id="button_redwires6" autocomplete="off" value="6">
+									<label class="btn btn-outline-danger" for="button_redwires6">6</label>
 								</div>
-								<div class="card-body " id="">
+								<div class="btn-group  btn-group-sm" role="group">
+									<label class="btn btn-outline-primary btn-label">Blue</label>
 
-									<div class="btn-group-vertical align-top" role="group">
-										<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off">
-										<label class="btn btn-outline-primary" for="button_word1">Abort</label>
+									<input type="radio" class="btn-check" name="button_bluewires" id="button_bluewires0" autocomplete="off" value="0">
+									<label class="btn btn-outline-primary" for="button_bluewires0">0</label>
 
-										<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off">
-										<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
+									<input type="radio" class="btn-check" name="button_bluewires" id="button_bluewires1" autocomplete="off" value="1">
+									<label class="btn btn-outline-primary" for="button_bluewires1">1</label>
 
-										<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off">
-										<label class="btn btn-outline-primary" for="button_word3">Hold</label>
-									</div>
+									<input type="radio" class="btn-check" name="button_bluewires" id="button_bluewires2" autocomplete="off" value="2">
+									<label class="btn btn-outline-primary" for="button_bluewires2">2</label>
 
-									<div class="btn-group-vertical" role="group">
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour1" autocomplete="off">
-										<label class="btn btn-outline-primary " for="button_colour1">Blue</label>
+									<input type="radio" class="btn-check" name="button_bluewires" id="button_bluewires3" autocomplete="off" value="3">
+									<label class="btn btn-outline-primary" for="button_bluewires3">3</label>
 
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off">
-										<label class="btn btn-outline-primary" for="button_colour2">White</label>
+									<input type="radio" class="btn-check" name="button_bluewires" id="button_bluewires4" autocomplete="off" value="4">
+									<label class="btn btn-outline-primary" for="button_bluewires4">4</label>
 
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off">
-										<label class="btn btn-outline-primary" for="button_colour3">Yellow</label>
+									<input type="radio" class="btn-check" name="button_bluewires" id="button_bluewires5" autocomplete="off" value="5">
+									<label class="btn btn-outline-primary" for="button_bluewires5">5</label>
 
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off">
-										<label class="btn btn-outline-primary button_red" for="button_colour4">Red</label>
-									</div>
+									<input type="radio" class="btn-check" name="button_bluewires" id="button_bluewires6" autocomplete="off" value="6">
+									<label class="btn btn-outline-primary" for="button_bluewires6">6</label>
+								</div>
+								<div class="btn-group  btn-group-sm" role="group">
+									<label class="btn btn-outline-warning btn-label">Yellow</label>
 
-									<div class="input-group-vertical" id="button_batteries">
+									<input type="radio" class="btn-check" name="button_yellowwires" id="button_yellowwires0" autocomplete="off" value="0">
+									<label class="btn btn-outline-warning" for="button_yellowwires0">0</label>
 
-									</div>
+									<input type="radio" class="btn-check" name="button_yellowwires" id="button_yellowwires1" autocomplete="off" value="1">
+									<label class="btn btn-outline-warning" for="button_yellowwires1">1</label>
+
+									<input type="radio" class="btn-check" name="button_yellowwires" id="button_yellowwires2" autocomplete="off" value="2">
+									<label class="btn btn-outline-warning" for="button_yellowwires2">2</label>
+
+									<input type="radio" class="btn-check" name="button_yellowwires" id="button_yellowwires3" autocomplete="off" value="3">
+									<label class="btn btn-outline-warning" for="button_yellowwires3">3</label>
+
+									<input type="radio" class="btn-check" name="button_yellowwires" id="button_yellowwires4" autocomplete="off" value="4">
+									<label class="btn btn-outline-warning" for="button_yellowwires4">4</label>
+
+									<input type="radio" class="btn-check" name="button_yellowwires" id="button_yellowwires5" autocomplete="off" value="5">
+									<label class="btn btn-outline-warning" for="button_yellowwires5">5</label>
+
+									<input type="radio" class="btn-check" name="button_yellowwires" id="button_yellowwires6" autocomplete="off" value="6">
+									<label class="btn btn-outline-warning" for="button_yellowwires6">6</label>
+								</div>
+								<br />
+								<div class="btn-group  btn-group-sm" role="group">
+									<label class="btn btn-outline-secondary btn-label">Black</label>
+
+									<input type="radio" class="btn-check" name="button_blackwires" id="button_blackwiress0" autocomplete="off" value="0">
+									<label class="btn btn-outline-secondary" for="button_blackwiress0">0</label>
+
+									<input type="radio" class="btn-check" name="button_blackwiress" id="button_blackwiress1" autocomplete="off" value="1">
+									<label class="btn btn-outline-secondary" for="button_blackwiress1">1</label>
+
+									<input type="radio" class="btn-check" name="button_blackwiress" id="button_blackwiress2" autocomplete="off" value="2">
+									<label class="btn btn-outline-secondary" for="button_blackwiress2">2</label>
+
+									<input type="radio" class="btn-check" name="button_blackwiress" id="button_blackwiress3" autocomplete="off" value="3">
+									<label class="btn btn-outline-secondary" for="button_blackwiress3">3</label>
+
+									<input type="radio" class="btn-check" name="button_blackwiress" id="button_blackwiress4" autocomplete="off" value="4">
+									<label class="btn btn-outline-secondary" for="button_blackwiress4">4</label>
+
+									<input type="radio" class="btn-check" name="button_blackwiress" id="button_blackwiress5" autocomplete="off" value="5">
+									<label class="btn btn-outline-secondary" for="button_blackwiress5">5</label>
+
+									<input type="radio" class="btn-check" name="button_blackwiress" id="button_blackwiress6" autocomplete="off" value="6">
+									<label class="btn btn-outline-secondary" for="button_blackwiress6">6</label>
+								</div>
+								<div class="btn-group  btn-group-sm" role="group">
+									<label class="btn btn-outline-light btn-label">White</label>
+
+									<input type="radio" class="btn-check" name="button_whitewires" id="button_whitewires0" autocomplete="off" value="0">
+									<label class="btn btn-outline-light" for="button_whitewires0">0</label>
+
+									<input type="radio" class="btn-check" name="button_whitewires" id="button_whitewires1" autocomplete="off" value="1">
+									<label class="btn btn-outline-light" for="button_whitewires1">1</label>
+
+									<input type="radio" class="btn-check" name="button_whitewires" id="button_whitewires2" autocomplete="off" value="2">
+									<label class="btn btn-outline-light" for="button_whitewires2">2</label>
+
+									<input type="radio" class="btn-check" name="button_whitewires" id="button_whitewires3" autocomplete="off" value="3">
+									<label class="btn btn-outline-light" for="button_whitewires3">3</label>
+
+									<input type="radio" class="btn-check" name="button_whitewires" id="button_whitewires4" autocomplete="off" value="4">
+									<label class="btn btn-outline-light" for="button_whitewires4">4</label>
+
+									<input type="radio" class="btn-check" name="button_whitewires" id="button_whitewires5" autocomplete="off" value="5">
+									<label class="btn btn-outline-light" for="button_whitewires5">5</label>
+
+									<input type="radio" class="btn-check" name="button_whitewires" id="button_whitewires6" autocomplete="off" value="6">
+									<label class="btn btn-outline-light" for="button_whitewires6">6</label>
+								</div>
+								<div class="btn-group  btn-group-sm" role="group">
+									<label class="btn btn-outline-light btn-label">Last wire</label>
+
+									<input type="radio" class="btn-check" name="button_lastwire" id="button_lastwireblue" autocomplete="off" value="red">
+									<label class="btn btn-outline-danger" for="button_lastwireblue">Red</label>
+
+									<input type="radio" class="btn-check" name="button_lastwire" id="button_lastwirered" autocomplete="off" value="blue">
+									<label class="btn btn-outline-primary" for="button_lastwirered">Blu</label>
+
+									<input type="radio" class="btn-check" name="button_lastwire" id="button_lastwireyellow" autocomplete="off" value="yellow">
+									<label class="btn btn-outline-warning" for="button_lastwireyellow">Yel</label>
+
+									<input type="radio" class="btn-check" name="button_lastwire" id="button_lastwireblack" autocomplete="off" value="black">
+									<label class="btn btn-outline-secondary" for="button_lastwireblack">Bla</label>
+
+									<input type="radio" class="btn-check" name="button_lastwire" id="button_lastwirewhite" autocomplete="off" value="white">
+									<label class="btn btn-outline-light" for="button_lastwirewhite">Whi</label>
+								</div>
+								<div class="btn-group  btn-group-sm" role="group">
+									<label class="btn btn-outline-light btn-label">Is last serial digit odd?</label>
+
+									<input type="radio" class="btn-check" name="button_serial" id="button_serial1" autocomplete="off" value="true">
+									<label class="btn btn-outline-light" for="button_serial1">Yes</label>
+
+									<input type="radio" class="btn-check" name="button_serial" id="button_serial0" autocomplete="off" value="false">
+									<label class="btn btn-outline-light" for="button_serial0">No</label>
+								</div>
+								<hr>
+								<div id="rWires">
+									<span id="rWires"> </span>
 								</div>
 							</div>
+						</div>
+					</div>
 
 
-							<div class="col module pt-3" id="BasicWires">
-								<div class="card">
-									<div class="card-header ">
-										Basic wires
-									</div>
-									<div class="card-body" id="">
-										this is another module
-									</div>
+					<div class="col module pt-3" id="PasswordSolver">
+						<div class="card">
+							<div class="card-header " id="possibles">
+								Passwords
+							</div>
+							<div class="card-body ">
+								<div class="input-group">
+									<input id="letters1" placeholder="1" type="text" onkeyup="solve()"
+										   class="possible form-control" />
+									<input id="letters2" placeholder="2" type="text" onkeyup="solve()"
+										   class="possible form-control" />
+									<input id="letters3" placeholder="3" type="text" onkeyup="solve()"
+										   class="possible form-control" />
+									<input id="letters4" placeholder="4" type="text" onkeyup="solve()"
+										   class="possible form-control" />
+									<input id="letters5" placeholder="5" type="text" onkeyup="solve()"
+										   class="possible form-control" />
+								</div>
+								<hr>
+								<div id="divSolution">
+									<span id="solution"> </span>
 								</div>
 							</div>
-
-
-							<div class="col module pt-3" id="PasswordSolver">
-								<div class="card">
-									<div class="card-header " id="possibles">
-										Passwords
-									</div>
-									<div class="card-body ">
-										<div class="input-group">
-											<input id="letters1" placeholder="1" type="text" onkeyup="solve()"
-												class="possible form-control" />
-											<input id="letters2" placeholder="2" type="text" onkeyup="solve()"
-												class="possible form-control" />
-											<input id="letters3" placeholder="3" type="text" onkeyup="solve()"
-												class="possible form-control" />
-											<input id="letters4" placeholder="4" type="text" onkeyup="solve()"
-												class="possible form-control" />
-											<input id="letters5" placeholder="5" type="text" onkeyup="solve()"
-												class="possible form-control" />
-										</div>
-										<hr>
-										<div id="divSolution">
-											<span id="solution"> </span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 
 
 
-			<script>
-				function setup() {
-					Array.from(document.getElementsByClassName('possible')).forEach(element => {
-						element.addEventListener('keypress', jump);
-					});
+		<script>
+			function setup() {
+				Array.from(document.getElementsByClassName('possible')).forEach(element => {
+					element.addEventListener('keypress', jump);
+				});
 
-					Array.from(document.querySelectorAll('.btn-group-vertical .btn')).forEach(element => {
-						element.addEventListener('click', buttonDeselect);
-					});
-				}
+				Array.from(document.querySelectorAll('.btn-group-vertical .btn')).forEach(element => {
+					element.addEventListener('click', buttonDeselect);
+				});
+			}
 
 
-				const lookups = [
-					'about', 'after', 'again', 'below', 'could',
-					'every', 'first', 'found', 'great', 'house',
-					'large', 'learn', 'never', 'other', 'place',
-					'plant', 'point', 'right', 'small', 'sound',
-					'spell', 'still', 'study', 'their', 'there',
-					'these', 'thing', 'think', 'three', 'water',
-					'where', 'which', 'world', 'would', 'write'
+			const lookups = [
+				'about', 'after', 'again', 'below', 'could',
+				'every', 'first', 'found', 'great', 'house',
+				'large', 'learn', 'never', 'other', 'place',
+				'plant', 'point', 'right', 'small', 'sound',
+				'spell', 'still', 'study', 'their', 'there',
+				'these', 'thing', 'think', 'three', 'water',
+				'where', 'which', 'world', 'would', 'write'
+			];
+
+			function solve(e) { //Rename to sPassords or something?
+				var inputs = [
+					document.getElementById("letters1").value.toLowerCase().split(''),
+					document.getElementById("letters2").value.toLowerCase().split(''),
+					document.getElementById("letters3").value.toLowerCase().split(''),
+					document.getElementById("letters4").value.toLowerCase().split(''),
+					document.getElementById("letters5").value.toLowerCase().split('')
 				];
+				let matches = lookups.filter(lookupWord => {
+					let wordLetters = lookupWord.split('');
 
-				function solve(e) {
-					var inputs = [
-						document.getElementById("letters1").value.toLowerCase().split(''),
-						document.getElementById("letters2").value.toLowerCase().split(''),
-						document.getElementById("letters3").value.toLowerCase().split(''),
-						document.getElementById("letters4").value.toLowerCase().split(''),
-						document.getElementById("letters5").value.toLowerCase().split('')
-					];
-					let matches = lookups.filter(lookupWord => {
-						let wordLetters = lookupWord.split('');
-
-						let hasMatch = true;
-						for (var i = 0; i < 5; i++) {
-							hasMatch &&= inputs[i].length === 0 || inputs[i].includes(wordLetters[i]);
-						}
-						return hasMatch;
-
-					});
-
-					document.getElementById("solution").innerHTML = matches.join('<br>');
-					console.log(matches);
-				}
-
-				function jump(e) {
-					if ("1234567890".includes(e.key)) {
-						e.preventDefault();
-						e.stopPropagation();
+					let hasMatch = true;
+					for (var i = 0; i < 5; i++) { //I've been drinking but could you replace '5' condition with inputs[i].length and remove the === 0 below? SM
+						hasMatch &&= inputs[i].length === 0 || inputs[i].includes(wordLetters[i]);
 					}
-					if ("12345".includes(e.key)) {
-						document.getElementById("letters" + e.key).focus();
-					}
-				}
+					return hasMatch;
 
-				function buttonDeselect(e) {
-					if (document.getElementById(e.target.htmlFor).checked) {
-						document.getElementById(e.target.htmlFor).checked = false;
-						e.preventDefault();
-					}
-				}
+				});
 
-			</script>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+				document.getElementById("solution").innerHTML = matches.join('<br>'); //Rename as there should be many solutions. rPasswords?
+				console.log(matches);
+			}
+
+			function sWires(e) { //TODO: add trigger
+				let redWires = document.getElementByName("button_redwires").value;
+				let blueWires = document.getElementByName("button_bluewires").value;
+				let yellowWires = document.getElementByName("button_yellowwires").value;
+				let blackWires = document.getElementByName("button_blackwires").value;
+				let whiteWires = document.getElementByName("button_whitewires").value;
+
+				let totalcount = redWires + blueWires + yellowWires + blackWires + whiteWires;
+
+				let serial = document.getElementByName("button_serial").value;
+
+				let last = document.getElementByName("button_lastwire").value;
+
+				//TODO: logic goes here
+
+			}
+
+			function jump(e) { //This is specific to the password solver? Should be fine for now but if there are additional text inputs this may need context.
+				if ("1234567890".includes(e.key)) {
+					e.preventDefault();
+					e.stopPropagation();
+				}
+				if ("12345".includes(e.key)) {
+					document.getElementById("letters" + e.key).focus();
+				}
+			}
+
+			function buttonDeselect(e) {
+				if (document.getElementById(e.target.htmlFor).checked) {
+					document.getElementById(e.target.htmlFor).checked = false;
+					e.preventDefault();
+				}
+			}
+
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 				integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 				crossorigin="anonymous"></script>
-			<script src="https://cdn.jsdelivr.net/npm/less"></script>
-	</body>
+		<script src="https://cdn.jsdelivr.net/npm/less"></script>
+</body>
 
 </html>
