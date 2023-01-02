@@ -502,13 +502,14 @@
 				document.getElementById("rWires").innerHTML = "Total wires: " + totalcount + ". Cut the " + result + " wire.";
 			}
 
+
 			function passwd_jump(e) { //This is specific to the password solver? Should be fine for now but if there are additional text inputs this may need context.
 				if ("1234567890".includes(e.key)) {
 					e.preventDefault();
 					e.stopPropagation();
 				}
 				if ("12345".includes(e.key)) {
-					document.getElementById("passwd_letters" + e.key).focus();
+					document.getElementById(`passwd_letters${e.key}`).focus();
 				}
 			}
 
