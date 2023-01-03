@@ -1,435 +1,435 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>KTNE Solver</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <style>
-        * {
-            font-family: Consolas, 'Courier New', Courier, monospace;
-        }
-
-        body {
-            background-color: black;
-        }
-
-        .module {
-            min-width: 350px;
-        }
-
-
-        input[type='text'],
-        #passwd_solution {
-            color: rgb(0, 255, 0) !important;
-            text-transform: uppercase;
-        }
-
-            input[type='text']:focus {
-                border-color: #00FF00;
-                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.6);
-            }
-
-        input.btn-check:not(:checked) + .btn.colour-blue {
-            color: #0d6efd;
-        }
-
-        input.btn-check:checked + .btn.colour-blue {
-            background-color: #0d6efd;
-        }
-
-        input.btn-check:not(:checked) + .btn.colour-white {
-            color: #f8f9fa;
-        }
-
-        input.btn-check:checked + .btn.colour-white {
-            background-color: #adb5bd;
-        }
-
-        input.btn-check:not(:checked) + .btn.colour-yellow {
-            color: #ffc107;
-        }
-
-        input.btn-check:checked + .btn.colour-yellow {
-            background-color: #ffc107;
-        }
-
-        input.btn-check:not(:checked) + .btn.colour-red {
-            color: #dc3545;
-        }
-
-        input.btn-check:checked + .btn.btn.colour-red {
-            background-color: #dc3545;
-        }
-    </style>
-</head>
-
-<body onload="setup()">
-    <div class="container-fluid">
-        <div class="row align-items-start">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark position-sticky top-0 start-0">
-                <div class="d-flex flex-column align-items-left align-items-sm-start px-3 pt-2  min-vh-100">
-                    <p>
-                        Version: 1<br>
-                        Verification Code: 241
-                    </p>
-                    <ul class="nav nav-pills flex-column mb-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#MissileButton">Button</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#BasicWires">Basic wires</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#Password">Password</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col  ">
-                <div class="row ">
-                    <div class="col-12 pt-3 ">
-                        <!-- <div class=" w-100 "> -->
-                        <h3>Keep Talking and Nobody Explodes</h3>
-                        <!-- </div> -->
-                    </div>
-                </div>
-                <div class="row  ">
-                    <div class="col module pt-3" id="MissileButton">
-                        <div class="card">
-                            <div class="card-header ">
-                                Button
-                            </div>
-                            <div class="card-body " id="">
-
-                                <div class="btn-group-vertical align-top" role="group">
-                                    <input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="button_word1">Abort</label>
-
-                                    <input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="button_word2">Detonate</label>
-
-                                    <input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="button_word3">Hold</label>
-                                </div>
-
-                                <div class="btn-group-vertical" role="group">
-                                    <input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off">
-                                    <label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
-
-                                    <input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off">
-                                    <label class="btn btn-outline-primary colour-white" for="button_colour2">White</label>
-
-                                    <input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off">
-                                    <label class="btn btn-outline-primary colour-yellow" for="button_colour3">Yellow</label>
-
-                                    <input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off">
-                                    <label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
-                                </div>
-
-                                <div class="input-group-vertical" id="button_batteries">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col module pt-3" id="basicwires">
-                        <div class="card">
-                            <div class="card-header ">
-                                Basic wires
-                            </div>
-                            <div class="card-body" id="basicwires_inputs">
-
-                                <script type="text/javascript">
-
-                                    var basicwires_inputs = document.getElementById("basicwires_inputs");
-                                    var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
-
-                                    for (i = 1; i <= 6; i++) {
-                                        var group = document.createElement("div");
-                                        group.className = "btn-group btn-group-sm d-flex";
-                                        group.setAttribute("role", "group");
-
-                                        // var label = document.createElement("label");
-                                        // label.className = `btn-label`;
-                                        // label.appendChild(document.createTextNode(`Wire ${i}`));
-                                        // group.appendChild(label);
-
-                                        for (ii = 0; ii < 5; ii++) {
-                                            var input = document.createElement("input");
-                                            input.id = `basicwires_${i}_${ii}`;
-                                            input.className = `btn-check basicwires_${colours[ii][1]}`;
-                                            input.setAttribute("type", "radio");
-                                            input.setAttribute("name", `basicwires_${i}`);
-                                            input.setAttribute("autocomplete", "off");
-                                            input.setAttribute("onclick", "basicwires_solve()"); //onclick only triggers on check not deselect
-                                            input.setAttribute("value", `${colours[ii][1]}`);
-
-                                            var label = document.createElement("label");
-                                            label.className = `btn btn-outline-primary flex-grow-1 colour-${colours[ii][1]}`;
-                                            label.setAttribute("for", `basicwires_${i}_${ii}`);
-                                            label.appendChild(document.createTextNode(`${colours[ii][0]}`));
-
-                                            group.appendChild(input);
-                                            group.appendChild(label);
-                                        }
-
-                                        basicwires_inputs.appendChild(group);
-                                    }
-
-                                </script>
-
-                                <div class="clearfix"></div>
-
-
-                                <div class="btn-group  btn-group-sm" role="group" id="basicwires_serial" title="Last digit of the serial number">
-                                    <input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value=false onclick="basicwires_solve()">
-                                    <label class="btn btn-outline-primary" for="basicwires_serial0">Even</label>
-
-                                    <input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial1" autocomplete="off" value=true onclick="basicwires_solve()">
-                                    <label class="btn btn-outline-primary" for="basicwires_serial1">Odd</label>
-                                </div>
-                                <hr>
-                                <div class="text-success" id="basicwires_solution"> </div>
-                                <div class="text-warning " id="basicwires_validation"> </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col module pt-3" id="Password">
-                        <div class="card">
-                            <div class="card-header ">
-                                Password
-                            </div>
-                            <div class="card-body ">
-                                <div class="input-group">
-                                    <input id="passwd_letters1" placeholder="1" type="text" onkeyup="passwd_solve()"
-                                           class="possible form-control" />
-                                    <input id="passwd_letters2" placeholder="2" type="text" onkeyup="passwd_solve()"
-                                           class="possible form-control" />
-                                    <input id="passwd_letters3" placeholder="3" type="text" onkeyup="passwd_solve()"
-                                           class="possible form-control" />
-                                    <input id="passwd_letters4" placeholder="4" type="text" onkeyup="passwd_solve()"
-                                           class="possible form-control" />
-                                    <input id="passwd_letters5" placeholder="5" type="text" onkeyup="passwd_solve()"
-                                           class="possible form-control" />
-                                </div>
-                                <hr>
-                                <div id="divSolution">
-                                    <span id="passwd_solution"> </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-
-
-    <script>
-        function setup() {
-            Array.from(document.getElementsByClassName('possible')).forEach(element => {
-                element.addEventListener('keypress', passwd_jump);
-            });
-
-            // Missile buttons deselectable.
-            Array.from(document.querySelectorAll('.btn-group-vertical .btn')).forEach(element => {
-                element.addEventListener('click', buttonDeselect);
-            });
-
-            // Basic wires deselectable.
-            Array.from(document.querySelectorAll('#basicwires_inputs .btn')).forEach(element => {
-                element.addEventListener('click', buttonDeselect);
-            });
-
-            // Hiding basic wires serial question.
-            document.getElementById("basicwires_serial").style.display = "none";
-
-        }
-
-
-        const lookups = [
-            'about', 'after', 'again', 'below', 'could',
-            'every', 'first', 'found', 'great', 'house',
-            'large', 'learn', 'never', 'other', 'place',
-            'plant', 'point', 'right', 'small', 'sound',
-            'spell', 'still', 'study', 'their', 'there',
-            'these', 'thing', 'think', 'three', 'water',
-            'where', 'which', 'world', 'would', 'write'
-        ];
-
-        const white = "white", yellow = "yellow", blue = "blue", red = "red", black = "black",
-            last = "last", first = "first", second = "2nd", fourth = "4th", third = "3rd";
-
-        function passwd_solve(e) {
-            var inputs = [
-                document.getElementById("passwd_letters1").value.toLowerCase().split(''),
-                document.getElementById("passwd_letters2").value.toLowerCase().split(''),
-                document.getElementById("passwd_letters3").value.toLowerCase().split(''),
-                document.getElementById("passwd_letters4").value.toLowerCase().split(''),
-                document.getElementById("passwd_letters5").value.toLowerCase().split('')
-            ];
-            let matches = lookups.filter(lookupWord => {
-                let wordLetters = lookupWord.split('');
-
-                let hasMatch = true;
-                for (var i = 0; i < 5; i++) {
-                    hasMatch &&= inputs[i].length === 0 || inputs[i].includes(wordLetters[i]);
-                }
-                return hasMatch;
-
-            });
-
-            document.getElementById("passwd_solution").innerHTML = matches.join('<br>');
-            console.log(matches);
-        }
-
-        function basicwires_counter(colour) {
-            var count = 0;
-            var element = document.getElementsByClassName(`basicwires_${colour}`);
-            for (var i = 0; i < element.length; ++i) {
-                if (element[i].checked) {
-                    count++;
-                }
-            }
-            return count;
-        }
-
-        function basicwires_solve(e) {
-
-            document.getElementById("basicwires_validation").innerHTML = "";
-            document.getElementById("basicwires_solution").innerHTML = "";
-
-            let redWires = basicwires_counter(red),
-                blueWires = basicwires_counter(blue),
-                yellowWires = basicwires_counter(yellow),
-                whiteWires = basicwires_counter(white),
-                blackWires = basicwires_counter(black);
-
-            let serial = false, lastwire = "";
-
-            //loop decending order to find the last input wire and assume its the last.
-            for (var i = 6; i >= 3; i--) {
-                var l = document.querySelector(`input[name="basicwires_${i}"]:checked`);
-                if (l != null) {
-                    lastwire = l.value
-                    break;
-                }
-            }
-            if (lastwire == "") {
-                document.getElementById("basicwires_validation").innerHTML = "Last wire needed.";
-                return;
-            }
-
-            let totalcount = redWires + blueWires + yellowWires + blackWires + whiteWires;
-
-            if (totalcount < 3) {
-                document.getElementById("basicwires_validation").innerHTML = "3 or more wires needed.";
-                return;
-            }
-
-            if ((totalcount == 4 && redWires > 1) || (totalcount == 5 && lastwire == black) || (totalcount == 6 && yellowWires == 0)) {
-                document.getElementById("basicwires_serial").style.display = "inline-flex";
-
-                var selected_serial = document.querySelector('input[name="basicwires_serial"]:checked');
-                if (selected_serial == null) {
-                    document.getElementById("basicwires_validation").innerHTML = "serial needed.";
-                    return;
-                } else {
-                    serial = selected_serial.value == "true" ? true : false; //TODO: The bool conversion wasnt working so this is a hack, needs replacing.
-                }
-            } else document.getElementById("basicwires_serial").style.display = "none";
-
-            let result = "";
-            switch (totalcount) {
-                case 3:
-                    {
-                        if (redWires == 0)
-                            result = second;
-                        else if (lastwire == white)
-                            result = last;
-                        else if (blueWires > 1)
-                            result = `${last} ${blue}`;
-                        else
-                            result = last;
-                        break;
-                    }
-                case 4:
-                    {
-                        if (redWires > 1 && serial)
-                            result = `${last} ${red}`;
-                        else if (lastwire == yellow && redWires == 0)
-                            result = first;
-                        else if (blueWires == 1)
-                            result = first;
-                        else if (yellowWires > 1)
-                            result = last;
-                        else
-                            result = second;
-                        break;
-                    }
-                case 5:
-                    {
-                        if (lastwire == black && serial)
-                            result = fourth;
-                        else if (redWires == 1 && yellowWires > 1)
-                            result = first;
-                        else if (blackWires == 0)
-                            result = second;
-                        else
-                            result = first;
-                        break;
-                    }
-                case 6:
-                    {
-                        if (yellowWires == 0 && serial)
-                            result = third;
-                        else if (yellowWires == 1 && whiteWires > 1)
-                            result = fourth;
-                        else if (redWires == 0)
-                            result = last;
-                        else
-                            result = fourth;
-                        break;
-                    }
-                default:
-                    document.getElementById("basicwires_validation").innerHTML = "Invalid input.";
-                    return;
-            }
-
-            document.getElementById("basicwires_solution").innerHTML = `Total wires: ${totalcount}. Cut the ${result} wire.`;
-        }
-
-
-        function passwd_jump(e) {
-            if ("1234567890".includes(e.key)) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            if ("12345".includes(e.key)) {
-                document.getElementById(`passwd_letters${e.key}`).focus();
-            }
-        }
-
-        function buttonDeselect(e) {
-            if (document.getElementById(e.target.htmlFor).checked) {
-                document.getElementById(e.target.htmlFor).checked = false;
-                e.preventDefault();
-            }
-        }
-
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/less"></script>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>KTNE Solver</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<style>
+			* {
+				font-family: Consolas, 'Courier New', Courier, monospace;
+			}
+
+			body {
+				background-color: black;
+			}
+
+			.module {
+				min-width: 350px;
+			}
+
+
+			input[type='text'],
+			#passwd_solution {
+				color: rgb(0, 255, 0) !important;
+				text-transform: uppercase;
+			}
+
+			input[type='text']:focus {
+				border-color: #00FF00;
+				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.6);
+			}
+
+			input.btn-check:not(:checked)+.btn.colour-blue {
+				color: #0d6efd;
+			}
+
+			input.btn-check:checked+.btn.colour-blue {
+				background-color: #0d6efd;
+			}
+
+			input.btn-check:not(:checked)+.btn.colour-white {
+				color: #f8f9fa;
+			}
+
+			input.btn-check:checked+.btn.colour-white {
+				background-color: #adb5bd;
+			}
+
+			input.btn-check:not(:checked)+.btn.colour-yellow {
+				color: #ffc107;
+			}
+
+			input.btn-check:checked+.btn.colour-yellow {
+				background-color: #ffc107;
+			}
+
+			input.btn-check:not(:checked)+.btn.colour-red {
+				color: #dc3545;
+			}
+
+			input.btn-check:checked+.btn.btn.colour-red {
+				background-color: #dc3545;
+			}
+		</style>
+	</head>
+
+	<body onload="setup()">
+		<div class="container-fluid">
+			<div class="row align-items-start">
+				<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark position-sticky top-0 start-0">
+					<div class="d-flex flex-column align-items-left align-items-sm-start px-3 pt-2  min-vh-100">
+						<p>
+							Version: 1<br>
+							Verification Code: 241
+						</p>
+						<ul class="nav nav-pills flex-column mb-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="#MissileButton">Button</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#BasicWires">Basic wires</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#Password">Password</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col  ">
+					<div class="row ">
+						<div class="col-12 pt-3 ">
+							<!-- <div class=" w-100 "> -->
+							<h3>Keep Talking and Nobody Explodes</h3>
+							<!-- </div> -->
+						</div>
+					</div>
+					<div class="row  ">
+						<div class="col module pt-3" id="MissileButton">
+							<div class="card">
+								<div class="card-header ">
+									Button
+								</div>
+								<div class="card-body " id="">
+
+									<div class="btn-group-vertical align-top" role="group">
+										<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off">
+										<label class="btn btn-outline-primary" for="button_word1">Abort</label>
+
+										<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off">
+										<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
+
+										<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off">
+										<label class="btn btn-outline-primary" for="button_word3">Hold</label>
+									</div>
+
+									<div class="btn-group-vertical" role="group">
+										<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off">
+										<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
+
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off">
+										<label class="btn btn-outline-primary colour-white" for="button_colour2">White</label>
+
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off">
+										<label class="btn btn-outline-primary colour-yellow" for="button_colour3">Yellow</label>
+
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off">
+										<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
+									</div>
+
+									<div class="input-group-vertical" id="button_batteries">
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col module pt-3" id="basicwires">
+							<div class="card">
+								<div class="card-header ">
+									Basic wires
+								</div>
+								<div class="card-body" id="basicwires_inputs">
+
+									<script type="text/javascript">
+
+										var basicwires_inputs = document.getElementById("basicwires_inputs");
+										var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
+
+										for (i = 1; i <= 6; i++) {
+											var group = document.createElement("div");
+											group.className = "btn-group btn-group-sm d-flex";
+											group.setAttribute("role", "group");
+
+											// var label = document.createElement("label");
+											// label.className = `btn-label`;
+											// label.appendChild(document.createTextNode(`Wire ${i}`));
+											// group.appendChild(label);
+
+											for (ii = 0; ii < 5; ii++) {
+												var input = document.createElement("input");
+												input.id = `basicwires_${i}_${ii}`;
+												input.className = `btn-check basicwires_${colours[ii][1]}`;
+												input.setAttribute("type", "radio");
+												input.setAttribute("name", `basicwires_${i}`);
+												input.setAttribute("autocomplete", "off");
+												input.setAttribute("onclick", "basicwires_solve()"); //onclick only triggers on check not deselect
+												input.setAttribute("value", `${colours[ii][1]}`);
+
+												var label = document.createElement("label");
+												label.className = `btn btn-outline-primary flex-grow-1 colour-${colours[ii][1]}`;
+												label.setAttribute("for", `basicwires_${i}_${ii}`);
+												label.appendChild(document.createTextNode(`${colours[ii][0]}`));
+
+												group.appendChild(input);
+												group.appendChild(label);
+											}
+
+											basicwires_inputs.appendChild(group);
+										}
+
+									</script>
+
+									<div class="clearfix"></div>
+
+
+									<div class="btn-group  btn-group-sm" role="group" id="basicwires_serial" title="Last digit of the serial number">
+										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value=false onclick="basicwires_solve()">
+										<label class="btn btn-outline-primary" for="basicwires_serial0">Even</label>
+
+										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial1" autocomplete="off" value=true onclick="basicwires_solve()">
+										<label class="btn btn-outline-primary" for="basicwires_serial1">Odd</label>
+									</div>
+									<hr>
+									<div class="text-success" id="basicwires_solution"> </div>
+									<div class="text-warning " id="basicwires_validation"> </div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col module pt-3" id="Password">
+							<div class="card">
+								<div class="card-header ">
+									Password
+								</div>
+								<div class="card-body ">
+									<div class="input-group">
+										<input id="passwd_letters1" placeholder="1" type="text" onkeyup="passwd_solve()"
+											class="possible form-control" />
+										<input id="passwd_letters2" placeholder="2" type="text" onkeyup="passwd_solve()"
+											class="possible form-control" />
+										<input id="passwd_letters3" placeholder="3" type="text" onkeyup="passwd_solve()"
+											class="possible form-control" />
+										<input id="passwd_letters4" placeholder="4" type="text" onkeyup="passwd_solve()"
+											class="possible form-control" />
+										<input id="passwd_letters5" placeholder="5" type="text" onkeyup="passwd_solve()"
+											class="possible form-control" />
+									</div>
+									<hr>
+									<div id="divSolution">
+										<span id="passwd_solution"> </span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+
+
+		<script>
+			function setup() {
+				Array.from(document.getElementsByClassName('possible')).forEach(element => {
+					element.addEventListener('keypress', passwd_jump);
+				});
+
+				// Missile buttons deselectable.
+				Array.from(document.querySelectorAll('.btn-group-vertical .btn')).forEach(element => {
+					element.addEventListener('click', buttonDeselect);
+				});
+
+				// Basic wires deselectable.
+				Array.from(document.querySelectorAll('#basicwires_inputs .btn')).forEach(element => {
+					element.addEventListener('click', buttonDeselect);
+				});
+
+				// Hiding basic wires serial question.
+				document.getElementById("basicwires_serial").style.display = "none";
+
+			}
+
+
+			const lookups = [
+				'about', 'after', 'again', 'below', 'could',
+				'every', 'first', 'found', 'great', 'house',
+				'large', 'learn', 'never', 'other', 'place',
+				'plant', 'point', 'right', 'small', 'sound',
+				'spell', 'still', 'study', 'their', 'there',
+				'these', 'thing', 'think', 'three', 'water',
+				'where', 'which', 'world', 'would', 'write'
+			];
+
+			const white = "white", yellow = "yellow", blue = "blue", red = "red", black = "black",
+				last = "last", first = "first", second = "2nd", fourth = "4th", third = "3rd";
+
+			function passwd_solve(e) {
+				var inputs = [
+					document.getElementById("passwd_letters1").value.toLowerCase().split(''),
+					document.getElementById("passwd_letters2").value.toLowerCase().split(''),
+					document.getElementById("passwd_letters3").value.toLowerCase().split(''),
+					document.getElementById("passwd_letters4").value.toLowerCase().split(''),
+					document.getElementById("passwd_letters5").value.toLowerCase().split('')
+				];
+				let matches = lookups.filter(lookupWord => {
+					let wordLetters = lookupWord.split('');
+
+					let hasMatch = true;
+					for (var i = 0; i < 5; i++) {
+						hasMatch &&= inputs[i].length === 0 || inputs[i].includes(wordLetters[i]);
+					}
+					return hasMatch;
+
+				});
+
+				document.getElementById("passwd_solution").innerHTML = matches.join('<br>');
+				console.log(matches);
+			}
+
+			function basicwires_counter(colour) {
+				var count = 0;
+				var element = document.getElementsByClassName(`basicwires_${colour}`);
+				for (var i = 0; i < element.length; ++i) {
+					if (element[i].checked) {
+						count++;
+					}
+				}
+				return count;
+			}
+
+			function basicwires_solve(e) {
+
+				document.getElementById("basicwires_validation").innerHTML = "";
+				document.getElementById("basicwires_solution").innerHTML = "";
+
+				let redWires = basicwires_counter(red),
+					blueWires = basicwires_counter(blue),
+					yellowWires = basicwires_counter(yellow),
+					whiteWires = basicwires_counter(white),
+					blackWires = basicwires_counter(black);
+
+				let serial = false, lastwire = "";
+
+				//loop decending order to find the last input wire and assume its the last.
+				for (var i = 6; i >= 3; i--) {
+					var l = document.querySelector(`input[name="basicwires_${i}"]:checked`);
+					if (l != null) {
+						lastwire = l.value
+						break;
+					}
+				}
+				if (lastwire == "") {
+					document.getElementById("basicwires_validation").innerHTML = "Last wire needed.";
+					return;
+				}
+
+				let totalcount = redWires + blueWires + yellowWires + blackWires + whiteWires;
+
+				if (totalcount < 3) {
+					document.getElementById("basicwires_validation").innerHTML = "3 or more wires needed.";
+					return;
+				}
+
+				if ((totalcount == 4 && redWires > 1) || (totalcount == 5 && lastwire == black) || (totalcount == 6 && yellowWires == 0)) {
+					document.getElementById("basicwires_serial").style.display = "inline-flex";
+
+					var selected_serial = document.querySelector('input[name="basicwires_serial"]:checked');
+					if (selected_serial == null) {
+						document.getElementById("basicwires_validation").innerHTML = "serial needed.";
+						return;
+					} else {
+						serial = selected_serial.value == "true" ? true : false; //TODO: The bool conversion wasnt working so this is a hack, needs replacing.
+					}
+				} else document.getElementById("basicwires_serial").style.display = "none";
+
+				let result = "";
+				switch (totalcount) {
+					case 3:
+						{
+							if (redWires == 0)
+								result = second;
+							else if (lastwire == white)
+								result = last;
+							else if (blueWires > 1)
+								result = `${last} ${blue}`;
+							else
+								result = last;
+							break;
+						}
+					case 4:
+						{
+							if (redWires > 1 && serial)
+								result = `${last} ${red}`;
+							else if (lastwire == yellow && redWires == 0)
+								result = first;
+							else if (blueWires == 1)
+								result = first;
+							else if (yellowWires > 1)
+								result = last;
+							else
+								result = second;
+							break;
+						}
+					case 5:
+						{
+							if (lastwire == black && serial)
+								result = fourth;
+							else if (redWires == 1 && yellowWires > 1)
+								result = first;
+							else if (blackWires == 0)
+								result = second;
+							else
+								result = first;
+							break;
+						}
+					case 6:
+						{
+							if (yellowWires == 0 && serial)
+								result = third;
+							else if (yellowWires == 1 && whiteWires > 1)
+								result = fourth;
+							else if (redWires == 0)
+								result = last;
+							else
+								result = fourth;
+							break;
+						}
+					default:
+						document.getElementById("basicwires_validation").innerHTML = "Invalid input.";
+						return;
+				}
+
+				document.getElementById("basicwires_solution").innerHTML = `Total wires: ${totalcount}. Cut the ${result} wire.`;
+			}
+
+
+			function passwd_jump(e) {
+				if ("1234567890".includes(e.key)) {
+					e.preventDefault();
+					e.stopPropagation();
+				}
+				if ("12345".includes(e.key)) {
+					document.getElementById(`passwd_letters${e.key}`).focus();
+				}
+			}
+
+			function buttonDeselect(e) {
+				if (document.getElementById(e.target.htmlFor).checked) {
+					document.getElementById(e.target.htmlFor).checked = false;
+					e.preventDefault();
+				}
+			}
+
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/less"></script>
+	</body>
 
 </html>
