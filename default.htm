@@ -63,6 +63,7 @@
 			input.btn-check:checked+.btn.btn.colour-red {
 				background-color: #dc3545;
 			}
+
 		</style>
 	</head>
 
@@ -116,7 +117,7 @@
 										<label class="btn btn-outline-primary" for="button_word3">Hold</label>
 									</div>
 
-									<div class="btn-group-vertical" role="group">
+									<div class="btn-group-vertical align-top" role="group">
 										<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off">
 										<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
 
@@ -130,9 +131,76 @@
 										<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
 									</div>
 
-									<div class="input-group-vertical" id="button_batteries">
+									<div class="btn-group-vertical align-top d-none " role="group" id="button_batteries">
+										<input type="radio" class="btn-check " name="button_batts" id="button_batts1" autocomplete="off">
+										<label class="btn btn-outline-primary " for="button_batts1">No cells</label>
 
+										<input type="radio" class="btn-check " name="button_batts" id="button_batts2" autocomplete="off">
+										<label class="btn btn-outline-primary " for="button_batts2">>1 cell</label>
+
+										<input type="radio" class="btn-check " name="button_batts" id="button_batts3" autocomplete="off">
+										<label class="btn btn-outline-primary " for="button_batts3">>2 cells</label>
 									</div>
+
+									<div class="input-group-vertical " id="button_car">
+										label CAR
+									</div>
+
+									<div class="input-group-vertical" id="button_frk">
+										label FRK
+									</div>
+
+									<script>
+										function button_solve() {
+
+											var hold = false;
+											var click = false;
+											var infoNeeded = { batts: false, car: false, frk: false };
+											// var button_batteries = new bootstrap.Collapse(
+											// 	document.getElementById('button_batteries'), {
+											// 	toggle: false
+											// });
+											var button_batteries = document.getElementById('button_batteries');
+
+											var state = {
+												abort: document.getElementById("button_word1").checked,
+												detonate: document.getElementById("button_word2").checked,
+												hold: document.getElementById("button_word3").checked,
+												blue: document.getElementById("button_colour1").checked,
+												white: document.getElementById("button_colour2").checked,
+												yellow: document.getElementById("button_colour3").checked,
+												red: document.getElementById("button_colour4").checked,
+												battNone: false,
+												battMoreThan1: false,
+												battMoreThan2: false,
+											};
+
+											console.log(document.getElementById('button_word2').checked);
+											//console.log(state.detonate);
+
+
+											if (state.blue && state.abort) { // 1
+												hold = true;
+											} else if (state.yellow) { // 5
+												hold = true;
+											} else if (state.red && state.hold) {
+												click = true;
+											}
+
+											// Extra info
+											if (state.detonate ) {
+												infoNeeded.batts = true;
+											}
+											if (infoNeeded.batts) {
+												//button_batteries.show();
+												button_batteries.classList.remove("d-none"); // Show.
+											} else {
+												//button_batteries.hide();
+												button_batteries.classList.add("d-none"); // Hide.
+
+											}
+										}
+									</script>
 								</div>
 							</div>
 						</div>
@@ -235,17 +303,20 @@
 
 		<script>
 			function setup() {
+				// Password.
 				Array.from(document.getElementsByClassName('possible')).forEach(element => {
 					element.addEventListener('keypress', passwd_jump);
 				});
 
-				// Missile buttons deselectable.
-				Array.from(document.querySelectorAll('.btn-group-vertical .btn')).forEach(element => {
+				// Missile buttons.
+				Array.from(document.querySelectorAll('#MissileButton .btn')).forEach(element => {
 					element.addEventListener('click', buttonDeselect);
+					element.addEventListener('click', () => setTimeout(button_solve));
 				});
 
-				// Basic wires deselectable.
-				Array.from(document.querySelectorAll('#basicwires_inputs .btn')).forEach(element => {
+
+				// Basic wires.
+				Array.from(document.querySelectorAll('#basicwires2_inputs .btn')).forEach(element => {
 					element.addEventListener('click', buttonDeselect);
 				});
 
@@ -423,6 +494,7 @@
 					document.getElementById(e.target.htmlFor).checked = false;
 					e.preventDefault();
 				}
+				//button_solve();
 			}
 
 		</script>
