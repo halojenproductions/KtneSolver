@@ -166,7 +166,7 @@
                                             input.setAttribute("type", "radio");
                                             input.setAttribute("name", `basicwires_${i}`);
                                             input.setAttribute("autocomplete", "off");
-                                            input.setAttribute("onclick", "basicwires_solve()");
+                                            input.setAttribute("onclick", "basicwires_solve()"); //onclick only triggers on check not deselect
                                             input.setAttribute("value", `${colours[ii][1]}`);
 
                                             var label = document.createElement("label");
@@ -186,18 +186,14 @@
                                 <div class="clearfix"></div>
 
 
-                                <div class="btn-group  btn-group-sm" role="group" id="basicwires_serial">
-                                    <input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value=false onclick="basicwires_solve()"> <!--TODO: Tooltip? Bootstrap has built in tooltips but Im getting annoyed at trying to get the syntax right-->
+                                <div class="btn-group  btn-group-sm" role="group" id="basicwires_serial" title="Last digit of the serial number">
+                                    <input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value=false onclick="basicwires_solve()">
                                     <label class="btn btn-outline-primary" for="basicwires_serial0">Even</label>
 
                                     <input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial1" autocomplete="off" value=true onclick="basicwires_solve()">
                                     <label class="btn btn-outline-primary" for="basicwires_serial1">Odd</label>
-
                                 </div>
                                 <hr>
-                                <!-- <div>
-                                    <input type="button" onclick="basicwires_solve(this)" value="Solve" />
-                                </div> -->
                                 <div class="text-success" id="basicwires_solution"> </div>
                                 <div class="text-warning " id="basicwires_validation"> </div>
                             </div>
@@ -255,7 +251,6 @@
 
             document.getElementById("basicwires_serial").style.display = "none";
 
-
         }
 
 
@@ -306,29 +301,24 @@
             return count;
         }
 
-        function basicwires_solve(e) { //TODO:bug, no trigger for deselecting any button
+        function basicwires_solve(e) {
 
             document.getElementById("basicwires_validation").innerHTML = "";
             document.getElementById("basicwires_solution").innerHTML = "";
 
-            let redWires = 0,
-                blueWires = 0,
-                yellowWires = 0,
-                blackWires = 0,
-                whiteWires = 0,
-                serial = false,
-                lastwire = "";
+            let redWires = basicwires_counter(red),
+                blueWires = basicwires_counter(blue),
+                yellowWires = basicwires_counter(yellow),
+                whiteWires = basicwires_counter(white),
+                blackWires = basicwires_counter(black);
 
-            redWires = basicwires_counter(red);
-            blueWires = basicwires_counter(blue);
-            yellowWires = basicwires_counter(yellow);
-            whiteWires = basicwires_counter(white);
-            blackWires = basicwires_counter(black);
+            let serial = false, lastwire = "";
 
             //loop decending order to find the last input wire and assume its the last.
             for (var i = 6; i >= 3; i--) {
-                if (document.querySelector(`input[name="basicwires_${i}"]:checked`) != null) {
-                    lastwire = document.querySelector(`input[name="basicwires_${i}"]:checked`).value
+                var l = document.querySelector(`input[name="basicwires_${i}"]:checked`);
+                if (l != null) {
+                    lastwire = l.value
                     break;
                 }
             }
@@ -343,91 +333,69 @@
                 document.getElementById("basicwires_validation").innerHTML = "3 or more wires needed.";
                 return;
             }
+
             if ((totalcount == 4 && redWires > 1) || (totalcount == 5 && lastwire == black) || (totalcount == 6 && yellowWires == 0)) {
                 document.getElementById("basicwires_serial").style.display = "inline-flex";
-                if (document.querySelector('input[name="basicwires_serial"]:checked') == null) {
+
+                var selected_serial = document.querySelector('input[name="basicwires_serial"]:checked');
+                if (selected_serial == null) {
                     document.getElementById("basicwires_validation").innerHTML = "serial needed.";
                     return;
                 } else {
-
-                    serial = document.querySelector('input[name="basicwires_serial"]:checked').value == "true" ? true : false; //TODO: The bool conversion wasnt working so this is a hack, needs replacing.
+                    serial = selected_serial.value == "true" ? true : false; //TODO: The bool conversion wasnt working so this is a hack, needs replacing.
                 }
             } else document.getElementById("basicwires_serial").style.display = "none";
 
             let result = "";
-
             switch (totalcount) {
                 case 3:
                     {
-                        if (redWires == 0) {
+                        if (redWires == 0)
                             result = second;
-                            break;
-                        }
-                        if (lastwire == white) {
+                        else if (lastwire == white)
                             result = last;
-                            break;
-                        }
-                        if (blueWires > 1) {
+                        else if (blueWires > 1)
                             result = `${last} ${blue}`;
-                            break;
-                        }
-                        result = last;
+                        else
+                            result = last;
                         break;
                     }
                 case 4:
                     {
-                        if (redWires > 1 && serial) {
+                        if (redWires > 1 && serial)
                             result = `${last} ${red}`;
-                            break;
-                        }
-                        if (lastwire == yellow && redWires == 0) {
+                        else if (lastwire == yellow && redWires == 0)
                             result = first;
-                            break;
-                        }
-                        if (blueWires == 1) {
+                        else if (blueWires == 1)
                             result = first;
-                            break;
-                        }
-                        if (yellowWires > 1) {
+                        else if (yellowWires > 1)
                             result = last;
-                            break;
-                        }
-                        result = second;
+                        else
+                            result = second;
                         break;
                     }
                 case 5:
                     {
-                        if (lastwire == black && serial) {
+                        if (lastwire == black && serial)
                             result = fourth;
-                            break;
-                        }
-                        if (redWires == 1 && yellowWires > 1) {
+                        else if (redWires == 1 && yellowWires > 1)
                             result = first;
-                            break;
-                        }
-                        if (blackWires == 0) {
+                        else if (blackWires == 0)
                             result = second;
-                            break;
-                        }
-                        result = first;
+                        else
+                            result = first;
                         break;
                     }
                 case 6:
                     {
-                        if (yellowWires == 0 && serial) {
+                        if (yellowWires == 0 && serial)
                             result = third;
-                            break;
-                        }
-                        if (yellowWires == 1 && whiteWires > 1) {
+                        else if (yellowWires == 1 && whiteWires > 1)
                             result = fourth;
-                            break;
-                        }
-                        if (redWires == 0) {
+                        else if (redWires == 0)
                             result = last;
-                            break;
-                        }
-
-                        result = fourth;
+                        else
+                            result = fourth;
                         break;
                     }
                 default:
