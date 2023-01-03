@@ -64,19 +64,6 @@
 				background-color: #dc3545;
 			}
 
-			.btn-group-sm {
-				margin-top: 6px;
-				/*TODO : better solution to spacing*/
-			}
-
-			.btn-label {
-				min-width: 70px;
-				/*TODO : innapropriately using button style for label but i thought it looked clean, ideally would disable rollover style and better solution for uniform sizing*/
-			}
-
-			/* .collapse, .collapse * {
-				transition: none !important;
-			} */
 		</style>
 	</head>
 
@@ -218,184 +205,16 @@
 							</div>
 						</div>
 
-						<div class="col module pt-3" id="BasicWires"> <!--TODO: create a loop for generating these buttons instead of spamming lines of repeating elements-->
+						<div class="col module pt-3" id="basicwires">
 							<div class="card">
 								<div class="card-header ">
 									Basic wires
 								</div>
-								<div class="card-body" id="">
-									<div class="btn-group-vertical btn-group-sm" role="group">
-										<label class="btn btn-outline-danger btn-label">Red</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red0" autocomplete="off" value=0>
-										<label class="btn btn-outline-danger" for="basicwires_red0">0</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red1" autocomplete="off" value=1>
-										<label class="btn btn-outline-danger" for="basicwires_red1">1</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red2" autocomplete="off" value=2>
-										<label class="btn btn-outline-danger" for="basicwires_red2">2</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red3" autocomplete="off" value=3>
-										<label class="btn btn-outline-danger" for="basicwires_red3">3</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red4" autocomplete="off" value=4>
-										<label class="btn btn-outline-danger" for="basicwires_red4">4</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red5" autocomplete="off" value=5>
-										<label class="btn btn-outline-danger" for="basicwires_red5">5</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red6" autocomplete="off" value=6>
-										<label class="btn btn-outline-danger" for="basicwires_red6">6</label>
-									</div>
-
-									<div class="btn-group-vertical  btn-group-sm" role="group">
-										<label class="btn btn-outline-primary btn-label">Blue</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue0" autocomplete="off" value=0>
-										<label class="btn btn-outline-primary" for="basicwires_blue0">0</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue1" autocomplete="off" value=1>
-										<label class="btn btn-outline-primary" for="basicwires_blue1">1</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue2" autocomplete="off" value=2>
-										<label class="btn btn-outline-primary" for="basicwires_blue2">2</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue3" autocomplete="off" value=3>
-										<label class="btn btn-outline-primary" for="basicwires_blue3">3</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue4" autocomplete="off" value=4>
-										<label class="btn btn-outline-primary" for="basicwires_blue4">4</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue5" autocomplete="off" value=5>
-										<label class="btn btn-outline-primary" for="basicwires_blue5">5</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue6" autocomplete="off" value=6>
-										<label class="btn btn-outline-primary" for="basicwires_blue6">6</label>
-									</div>
-
-									<div class="btn-group-vertical  btn-group-sm" role="group">
-										<label class="btn btn-outline-warning btn-label">Yellow</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow0" autocomplete="off" value=0>
-										<label class="btn btn-outline-warning" for="basicwires_yellow0">0</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow1" autocomplete="off" value=1>
-										<label class="btn btn-outline-warning" for="basicwires_yellow1">1</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow2" autocomplete="off" value=2>
-										<label class="btn btn-outline-warning" for="basicwires_yellow2">2</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow3" autocomplete="off" value=3>
-										<label class="btn btn-outline-warning" for="basicwires_yellow3">3</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow4" autocomplete="off" value=4>
-										<label class="btn btn-outline-warning" for="basicwires_yellow4">4</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow5" autocomplete="off" value=5>
-										<label class="btn btn-outline-warning" for="basicwires_yellow5">5</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow6" autocomplete="off" value=6>
-										<label class="btn btn-outline-warning" for="basicwires_yellow6">6</label>
-									</div>
-
-									<div class="btn-group-vertical  btn-group-sm" role="group">
-										<label class="btn btn-outline-secondary btn-label">Black</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black0" autocomplete="off" value=0>
-										<label class="btn btn-outline-secondary" for="basicwires_black0">0</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black1" autocomplete="off" value=1>
-										<label class="btn btn-outline-secondary" for="basicwires_black1">1</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black2" autocomplete="off" value=2>
-										<label class="btn btn-outline-secondary" for="basicwires_black2">2</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black3" autocomplete="off" value=3>
-										<label class="btn btn-outline-secondary" for="basicwires_black3">3</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black4" autocomplete="off" value=4>
-										<label class="btn btn-outline-secondary" for="basicwires_black4">4</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black5" autocomplete="off" value=5>
-										<label class="btn btn-outline-secondary" for="basicwires_black5">5</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black6" autocomplete="off" value=6>
-										<label class="btn btn-outline-secondary" for="basicwires_black6">6</label>
-									</div>
-
-									<div class="btn-group-vertical  btn-group-sm" role="group">
-										<label class="btn btn-outline-light btn-label">White</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white0" autocomplete="off" value=0>
-										<label class="btn btn-outline-light" for="basicwires_white0">0</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white1" autocomplete="off" value=1>
-										<label class="btn btn-outline-light" for="basicwires_white1">1</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white2" autocomplete="off" value=2>
-										<label class="btn btn-outline-light" for="basicwires_white2">2</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white3" autocomplete="off" value=3>
-										<label class="btn btn-outline-light" for="basicwires_white3">3</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white4" autocomplete="off" value=4>
-										<label class="btn btn-outline-light" for="basicwires_white4">4</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white5" autocomplete="off" value=5>
-										<label class="btn btn-outline-light" for="basicwires_white5">5</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white6" autocomplete="off" value=6>
-										<label class="btn btn-outline-light" for="basicwires_white6">6</label>
-									</div>
-
-									<div class="btn-group  btn-group-sm" role="group">
-										<label class="btn btn-outline-light btn-label">Last wire</label>
-
-										<input type="radio" class="btn-check" name="basicwires_last" id="basicwires_lastblue" autocomplete="off" value="red">
-										<label class="btn btn-outline-danger" for="basicwires_lastblue">Red</label>
-
-										<input type="radio" class="btn-check" name="basicwires_last" id="basicwires_lastred" autocomplete="off" value="blue">
-										<label class="btn btn-outline-primary" for="basicwires_lastred">Blu</label>
-
-										<input type="radio" class="btn-check" name="basicwires_last" id="basicwires_lastyellow" autocomplete="off" value="yellow">
-										<label class="btn btn-outline-warning" for="basicwires_lastyellow">Yel</label>
-
-										<input type="radio" class="btn-check" name="basicwires_last" id="basicwires_lastblack" autocomplete="off" value="black">
-										<label class="btn btn-outline-secondary" for="basicwires_lastblack">Bla</label>
-
-										<input type="radio" class="btn-check" name="basicwires_last" id="basicwires_lastwhite" autocomplete="off" value="white">
-										<label class="btn btn-outline-light" for="basicwires_lastwhite">Whi</label>
-									</div>
-
-									<div class="btn-group  btn-group-sm" role="group">
-										<label class="btn btn-outline-light btn-label">Is last serial digit odd?</label>
-
-										<input type="radio" class="btn-check" name="button_serial" id="button_serial1" autocomplete="off" value=true>
-										<label class="btn btn-outline-light" for="button_serial1">Yes</label>
-
-										<input type="radio" class="btn-check" name="button_serial" id="button_serial0" autocomplete="off" value=false>
-										<label class="btn btn-outline-light" for="button_serial0">No</label>
-									</div>
-									<hr>
-									<div>
-										<input type="button" onclick="basicwires_solve(this)" value="Solve" />
-										<div id="rWires"> </div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col module pt-3" id="BasicWires2">
-							<div class="card">
-								<div class="card-header ">
-									Basic wires 2
-								</div>
-								<div class="card-body" id="basicwires2_inputs">
+								<div class="card-body" id="basicwires_inputs">
 
 									<script type="text/javascript">
 
-										var basicwires2_inputs = document.getElementById("basicwires2_inputs");
+										var basicwires_inputs = document.getElementById("basicwires_inputs");
 										var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
 
 										for (i = 1; i <= 6; i++) {
@@ -410,22 +229,24 @@
 
 											for (ii = 0; ii < 5; ii++) {
 												var input = document.createElement("input");
-												input.id = `basicwires2_${i}_${ii}`;
-												input.className = "btn-check";
+												input.id = `basicwires_${i}_${ii}`;
+												input.className = `btn-check basicwires_${colours[ii][1]}`;
 												input.setAttribute("type", "radio");
-												input.setAttribute("name", `basicwires2_${i}`);
+												input.setAttribute("name", `basicwires_${i}`);
 												input.setAttribute("autocomplete", "off");
+												input.setAttribute("onclick", "basicwires_solve()"); //onclick only triggers on check not deselect
+												input.setAttribute("value", `${colours[ii][1]}`);
 
 												var label = document.createElement("label");
 												label.className = `btn btn-outline-primary flex-grow-1 colour-${colours[ii][1]}`;
-												label.setAttribute("for", `basicwires2_${i}_${ii}`);
+												label.setAttribute("for", `basicwires_${i}_${ii}`);
 												label.appendChild(document.createTextNode(`${colours[ii][0]}`));
 
 												group.appendChild(input);
 												group.appendChild(label);
 											}
 
-											basicwires2_inputs.appendChild(group);
+											basicwires_inputs.appendChild(group);
 										}
 
 									</script>
@@ -433,18 +254,16 @@
 									<div class="clearfix"></div>
 
 
-									<div class="btn-group  btn-group-sm" role="group">
-										<input type="radio" class="btn-check" name="basicwires2_serial" id="basicwires2_serial0" autocomplete="off" value=false>
-										<label class="btn btn-outline-primary" for="basicwires2_serial0">Even</label>
+									<div class="btn-group  btn-group-sm" role="group" id="basicwires_serial" title="Last digit of the serial number">
+										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value=false onclick="basicwires_solve()">
+										<label class="btn btn-outline-primary" for="basicwires_serial0">Even</label>
 
-										<input type="radio" class="btn-check" name="basicwires2_serial" id="basicwires2_serial1" autocomplete="off" value=true>
-										<label class="btn btn-outline-primary" for="basicwires2_serial1">Odd</label>
+										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial1" autocomplete="off" value=true onclick="basicwires_solve()">
+										<label class="btn btn-outline-primary" for="basicwires_serial1">Odd</label>
 									</div>
 									<hr>
-									<!-- <div>
-										<input type="button" onclick="basicwires_solve(this)" value="Solve" />
-									</div> -->
-									<div id="rWires"> </div>
+									<div class="text-success" id="basicwires_solution"> </div>
+									<div class="text-warning " id="basicwires_validation"> </div>
 								</div>
 							</div>
 						</div>
@@ -478,6 +297,7 @@
 				</div>
 			</div>
 		</div>
+		</div>
 
 
 
@@ -494,20 +314,14 @@
 					element.addEventListener('click', () => setTimeout(button_solve));
 				});
 
+
 				// Basic wires.
 				Array.from(document.querySelectorAll('#basicwires2_inputs .btn')).forEach(element => {
 					element.addEventListener('click', buttonDeselect);
 				});
 
-				//wire buttons cannot be null, must have default and no deselect option. 
-				document.getElementById("basicwires_red0").checked = true;
-				document.getElementById("basicwires_blue0").checked = true;
-				document.getElementById("basicwires_yellow0").checked = true;
-				document.getElementById("basicwires_black0").checked = true;
-				document.getElementById("basicwires_white0").checked = true;
-				document.getElementById("button_serial1").checked = true;
-				document.getElementById("basicwires_lastblue").checked = true;
-
+				// Hiding basic wires serial question.
+				document.getElementById("basicwires_serial").style.display = "none";
 
 			}
 
@@ -521,6 +335,9 @@
 				'these', 'thing', 'think', 'three', 'water',
 				'where', 'which', 'world', 'would', 'write'
 			];
+
+			const white = "white", yellow = "yellow", blue = "blue", red = "red", black = "black",
+				last = "last", first = "first", second = "2nd", fourth = "4th", third = "3rd";
 
 			function passwd_solve(e) {
 				var inputs = [
@@ -545,107 +362,124 @@
 				console.log(matches);
 			}
 
+			function basicwires_counter(colour) {
+				var count = 0;
+				var element = document.getElementsByClassName(`basicwires_${colour}`);
+				for (var i = 0; i < element.length; ++i) {
+					if (element[i].checked) {
+						count++;
+					}
+				}
+				return count;
+			}
+
 			function basicwires_solve(e) {
 
-				let redWires = Number(document.querySelector('input[name="basicwires_red"]:checked').value),
-					blueWires = Number(document.querySelector('input[name="basicwires_blue"]:checked').value),
-					yellowWires = Number(document.querySelector('input[name="basicwires_yellow"]:checked').value),
-					blackWires = Number(document.querySelector('input[name="basicwires_black"]:checked').value),
-					whiteWires = Number(document.querySelector('input[name="basicwires_white"]:checked').value),
-					serial = Boolean(document.querySelector('input[name="button_serial"]:checked').value),
-					lastwire = document.querySelector('input[name="basicwires_last"]:checked').value;
+				document.getElementById("basicwires_validation").innerHTML = "";
+				document.getElementById("basicwires_solution").innerHTML = "";
+
+				let redWires = basicwires_counter(red),
+					blueWires = basicwires_counter(blue),
+					yellowWires = basicwires_counter(yellow),
+					whiteWires = basicwires_counter(white),
+					blackWires = basicwires_counter(black);
+
+				let serial = false, lastwire = "";
+
+				//loop decending order to find the last input wire and assume its the last.
+				for (var i = 6; i >= 3; i--) {
+					var l = document.querySelector(`input[name="basicwires_${i}"]:checked`);
+					if (l != null) {
+						lastwire = l.value
+						break;
+					}
+				}
+				if (lastwire == "") {
+					document.getElementById("basicwires_validation").innerHTML = "Last wire needed.";
+					return;
+				}
 
 				let totalcount = redWires + blueWires + yellowWires + blackWires + whiteWires;
 
-				var white = "white", yellow = "yellow", blue = "blue", red = "red", black = "black",
-					last = "last", first = "first", second = "2nd", fourth = "4th", third = "3rd";
+				if (totalcount < 3) {
+					document.getElementById("basicwires_validation").innerHTML = "3 or more wires needed.";
+					return;
+				}
+
+				if ((totalcount == 4 && redWires > 1) || (totalcount == 5 && lastwire == black) || (totalcount == 6 && yellowWires == 0)) {
+					document.getElementById("basicwires_serial").style.display = "inline-flex";
+
+					var selected_serial = document.querySelector('input[name="basicwires_serial"]:checked');
+					if (selected_serial == null) {
+						document.getElementById("basicwires_validation").innerHTML = "serial needed.";
+						return;
+					} else {
+						serial = selected_serial.value == "true" ? true : false; //TODO: The bool conversion wasnt working so this is a hack, needs replacing.
+					}
+				} else document.getElementById("basicwires_serial").style.display = "none";
 
 				let result = "";
-
 				switch (totalcount) {
 					case 3:
 						{
-							if (redWires == 0) {
+							if (redWires == 0)
 								result = second;
-								break;
-							}
-							if (lastwire == white) {
+							else if (lastwire == white)
 								result = last;
-								break;
-							}
-							if (blueWires > 1) {
-								result = last + " " + blue;
-								break;
-							}
-							result = last;
+							else if (blueWires > 1)
+								result = `${last} ${blue}`;
+							else
+								result = last;
 							break;
 						}
 					case 4:
 						{
-							if (redWires > 1 && serial) {
-								result = last + " " + red;
-								break;
-							}
-							if (lastwire == yellow && redWire == 0) {
+							if (redWires > 1 && serial)
+								result = `${last} ${red}`;
+							else if (lastwire == yellow && redWires == 0)
 								result = first;
-								break;
-							}
-							if (blueWires == 1) {
+							else if (blueWires == 1)
 								result = first;
-								break;
-							}
-							if (yellowWires > 1) {
+							else if (yellowWires > 1)
 								result = last;
-								break;
-							}
-							result = second;
+							else
+								result = second;
 							break;
 						}
 					case 5:
 						{
-							if (lastwire == black && serial) {
+							if (lastwire == black && serial)
 								result = fourth;
-								break;
-							}
-							if (redWires == 1 && yellowWires > 1) {
+							else if (redWires == 1 && yellowWires > 1)
 								result = first;
-								break;
-							}
-							if (blackWires == 0) {
+							else if (blackWires == 0)
 								result = second;
-								break;
-							}
-							result = first;
+							else
+								result = first;
 							break;
 						}
 					case 6:
 						{
-							if (yellowWires == 0 && serial) {
+							if (yellowWires == 0 && serial)
 								result = third;
-								break;
-							}
-							if (yellowWires == 1 && whiteWires > 1) {
+							else if (yellowWires == 1 && whiteWires > 1)
 								result = fourth;
-								break;
-							}
-							if (redWires == 0) {
+							else if (redWires == 0)
 								result = last;
-								break;
-							}
-
-							result = fourth;
+							else
+								result = fourth;
 							break;
 						}
 					default:
-						result = "Invalid input";
-						break;
+						document.getElementById("basicwires_validation").innerHTML = "Invalid input.";
+						return;
 				}
 
-				document.getElementById("rWires").innerHTML = "Total wires: " + totalcount + ". Cut the " + result + " wire.";
+				document.getElementById("basicwires_solution").innerHTML = `Total wires: ${totalcount}. Cut the ${result} wire.`;
 			}
 
 
-			function passwd_jump(e) { //This is specific to the password solver? Should be fine for now but if there are additional text inputs this may need context.
+			function passwd_jump(e) {
 				if ("1234567890".includes(e.key)) {
 					e.preventDefault();
 					e.stopPropagation();
