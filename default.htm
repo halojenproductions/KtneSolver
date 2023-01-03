@@ -32,35 +32,35 @@
 				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.6);
 			}
 
-			#button_colour1:not(:checked)+.btn {
+			input.btn-check:not(:checked)+.btn.colour-blue {
 				color: #0d6efd;
 			}
 
-			#button_colour1:checked+.btn {
+			input.btn-check:checked+.btn.colour-blue {
 				background-color: #0d6efd;
 			}
 
-			#button_colour2:not(:checked)+.btn {
+			input.btn-check:not(:checked)+.btn.colour-white {
 				color: #f8f9fa;
 			}
 
-			#button_colour2:checked+.btn {
+			input.btn-check:checked+.btn.colour-white {
 				background-color: #adb5bd;
 			}
 
-			#button_colour3:not(:checked)+.btn {
+			input.btn-check:not(:checked)+.btn.colour-yellow {
 				color: #ffc107;
 			}
 
-			#button_colour3:checked+.btn {
+			input.btn-check:checked+.btn.colour-yellow {
 				background-color: #ffc107;
 			}
 
-			#button_colour4:not(:checked)+.btn {
+			input.btn-check:not(:checked)+.btn.colour-red {
 				color: #dc3545;
 			}
 
-			#button_colour4:checked+.btn {
+			input.btn-check:checked+.btn.btn.colour-red {
 				background-color: #dc3545;
 			}
 
@@ -126,17 +126,17 @@
 									</div>
 
 									<div class="btn-group-vertical" role="group">
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour1" autocomplete="off">
-										<label class="btn btn-outline-primary " for="button_colour1">Blue</label>
+										<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off">
+										<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
 
 										<input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off">
-										<label class="btn btn-outline-primary" for="button_colour2">White</label>
+										<label class="btn btn-outline-primary colour-white" for="button_colour2">White</label>
 
 										<input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off">
-										<label class="btn btn-outline-primary" for="button_colour3">Yellow</label>
+										<label class="btn btn-outline-primary colour-yellow" for="button_colour3">Yellow</label>
 
 										<input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off">
-										<label class="btn btn-outline-primary" for="button_colour4">Red</label>
+										<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
 									</div>
 
 									<div class="input-group-vertical" id="button_batteries">
@@ -319,143 +319,60 @@
 								<div class="card-header ">
 									Basic wires 2
 								</div>
-								<div class="card-body" id="">
-									<div class="btn-group btn-group-sm" role="group">
-										<label class="btn-label">1st</label>
+								<div class="card-body" id="basicwires2_inputs">
 
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red1" autocomplete="off">
-										<label class="btn btn-outline-danger" for="basicwires_red1">Red</label>
+									<script type="text/javascript">
 
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue1" autocomplete="off">
-										<label class="btn btn-outline-primary" for="basicwires_blue1">Blue</label>
+										var basicwires2_inputs = document.getElementById("basicwires2_inputs");
+										var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
 
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow1" autocomplete="off">
-										<label class="btn btn-outline-warning" for="basicwires_yellow1">Yellow</label>
+										for (i = 1; i <= 6; i++) {
+											var group = document.createElement("div");
+											group.className = "btn-group btn-group-sm d-flex";
+											group.setAttribute("role", "group");
 
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black1" autocomplete="off">
-										<label class="btn btn-outline-secondary" for="basicwires_black1">Black</label>
+											// var label = document.createElement("label");
+											// label.className = `btn-label`;
+											// label.appendChild(document.createTextNode(`Wire ${i}`));
+											// group.appendChild(label);
 
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white1" autocomplete="off">
-										<label class="btn btn-outline-light" for="basicwires_white1">White</label>
+											for (ii = 0; ii < 5; ii++) {
+												var input = document.createElement("input");
+												input.id = `basicwires2_${i}_${ii}`;
+												input.className = "btn-check";
+												input.setAttribute("type", "radio");
+												input.setAttribute("name", `basicwires2_${i}`);
+												input.setAttribute("autocomplete", "off");
 
-									</div>
+												var label = document.createElement("label");
+												label.className = `btn btn-outline-primary flex-grow-1 colour-${colours[ii][1]}`;
+												label.setAttribute("for", `basicwires2_${i}_${ii}`);
+												label.appendChild(document.createTextNode(`${colours[ii][0]}`));
 
-									<div class="btn-group btn-group-sm" role="group">
-										<label class="btn-label">2nd</label>
+												group.appendChild(input);
+												group.appendChild(label);
+											}
 
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red1" autocomplete="off">
-										<label class="btn btn-outline-danger" for="basicwires_red1">Red</label>
+											basicwires2_inputs.appendChild(group);
+										}
 
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue1" autocomplete="off">
-										<label class="btn btn-outline-primary" for="basicwires_blue1">Blue</label>
+									</script>
 
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow1" autocomplete="off">
-										<label class="btn btn-outline-warning" for="basicwires_yellow1">Yellow</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black1" autocomplete="off">
-										<label class="btn btn-outline-secondary" for="basicwires_black1">Black</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white1" autocomplete="off">
-										<label class="btn btn-outline-light" for="basicwires_white1">White</label>
-
-									</div>
-
-									<div class="btn-group btn-group-sm" role="group">
-										<label class="btn-label">3rd</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red1" autocomplete="off">
-										<label class="btn btn-outline-danger" for="basicwires_red1">Red</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue1" autocomplete="off">
-										<label class="btn btn-outline-primary" for="basicwires_blue1">Blue</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow1" autocomplete="off">
-										<label class="btn btn-outline-warning" for="basicwires_yellow1">Yellow</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black1" autocomplete="off">
-										<label class="btn btn-outline-secondary" for="basicwires_black1">Black</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white1" autocomplete="off">
-										<label class="btn btn-outline-light" for="basicwires_white1">White</label>
-
-									</div>
-
-									<div class="btn-group btn-group-sm" role="group">
-										<label class="btn-label">4th</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red1" autocomplete="off">
-										<label class="btn btn-outline-danger" for="basicwires_red1">Red</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue1" autocomplete="off">
-										<label class="btn btn-outline-primary" for="basicwires_blue1">Blue</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow1" autocomplete="off">
-										<label class="btn btn-outline-warning" for="basicwires_yellow1">Yellow</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black1" autocomplete="off">
-										<label class="btn btn-outline-secondary" for="basicwires_black1">Black</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white1" autocomplete="off">
-										<label class="btn btn-outline-light" for="basicwires_white1">White</label>
-
-									</div>
-
-									<div class="btn-group btn-group-sm" role="group">
-										<label class=" btn-label ">5th</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red1" autocomplete="off">
-										<label class="btn btn-outline-danger" for="basicwires_red1">Red</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue1" autocomplete="off">
-										<label class="btn btn-outline-primary" for="basicwires_blue1">Blue</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow1" autocomplete="off">
-										<label class="btn btn-outline-warning" for="basicwires_yellow1">Yellow</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black1" autocomplete="off">
-										<label class="btn btn-outline-secondary" for="basicwires_black1">Black</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white1" autocomplete="off">
-										<label class="btn btn-outline-light" for="basicwires_white1">White</label>
-
-									</div>
-
-									<div class="btn-group btn-group-sm" role="group">
-										<label class="btn-label " >6th</label>
-
-										<input type="radio" class="btn-check" name="basicwires_red" id="basicwires_red1" autocomplete="off">
-										<label class="btn btn-outline-danger" for="basicwires_red1">Red</label>
-
-										<input type="radio" class="btn-check" name="basicwires_blue" id="basicwires_blue1" autocomplete="off">
-										<label class="btn btn-outline-primary" for="basicwires_blue1">Blue</label>
-
-										<input type="radio" class="btn-check" name="basicwires_yellow" id="basicwires_yellow1" autocomplete="off">
-										<label class="btn btn-outline-warning" for="basicwires_yellow1">Yellow</label>
-
-										<input type="radio" class="btn-check" name="basicwires_black" id="basicwires_black1" autocomplete="off">
-										<label class="btn btn-outline-secondary" for="basicwires_black1">Black</label>
-
-										<input type="radio" class="btn-check" name="basicwires_white" id="basicwires_white1" autocomplete="off">
-										<label class="btn btn-outline-light" for="basicwires_white1">White</label>
-
-									</div>
-
+									<div class="clearfix"></div>
 
 
 									<div class="btn-group  btn-group-sm" role="group">
-										<label class="btn-label">Last serial digit</label>
+										<input type="radio" class="btn-check" name="basicwires2_serial" id="basicwires2_serial0" autocomplete="off" value=false>
+										<label class="btn btn-outline-primary" for="basicwires2_serial0">Even</label>
 
-										<input type="radio" class="btn-check" name="button_serial" id="button_serial1" autocomplete="off" value=true>
-										<label class="btn btn-outline-light" for="button_serial1">Odd</label>
-
-										<input type="radio" class="btn-check" name="button_serial" id="button_serial0" autocomplete="off" value=false>
-										<label class="btn btn-outline-light" for="button_serial0">Even</label>
+										<input type="radio" class="btn-check" name="basicwires2_serial" id="basicwires2_serial1" autocomplete="off" value=true>
+										<label class="btn btn-outline-primary" for="basicwires2_serial1">Odd</label>
 									</div>
 									<hr>
-									<div>
+									<!-- <div>
 										<input type="button" onclick="basicwires_solve(this)" value="Solve" />
-										<div id="rWires"> </div>
-									</div>
+									</div> -->
+									<div id="rWires"> </div>
 								</div>
 							</div>
 						</div>
@@ -498,7 +415,13 @@
 					element.addEventListener('keypress', passwd_jump);
 				});
 
+				// Missile buttons deselectable.
 				Array.from(document.querySelectorAll('.btn-group-vertical .btn')).forEach(element => {
+					element.addEventListener('click', buttonDeselect);
+				});
+
+				// Basic wires deselectable.
+				Array.from(document.querySelectorAll('#basicwires2_inputs .btn')).forEach(element => {
 					element.addEventListener('click', buttonDeselect);
 				});
 
