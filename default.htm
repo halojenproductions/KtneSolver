@@ -223,7 +223,6 @@
 												input.setAttribute("type", "radio");
 												input.setAttribute("name", `basicwires_${i}`);
 												input.setAttribute("autocomplete", "off");
-												input.setAttribute("onclick", "basicwires_solve()"); //onclick only triggers on check not deselect
 												input.setAttribute("value", `${colours[ii][1]}`);
 
 												var label = document.createElement("label");
@@ -242,10 +241,10 @@
 									<div class="clearfix"></div>
 
 									<div class="btn-group btn-group-sm" role="group" id="basicwires_serial" title="Last digit of the serial number">
-										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value="false" onclick="basicwires_solve()" />
+										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value="false" />
 										<label class="btn btn-outline-primary" for="basicwires_serial0">Even</label>
 
-										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial1" autocomplete="off" value="true" onclick="basicwires_solve()" />
+										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial1" autocomplete="off" value="true" />
 										<label class="btn btn-outline-primary" for="basicwires_serial1">Odd</label>
 									</div>
 									<hr />
@@ -292,8 +291,9 @@
 				});
 
 				// Basic wires.
-				Array.from(document.querySelectorAll("#basicwires2_inputs .btn")).forEach((element) => {
+				Array.from(document.querySelectorAll("#basicwires_inputs .btn")).forEach((element) => {
 					element.addEventListener("click", buttonDeselect);
+					element.addEventListener("click", () => setTimeout(basicwires_solve));
 				});
 
 				// Hiding basic wires serial question.
