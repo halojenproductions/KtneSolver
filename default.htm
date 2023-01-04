@@ -2,14 +2,17 @@
 <html lang="en" data-bs-theme="dark">
 
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>KTNE Solver</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+			crossorigin="anonymous" />
 		<style>
 			* {
-				font-family: Consolas, 'Courier New', Courier, monospace;
+				font-family: Consolas, "Courier New", Courier, monospace;
 			}
 
 			body {
@@ -20,15 +23,14 @@
 				min-width: 350px;
 			}
 
-
-			input[type='text'],
+			input[type="text"],
 			#passwd_solution {
 				color: rgb(0, 255, 0) !important;
 				text-transform: uppercase;
 			}
 
-			input[type='text']:focus {
-				border-color: #00FF00;
+			input[type="text"]:focus {
+				border-color: #00ff00;
 				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.6);
 			}
 
@@ -63,7 +65,6 @@
 			input.btn-check:checked+.btn.btn.colour-red {
 				background-color: #dc3545;
 			}
-
 		</style>
 	</head>
 
@@ -71,9 +72,9 @@
 		<div class="container-fluid">
 			<div class="row align-items-start">
 				<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark position-sticky top-0 start-0">
-					<div class="d-flex flex-column align-items-left align-items-sm-start px-3 pt-2  min-vh-100">
+					<div class="d-flex flex-column align-items-left align-items-sm-start px-3 pt-2 min-vh-100">
 						<p>
-							Version: 1<br>
+							Version: 1<br />
 							Verification Code: 241
 						</p>
 						<ul class="nav nav-pills flex-column mb-auto">
@@ -90,69 +91,61 @@
 					</div>
 				</div>
 
-				<div class="col  ">
-					<div class="row ">
-						<div class="col-12 pt-3 ">
+				<div class="col">
+					<div class="row">
+						<div class="col-12 pt-3">
 							<!-- <div class=" w-100 "> -->
 							<h3>Keep Talking and Nobody Explodes</h3>
 							<!-- </div> -->
 						</div>
 					</div>
-					<div class="row  ">
+					<div class="row">
 						<div class="col module pt-3" id="MissileButton">
 							<div class="card">
-								<div class="card-header ">
-									Button
-								</div>
-								<div class="card-body " id="">
-
+								<div class="card-header">Button</div>
+								<div class="card-body" id="">
 									<div class="btn-group-vertical align-top" role="group">
-										<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off">
+										<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off" />
 										<label class="btn btn-outline-primary" for="button_word1">Abort</label>
 
-										<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off">
+										<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off" />
 										<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
 
-										<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off">
+										<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off" />
 										<label class="btn btn-outline-primary" for="button_word3">Hold</label>
 									</div>
 
 									<div class="btn-group-vertical align-top" role="group">
-										<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off">
+										<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off" />
 										<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
 
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off">
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off" />
 										<label class="btn btn-outline-primary colour-white" for="button_colour2">White</label>
 
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off">
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off" />
 										<label class="btn btn-outline-primary colour-yellow" for="button_colour3">Yellow</label>
 
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off">
+										<input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off" />
 										<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
 									</div>
 
-									<div class="btn-group-vertical align-top d-none " role="group" id="button_batteries">
-										<input type="radio" class="btn-check " name="button_batts" id="button_batts1" autocomplete="off">
-										<label class="btn btn-outline-primary " for="button_batts1">No cells</label>
+									<div class="btn-group-vertical align-top d-none" role="group" id="button_batteries">
+										<input type="radio" class="btn-check" name="button_batts" id="button_batts1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_batts1">No cells</label>
 
-										<input type="radio" class="btn-check " name="button_batts" id="button_batts2" autocomplete="off">
-										<label class="btn btn-outline-primary " for="button_batts2">>1 cell</label>
+										<input type="radio" class="btn-check" name="button_batts" id="button_batts2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_batts2">>1 cell</label>
 
-										<input type="radio" class="btn-check " name="button_batts" id="button_batts3" autocomplete="off">
-										<label class="btn btn-outline-primary " for="button_batts3">>2 cells</label>
+										<input type="radio" class="btn-check" name="button_batts" id="button_batts3" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_batts3">>2 cells</label>
 									</div>
 
-									<div class="input-group-vertical " id="button_car">
-										label CAR
-									</div>
+									<div class="input-group-vertical" id="button_car">label CAR</div>
 
-									<div class="input-group-vertical" id="button_frk">
-										label FRK
-									</div>
+									<div class="input-group-vertical" id="button_frk">label FRK</div>
 
 									<script>
 										function button_solve() {
-
 											var hold = false;
 											var click = false;
 											var infoNeeded = { batts: false, car: false, frk: false };
@@ -160,7 +153,7 @@
 											// 	document.getElementById('button_batteries'), {
 											// 	toggle: false
 											// });
-											var button_batteries = document.getElementById('button_batteries');
+											var button_batteries = document.getElementById("button_batteries");
 
 											var state = {
 												abort: document.getElementById("button_word1").checked,
@@ -175,20 +168,21 @@
 												battMoreThan2: false,
 											};
 
-											console.log(document.getElementById('button_word2').checked);
+											console.log(document.getElementById("button_word2").checked);
 											//console.log(state.detonate);
 
-
-											if (state.blue && state.abort) { // 1
+											if (state.blue && state.abort) {
+												// 1
 												hold = true;
-											} else if (state.yellow) { // 5
+											} else if (state.yellow) {
+												// 5
 												hold = true;
 											} else if (state.red && state.hold) {
 												click = true;
 											}
 
 											// Extra info
-											if (state.detonate ) {
+											if (state.detonate) {
 												infoNeeded.batts = true;
 											}
 											if (infoNeeded.batts) {
@@ -197,7 +191,6 @@
 											} else {
 												//button_batteries.hide();
 												button_batteries.classList.add("d-none"); // Hide.
-
 											}
 										}
 									</script>
@@ -207,15 +200,11 @@
 
 						<div class="col module pt-3" id="basicwires">
 							<div class="card">
-								<div class="card-header ">
-									Basic wires
-								</div>
+								<div class="card-header">Basic wires</div>
 								<div class="card-body" id="basicwires_inputs">
-
 									<script type="text/javascript">
-
 										var basicwires_inputs = document.getElementById("basicwires_inputs");
-										var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
+										var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"],];
 
 										for (i = 1; i <= 6; i++) {
 											var group = document.createElement("div");
@@ -248,45 +237,36 @@
 
 											basicwires_inputs.appendChild(group);
 										}
-
 									</script>
 
 									<div class="clearfix"></div>
 
-
-									<div class="btn-group  btn-group-sm" role="group" id="basicwires_serial" title="Last digit of the serial number">
-										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value=false onclick="basicwires_solve()">
+									<div class="btn-group btn-group-sm" role="group" id="basicwires_serial" title="Last digit of the serial number">
+										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value="false" onclick="basicwires_solve()" />
 										<label class="btn btn-outline-primary" for="basicwires_serial0">Even</label>
 
-										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial1" autocomplete="off" value=true onclick="basicwires_solve()">
+										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial1" autocomplete="off" value="true" onclick="basicwires_solve()" />
 										<label class="btn btn-outline-primary" for="basicwires_serial1">Odd</label>
 									</div>
-									<hr>
-									<div class="text-success" id="basicwires_solution"> </div>
-									<div class="text-warning " id="basicwires_validation"> </div>
+									<hr />
+									<div class="text-success" id="basicwires_solution"></div>
+									<div class="text-warning" id="basicwires_validation"></div>
 								</div>
 							</div>
 						</div>
 
 						<div class="col module pt-3" id="Password">
 							<div class="card">
-								<div class="card-header ">
-									Password
-								</div>
-								<div class="card-body ">
+								<div class="card-header">Password</div>
+								<div class="card-body">
 									<div class="input-group">
-										<input id="passwd_letters1" placeholder="1" type="text" onkeyup="passwd_solve()"
-											class="possible form-control" />
-										<input id="passwd_letters2" placeholder="2" type="text" onkeyup="passwd_solve()"
-											class="possible form-control" />
-										<input id="passwd_letters3" placeholder="3" type="text" onkeyup="passwd_solve()"
-											class="possible form-control" />
-										<input id="passwd_letters4" placeholder="4" type="text" onkeyup="passwd_solve()"
-											class="possible form-control" />
-										<input id="passwd_letters5" placeholder="5" type="text" onkeyup="passwd_solve()"
-											class="possible form-control" />
+										<input id="passwd_letters1" placeholder="1" type="text" onkeyup="passwd_solve()" class="possible form-control" />
+										<input id="passwd_letters2" placeholder="2" type="text" onkeyup="passwd_solve()" class="possible form-control" />
+										<input id="passwd_letters3" placeholder="3" type="text" onkeyup="passwd_solve()" class="possible form-control" />
+										<input id="passwd_letters4" placeholder="4" type="text" onkeyup="passwd_solve()" class="possible form-control" />
+										<input id="passwd_letters5" placeholder="5" type="text" onkeyup="passwd_solve()" class="possible form-control" />
 									</div>
-									<hr>
+									<hr />
 									<div id="divSolution">
 										<span id="passwd_solution"> </span>
 									</div>
@@ -297,68 +277,69 @@
 				</div>
 			</div>
 		</div>
-		</div>
-
-
 
 		<script>
 			function setup() {
 				// Password.
-				Array.from(document.getElementsByClassName('possible')).forEach(element => {
-					element.addEventListener('keypress', passwd_jump);
+				Array.from(document.getElementsByClassName("possible")).forEach((element) => {
+					element.addEventListener("keypress", passwd_jump);
 				});
 
 				// Missile buttons.
-				Array.from(document.querySelectorAll('#MissileButton .btn')).forEach(element => {
-					element.addEventListener('click', buttonDeselect);
-					element.addEventListener('click', () => setTimeout(button_solve));
+				Array.from(document.querySelectorAll("#MissileButton .btn")).forEach((element) => {
+					element.addEventListener("click", buttonDeselect);
+					element.addEventListener("click", () => setTimeout(button_solve));
 				});
 
-
 				// Basic wires.
-				Array.from(document.querySelectorAll('#basicwires2_inputs .btn')).forEach(element => {
-					element.addEventListener('click', buttonDeselect);
+				Array.from(document.querySelectorAll("#basicwires2_inputs .btn")).forEach((element) => {
+					element.addEventListener("click", buttonDeselect);
 				});
 
 				// Hiding basic wires serial question.
 				document.getElementById("basicwires_serial").style.display = "none";
-
 			}
 
-
 			const lookups = [
-				'about', 'after', 'again', 'below', 'could',
-				'every', 'first', 'found', 'great', 'house',
-				'large', 'learn', 'never', 'other', 'place',
-				'plant', 'point', 'right', 'small', 'sound',
-				'spell', 'still', 'study', 'their', 'there',
-				'these', 'thing', 'think', 'three', 'water',
-				'where', 'which', 'world', 'would', 'write'
+				"about", "after", "again", "below", "could",
+				"every", "first", "found", "great", "house",
+				"large", "learn", "never", "other", "place",
+				"plant", "point", "right", "small", "sound",
+				"spell", "still", "study", "their", "there",
+				"these", "thing", "think", "three", "water",
+				"where", "which", "world", "would", "write",
 			];
 
-			const white = "white", yellow = "yellow", blue = "blue", red = "red", black = "black",
-				last = "last", first = "first", second = "2nd", fourth = "4th", third = "3rd";
+			const white = "white",
+				yellow = "yellow",
+				blue = "blue",
+				red = "red",
+				black = "black",
+				last = "last",
+				first = "first",
+				second = "2nd",
+				fourth = "4th",
+				third = "3rd";
 
 			function passwd_solve(e) {
 				var inputs = [
-					document.getElementById("passwd_letters1").value.toLowerCase().split(''),
-					document.getElementById("passwd_letters2").value.toLowerCase().split(''),
-					document.getElementById("passwd_letters3").value.toLowerCase().split(''),
-					document.getElementById("passwd_letters4").value.toLowerCase().split(''),
-					document.getElementById("passwd_letters5").value.toLowerCase().split('')
+					document.getElementById("passwd_letters1").value.toLowerCase().split(""),
+					document.getElementById("passwd_letters2").value.toLowerCase().split(""),
+					document.getElementById("passwd_letters3").value.toLowerCase().split(""),
+					document.getElementById("passwd_letters4").value.toLowerCase().split(""),
+					document.getElementById("passwd_letters5").value.toLowerCase().split(""),
 				];
-				let matches = lookups.filter(lookupWord => {
-					let wordLetters = lookupWord.split('');
+				let matches = lookups.filter((lookupWord) => {
+					let wordLetters = lookupWord.split("");
 
 					let hasMatch = true;
 					for (var i = 0; i < 5; i++) {
 						hasMatch &&= inputs[i].length === 0 || inputs[i].includes(wordLetters[i]);
 					}
 					return hasMatch;
-
 				});
 
-				document.getElementById("passwd_solution").innerHTML = matches.join('<br>');
+				document.getElementById("passwd_solution").innerHTML = matches.join("<br>");
 				console.log(matches);
 			}
 
@@ -374,7 +355,6 @@
 			}
 
 			function basicwires_solve(e) {
-
 				document.getElementById("basicwires_validation").innerHTML = "";
 				document.getElementById("basicwires_solution").innerHTML = "";
 
@@ -384,13 +364,14 @@
 					whiteWires = basicwires_counter(white),
 					blackWires = basicwires_counter(black);
 
-				let serial = false, lastwire = "";
+				let serial = false,
+					lastwire = "";
 
 				//loop decending order to find the last input wire and assume its the last.
 				for (var i = 6; i >= 3; i--) {
 					var l = document.querySelector(`input[name="basicwires_${i}"]:checked`);
 					if (l != null) {
-						lastwire = l.value
+						lastwire = l.value;
 						break;
 					}
 				}
@@ -420,56 +401,35 @@
 
 				let result = "";
 				switch (totalcount) {
-					case 3:
-						{
-							if (redWires == 0)
-								result = second;
-							else if (lastwire == white)
-								result = last;
-							else if (blueWires > 1)
-								result = `${last} ${blue}`;
-							else
-								result = last;
-							break;
-						}
-					case 4:
-						{
-							if (redWires > 1 && serial)
-								result = `${last} ${red}`;
-							else if (lastwire == yellow && redWires == 0)
-								result = first;
-							else if (blueWires == 1)
-								result = first;
-							else if (yellowWires > 1)
-								result = last;
-							else
-								result = second;
-							break;
-						}
-					case 5:
-						{
-							if (lastwire == black && serial)
-								result = fourth;
-							else if (redWires == 1 && yellowWires > 1)
-								result = first;
-							else if (blackWires == 0)
-								result = second;
-							else
-								result = first;
-							break;
-						}
-					case 6:
-						{
-							if (yellowWires == 0 && serial)
-								result = third;
-							else if (yellowWires == 1 && whiteWires > 1)
-								result = fourth;
-							else if (redWires == 0)
-								result = last;
-							else
-								result = fourth;
-							break;
-						}
+					case 3: {
+						if (redWires == 0) result = second;
+						else if (lastwire == white) result = last;
+						else if (blueWires > 1) result = `${last} ${blue}`;
+						else result = last;
+						break;
+					}
+					case 4: {
+						if (redWires > 1 && serial) result = `${last} ${red}`;
+						else if (lastwire == yellow && redWires == 0) result = first;
+						else if (blueWires == 1) result = first;
+						else if (yellowWires > 1) result = last;
+						else result = second;
+						break;
+					}
+					case 5: {
+						if (lastwire == black && serial) result = fourth;
+						else if (redWires == 1 && yellowWires > 1) result = first;
+						else if (blackWires == 0) result = second;
+						else result = first;
+						break;
+					}
+					case 6: {
+						if (yellowWires == 0 && serial) result = third;
+						else if (yellowWires == 1 && whiteWires > 1) result = fourth;
+						else if (redWires == 0) result = last;
+						else result = fourth;
+						break;
+					}
 					default:
 						document.getElementById("basicwires_validation").innerHTML = "Invalid input.";
 						return;
@@ -477,7 +437,6 @@
 
 				document.getElementById("basicwires_solution").innerHTML = `Total wires: ${totalcount}. Cut the ${result} wire.`;
 			}
-
 
 			function passwd_jump(e) {
 				if ("1234567890".includes(e.key)) {
@@ -496,9 +455,9 @@
 				}
 				//button_solve();
 			}
-
 		</script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 			crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/less"></script>
