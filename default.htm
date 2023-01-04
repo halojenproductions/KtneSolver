@@ -187,10 +187,11 @@
 											}
 											if (infoNeeded.batts) {
 												//button_batteries.show();
-												button_batteries.classList.remove("d-none"); // Show.
+												show(button_batteries);
+
 											} else {
 												//button_batteries.hide();
-												button_batteries.classList.add("d-none"); // Hide.
+												hide(button_batteries);
 											}
 										}
 									</script>
@@ -240,7 +241,7 @@
 
 									<div class="clearfix"></div>
 
-									<div class="btn-group btn-group-sm" role="group" id="basicwires_serial" title="Last digit of the serial number">
+									<div class="btn-group btn-group-sm d-none" role="group" id="basicwires_serial" title="Last digit of the serial number">
 										<input type="radio" class="btn-check" name="basicwires_serial" id="basicwires_serial0" autocomplete="off" value="false" />
 										<label class="btn btn-outline-primary" for="basicwires_serial0">Even</label>
 
@@ -388,7 +389,7 @@
 				}
 
 				if ((totalcount == 4 && redWires > 1) || (totalcount == 5 && lastwire == black) || (totalcount == 6 && yellowWires == 0)) {
-					document.getElementById("basicwires_serial").style.display = "inline-flex";
+					show(document.getElementById("basicwires_serial"));
 
 					var selected_serial = document.querySelector('input[name="basicwires_serial"]:checked');
 					if (selected_serial == null) {
@@ -397,7 +398,9 @@
 					} else {
 						serial = selected_serial.value == "true" ? true : false; //TODO: The bool conversion wasnt working so this is a hack, needs replacing.
 					}
-				} else document.getElementById("basicwires_serial").style.display = "none";
+				} else {
+					hide(document.getElementById("basicwires_serial"));
+				}
 
 				let result = "";
 				switch (totalcount) {
@@ -454,6 +457,13 @@
 					e.preventDefault();
 				}
 				//button_solve();
+			}
+			function show(e) {
+				e.classList.remove("d-none"); // Show.
+			}
+			function hide(e) {
+				e.classList.add("d-none"); // Hide.
+
 			}
 		</script>
 		<script
