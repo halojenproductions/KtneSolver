@@ -105,17 +105,6 @@
 								<div class="card-header">Button</div>
 								<div class="card-body" id="">
 									<div class="btn-group-vertical align-top" role="group">
-										<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_word1">Abort</label>
-
-										<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
-
-										<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_word3">Hold</label>
-									</div>
-
-									<div class="btn-group-vertical align-top" role="group">
 										<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off" />
 										<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
 
@@ -129,6 +118,17 @@
 										<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
 									</div>
 
+									<div class="btn-group-vertical align-top" role="group">
+										<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_word1">Abort</label>
+
+										<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
+
+										<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_word3">Hold</label>
+									</div>
+
 									<div class="btn-group-vertical align-top d-none" role="group" id="button_batteries">
 										<input type="radio" class="btn-check" name="button_batts" id="button_batts1" autocomplete="off" />
 										<label class="btn btn-outline-primary" for="button_batts1">No cells</label>
@@ -140,20 +140,34 @@
 										<label class="btn btn-outline-primary" for="button_batts3">>2 cells</label>
 									</div>
 
-									<div class="input-group-vertical" id="button_car">label CAR</div>
+									<div class="btn-group-vertical align-top d-none" role="group" id="button_car">
+										<input type="radio" class="btn-check" name="button_car" id="button_car1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_car1">No CAR</label>
 
-									<div class="input-group-vertical" id="button_frk">label FRK</div>
+										<input type="radio" class="btn-check" name="button_car" id="button_car2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_car2">CAR</label>
+									</div>
+
+									<div class="btn-group-vertical align-top d-none" role="group" id="button_frk">
+										<input type="radio" class="btn-check" name="button_frk" id="button_frk1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_frk1">No FRK</label>
+
+										<input type="radio" class="btn-check" name="button_frk" id="button_frk2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_frk2">FRK</label>
+									</div>
+
+									<hr />
+									<div class="text-success" id="button_solution"></div>
 
 									<script>
 										function button_solve() {
 											var hold = false;
 											var click = false;
-											var infoNeeded = { batts: false, car: false, frk: false };
-											// var button_batteries = new bootstrap.Collapse(
-											// 	document.getElementById('button_batteries'), {
-											// 	toggle: false
-											// });
+											var show = { batts: false, car: false, frk: false };
+
 											var button_batteries = document.getElementById("button_batteries");
+											var button_car = document.getElementById("button_car");
+											var button_frk = document.getElementById("button_frk");
 
 											var state = {
 												abort: document.getElementById("button_word1").checked,
@@ -163,35 +177,62 @@
 												white: document.getElementById("button_colour2").checked,
 												yellow: document.getElementById("button_colour3").checked,
 												red: document.getElementById("button_colour4").checked,
-												battNone: false,
-												battMoreThan1: false,
-												battMoreThan2: false,
+												battNone: document.getElementById("button_batts1").checked,
+												battMoreThan1: document.getElementById("button_batts2").checked,
+												battMoreThan2: document.getElementById("button_batts3").checked,
+												carNo: document.getElementById("button_car1").checked,
+												carYes: document.getElementById("button_car2").checked,
+												frkNo: document.getElementById("button_frk1").checked,
+												frkYes: document.getElementById("button_frk2").checked,
 											};
 
-											console.log(document.getElementById("button_word2").checked);
-											//console.log(state.detonate);
-
-											if (state.blue && state.abort) {
-												// 1
+											if (state.blue && state.abort) { // 1
 												hold = true;
-											} else if (state.yellow) {
-												// 5
-												hold = true;
-											} else if (state.red && state.hold) {
-												click = true;
+											} else if (state.detonate) { // 2
+												show.batts = true;
+												if (state.battMoreThan1) {
+													click = true;
+												}
+											} else if (state.white) { // 3
+												show.car = true;
+												if (state.carYes) {
+													hold = true;
+												}
+											} else { // 4
+												show.batts = true;
+												show.frk = true;
+												if (state.battMoreThan2 && state.frkYes) {
+													click = true;
+												} else if (state.yellow) { // 5
+													hold = true;
+												} else if (state.red && state.hold) { // 6
+													click = true;
+												} else {
+													hold = true;
+												}
 											}
 
-											// Extra info
-											if (state.detonate) {
-												infoNeeded.batts = true;
-											}
-											if (infoNeeded.batts) {
-												//button_batteries.show();
-												show(button_batteries);
+											visible(button_batteries, show.batts);
+											visible(button_car, show.car);
+											visible(button_frk, show.frk);
 
+											battInfoNeeded = () => show.batts && !(state.battNone || state.battMoreThan1 || state.battMoreThan2);
+											carInfoNeeded = () => show.car && !(state.carNo || state.carYes);
+											frkInfoNeeded = () => show.frk && !(state.frkNo || state.frkYes);
+
+											if ((battInfoNeeded() || carInfoNeeded() || frkInfoNeeded())) {
+												console.log("No solution");
+												document.getElementById("button_solution").innerHTML = "";
 											} else {
-												//button_batteries.hide();
-												hide(button_batteries);
+												if (click) {
+													console.log("Click it");
+													document.getElementById("button_solution").innerHTML = "Click";
+												} else if (hold) {
+													console.log("Hold it");
+													document.getElementById("button_solution").innerHTML = `Blue strip: 4 <br>
+														Yellow strip: 5 <br>
+														Else: 1`;
+												}
 											}
 										}
 									</script>
@@ -297,8 +338,6 @@
 					element.addEventListener("click", () => setTimeout(basicwires_solve));
 				});
 
-				// Hiding basic wires serial question.
-				document.getElementById("basicwires_serial").style.display = "none";
 			}
 
 			const lookups = [
@@ -456,7 +495,14 @@
 					document.getElementById(e.target.htmlFor).checked = false;
 					e.preventDefault();
 				}
-				//button_solve();
+			}
+			function visible(e, visible) {
+				const className = "d-none";
+				if (visible && e.classList.contains(className)) {
+					e.classList.remove(className); // Show.
+				} else if (!visible && !e.classList.contains(className)) {
+					e.classList.add(className); // Hide.
+				}
 			}
 			function show(e) {
 				e.classList.remove("d-none"); // Show.
