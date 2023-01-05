@@ -306,7 +306,7 @@
 										for (ii = 0; ii < 5; ii++) {
 											var input = document.createElement("input");
 											input.id = `basicwires_${i}_${ii}`;
-											input.className = `btn-check basicwires_${colours[ii][1]}`;
+											input.className = `btn-check basicwires basicwires_${colours[ii][1]}`;
 											input.setAttribute("type", "radio");
 											input.setAttribute("name", `basicwires_${i}`);
 											input.setAttribute("autocomplete", "off");
@@ -326,7 +326,6 @@
 								</script>
 								<hr />
 								<div class="text-success" id="basicwires_solution"></div>
-								<div class="text-warning" id="basicwires_validation"></div>
 							</div>
 						</div>
 					</div>
@@ -390,17 +389,6 @@
 			"where", "which", "world", "would", "write",
 		];
 
-		const white = "white",
-			yellow = "yellow",
-			blue = "blue",
-			red = "red",
-			black = "black",
-			last = "last",
-			first = "first",
-			second = "2nd",
-			fourth = "4th",
-			third = "3rd";
-
 		function passwd_solve(e) {
 			var inputs = [
 				document.getElementById("passwd_letters1").value.toLowerCase().split(""),
@@ -423,125 +411,128 @@
 			console.log(matches);
 		}
 
-		function basicwires_counter(colour) {
-			var count = 0;
-			var element = document.getElementsByClassName(`basicwires_${colour}`);
-			for (var i = 0; i < element.length; ++i) {
-				if (element[i].checked) {
-					count++;
-				}
-			}
-			return count;
+		const basicwire_colour = {
+			white: "white",
+			yellow: "yellow",
+			blue: "blue",
+			red: "red",
+			black: "black"
+		};
+
+		const basicwire_cut = {
+			last: "last",
+			first: "first",
+			second: "2nd",
+			fourth: "4th",
+			third: "3rd"
+		};
+
+		function basicwires_count(c) {
+			return document.querySelectorAll(`.basicwires_${c}:checked`).length;
+		}
+
+		function basicwires_lastwire() {
+			var w = document.querySelectorAll('.basicwires:checked');
+			return w[w.length - 1].value;
 		}
 
 		function basicwires_solve(e) {
-			document.getElementById("basicwires_validation").innerHTML = "";
-			document.getElementById("basicwires_solution").innerHTML = "";
 
-			let redWires = basicwires_counter(red),
-				blueWires = basicwires_counter(blue),
-				yellowWires = basicwires_counter(yellow),
-				whiteWires = basicwires_counter(white),
-				blackWires = basicwires_counter(black);
+			let basicwire_count = {
+				red: basicwires_count(basicwire_colour.red),
+				blue: basicwires_count(basicwire_colour.blue),
+				yellow: basicwires_count(basicwire_colour.yellow),
+				white: basicwires_count(basicwire_colour.white),
+				black: basicwires_count(basicwire_colour.black),
+				total: 0
+			};
 
-			let lastwire = "";
+			lastwire = () => basicwires_lastwire();
 
-			//loop decending order to find the last input wire and assume its the last.
-			for (var i = 6; i >= 3; i--) {
-				var l = document.querySelector(`input[name="basicwires_${i}"]:checked`);
-				if (l != null) {
-					lastwire = l.value;
-					break;
-				}
-			}
-			if (lastwire == "") {
-				document.getElementById("basicwires_validation").innerHTML = "Last wire needed.";
-				return;
-			}
+			basicwire_count.total = basicwire_count.red + basicwire_count.blue + basicwire_count.yellow + basicwire_count.black + basicwire_count.white;
 
-			let totalcount = redWires + blueWires + yellowWires + blackWires + whiteWires;
-
-			if (totalcount < 3) {
-				document.getElementById("basicwires_validation").innerHTML = "3 or more wires needed.";
+			if (basicwire_count.total < 3) {
+				document.getElementById("basicwires_solution").innerHTML = "";
 				return;
 			}
 
 			let result = [];
-			switch (totalcount) {
+			switch (basicwire_count.total) {
 				case 3:
 					{
-						if (redWires == 0) {
-							result.join(second);
+						if (basicwire_count.red == 0) {
+							result.join(basicwire_cut.second);
 						}
-						else if (lastwire == white) {
-							result.push(last);
+						else if (lastwire() == basicwire_colour.white) {
+							result.push(basicwire_cut.last);
 						}
-						else if (blueWires > 1) {
-							result.push(`${last} ${blue}`);
+						else if (basicwire_count.blue > 1) {
+							result.push(`${basicwire_cut.last} ${basicwire_cut.blue}`);
 						}
 						else {
-							result.push(last);
+							result.push(basicwire_cut.last);
 						}
 						break;
 					}
 				case 4:
 					{
-						if (redWires > 1) {
-							result.push(`Serial odd ? ${last} ${red} : `);
+						if (basicwire_count.red > 1) {
+							result.push(`Serial odd ? ${basicwire_cut.last} ${basicwire_cut.red} : `);
 						}
-						if (lastwire == yellow && redWires == 0) {
-							result.push(first);
+						if (lastwire() == basicwire_colour.yellow && basicwire_count.red == 0) {
+							result.push(basicwire_cut.first);
 						}
-						else if (blueWires == 1) {
-							result.push(first);
+						else if (basicwire_count.blue == 1) {
+							result.push(basicwire_cut.first);
 						}
-						else if (yellowWires > 1) {
-							result.push(last);
+						else if (basicwire_count.yellow > 1) {
+							result.push(basicwire_cut.last);
 						}
 						else {
-							result.push(second);
+							result.push(basicwire_cut.second);
 						}
 						break;
 					}
 				case 5:
 					{
-						if (lastwire == black) {
-							result.push(`Serial odd ? ${fourth} : `);
+						if (lastwire() == basicwire_colour.black) {
+							result.push(`Serial odd ? ${basicwire_cut.fourth} : `);
 						}
-						if (redWires == 1 && yellowWires > 1) {
-							result.push(first);
+						if (basicwire_count.red == 1 && basicwire_count.yellow > 1) {
+							result.push(basicwire_cut.first);
 						}
-						else if (blackWires == 0) {
-							result.push(second);
+						else if (basicwire_count.black == 0) {
+							result.push(basicwire_cut.second);
 						}
 						else {
-							result.push(first);
+							result.push(basicwire_cut.first);
 						}
 						break;
 					}
 				case 6:
 					{
-						if (yellowWires == 0) {
-							result.push(`Serial odd ? ${third} : `);
+						if (basicwire_count.yellow == 0) {
+							result.push(`Serial odd ? ${basicwire_cut.third} : `);
 						}
-						if (yellowWires == 1 && whiteWires > 1) {
-							result.appendChild(fourth);
+						if (basicwire_count.yellow == 1 && basicwire_count.white > 1) {
+							result.appendChild(basicwire_cut.fourth);
 						}
-						else if (redWires == 0) {
-							result.push(last);
+						else if (basicwire_count.red == 0) {
+							result.push(basicwire_cut.last);
 						}
 						else {
-							result.push(fourth);
+							result.push(basicwire_cut.fourth);
 						}
 						break;
 					}
 				default: {
-					document.getElementById("basicwires_validation").innerHTML = "Invalid input.";
+					document.getElementById("basicwires_solution").innerHTML = "";
 					return;
 				}
 			}
 
-			document.getElementById("basicwires_solution").innerHTML = `Count= ${totalcount}.<br />${result.join("")}`;
+			console.log(`${result.join("")}`);
+			document.getElementById("basicwires_solution").innerHTML = `Count= ${basicwire_count.total}.<br />${result.join("")}`;
 		}
 
 		function passwd_jump(e) {
