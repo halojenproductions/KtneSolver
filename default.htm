@@ -411,7 +411,7 @@
 			console.log(matches);
 		}
 
-		const basicwire_colour = {
+		const basicwires_colour = {
 			white: "white",
 			yellow: "yellow",
 			blue: "blue",
@@ -419,7 +419,7 @@
 			black: "black"
 		};
 
-		const basicwire_cut = {
+		const basicwires_cut = {
 			last: "last",
 			first: "first",
 			second: "2nd",
@@ -438,90 +438,91 @@
 
 		function basicwires_solve(e) {
 
-			let basicwire_count = {
-				red: basicwires_count(basicwire_colour.red),
-				blue: basicwires_count(basicwire_colour.blue),
-				yellow: basicwires_count(basicwire_colour.yellow),
-				white: basicwires_count(basicwire_colour.white),
-				black: basicwires_count(basicwire_colour.black),
+			let basicwires_count = {
+				red: basicwires_count(basicwires_colour.red),
+				blue: basicwires_count(basicwires_colour.blue),
+				yellow:
+					s_count(basicwires_colour.yellow),
+				white: basicwires_count(basicwires_colour.white),
+				black: basicwires_count(basicwires_colour.black),
 				total: 0
 			};
 
 			lastwire = () => basicwires_lastwire();
 
-			basicwire_count.total = basicwire_count.red + basicwire_count.blue + basicwire_count.yellow + basicwire_count.black + basicwire_count.white;
+			basicwires_count.total = basicwires_count.red + basicwires_count.blue + basicwires_count.yellow + basicwires_count.black + basicwires_count.white;
 
-			if (basicwire_count.total < 3) {
+			if (basicwires_count.total < 3) {
 				document.getElementById("basicwires_solution").innerHTML = "";
 				return;
 			}
 
 			let result = [];
-			switch (basicwire_count.total) {
+			switch (basicwires_count.total) {
 				case 3:
 					{
-						if (basicwire_count.red == 0) {
-							result.join(basicwire_cut.second);
+						if (basicwires_count.red == 0) {
+							result.join(basicwires_cut.second);
 						}
-						else if (lastwire() == basicwire_colour.white) {
-							result.push(basicwire_cut.last);
+						else if (lastwire() == basicwires_colour.white) {
+							result.push(basicwires_cut.last);
 						}
-						else if (basicwire_count.blue > 1) {
-							result.push(`${basicwire_cut.last} ${basicwire_cut.blue}`);
+						else if (basicwires_count.blue > 1) {
+							result.push(`${basicwires_cut.last} ${basicwires_cut.blue}`);
 						}
 						else {
-							result.push(basicwire_cut.last);
+							result.push(basicwires_cut.last);
 						}
 						break;
 					}
 				case 4:
 					{
-						if (basicwire_count.red > 1) {
-							result.push(`Serial odd ? ${basicwire_cut.last} ${basicwire_cut.red} : `);
+						if (basicwires_count.red > 1) {
+							result.push(`Serial odd ? ${basicwires_cut.last} ${basicwires_cut.red} : `);
 						}
-						if (lastwire() == basicwire_colour.yellow && basicwire_count.red == 0) {
-							result.push(basicwire_cut.first);
+						if (lastwire() == basicwires_colour.yellow && basicwires_count.red == 0) {
+							result.push(basicwires_cut.first);
 						}
-						else if (basicwire_count.blue == 1) {
-							result.push(basicwire_cut.first);
+						else if (basicwires_count.blue == 1) {
+							result.push(basicwires_cut.first);
 						}
-						else if (basicwire_count.yellow > 1) {
-							result.push(basicwire_cut.last);
+						else if (basicwires_count.yellow > 1) {
+							result.push(basicwires_cut.last);
 						}
 						else {
-							result.push(basicwire_cut.second);
+							result.push(basicwires_cut.second);
 						}
 						break;
 					}
 				case 5:
 					{
-						if (lastwire() == basicwire_colour.black) {
-							result.push(`Serial odd ? ${basicwire_cut.fourth} : `);
+						if (lastwire() == basicwires_colour.black) {
+							result.push(`Serial odd ? ${basicwires_cut.fourth} : `);
 						}
-						if (basicwire_count.red == 1 && basicwire_count.yellow > 1) {
-							result.push(basicwire_cut.first);
+						if (basicwires_count.red == 1 && basicwires_count.yellow > 1) {
+							result.push(basicwires_cut.first);
 						}
-						else if (basicwire_count.black == 0) {
-							result.push(basicwire_cut.second);
+						else if (basicwires_count.black == 0) {
+							result.push(basicwires_cut.second);
 						}
 						else {
-							result.push(basicwire_cut.first);
+							result.push(basicwires_cut.first);
 						}
 						break;
 					}
 				case 6:
 					{
-						if (basicwire_count.yellow == 0) {
-							result.push(`Serial odd ? ${basicwire_cut.third} : `);
+						if (basicwires_count.yellow == 0) {
+							result.push(`Serial odd ? ${basicwires_cut.third} : `);
 						}
-						if (basicwire_count.yellow == 1 && basicwire_count.white > 1) {
-							result.appendChild(basicwire_cut.fourth);
+						if (basicwires_count.yellow == 1 && basicwires_count.white > 1) {
+							result.appendChild(basicwires_cut.fourth);
 						}
-						else if (basicwire_count.red == 0) {
-							result.push(basicwire_cut.last);
+						else if (basicwires_count.red == 0) {
+							result.push(basicwires_cut.last);
 						}
 						else {
-							result.push(basicwire_cut.fourth);
+							result.push(basicwires_cut.fourth);
 						}
 						break;
 					}
@@ -532,7 +533,7 @@
 			}
 
 			console.log(`${result.join("")}`);
-			document.getElementById("basicwires_solution").innerHTML = `Count= ${basicwire_count.total}.<br />${result.join("")}`;
+			document.getElementById("basicwires_solution").innerHTML = `Count= ${basicwires_count.total}.<br />${result.join("")}`;
 		}
 
 		function passwd_jump(e) {
