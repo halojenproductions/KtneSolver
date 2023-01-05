@@ -4,12 +4,12 @@
 	// 	"editor.defaultFormatter": "vscode.html-language-features"
 	// }
 	"editor.formatOnSave": true,
-	"editor.formatOnSaveMode": "file", 
-		"files.autoSave": "afterDelay",
+	"editor.formatOnSaveMode": "file",
+	"files.autoSave": "afterDelay",
 	"editor.minimap.maxColumn": 220,
 	"files.eol": "\n",
 	"editor.tabSize": 4,
 	"editor.insertSpaces": false,
 	"editor.detectIndentation": false,
-	"editor.indentSize": "tabSize",
+	"editor.indentSize": "tabSize"
 }
