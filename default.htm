@@ -428,15 +428,15 @@
 				fourth: "4th",
 				third: "3rd"
 			};
-			let counter = (c) =>
+			let getcount = (c) =>
 				document.querySelectorAll(`.basicwires_${c}:checked`).length;
 
 			let count = {
-				red: counter(colour.red),
-				blue: counter(colour.blue),
-				yellow: counter(colour.yellow),
-				white: counter(colour.white),
-				black: counter(colour.black),
+				red: getcount(colour.red),
+				blue: getcount(colour.blue),
+				yellow: getcount(colour.yellow),
+				white: getcount(colour.white),
+				black: getcount(colour.black),
 				total: 0
 			};
 
