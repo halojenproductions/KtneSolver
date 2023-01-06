@@ -454,73 +454,69 @@
 
 			let result = [];
 			switch (count.total) {
-				case 3:
-					{
-						if (count.red == 0) {
-							result.join(cut.second);
-						}
-						else if (lastwire() == colour.white) {
-							result.push(cut.last);
-						}
-						else if (count.blue > 1) {
-							result.push(`${cut.last} ${cut.blue}`);
-						}
-						else {
-							result.push(cut.last);
-						}
-						break;
+				case 3: {
+					if (count.red == 0) {
+						result.join(cut.second);
 					}
-				case 4:
-					{
-						if (count.red > 1) {
-							result.push(`Serial odd ? ${cut.last} ${cut.red} : `);
-						}
-						if (lastwire() == colour.yellow && count.red == 0) {
-							result.push(cut.first);
-						}
-						else if (count.blue == 1) {
-							result.push(cut.first);
-						}
-						else if (count.yellow > 1) {
-							result.push(cut.last);
-						}
-						else {
-							result.push(cut.second);
-						}
-						break;
+					else if (lastwire() == colour.white) {
+						result.push(cut.last);
 					}
-				case 5:
-					{
-						if (lastwire() == colour.black) {
-							result.push(`Serial odd ? ${cut.fourth} : `);
-						}
-						if (count.red == 1 && count.yellow > 1) {
-							result.push(cut.first);
-						}
-						else if (count.black == 0) {
-							result.push(cut.second);
-						}
-						else {
-							result.push(cut.first);
-						}
-						break;
+					else if (count.blue > 1) {
+						result.push(`${cut.last} ${cut.blue}`);
 					}
-				case 6:
-					{
-						if (count.yellow == 0) {
-							result.push(`Serial odd ? ${cut.third} : `);
-						}
-						if (count.yellow == 1 && count.white > 1) {
-							result.appendChild(cut.fourth);
-						}
-						else if (count.red == 0) {
-							result.push(cut.last);
-						}
-						else {
-							result.push(cut.fourth);
-						}
-						break;
+					else {
+						result.push(cut.last);
 					}
+					break;
+				}
+				case 4: {
+					if (count.red > 1) {
+						result.push(`Serial odd ? ${cut.last} ${cut.red} : `);
+					}
+					if (lastwire() == colour.yellow && count.red == 0) {
+						result.push(cut.first);
+					}
+					else if (count.blue == 1) {
+						result.push(cut.first);
+					}
+					else if (count.yellow > 1) {
+						result.push(cut.last);
+					}
+					else {
+						result.push(cut.second);
+					}
+					break;
+				}
+				case 5: {
+					if (lastwire() == colour.black) {
+						result.push(`Serial odd ? ${cut.fourth} : `);
+					}
+					if (count.red == 1 && count.yellow > 1) {
+						result.push(cut.first);
+					}
+					else if (count.black == 0) {
+						result.push(cut.second);
+					}
+					else {
+						result.push(cut.first);
+					}
+					break;
+				}
+				case 6: {
+					if (count.yellow == 0) {
+						result.push(`Serial odd ? ${cut.third} : `);
+					}
+					if (count.yellow == 1 && count.white > 1) {
+						result.appendChild(cut.fourth);
+					}
+					else if (count.red == 0) {
+						result.push(cut.last);
+					}
+					else {
+						result.push(cut.fourth);
+					}
+					break;
+				}
 				default: {
 					document.getElementById("basicwires_solution").innerHTML = "";
 					return;
