@@ -62,14 +62,6 @@
 		input.btn-check:checked+.btn.btn.colour-red {
 			background-color: #dc3545;
 		}
-
-		input.btn-check:not(:checked)+.btn.colour-green {
-			color: #00FF00;
-		}
-
-		input.btn-check:checked+.btn.btn.colour-green {
-			background-color: #00FF00;
-		}
 	</style>
 </head>
 
@@ -375,62 +367,59 @@
 							<div class="card-body" id="complicated_inputs">
 								<script type="text/javascript">
 
-									var complicated_inputs = document.getElementById("complicated_inputs");
-									var attributes = [["Red", "red", "red"], ["Blue", "blue", "blue"], ["Star", "star", "yellow"], ["LED", "led", "green"]];
+									var attributes = [["Light", ""], ["Red", "colour-red"], ["Blue", "colour-blue"], ["Star", ""], ["Cut", "text-success disabled"]];
+									for (ii = 0; ii <= 4; ii++) {
+										var complicated_inputs = document.getElementById("complicated_inputs");
 
-									for (i = 1; i <= 6; i++) {
 										var group = document.createElement("div");
-										group.className = "btn-group btn-group-sm d-flex";
+										group.className = `btn-group btn-group-sm d-flex`;
 										group.setAttribute("role", "group");
 
-										for (ii = 0; ii < 4; ii++) {
+										for (i = 1; i <= 6; i++) {
 											var input = document.createElement("input");
 											input.id = `complicated_${i}_${ii}`;
-											input.className = `btn-check complicated complicated_${colours[ii][1]}`;
+											input.className = "btn-check complicated_button";
 											input.setAttribute("type", "checkbox");
-											input.setAttribute("name", `basicwires_${i}`);
+											input.setAttribute("name", `complicated_${i}`);
 											input.setAttribute("autocomplete", "off");
 											input.setAttribute("value", `${attributes[ii][1]}`);
 
 											var label = document.createElement("label");
-											label.className = `btn btn-outline-primary flex-grow-1 colour-${attributes[ii][2]}`;
+											label.className = `btn btn-outline-primary flex-grow-1 ${attributes[ii][1]}`;
 											label.setAttribute("for", `complicated_${i}_${ii}`);
 											label.appendChild(document.createTextNode(`${attributes[ii][0]}`));
 
 											group.appendChild(input);
 											group.appendChild(label);
-										}
 
+										}
 										complicated_inputs.appendChild(group);
-									}
+									}									
 								</script>
-								<hr />
-								<div class="text-success" id="basicwires_solution"></div>
-							<!-- </div>
-								<div>
-									<span title="Is last digit of serial number even?">
-										<input type="checkbox" class="btn-check" id="complicated_even"
-											autocomplete="off">
-										<label class="btn btn-outline-primary" for="complicated_even">Even</label>
-									</span>
-									<span title="Is there a parallel port?">
-										<input type="checkbox" class="btn-check" id="complicated_parallel"
-											autocomplete="off">
-										<label class="btn btn-outline-primary"
-											for="complicated_parallel">Parallel</label>
-									</span>
-									<span title="How many battery cells?">
-										<input type="checkbox" class="btn-check" id="complicated_cells"
-											autocomplete="off">
-										<label class="btn btn-outline-primary" for="complicated_cells">2+ Cells</label>
-									</span>
+
+								<div class="btn-group-vertical align-top d-none" role="group"
+									id="complicated_batteries">
+									<input type="checkbox" class="btn-check" name="complicated_batts"
+										id="complicated_batts" autocomplete="off" />
+									<label class="btn btn-outline-primary" for="complicated_batts">2+ cells</label>
 								</div>
-								<hr>
-								<div class="text-success" id="complicated_solution"> </div>
-								<div class="text-warning" id="complicated_validation"> </div>
-							</div>  -->
+								<div class="btn-group-vertical align-top d-none" role="group" id="complicated_serial">
+									<input type="checkbox" class="btn-check" name="complicated_batts"
+										id="complicated_seri" autocomplete="off" />
+									<label class="btn btn-outline-primary" for="complicated_seri">Even serial</label>
+								</div>
+								<div class="btn-group-vertical align-top d-none" role="group" id="complicated_parallel">
+									<input type="checkbox" class="btn-check" name="complicated_par" id="complicated_par"
+										autocomplete="off" />
+									<label class="btn btn-outline-primary" for="complicated_par">Parallel</label>
+								</div>
+								<!-- <hr>
+								<div class="text-success" id="complicated_solution"> </div> -->
+							</div>
 						</div>
 					</div>
+					<div class="col module pt-3" id=""></div>
+					<div class="col module pt-3" id=""></div>
 				</div>
 			</div>
 		</div>
@@ -455,6 +444,15 @@
 				element.addEventListener("click", () => setTimeout(basicwires_solve));
 			});
 
+			// Complicated wires.
+			Array.from(document.querySelectorAll("#complicated_inputs .btn")).forEach((element) => {
+				element.addEventListener("click", buttonDeselect);
+				//element.addEventListener("click", () => setTimeout(complicated_solve));
+				buttons = document.getElementsByClassName("complicated_button")
+				for (let i = 0; i < buttons.length; i++) {
+					buttons[i].addEventListener("click", (e) => { complicated_solve(e); }, false);
+				}
+			});
 		}
 
 		const lookups = [
@@ -605,6 +603,150 @@
 			console.log(`${result.join("")}`);
 			document.getElementById("basicwires_solution").innerHTML = `Count= ${count.total}.<br />${result.join("")}`;
 		}
+
+		function complicated_solve(e) {
+			var id = e.target.id.substring(0, 13);
+
+			var show = { batts: false, serial: false, parallel: false };
+
+			var complicated_batteries = document.getElementById("complicated_batteries");
+			var complicated_serial = document.getElementById("complicated_serial");
+			var button_paracomplicated_parallelllel = document.getElementById("complicated_parallel");
+
+			var cut = true;
+
+			var state = {
+				light: document.getElementById(`${id}_0`).checked,
+				red: document.getElementById(`${id}_1`).checked,
+				blue: document.getElementById(`${id}_2`).checked,
+				star: document.getElementById(`${id}_3`).checked,
+				batt: document.getElementById("complicated_batts").checked,
+				serial: document.getElementById("complicated_seri").checked,
+				parallel: document.getElementById("complicated_par").checked
+			};
+
+			cut = () => {
+				if (state.red) {
+					if (state.blue) {
+						if (state.star) {
+							if (state.light) {
+								return false;
+							}
+							show.parallel = true;
+							if (state.parallel) {
+								return true;
+							}
+							//return false;
+						} else {
+							//return false;
+							show.serial = true;
+							if (state.serial) {
+								return true;
+							}
+							//return false;
+						}
+						return false;
+					} else {
+						if (state.star) {
+							if (state.light) {
+								show.batts = true;
+								if (state.batt) {
+									return true;
+								}
+							} else {
+								return true;
+							}
+							return false
+						} else {
+							if (state.light) {
+								show.batts = true;
+								if (state.batt) {
+									return true;
+								}
+								show.serial = true;
+								if (state.serial) {
+									return true;
+								}
+								//return false;
+							}
+							return false;
+						}
+					}
+				}
+				if (state.blue) {
+					if (state.star) {
+						if (state.light) {
+							show.parallel = true
+							if (state.parallel) {
+								return true;
+							}
+							//return false;								
+						} //else {
+						//return false;
+						//}
+						return false;
+					} else {
+						if (state.light) {
+							show.parallel = true;
+							if (state.parallel) {
+								return true;
+							}
+
+						} else {
+							show.serial = true;
+							if (state.serial) {
+								return true;
+							}
+						}
+					}
+				} else {
+					if (state.star) {
+						if (state.light) {
+							show.batts = true;
+							if (state.batt) {
+								return true;
+							}
+						} else {
+							return true;
+						}
+						return false;
+					} else {
+						if (state.light) {
+							return false;
+						} else {
+							return true;
+						}
+					}
+				}
+			}
+
+
+			if (cut()) {
+				console.log("Cut wire");
+				document.getElementById(`${id}_4`).appendChild(document.createTextNode("Cut")); //TODO: Need to amend the text of the label NOT the input.
+			} else {
+				debugger
+				console.log("Leave wire");
+				document.getElementById(`${id}_4`).appendChild(document.createTextNode("Leave"));
+			}
+
+			visible(complicated_batteries, show.batts);
+			visible(complicated_serial, show.serial);
+			visible(complicated_parallel, show.parallel);
+
+
+			//I dont think i need this becuase of the check instead of radios.
+			battInfoNeeded = () => show.batts;// && !state.batt;
+			serialInfoNeeded = () => show.serial;// && !state.serial;
+			parallelInfoNeeded = () => show.parallel;// && !state.parallel;
+
+			if (battInfoNeeded() || serialInfoNeeded() || parallelInfoNeeded()) {
+				console.log("No solution");
+				document.getElementById(`${id}_4`).appendChild(document.createTextNode("NaNa"));
+			}
+
+		}
+
 
 		function passwd_jump(e) {
 			if ("1234567890".includes(e.key)) {
