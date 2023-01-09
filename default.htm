@@ -398,17 +398,17 @@
 								</script>
 							</div>
 							<div class="card-body" id="complicated_optional">
-								<div class="d-none" id="complicated_batteries">
+								<div class="btn-group d-none" id="complicated_batteries">
 									<input type="checkbox" class="btn-check" name="complicated_batts"
 										id="complicated_batts" autocomplete="off" />
 									<label class="btn btn-outline-primary" for="complicated_batts">2+ cells</label>
 								</div>
-								<div class="d-none" id="complicated_serial">
+								<div class="btn-group d-none" id="complicated_serial">
 									<input type="checkbox" class="btn-check" name="complicated_batts"
 										id="complicated_seri" autocomplete="off" />
 									<label class="btn btn-outline-primary" for="complicated_seri">Even serial</label>
 								</div>
-								<div class="d-none" id="complicated_parallel">
+								<div class="btn-group d-none" id="complicated_parallel">
 									<input type="checkbox" class="btn-check" name="complicated_par" id="complicated_par"
 										autocomplete="off" />
 									<label class="btn btn-outline-primary" for="complicated_par">Parallel</label>
@@ -634,13 +634,6 @@
 				serial: document.getElementById("complicated_seri").checked,
 				parallel: document.getElementById("complicated_par").checked
 			};
-
-			var show = {
-				batts: false,
-				serial: false,
-				parallel: false
-			};
-
 			cut = () => {
 				if (state.red) {
 					if (state.blue) {
@@ -727,15 +720,37 @@
 				document.getElementById(`${id}_4_label`).innerHTML = "Leave";
 			}
 
-			for (i = 1; i <= 6; i++) {
-				complicated_solve(`complicated_${i}`);
-			}
+			var show = {
+				batts: false,
+				serial: false,
+				parallel: false
+			};
 
-			//This means to be done in a loop to check ANY groupsets return true for these optional buttons.
-			//Shower thoughts needed to figure this one out. 
-			show.batts = (state.red && !state.blue && state.light) || (!state.red && state.blue && state.light && state.star);
-			show.serial = ((state.red || state.blue) && !state.light && !state.star) || (state.red && state.blue && !state.light && state.star);
-			show.parallel = (!state.red && state.blue && state.light) || (state.red && state.blue && !state.light && state.star)
+			for (iii = 1; iii <= 6; iii++) {
+				id = `complicated_${iii}`;
+
+				state = {
+					light: document.getElementById(`${id}_0`).checked,
+					red: document.getElementById(`${id}_1`).checked,
+					blue: document.getElementById(`${id}_2`).checked,
+					star: document.getElementById(`${id}_3`).checked,
+					batt: document.getElementById("complicated_batts").checked,
+					serial: document.getElementById("complicated_seri").checked,
+					parallel: document.getElementById("complicated_par").checked
+				};
+
+				if (state.batt || (state.red && !state.blue && state.light) || (!state.red && state.blue && state.light && state.star)) {
+					show.batts = true;
+				}
+
+				if (state.serial || ((state.red || state.blue) && !state.light && !state.star) || (state.red && state.blue && !state.light && state.star)) {
+					show.serial = true;
+				}
+
+				if (state.parallel || (!state.red && state.blue && state.light) || (state.red && state.blue && !state.light && state.star)) {
+					show.parallel = true;
+				}
+			}
 
 			visible(complicated_batteries, show.batts);
 			visible(complicated_serial, show.serial);
