@@ -357,13 +357,7 @@
 				<div class="row ">
 					<div class="col module pt-3" id="Complicated">
 						<div class="card">
-							<div class="card-header ">
-								<span style="float:left">Complicated Wires</span>
-								<!-- <span style="float:right">
-									<input type="button" id="complicated_clear" onclick="clear_div('Complicated')"
-										value="Clear">
-								</span> -->
-							</div>
+							<div class="card-header ">Complicated Wires</div>
 							<div class="card-body" id="complicated_inputs"> <!--update to groups -->
 								<script type="text/javascript">
 
@@ -641,33 +635,24 @@
 							if (state.light) {
 								return false;
 							}
-							//show.parallel = true;
 							return state.parallel;
 						} else {
-							//return false;
-							//show.serial = true;							
 							return state.serial;
-							//return false;
 						}
 						return false;
 					} else {
 						if (state.star) {
 							if (state.light) {
-								//show.batts = true;
 								return state.batt;
 							} else {
 								return true;
 							}
-							return false
 						} else {
 							if (state.light) {
-								//show.batts = true;
 								return state.batt;
 							} else {
-								//show.serial = true;
 								return state.serial;
 							}
-							return false;
 						}
 						return false;
 					}
@@ -675,39 +660,28 @@
 				if (state.blue) {
 					if (state.star) {
 						if (state.light) {
-							//show.parallel = true
 							return state.parallel;
-						} else {
-							return false;
 						}
 						return false;
 					} else {
 						if (state.light) {
-							//show.parallel = true;
 							return state.parallel
 						} else {
-							//show.serial = true;
 							return state.serial;
 						}
 					}
 				} else {
 					if (state.star) {
 						if (state.light) {
-							//show.batts = true;
 							return state.batt;
 						} else {
 							return true;
 						}
-						return false;
 					} else {
-						if (state.light) {
-							return false;
-						} else {
+						if (!state.light) {
 							return true;
 						}
-						return false;
 					}
-					return false;
 				}
 				return false;
 			}
