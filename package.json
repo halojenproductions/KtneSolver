@@ -1,6 +1,7 @@
 {
 	"scripts": {
 		"start": "webpack serve --mode development",
+		"prod": "webpack serve --mode production",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"dependencies": {
@@ -9,6 +10,7 @@
 		"typescript": "^4.9.4"
 	},
 	"devDependencies": {
+		"@types/bootstrap": "^5.2.6",
 		"autoprefixer": "^10.4.13",
 		"css-loader": "^6.7.3",
 		"postcss-loader": "^7.0.2",
