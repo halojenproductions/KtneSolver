@@ -199,9 +199,9 @@
 												}
 											}
 
-											_utilities.visible(button_batteries, show.batts);
-											_utilities.visible(button_car, show.car);
-											_utilities.visible(button_frk, show.frk);
+											visible(button_batteries, show.batts);
+											visible(button_car, show.car);
+											visible(button_frk, show.frk);
 
 											battInfoNeeded = () => show.batts && !(state.battNone || state.battMoreThan1 || state.battMoreThan2);
 											carInfoNeeded = () => show.car && !(state.carNo || state.carYes);
@@ -622,9 +622,9 @@
 					}
 				}
 
-				_utilities.visible(complicated_batteries, show.batts);
-				_utilities.visible(complicated_serial, show.serial);
-				_utilities.visible(complicated_parallel, show.parallel);
+				visible(complicated_batteries, show.batts);
+				visible(complicated_serial, show.serial);
+				visible(complicated_parallel, show.parallel);
 			}
 
 			function buttonDeselect(e) {
@@ -633,7 +633,6 @@
 					e.preventDefault();
 				}
 			}
-			/*
 			function visible(e, visible) {
 				const className = "d-none";
 				if (visible && e.classList.contains(className)) {
@@ -648,7 +647,7 @@
 			function hide(e) {
 				e.classList.add("d-none"); // Hide.
 			}	
-			*/
+			
 		</script>
 		<script src="./main.js"></script>
 	</body>
