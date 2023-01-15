@@ -23,6 +23,16 @@ input[type="text"]:focus {
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.6);
 }
 
+button[type="reset"] {
+	margin-top: -4px;
+	margin-bottom: -4px;
+
+	&::before {
+		content: "Clear";
+	}
+}
+
+
 input.btn-check:not(:checked)+.btn.colour-blue {
 	color: #0d6efd;
 }

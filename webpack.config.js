@@ -2,14 +2,14 @@ const path = require('path')
 
 module.exports = {
 	// context: __dirname,
-	entry: './src/js/main.js',
+	entry: './src/js/main.ts',
 	output: {
-		filename: 'main.js',
 		path: path.resolve(__dirname, 'dist'),
+		filename: 'main.js',
 		// publicPath: '/dist/',
 	},
 	devServer: {
-		static: path.resolve(__dirname, 'dist'),
+		static: path.resolve(__dirname, 'src'),
 		port: 8080,
 		hot: true
 	},
