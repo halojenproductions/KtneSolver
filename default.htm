@@ -354,6 +354,65 @@
 						</div>
 					</div>
 				</div>
+				<div class="row ">
+					<div class="col module pt-3" id="Complicated">
+						<div class="card">
+							<div class="card-header ">Complicated Wires</div>
+							<div class="card-body" id="complicated_inputs"> <!--update to groups -->
+								<script type="text/javascript">
+
+									var attributes = [["Light", ""], ["Red", "colour-red"], ["Blue", "colour-blue"], ["Star", ""], ["Cut", "text-success disabled"]];
+									for (i = 1; i <= 6; i++) {
+										var complicated_inputs = document.getElementById("complicated_inputs");
+
+										var group = document.createElement("div");
+										group.className = `btn-group-vertical align-top`;
+										group.setAttribute("role", "group");
+
+										for (ii = 0; ii <= 4; ii++) {
+											var input = document.createElement("input");
+											input.id = `complicated_${i}_${ii}`;
+											input.className = "btn-check complicated_button";
+											input.setAttribute("type", "checkbox");
+											input.setAttribute("name", `complicated_${i}`);
+											input.setAttribute("autocomplete", "off");
+											input.setAttribute("value", `${attributes[ii][1]}`);
+
+											var label = document.createElement("label");
+											label.className = `btn btn-outline-primary ${attributes[ii][1]}`;
+											label.setAttribute("for", `complicated_${i}_${ii}`);
+											label.appendChild(document.createTextNode(`${attributes[ii][0]}`));
+											label.id = `complicated_${i}_${ii}_label`;
+
+											group.appendChild(input);
+											group.appendChild(label);
+										}
+										complicated_inputs.appendChild(group);
+									}									
+								</script>
+							</div>
+							<div class="card-body" id="complicated_optional">
+								<div class="btn-group d-none" id="complicated_batteries">
+									<input type="checkbox" class="btn-check" name="complicated_batts"
+										id="complicated_batts" autocomplete="off" />
+									<label class="btn btn-outline-primary" for="complicated_batts">2+ cells</label>
+								</div>
+								<div class="btn-group d-none" id="complicated_serial">
+									<input type="checkbox" class="btn-check" name="complicated_batts"
+										id="complicated_seri" autocomplete="off" />
+									<label class="btn btn-outline-primary" for="complicated_seri">Even serial</label>
+								</div>
+								<div class="btn-group d-none" id="complicated_parallel">
+									<input type="checkbox" class="btn-check" name="complicated_par" id="complicated_par"
+										autocomplete="off" />
+									<label class="btn btn-outline-primary" for="complicated_par">Parallel</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col module pt-3" id=""></div>
+					<div class="col module pt-3" id=""></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -376,6 +435,18 @@
 				element.addEventListener("click", buttonDeselect);
 				element.addEventListener("click", () => setTimeout(basicwires_solve));
 			});
+
+			// Complicated wires.
+			Array.from(document.querySelectorAll("#complicated_inputs .btn")).forEach((element) => {
+				element.addEventListener("click", buttonDeselect);
+				element.addEventListener("click", (e) => setTimeout(complicated_solve(e)));
+			});
+
+			Array.from(document.querySelectorAll("#complicated_optional .btn")).forEach((element) => {
+				element.addEventListener("click", buttonDeselect);
+				element.addEventListener("click", () => setTimeout(complicated_solve_many));
+			});
+
 
 		}
 
@@ -428,7 +499,8 @@
 				fourth: "4th",
 				third: "3rd"
 			};
-			let getcount = (c) =>
+
+			getcount = (c) =>
 				document.querySelectorAll(`.basicwires_${c}:checked`).length;
 
 			let count = {
@@ -462,7 +534,7 @@
 						result.push(cut.last);
 					}
 					else if (count.blue > 1) {
-						result.push(`${cut.last} ${cut.blue}`);
+						result.push(`${cut.last} ${colour.blue}`);
 					}
 					else {
 						result.push(cut.last);
@@ -471,7 +543,7 @@
 				}
 				case 4: {
 					if (count.red > 1) {
-						result.push(`Serial odd ? ${cut.last} ${cut.red} : `);
+						result.push(`Serial odd: ${cut.last} ${colour.red}. Else: `);
 					}
 					if (lastwire() == colour.yellow && count.red == 0) {
 						result.push(cut.first);
@@ -489,7 +561,7 @@
 				}
 				case 5: {
 					if (lastwire() == colour.black) {
-						result.push(`Serial odd ? ${cut.fourth} : `);
+						result.push(`Serial odd: ${cut.fourth}. Else: `);
 					}
 					if (count.red == 1 && count.yellow > 1) {
 						result.push(cut.first);
@@ -504,7 +576,7 @@
 				}
 				case 6: {
 					if (count.yellow == 0) {
-						result.push(`Serial odd ? ${cut.third} : `);
+						result.push(`Serial odd: ${cut.third}. Else: `);
 					}
 					if (count.yellow == 1 && count.white > 1) {
 						result.appendChild(cut.fourth);
@@ -526,6 +598,139 @@
 			console.log(`${result.join("")}`);
 			document.getElementById("basicwires_solution").innerHTML = `Count= ${count.total}.<br />${result.join("")}`;
 		}
+
+		function complicated_solve_many() {
+			for (i = 1; i <= 6; i++) {
+				complicated_solve(`complicated_${i}`);
+			}
+		}
+
+		function complicated_solve(e) {
+			let id = ""; //really want this to be an inline if but you dont like them.	 		
+			if (typeof e === "string") {
+				id = e;
+			} else {
+				id = e.target.id.substring(0, 13); //use data attributes instead
+			}
+
+			var complicated_batteries = document.getElementById("complicated_batteries");
+			var complicated_serial = document.getElementById("complicated_serial");
+			var complicated_parallel = document.getElementById("complicated_parallel");
+
+			var cut = true;
+
+			var state = {
+				light: document.getElementById(`${id}_0`).checked,
+				red: document.getElementById(`${id}_1`).checked,
+				blue: document.getElementById(`${id}_2`).checked,
+				star: document.getElementById(`${id}_3`).checked,
+				batt: document.getElementById("complicated_batts").checked,
+				serial: document.getElementById("complicated_seri").checked,
+				parallel: document.getElementById("complicated_par").checked
+			};
+			cut = () => {
+				if (state.red) {
+					if (state.blue) {
+						if (state.star) {
+							if (state.light) {
+								return false;
+							}
+							return state.parallel;
+						} else {
+							return state.serial;
+						}
+						return false;
+					} else {
+						if (state.star) {
+							if (state.light) {
+								return state.batt;
+							} else {
+								return true;
+							}
+						} else {
+							if (state.light) {
+								return state.batt;
+							} else {
+								return state.serial;
+							}
+						}
+						return false;
+					}
+				}
+				if (state.blue) {
+					if (state.star) {
+						if (state.light) {
+							return state.parallel;
+						}
+						return false;
+					} else {
+						if (state.light) {
+							return state.parallel
+						} else {
+							return state.serial;
+						}
+					}
+				} else {
+					if (state.star) {
+						if (state.light) {
+							return state.batt;
+						} else {
+							return true;
+						}
+					} else {
+						if (!state.light) {
+							return true;
+						}
+					}
+				}
+				return false;
+			}
+
+			if (cut()) {
+				console.log("Cut wire");
+				document.getElementById(`${id}_4_label`).innerHTML = "Cut";
+			} else {
+				console.log("Leave wire");
+				document.getElementById(`${id}_4_label`).innerHTML = "Leave";
+			}
+
+			var show = {
+				batts: false,
+				serial: false,
+				parallel: false
+			};
+
+			for (iii = 1; iii <= 6; iii++) {
+				id = `complicated_${iii}`;
+
+				state = {
+					light: document.getElementById(`${id}_0`).checked,
+					red: document.getElementById(`${id}_1`).checked,
+					blue: document.getElementById(`${id}_2`).checked,
+					star: document.getElementById(`${id}_3`).checked,
+					batt: document.getElementById("complicated_batts").checked,
+					serial: document.getElementById("complicated_seri").checked,
+					parallel: document.getElementById("complicated_par").checked
+				};
+
+				if (state.batt || (state.red && !state.blue && state.light) || (!state.red && state.blue && state.light && state.star)) {
+					show.batts = true;
+				}
+
+				if (state.serial || ((state.red || state.blue) && !state.light && !state.star) || (state.red && state.blue && !state.light && state.star)) {
+					show.serial = true;
+				}
+
+				if (state.parallel || (!state.red && state.blue && state.light) || (state.red && state.blue && !state.light && state.star)) {
+					show.parallel = true;
+				}
+			}
+
+			visible(complicated_batteries, show.batts);
+			visible(complicated_serial, show.serial);
+			visible(complicated_parallel, show.parallel);
+		}
+
 
 		function passwd_jump(e) {
 			if ("1234567890".includes(e.key)) {
@@ -556,7 +761,6 @@
 		}
 		function hide(e) {
 			e.classList.add("d-none"); // Hide.
-
 		}
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
