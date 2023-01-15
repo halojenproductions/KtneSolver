@@ -1,0 +1,56 @@
+@import "~bootstrap/scss/bootstrap";
+
+* {
+	font-family: Consolas, "Courier New", Courier, monospace;
+}
+
+body {
+	background-color: black;
+}
+
+.module {
+	min-width: 350px;
+}
+
+input[type="text"],
+#passwd_solution {
+	color: rgb(0, 255, 0) !important;
+	text-transform: uppercase;
+}
+
+input[type="text"]:focus {
+	border-color: #00ff00;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.6);
+}
+
+input.btn-check:not(:checked)+.btn.colour-blue {
+	color: #0d6efd;
+}
+
+input.btn-check:checked+.btn.colour-blue {
+	background-color: #0d6efd;
+}
+
+input.btn-check:not(:checked)+.btn.colour-white {
+	color: #f8f9fa;
+}
+
+input.btn-check:checked+.btn.colour-white {
+	background-color: #adb5bd;
+}
+
+input.btn-check:not(:checked)+.btn.colour-yellow {
+	color: #ffc107;
+}
+
+input.btn-check:checked+.btn.colour-yellow {
+	background-color: #ffc107;
+}
+
+input.btn-check:not(:checked)+.btn.colour-red {
+	color: #dc3545;
+}
+
+input.btn-check:checked+.btn.btn.colour-red {
+	background-color: #dc3545;
+}
