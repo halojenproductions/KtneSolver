@@ -13,12 +13,13 @@ const config: PlaywrightTestConfig = {
   },
   use: {
     baseURL: 'http://localhost:8080/',
+	headless: false,
   },
   projects: [
     {
       name: 'Default',
       //testIgnore: /.*smoke.spec.ts/,
-      retries: 1,
+      retries: 0,
     },
   ],
 
