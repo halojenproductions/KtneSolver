@@ -17,7 +17,12 @@ module.exports = {
 		rules: [
 			{
 				test: /\.ts$/,
-				exclude: /node_modules/,
+				exclude: [
+					/node_modules/,
+					/playwright/,
+					/\.config.ts$/,
+					/\.spec.ts$/
+				],
 				use: {
 					loader: 'ts-loader',
 				},
