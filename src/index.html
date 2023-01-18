@@ -116,15 +116,15 @@
 										<div class="btn-group-vertical align-top d-none" role="group" id="button_batteries">
 											<input type="radio" class="btn-check" name="button_batts" id="button_batts1"
 												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_batts1">No cells</label>
+											<label class="btn btn-outline-primary" for="button_batts1">&lt;=1 cells</label>
 
 											<input type="radio" class="btn-check" name="button_batts" id="button_batts2"
 												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_batts2">>1 cell</label>
+											<label class="btn btn-outline-primary" for="button_batts2">&gt;1 cell</label>
 
 											<input type="radio" class="btn-check" name="button_batts" id="button_batts3"
 												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_batts3">>2 cells</label>
+											<label class="btn btn-outline-primary" for="button_batts3">&gt;2 cells</label>
 										</div>
 
 										<div class="btn-group-vertical align-top d-none" role="group" id="button_car">
@@ -221,9 +221,12 @@
 													document.getElementById("button_solution").innerHTML = "Click";
 												} else if (hold) {
 													console.log("Hold it");
-													document.getElementById("button_solution").innerHTML = `Blue strip: 4 <br>
+													document.getElementById("button_solution").innerHTML = `
+														Hold<br>
+														Blue strip: 4 <br>
 														Yellow strip: 5 <br>
-														Else: 1`;
+														Else: 1
+													`;
 												}
 											}
 										}
