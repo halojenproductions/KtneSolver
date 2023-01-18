@@ -12,3 +12,7 @@ export function show(e: HTMLInputElement) {
 export function hide(e: HTMLInputElement) {
 	e.classList.add("d-none"); // Hide.
 }
+
+export function getById(id: string): HTMLInputElement{
+	return <HTMLInputElement>document.getElementById(id);
+}

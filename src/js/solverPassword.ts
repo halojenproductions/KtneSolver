@@ -1,3 +1,5 @@
+import {getById} from './utilities';
+
 const passwdookups: readonly string[] = [
 	"about", "after", "again", "below", "could",
 	"every", "first", "found", "great", "house",
@@ -10,11 +12,11 @@ const passwdookups: readonly string[] = [
 
 export function passwd_solve() {
 	var inputs = [
-		(<HTMLInputElement>document.getElementById("passwd_letters1")).value.toLowerCase().split(""),
-		(<HTMLInputElement>document.getElementById("passwd_letters2")).value.toLowerCase().split(""),
-		(<HTMLInputElement>document.getElementById("passwd_letters3")).value.toLowerCase().split(""),
-		(<HTMLInputElement>document.getElementById("passwd_letters4")).value.toLowerCase().split(""),
-		(<HTMLInputElement>document.getElementById("passwd_letters5")).value.toLowerCase().split(""),
+		(getById("passwd_letters1")).value.toLowerCase().split(""),
+		(getById("passwd_letters2")).value.toLowerCase().split(""),
+		(getById("passwd_letters3")).value.toLowerCase().split(""),
+		(getById("passwd_letters4")).value.toLowerCase().split(""),
+		(getById("passwd_letters5")).value.toLowerCase().split(""),
 	];
 	let matches = passwdookups.filter((lookupWord) => {
 		let wordLetters = lookupWord.split("");
@@ -26,7 +28,7 @@ export function passwd_solve() {
 		return hasMatch;
 	});
 
-	(<HTMLInputElement>document.getElementById("passwd_solution")).innerHTML = matches.join("<br>");
+	(getById("passwd_solution")).innerHTML = matches.join("<br>");
 	console.log(matches);
 }
 
