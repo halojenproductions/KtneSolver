@@ -262,22 +262,28 @@
 								</div>
 								<div class="card-body" id="">
 									<form id="KeypadForm">
-										<div class="btn-group-sm btn-group-vertical align-top" role="group">
-											<script type="text/javascript">
-												var basicwires_inputs = document.getElementById("BasicWiresForm");
-												var symbols = [
-													["&#984;", "&#1126;", "&#411;", "&#990;", "&#1132;", "&#983;", "&#1023;"],
-													["&#1260;", "&#984;", "&#1023;", "&#1192;", "&#9734;", "&#983;", "&#191;"],
-													["&#169;", "&#1148;", "&#1192;", "&#1046;", "&#1134;", "&#411;", "&#9734;"],
-													["&#1004;", "&#182;", "&#384;", "&#1132;", "&#1046;", "&#191;", "&#9786;"],
-													["&#968;", "&#9786;", "&#384;", "&#1022;", "&#182;", "&#1134;", "&#9733;"],
-													["&#1004;", "&#1260;", "&#1154;", "&#230;", "&#968;", "&#1162;", "&#937;"],
-												];
+										<script type="text/javascript">
+											var keypad_inputs = document.getElementById("KeypadForm");
+
+											var symbols = [
+												["&#984;", "&#1126;", "&#411;", "&#990;", "&#1132;", "&#983;", "&#1023;"],
+												["&#1260;", "&#984;", "&#1023;", "&#1192;", "&#9734;", "&#983;", "&#191;"],
+												["&#169;", "&#1148;", "&#1192;", "&#1046;", "&#1134;", "&#411;", "&#9734;"],
+												["&#1004;", "&#182;", "&#384;", "&#1132;", "&#1046;", "&#191;", "&#9786;"],
+												["&#968;", "&#9786;", "&#384;", "&#1022;", "&#182;", "&#1134;", "&#9733;"],
+												["&#1004;", "&#1260;", "&#1154;", "&#230;", "&#968;", "&#1162;", "&#937;"],
+											];
+
+											for (iCol = 0; iCol < 6; iCol++) {
+												for (iRow = 0; iRow < 7; iRow++) {
 
 
 
-											</script>
-											<!--
+
+												}
+											}
+										</script>
+										<!--
 												&#230; æ
 												&#384; ƀ
 												&#411; ƛ
@@ -309,7 +315,7 @@
 												&#1260; Ӭ
 											-->
 
-											<!-- <input type="radio" class="btn-check blue" name="button_colour" id="button_colour1"
+										<!-- <input type="radio" class="btn-check blue" name="button_colour" id="button_colour1"
 												autocomplete="off" />
 											<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
 
@@ -326,7 +332,6 @@
 											<input type="radio" class="btn-check" name="button_colour" id="button_colour4"
 												autocomplete="off" />
 											<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label> -->
-										</div>
 
 
 									</form>
@@ -335,13 +340,14 @@
 									<div class="text-success" id="keypad_solution"></div>
 
 									<script>
-										function keypad_solve() {
+										/*function keypad_solve() {
 
-										}
+										}*/
 									</script>
 								</div>
 							</div>
 						</div>
+						
 						<div class="col module pt-3" id="BasicWires">
 							<div class="card">
 								<div class="card-header">
