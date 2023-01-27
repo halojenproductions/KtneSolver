@@ -6,7 +6,7 @@ test('Any colour, detonate, no cells', async ({ page }) => {
 	const module = await page.locator('#MissileButton .card');
 	await module.getByText('Blue').click();
 	await module.getByText('Detonate').click();
-	await module.getByText('No cells').click();
+	await module.locator('label[for="button_batts1"]').click();
 	const answer = await module.locator('#button_solution');
 	await expect(answer).toBeVisible();
 	await expect(answer).toContainText('Hold');
