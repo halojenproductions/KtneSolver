@@ -1,4 +1,4 @@
-import {getById} from './utilities';
+import { getById } from './utilities';
 
 const passwdookups: readonly string[] = [
 	"about", "after", "again", "below", "could",
@@ -10,7 +10,7 @@ const passwdookups: readonly string[] = [
 	"where", "which", "world", "would", "write",
 ];
 
-export function passwd_solve() {
+export function passwd_solve(): void {
 	var inputs = [
 		(getById("passwd_letters1")).value.toLowerCase().split(""),
 		(getById("passwd_letters2")).value.toLowerCase().split(""),
