@@ -337,17 +337,11 @@
 									</form>
 
 									<hr />
-									<div class="text-success" id="keypad_solution"></div>
-
-									<script>
-										/*function keypad_solve() {
-
-										}*/
-									</script>
+									<div class="text-success fs-2" id="keypad_solution"></div>
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col module pt-3" id="BasicWires">
 							<div class="card">
 								<div class="card-header">
@@ -482,6 +476,7 @@
 								</form>
 							</div>
 						</div>
+						
 						<div class="col module pt-3" id=""></div>
 					</div>
 				</div>
@@ -756,12 +751,14 @@
 				visible(complicated_parallel, show.parallel);
 			}
 
+			// Deprecated.
 			function buttonDeselect(e) {
 				if (document.getElementById(e.target.htmlFor).checked) {
 					document.getElementById(e.target.htmlFor).checked = false;
 					e.preventDefault();
 				}
 			}
+			// Deprecated.
 			function visible(e, visible) {
 				const className = "d-none";
 				if (visible && e.classList.contains(className)) {
@@ -770,9 +767,11 @@
 					e.classList.add(className); // Hide.
 				}
 			}
+			// Deprecated.
 			function show(e) {
 				e.classList.remove("d-none"); // Show.
 			}
+			// Deprecated.
 			function hide(e) {
 				e.classList.add("d-none"); // Hide.
 			}

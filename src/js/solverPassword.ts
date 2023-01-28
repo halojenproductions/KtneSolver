@@ -12,11 +12,11 @@ const passwdookups: readonly string[] = [
 
 export function passwd_solve(): void {
 	var inputs = [
-		(getById("passwd_letters1")).value.toLowerCase().split(""),
-		(getById("passwd_letters2")).value.toLowerCase().split(""),
-		(getById("passwd_letters3")).value.toLowerCase().split(""),
-		(getById("passwd_letters4")).value.toLowerCase().split(""),
-		(getById("passwd_letters5")).value.toLowerCase().split(""),
+		getById("passwd_letters1").value.toLowerCase().split(""),
+		getById("passwd_letters2").value.toLowerCase().split(""),
+		getById("passwd_letters3").value.toLowerCase().split(""),
+		getById("passwd_letters4").value.toLowerCase().split(""),
+		getById("passwd_letters5").value.toLowerCase().split(""),
 	];
 	let matches = passwdookups.filter((lookupWord) => {
 		let wordLetters = lookupWord.split("");
@@ -28,7 +28,7 @@ export function passwd_solve(): void {
 		return hasMatch;
 	});
 
-	(getById("passwd_solution")).innerHTML = matches.join("<br>");
+	getById("passwd_solution").innerHTML = matches.join("<br>");
 	console.log(matches);
 }
 

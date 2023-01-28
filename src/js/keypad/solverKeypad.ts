@@ -1,6 +1,5 @@
-// import { getById } from './../utilities';
+import { getById } from '../utilities';
 import { symbolSet } from './renderKeypad';
-
 
 const keypadSymbols: readonly string[][] = [
 	[symbolSet.Q, symbolSet.A, symbolSet.Lambda, symbolSet.Lightening, symbolSet.Alien, symbolSet.Hallmark, symbolSet.BackwardsC],
@@ -11,29 +10,30 @@ const keypadSymbols: readonly string[][] = [
 	[symbolSet.Sigma, symbolSet.BackwardsE, symbolSet.DoubleDagger, symbolSet.AE, symbolSet.Trident, symbolSet.N, symbolSet.Omega],
 ]
 
-
-
 export function keypad_solve(): void {
-	var aoeu = keypadSymbols;
-	aoeu = aoeu;
-	// var inputs = [
-	// 	(getById("passwd_letters1")).value.toLowerCase().split(""),
-	// 	(getById("passwd_letters2")).value.toLowerCase().split(""),
-	// 	(getById("passwd_letters3")).value.toLowerCase().split(""),
-	// 	(getById("passwd_letters4")).value.toLowerCase().split(""),
-	// 	(getById("passwd_letters5")).value.toLowerCase().split(""),
-	// ];
-	// let matches = passwdookups.filter((lookupWord) => {
-	// 	let wordLetters = lookupWord.split("");
+	let selectedSymbols: string[] = <string[]>Array.from(
+		document.querySelectorAll("#Keypad input.btn-check:checked+.btn"), // Get buttons (labels) that are on.
+		sym => sym.getAttribute("data-symbolCode") // Map just the symbol code to the array.
+	);
 
-	// 	let hasMatch = true;
-	// 	for (var i = 0; i < 5; i++) {
-	// 		hasMatch &&= inputs[i].length === 0 || inputs[i].includes(wordLetters[i]);
-	// 	}
-	// 	return hasMatch;
-	// });
+	let sequenceMatches: number[] = [];
+	keypadSymbols
+	.forEach((seq, idx) => {
+		if (selectedSymbols.every(s => seq.includes(s))) {
+			sequenceMatches.push(idx);
+		}
+	});
 
-	// (getById("passwd_solution")).innerHTML = matches.join("<br>");
-	// console.log(matches);
+	if (sequenceMatches.length == 1) {
+		// We have a match.
+		let solution: string = keypadSymbols[sequenceMatches[0]]
+		.map(sym => `&${sym};`)
+		.join("&nbsp;&nbsp;&nbsp;"); // Todo: replace this shit with spans so padding/margins can take care of the spacing.
+
+		getById("keypad_solution").innerHTML = solution;
+	} else {
+		// No [definitive] match.
+		getById("keypad_solution").innerHTML = "";
+	}
 }
 
