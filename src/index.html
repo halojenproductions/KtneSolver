@@ -79,7 +79,7 @@
 								</div>
 								<div class="card-body" id="">
 									<form id="MissileButtonForm">
-										<div class="btn-group-vertical align-top" role="group">
+										<div class="btn-group-sm btn-group-vertical align-top" role="group">
 											<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1"
 												autocomplete="off" />
 											<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
@@ -99,7 +99,7 @@
 											<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
 										</div>
 
-										<div class="btn-group-vertical align-top" role="group">
+										<div class="btn-group-sm btn-group-vertical align-top" role="group">
 											<input type="radio" class="btn-check" name="button_word" id="button_word1"
 												autocomplete="off" />
 											<label class="btn btn-outline-primary" for="button_word1">Abort</label>
@@ -113,7 +113,7 @@
 											<label class="btn btn-outline-primary" for="button_word3">Hold</label>
 										</div>
 
-										<div class="btn-group-vertical align-top d-none" role="group" id="button_batteries">
+										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_batteries">
 											<input type="radio" class="btn-check" name="button_batts" id="button_batts1"
 												autocomplete="off" />
 											<label class="btn btn-outline-primary" for="button_batts1">&lt;=1 cells</label>
@@ -127,7 +127,7 @@
 											<label class="btn btn-outline-primary" for="button_batts3">&gt;2 cells</label>
 										</div>
 
-										<div class="btn-group-vertical align-top d-none" role="group" id="button_car">
+										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_car">
 											<input type="radio" class="btn-check" name="button_car" id="button_car1"
 												autocomplete="off" />
 											<label class="btn btn-outline-primary" for="button_car1">No CAR</label>
@@ -137,7 +137,7 @@
 											<label class="btn btn-outline-primary" for="button_car2">CAR</label>
 										</div>
 
-										<div class="btn-group-vertical align-top d-none" role="group" id="button_frk">
+										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_frk">
 											<input type="radio" class="btn-check" name="button_frk" id="button_frk1"
 												autocomplete="off" />
 											<label class="btn btn-outline-primary" for="button_frk1">No FRK</label>
@@ -153,8 +153,7 @@
 
 									<script>
 										function button_solve() {
-											var hold = false;
-											var click = false;
+											var solution = { hold: false, click: false };
 											var show = { batts: false, car: false, frk: false };
 
 											var button_batteries = document.getElementById("button_batteries");
@@ -162,13 +161,13 @@
 											var button_frk = document.getElementById("button_frk");
 
 											var state = {
-												abort: document.getElementById("button_word1").checked,
-												detonate: document.getElementById("button_word2").checked,
-												hold: document.getElementById("button_word3").checked,
 												blue: document.getElementById("button_colour1").checked,
 												white: document.getElementById("button_colour2").checked,
 												yellow: document.getElementById("button_colour3").checked,
 												red: document.getElementById("button_colour4").checked,
+												abort: document.getElementById("button_word1").checked,
+												detonate: document.getElementById("button_word2").checked,
+												hold: document.getElementById("button_word3").checked,
 												battNone: document.getElementById("button_batts1").checked,
 												battMoreThan1: document.getElementById("button_batts2").checked,
 												battMoreThan2: document.getElementById("button_batts3").checked,
@@ -178,29 +177,56 @@
 												frkYes: document.getElementById("button_frk2").checked,
 											};
 
-											if (state.blue && state.abort) { // 1
-												hold = true;
-											} else if (state.detonate) { // 2
-												show.batts = true;
-												if (state.battMoreThan1) {
-													click = true;
+											colourInfoNeeded = () => !(state.blue || state.white || state.yellow || state.red);
+											wordInfoNeeded = () => !(state.abort || state.detonate || state.hold);
+											battInfoNeeded = () => show.batts && !(state.battNone || state.battMoreThan1 || state.battMoreThan2);
+											carInfoNeeded = () => show.car && !(state.carNo || state.carYes);
+											frkInfoNeeded = () => show.frk && !(state.frkNo || state.frkYes);
+											solutionFound = () =>
+												!colourInfoNeeded() &&
+												!wordInfoNeeded() &&
+												!battInfoNeeded() &&
+												!carInfoNeeded() &&
+												!frkInfoNeeded() &&
+												(solution.hold || solution.click);
+
+											if (!colourInfoNeeded() && !wordInfoNeeded()) {
+												// 1
+												if (state.blue && state.abort) {
+													solution.hold = true;
 												}
-											} else if (state.white) { // 3
-												show.car = true;
-												if (state.carYes) {
-													hold = true;
+
+												// 2
+												if (!solutionFound() && state.detonate) {
+													show.batts = true;
+													if (state.battMoreThan1 || state.battMoreThan2) {
+														solution.click = true;
+													} else if (state.battNone) {
+														solution.hold = true;
+													}
 												}
-											} else { // 4
-												show.batts = true;
-												show.frk = true;
-												if (state.battMoreThan2 && state.frkYes) {
-													click = true;
-												} else if (state.yellow) { // 5
-													hold = true;
-												} else if (state.red && state.hold) { // 6
-													click = true;
-												} else {
-													hold = true;
+
+												// 3
+												if (!solutionFound() && !battInfoNeeded() && state.white) {
+													show.car = true;
+													if (state.carYes) {
+														solution.hold = true;
+													}
+												}
+
+												// 4
+												if (!solutionFound() && !battInfoNeeded() && !carInfoNeeded()) {
+													show.batts = true;
+													show.frk = true;
+													if (state.battMoreThan2 && state.frkYes) {
+														solution.click = true;
+													} else if (state.yellow) { // 5
+														solution.hold = true;
+													} else if (state.red && state.hold) { // 6
+														solution.click = true;
+													} else {
+														solution.hold = true;
+													}
 												}
 											}
 
@@ -208,26 +234,20 @@
 											visible(button_car, show.car);
 											visible(button_frk, show.frk);
 
-											battInfoNeeded = () => show.batts && !(state.battNone || state.battMoreThan1 || state.battMoreThan2);
-											carInfoNeeded = () => show.car && !(state.carNo || state.carYes);
-											frkInfoNeeded = () => show.frk && !(state.frkNo || state.frkYes);
-
-											if ((battInfoNeeded() || carInfoNeeded() || frkInfoNeeded())) {
+											if (battInfoNeeded() || carInfoNeeded() || frkInfoNeeded()) {
 												console.log("No solution");
 												document.getElementById("button_solution").innerHTML = "";
-											} else {
-												if (click) {
-													console.log("Click it");
-													document.getElementById("button_solution").innerHTML = "Click";
-												} else if (hold) {
-													console.log("Hold it");
-													document.getElementById("button_solution").innerHTML = `
+											} else if (solution.click) {
+												console.log("Click it");
+												document.getElementById("button_solution").innerHTML = "Click";
+											} else if (solution.hold) {
+												console.log("Hold it");
+												document.getElementById("button_solution").innerHTML = `
 														Hold<br>
 														Blue strip: 4 <br>
 														Yellow strip: 5 <br>
 														Else: 1
 													`;
-												}
 											}
 										}
 									</script>
@@ -308,8 +328,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row ">
+
 						<div class="col module pt-3" id="Complicated">
 							<div class="card">
 								<div class="card-header ">
@@ -325,7 +344,7 @@
 												var complicated_inputs = document.getElementById("complicated_inputs");
 
 												var group = document.createElement("div");
-												group.className = `btn-group-vertical align-top`;
+												group.className = `btn-group-sm btn-group-vertical align-top`;
 												group.setAttribute("role", "group");
 
 												for (ii = 0; ii <= 4; ii++) {
