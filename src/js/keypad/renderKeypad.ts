@@ -20,7 +20,7 @@ export const symbolSet: { [key: string]: string } = {
 	Sigma: "#1004",
 	CarriageReturn: "#182",
 	B: "#384",
-	PokeyOuteyTongue: "#9786",
+	PokeyOuteyTongue: "#1660",
 	Trident: "#968",
 	C: "#1022",
 	Caterpillar: "#1134",
