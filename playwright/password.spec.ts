@@ -1,8 +1,12 @@
 import { test, expect } from '@playwright/test';
 
-test('Password', async ({ page }) => {
+let module;
+test.beforeEach(async ({ page }, testInfo) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#Password .card');
+	module = await page.locator('#Password .card');
+});
+
+test('Password', async ({ page }) => {
 	await module.locator('#passwd_letters1').type('WA');
 	await module.locator('#passwd_letters2').type('rb');
 	await module.locator('#passwd_letters3').type('io');
