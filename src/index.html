@@ -412,7 +412,7 @@
 								</form>
 							</div>
 						</div>
-						
+
 						<div class="col module pt-3" id=""></div>
 					</div>
 				</div>
@@ -437,7 +437,7 @@
 				// Complicated wires.
 				Array.from(document.querySelectorAll("#complicated_inputs .btn")).forEach((element) => {
 					element.addEventListener("click", buttonDeselect);
-					element.addEventListener("click", (e) => setTimeout(complicated_solve(e)));
+					element.addEventListener("click", (e) => setTimeout(complicated_solve, 0, e))
 				});
 
 				Array.from(document.querySelectorAll("#complicated_optional .btn")).forEach((element) => {
