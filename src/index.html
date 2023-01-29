@@ -116,7 +116,7 @@
 										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_batteries">
 											<input type="radio" class="btn-check" name="button_batts" id="button_batts1"
 												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_batts1">&lt;=1 cells</label>
+											<label class="btn btn-outline-primary" for="button_batts1">&le;1 cells</label>
 
 											<input type="radio" class="btn-check" name="button_batts" id="button_batts2"
 												autocomplete="off" />
@@ -329,9 +329,9 @@
 							</div>
 						</div>
 
-						<div class="col module pt-3" id="Complicated">
+						<div class="col module pt-3" id="Complicated" data-why="https://youtu.be/5NPBIwQyPWE">
 							<div class="card">
-								<div class="card-header ">
+								<div class="card-header">
 									<span class="float-start">Complicated wires</span>
 									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="ComplexWiresForm"></button>
 								</div>
@@ -368,21 +368,29 @@
 												complicated_inputs.appendChild(group);
 											}									
 										</script>
+
+										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="complicated_batteries">
+											<input type="radio" class="btn-check" name="complex_batts" id="complex_batts1" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="complex_batts1">&lt;2 cells</label>
+
+											<input type="radio" class="btn-check" name="complex_batts" id="complex_batts2" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="complex_batts3">&ge;2 cells</label>
+										</div>
+
 									</div>
+
+
 									<div class="card-body" id="complicated_optional">
 										<div class="btn-group d-none" id="complicated_batteries">
-											<input type="checkbox" class="btn-check" name="complicated_batts"
-												id="complicated_batts" autocomplete="off" />
+											<input type="checkbox" class="btn-check" name="complicated_batts" id="complicated_batts" autocomplete="off" />
 											<label class="btn btn-outline-primary" for="complicated_batts">2+ cells</label>
 										</div>
 										<div class="btn-group d-none" id="complicated_serial">
-											<input type="checkbox" class="btn-check" name="complicated_batts"
-												id="complicated_seri" autocomplete="off" />
+											<input type="checkbox" class="btn-check" name="complicated_batts" id="complicated_seri" autocomplete="off" />
 											<label class="btn btn-outline-primary" for="complicated_seri">Even serial</label>
 										</div>
 										<div class="btn-group d-none" id="complicated_parallel">
-											<input type="checkbox" class="btn-check" name="complicated_par" id="complicated_par"
-												autocomplete="off" />
+											<input type="checkbox" class="btn-check" name="complicated_par" id="complicated_par" autocomplete="off" />
 											<label class="btn btn-outline-primary" for="complicated_par">Parallel</label>
 										</div>
 									</div>
