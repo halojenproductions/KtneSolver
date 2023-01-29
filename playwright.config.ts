@@ -3,6 +3,7 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   timeout: 1000,
   globalTimeout: 60000,
+  fullyParallel: true,
   reporter: 'list',
   testDir: './playwright',
   webServer: {
