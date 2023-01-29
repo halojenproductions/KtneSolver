@@ -32,6 +32,10 @@ button[type="reset"] {
 	}
 }
 
+#KeypadForm .btn,
+#keypad_solution{
+	font-family:  'Times New Roman', Times, serif;
+}
 
 input.btn-check:not(:checked)+.btn.colour-blue {
 	color: #0d6efd;
