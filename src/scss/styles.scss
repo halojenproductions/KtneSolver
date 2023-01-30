@@ -44,9 +44,21 @@ button[type="reset"] {
 	}
 }
 
-#KeypadForm .btn,
+$symbolFont: 'Times New Roman', Times, serif;
+
+#KeypadForm .btn {
+	font-family: $symbolFont;
+}
+
 #keypad_solution {
-	font-family: 'Times New Roman', Times, serif;
+	span {
+		font-family: $symbolFont;
+
+		&.selected {
+			color: $black;
+			background-color: $primary;
+		}
+	}
 }
 
 input.btn-check:not(:checked)+.btn {

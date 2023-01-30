@@ -3,6 +3,7 @@
 	// "[html]": {
 	// 	"editor.defaultFormatter": "vscode.html-language-features"
 	// }
+	"editor.defaultFormatter": null,
 	"editor.formatOnSave": true,
 	"editor.formatOnSaveMode": "file",
 	"files.autoSave": "afterDelay",
