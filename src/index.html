@@ -480,14 +480,13 @@
 				if (count.total < 3) {
 					document.getElementById("basicwires_solution").innerHTML = "";
 					return;
-						result.push(cut.second);
 				}
 
 				let result = [];
 				switch (count.total) {
 					case 3: {
 						if (count.red == 0) {
-							result.join(cut.second);
+							result.push(cut.second);
 						} else if (lastwire() == colour.white) {
 							result.push(cut.last);
 						} else if (count.blue > 1) {
