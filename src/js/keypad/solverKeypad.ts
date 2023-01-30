@@ -18,22 +18,30 @@ export function keypad_solve(): void {
 
 	let sequenceMatches: number[] = [];
 	keypadSymbols
-	.forEach((seq, idx) => {
-		if (selectedSymbols.every(s => seq.includes(s))) {
-			sequenceMatches.push(idx);
-		}
-	});
+		.forEach((seq, idx) => {
+			if (selectedSymbols.every(s => seq.includes(s))) {
+				sequenceMatches.push(idx);
+			}
+		});
+
+	let sol: HTMLDivElement = getById("keypad_solution");
+	sol.innerHTML = "";
 
 	if (sequenceMatches.length == 1) {
 		// We have a match.
-		let solution: string = keypadSymbols[sequenceMatches[0]]
-		.map(sym => `&${sym};`)
-		.join("&nbsp;&nbsp;&nbsp;"); // Todo: replace this shit with spans so padding/margins can take care of the spacing.
+		keypadSymbols[sequenceMatches[0]]
+			.forEach(sym => {
+				let symDisplay: HTMLSpanElement = document.createElement("span");
+				symDisplay.className = "flex-fill text-center mx-1";
+				if (selectedSymbols.includes(sym)) {
+					symDisplay.classList.add("selected");
+				}
+				symDisplay.innerHTML = `&${sym};`;
+				sol.appendChild(symDisplay);
+			});
 
-		getById("keypad_solution").innerHTML = solution;
 	} else {
 		// No [definitive] match.
-		getById("keypad_solution").innerHTML = "";
 	}
 }
 
