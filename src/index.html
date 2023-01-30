@@ -70,6 +70,56 @@
 						</header>
 					</div>
 					<div class="row">
+						<div class="col module pt-3" id="BasicWires">
+							<div class="card">
+								<div class="card-header">
+									<span class="float-start">Basic wires</span>
+									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="BasicWiresForm"></button>
+								</div>
+								<div class="card-body">
+									<form id="BasicWiresForm">
+										<script type="text/javascript">
+											var basicwires_inputs = document.getElementById("BasicWiresForm");
+											var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
+
+											for (i = 1; i <= 6; i++) {
+												var group = document.createElement("div");
+												group.className = "btn-group btn-group-sm d-flex";
+												group.setAttribute("role", "group");
+
+												// var label = document.createElement("label");
+												// label.className = `btn-label`;
+												// label.appendChild(document.createTextNode(`Wire ${i}`));
+												// group.appendChild(label);
+
+												for (ii = 0; ii < 5; ii++) {
+													var input = document.createElement("input");
+													input.id = `basicwires_${i}_${ii}`;
+													input.className = `btn-check basicwires basicwires_${colours[ii][1]}`;
+													input.setAttribute("type", "radio");
+													input.setAttribute("name", `basicwires_${i}`);
+													input.setAttribute("autocomplete", "off");
+													input.setAttribute("value", `${colours[ii][1]}`);
+
+													var label = document.createElement("label");
+													label.className = `btn btn-outline-primary flex-grow-1 colour-${colours[ii][1]}`;
+													label.setAttribute("for", `basicwires_${i}_${ii}`);
+													label.appendChild(document.createTextNode(`${colours[ii][0]}`));
+
+													group.appendChild(input);
+													group.appendChild(label);
+												}
+
+												basicwires_inputs.appendChild(group);
+											}
+										</script>
+									</form>
+									<hr />
+									<div class="text-success" id="basicwires_solution"></div>
+								</div>
+							</div>
+						</div>
+
 						<div class="col module pt-3" id="MissileButton">
 							<div class="card">
 								<div class="card-header">
@@ -270,56 +320,6 @@
 							</div>
 						</div>
 
-						<div class="col module pt-3" id="BasicWires">
-							<div class="card">
-								<div class="card-header">
-									<span class="float-start">Basic wires</span>
-									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="BasicWiresForm"></button>
-								</div>
-								<div class="card-body">
-									<form id="BasicWiresForm">
-										<script type="text/javascript">
-											var basicwires_inputs = document.getElementById("BasicWiresForm");
-											var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
-
-											for (i = 1; i <= 6; i++) {
-												var group = document.createElement("div");
-												group.className = "btn-group btn-group-sm d-flex";
-												group.setAttribute("role", "group");
-
-												// var label = document.createElement("label");
-												// label.className = `btn-label`;
-												// label.appendChild(document.createTextNode(`Wire ${i}`));
-												// group.appendChild(label);
-
-												for (ii = 0; ii < 5; ii++) {
-													var input = document.createElement("input");
-													input.id = `basicwires_${i}_${ii}`;
-													input.className = `btn-check basicwires basicwires_${colours[ii][1]}`;
-													input.setAttribute("type", "radio");
-													input.setAttribute("name", `basicwires_${i}`);
-													input.setAttribute("autocomplete", "off");
-													input.setAttribute("value", `${colours[ii][1]}`);
-
-													var label = document.createElement("label");
-													label.className = `btn btn-outline-primary flex-grow-1 colour-${colours[ii][1]}`;
-													label.setAttribute("for", `basicwires_${i}_${ii}`);
-													label.appendChild(document.createTextNode(`${colours[ii][0]}`));
-
-													group.appendChild(input);
-													group.appendChild(label);
-												}
-
-												basicwires_inputs.appendChild(group);
-											}
-										</script>
-									</form>
-									<hr />
-									<div class="text-success" id="basicwires_solution"></div>
-								</div>
-							</div>
-						</div>
-
 						<div class="col module pt-3" id="Password">
 							<div class="card">
 								<div class="card-header">
@@ -329,16 +329,16 @@
 								<div class="card-body">
 									<form id="PasswordForm">
 										<div class="input-group">
-											<input id="passwd_letters1" placeholder="1" type="text" class="possible form-control" />
-											<input id="passwd_letters2" placeholder="2" type="text" class="possible form-control" />
-											<input id="passwd_letters3" placeholder="3" type="text" class="possible form-control" />
-											<input id="passwd_letters4" placeholder="4" type="text" class="possible form-control" />
-											<input id="passwd_letters5" placeholder="5" type="text" class="possible form-control" />
+											<input id="passwd_letters1" placeholder="1" type="text" class="possible form-control" autocomplete="off" />
+											<input id="passwd_letters2" placeholder="2" type="text" class="possible form-control" autocomplete="off" />
+											<input id="passwd_letters3" placeholder="3" type="text" class="possible form-control" autocomplete="off" />
+											<input id="passwd_letters4" placeholder="4" type="text" class="possible form-control" autocomplete="off" />
+											<input id="passwd_letters5" placeholder="5" type="text" class="possible form-control" autocomplete="off" />
 										</div>
 									</form>
 									<hr />
 									<div id="divSolution">
-										<span id="passwd_solution"> </span>
+										<span class="text-success" id="passwd_solution"> </span>
 									</div>
 								</div>
 							</div>

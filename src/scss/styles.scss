@@ -1,3 +1,10 @@
+$primary: #00BB00;
+$success: $primary;
+$nav-link-color: $primary;
+$nav-link-hover-color: #00FF00;
+$card-cap-color: $primary;
+$body-color: $primary;
+
 @import "~bootstrap/scss/bootstrap";
 
 * {
@@ -12,15 +19,20 @@ body {
 	min-width: 380px;
 }
 
-input[type="text"],
 #passwd_solution {
-	color: rgb(0, 255, 0) !important;
 	text-transform: uppercase;
 }
 
-input[type="text"]:focus {
-	border-color: #00ff00;
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.6);
+input[type="text"] {
+	color: $primary;
+	//border-color: $primary;
+	text-transform: uppercase;
+
+	&:focus {
+		color: $primary;
+		border-color: $primary;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 255, 0, 0.2);
+	}
 }
 
 button[type="reset"] {
@@ -33,38 +45,42 @@ button[type="reset"] {
 }
 
 #KeypadForm .btn,
-#keypad_solution{
-	font-family:  'Times New Roman', Times, serif;
+#keypad_solution {
+	font-family: 'Times New Roman', Times, serif;
 }
 
-input.btn-check:not(:checked)+.btn.colour-blue {
-	color: #0d6efd;
+input.btn-check:not(:checked)+.btn {
+	&.colour-blue {
+		color: $blue;
+	}
+
+	&.colour-white {
+		color: $gray-400;
+	}
+
+	&.colour-yellow {
+		color: $yellow;
+	}
+
+	&.colour-red {
+		color: $red;
+	}
 }
 
-input.btn-check:checked+.btn.colour-blue {
-	background-color: #0d6efd;
-}
+input.btn-check:checked+.btn {
+	&.colour-blue {
+		background-color: #0d6efd;
+	}
 
-input.btn-check:not(:checked)+.btn.colour-white {
-	color: #f8f9fa;
-}
+	&.colour-white {
+		background-color: #adb5bd;
+	}
 
-input.btn-check:checked+.btn.colour-white {
-	background-color: #adb5bd;
-}
+	&.colour-yellow {
+		background-color: #ffc107;
+	}
 
-input.btn-check:not(:checked)+.btn.colour-yellow {
-	color: #ffc107;
-}
-
-input.btn-check:checked+.btn.colour-yellow {
-	background-color: #ffc107;
-}
-
-input.btn-check:not(:checked)+.btn.colour-red {
-	color: #dc3545;
-}
-
-input.btn-check:checked+.btn.btn.colour-red {
-	background-color: #dc3545;
+	&.colour-red {
+		background-color: #dc3545;
+	}
 }
