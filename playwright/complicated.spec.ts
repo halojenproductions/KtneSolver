@@ -4,83 +4,83 @@ import { test, expect } from '@playwright/test';
 
 test('red', async ({ page }) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#complicated .card');
-	await module.locator('#complicated_1_1_label').click();
+	const module = await page.locator('#Complicated .card');
+	await module.locator('#complicated_1_1_label').click(); //Red
 	const answer = await module.locator('#complicated_serial');
 	await expect(answer).toBeVisible();
 });
 
 test('red, blue', async ({ page }) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#complicated .card');
-	await module.locator('#complicated_1_1_label').click();
-	await module.locator('#complicated_1_2_label').click();
+	const module = await page.locator('#Complicated .card');
+	await module.locator('#complicated_1_1_label').click(); //Red
+	await module.locator('#complicated_1_2_label').click(); //Blue
 	const answer = await module.locator('#complicated_serial');
 	await expect(answer).toBeVisible();
 });
 
 test('blue', async ({ page }) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#complicated .card');
-	await module.locator('#complicated_1_2_label').click();
+	const module = await page.locator('#Complicated .card');
+	await module.locator('#complicated_1_2_label').click(); //Blue
 	const answer = await module.locator('#complicated_serial');
 	await expect(answer).toBeVisible();
 });
 
-test('batt1', async ({ page }) => {
+test('light, red, star', async ({ page }) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#complicated .card');
-	await module.locator('#complicated_1_0_label').click();
-	await module.locator('#complicated_1_1_label').click();
-	await module.locator('#complicated_1_3_label').click();
+	const module = await page.locator('#Complicated .card');
+	await module.locator('#complicated_1_0_label').click(); //Light
+	await module.locator('#complicated_1_1_label').click(); //Red
+	await module.locator('#complicated_1_3_label').click(); //Star
 	const answer = await module.locator('#complicated_batteries');
 	await expect(answer).toBeVisible();
 });
 
-test('batt2', async ({ page }) => {
+test('light, red', async ({ page }) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#complicated .card');
-	await module.locator('#complicated_1_0_label').click();
-	await module.locator('#complicated_1_1_label').click();
+	const module = await page.locator('#Complicated .card');
+	await module.locator('#complicated_1_0_label').click(); //Light
+	await module.locator('#complicated_1_1_label').click(); //Red
 	const answer = await module.locator('#complicated_batteries');
 	await expect(answer).toBeVisible();
 });
 
-test('batt3', async ({ page }) => {
+test('light, star', async ({ page }) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#complicated .card');
-	await module.locator('#complicated_1_0_label').click();
-	await module.locator('#complicated_1_1_label').click();
-	await module.locator('#complicated_1_3_label').click();
+	const module = await page.locator('#Complicated .card');
+	await module.locator('#complicated_1_0_label').click(); //Light
+	await module.locator('#complicated_1_3_label').click(); //Star
 	const answer = await module.locator('#complicated_batteries');
 	await expect(answer).toBeVisible();
 });
 
-test('par1', async ({ page }) => {
+test('red, blue, star', async ({ page }) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#complicated .card');
-	await module.locator('#complicated_1_1_label').click();
-	await module.locator('#complicated_1_3_label').click();
+	const module = await page.locator('#Complicated .card');
+	await module.locator('#complicated_1_1_label').click(); //Red
+	await module.locator('#complicated_1_2_label').click(); //Blue
+	await module.locator('#complicated_1_3_label').click(); //Star
 	const answer = await module.locator('#complicated_parallel');
 	await expect(answer).toBeVisible();
 });
 
 
-test('par2', async ({ page }) => {
+test('light, blue, star', async ({ page }) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#complicated .card');
-	await module.locator('#complicated_1_0_label').click();
-	await module.locator('#complicated_1_2_label').click();
-	await module.locator('#complicated_1_3_label').click();
+	const module = await page.locator('#Complicated .card');
+	await module.locator('#complicated_1_0_label').click(); //Light
+	await module.locator('#complicated_1_2_label').click(); //Blue
+	await module.locator('#complicated_1_3_label').click(); //Star
 	const answer = await module.locator('#complicated_parallel');
 	await expect(answer).toBeVisible();
 });
 
-test('par3', async ({ page }) => {
+test('light, blue', async ({ page }) => {
 	await page.goto('http://localhost:8080/');
-	const module = await page.locator('#complicated .card');
-	await module.locator('#complicated_1_0_label').click();
-	await module.locator('#complicated_1_2_label').click();
+	const module = await page.locator('#Complicated .card');
+	await module.locator('#complicated_1_0_label').click(); //Light
+	await module.locator('#complicated_1_2_label').click(); //Blue
 	const answer = await module.locator('#complicated_parallel');
 	await expect(answer).toBeVisible();
 });
