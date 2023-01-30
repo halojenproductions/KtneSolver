@@ -669,11 +669,11 @@
 						parallel: document.getElementById("complicated_par").checked
 					};
 
-					if (state.batt || (state.red && !state.blue && state.light) || (!state.red && state.blue && state.light && state.star)) {
+					if (state.batt || (state.red && !state.blue && state.light) || (!state.red && !state.blue && state.light && state.star)) {
 						show.batts = true;
 					}
 
-					if (state.serial || ((state.red || state.blue) && !state.light && !state.star) || (state.red && state.blue && !state.light && state.star)) {
+					if (state.serial || ((state.red || state.blue) && !state.light && !state.star) || (state.red && state.blue && state.light && !state.star)) {
 						show.serial = true;
 					}
 
