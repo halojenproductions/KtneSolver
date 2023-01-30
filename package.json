@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "webpack serve --mode development",
 		"build": "webpack  --mode production && copy src\\index.html dist\\index.html",
-		"test": "npx playwright test",
+		"test": "npx playwright test --reporter=html",
 		"record": "npx playwright codegen http://localhost:8080/"
 	},
 	"dependencies": {
