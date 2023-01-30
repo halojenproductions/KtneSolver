@@ -29,6 +29,7 @@ var/
 MANIFEST
  
 # Unit test / coverage reports
+playwright-report/
 htmlcov/
 .tox/
 .nox/
