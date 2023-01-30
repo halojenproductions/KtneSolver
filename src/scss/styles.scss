@@ -77,22 +77,32 @@ input.btn-check:not(:checked)+.btn {
 	&.colour-red {
 		color: $red;
 	}
+
+	&.colour-black {
+		color: $gray-600;
+	}
 }
 
 input.btn-check:checked+.btn {
 	&.colour-blue {
-		background-color: #0d6efd;
+		background-color: $blue;
 	}
 
 	&.colour-white {
-		background-color: #adb5bd;
+		background-color: $gray-400;
 	}
 
 	&.colour-yellow {
-		background-color: #ffc107;
+		background-color: $yellow;
 	}
 
 	&.colour-red {
-		background-color: #dc3545;
+		background-color: $red;
+	}
+
+	&.colour-black {
+		background-color: $black;
+		color: $gray-400;
+
 	}
 }
