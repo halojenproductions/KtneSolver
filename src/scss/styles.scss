@@ -46,17 +46,21 @@ button[type="reset"] {
 
 $symbolFont: 'Times New Roman', Times, serif;
 
-#KeypadForm .btn {
-	font-family: $symbolFont;
-}
+#Keypad {
+	form {
+		.btn {
+			font-family: $symbolFont;
+		}
+	}
 
-#keypad_solution {
-	span {
-		font-family: $symbolFont;
+	div.solution {
+		span {
+			font-family: $symbolFont;
 
-		&.selected {
-			color: $black;
-			background-color: $primary;
+			&.selected {
+				color: $black;
+				background-color: $primary;
+			}
 		}
 	}
 }
