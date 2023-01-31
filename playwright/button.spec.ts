@@ -6,7 +6,7 @@ let answer;
 test.beforeEach(async ({ page }, testInfo) => {
 	await page.goto('http://localhost:8080/');
 	module = await page.locator('#MissileButton .card');
-	answer = await module.locator('#button_solution');
+	answer = await module.locator('div.solution');
 });
 
 // Case #1.

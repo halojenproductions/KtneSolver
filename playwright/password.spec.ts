@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 let module;
+let answer;
 test.beforeEach(async ({ page }, testInfo) => {
 	await page.goto('http://localhost:8080/');
 	module = await page.locator('#Password .card');
+	answer = await module.locator('div.solution');
 });
 
 test('Password', async ({ page }) => {
@@ -12,7 +14,7 @@ test('Password', async ({ page }) => {
 	await module.locator('#passwd_letters3').type('io');
 	await module.locator('#passwd_letters4').type('tu');
 	await module.locator('#passwd_letters5').type('e');
-	const answer = await module.locator('#passwd_solution');
+	 
 	await expect(answer).toBeVisible();
 	await expect(answer).toHaveText('write');
 });

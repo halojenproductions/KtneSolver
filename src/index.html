@@ -125,7 +125,6 @@
 							<div class="card">
 								<div class="card-header">
 									<span class="float-start">Button</span>
-									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="MissileButtonForm"></button>
 								</div>
 								<div class="card-body" id="">
 									<form id="MissileButtonForm">
@@ -198,136 +197,8 @@
 										</div>
 									</form>
 
-									<hr />
-									<div class="text-success" id="button_solution"></div>
-
-									<script>
-										function button_solve() {
-											var solution = { hold: false, click: false };
-											var show = { batts: false, car: false, frk: false };
-
-											var button_batteries = document.getElementById("button_batteries");
-											var button_car = document.getElementById("button_car");
-											var button_frk = document.getElementById("button_frk");
-
-											var state = {
-												blue: document.getElementById("button_colour1").checked,
-												white: document.getElementById("button_colour2").checked,
-												yellow: document.getElementById("button_colour3").checked,
-												red: document.getElementById("button_colour4").checked,
-												abort: document.getElementById("button_word1").checked,
-												detonate: document.getElementById("button_word2").checked,
-												hold: document.getElementById("button_word3").checked,
-												battNone: document.getElementById("button_batts1").checked,
-												battMoreThan1: document.getElementById("button_batts2").checked,
-												battMoreThan2: document.getElementById("button_batts3").checked,
-												carNo: document.getElementById("button_car1").checked,
-												carYes: document.getElementById("button_car2").checked,
-												frkNo: document.getElementById("button_frk1").checked,
-												frkYes: document.getElementById("button_frk2").checked,
-											};
-
-											colourInfoNeeded = () => !(state.blue || state.white || state.yellow || state.red);
-											wordInfoNeeded = () => !(state.abort || state.detonate || state.hold);
-											battInfoNeeded = () => show.batts && !(state.battNone || state.battMoreThan1 || state.battMoreThan2);
-											carInfoNeeded = () => show.car && !(state.carNo || state.carYes);
-											frkInfoNeeded = () => show.frk && !(state.frkNo || state.frkYes);
-											solutionFound = () =>
-												!colourInfoNeeded() &&
-												!wordInfoNeeded() &&
-												!battInfoNeeded() &&
-												!carInfoNeeded() &&
-												!frkInfoNeeded() &&
-												(solution.hold || solution.click);
-
-											let next = true;
-
-											if (!colourInfoNeeded() && !wordInfoNeeded()) {
-
-												// 1
-												if (state.blue && state.abort) {
-													solution.hold = true;
-													next = false;
-												}
-
-												// 2
-												if (next && state.detonate) {
-													show.batts = true;
-													if (battInfoNeeded()) {
-														next = false;
-													} else if (state.battMoreThan1 || state.battMoreThan2) {
-														solution.click = true;
-														next = false;
-													}
-												}
-
-												// 3
-												if (next && state.white) {
-													show.car = true;
-													if (carInfoNeeded()) {
-														next = false;
-													} else if (state.carYes) {
-														solution.hold = true;
-														next = false;
-													}
-												}
-
-												// 4
-												if (next) {
-													show.batts = true;
-													if (battInfoNeeded()) {
-														next = false;
-													} else if (state.battMoreThan2) {
-														show.frk = true;
-														if (frkInfoNeeded()) {
-															next = false;
-														} else if (state.frkYes) {
-															solution.click = true;
-															next = false;
-														}
-													}
-												}
-
-												// 5
-												if (next && state.yellow) {
-													solution.hold = true;
-													next = false;
-												}
-
-												// 6
-												if (next && state.red && state.hold) {
-													solution.click = true;
-													next = false;
-												}
-
-												// 7
-												if (next) {
-													solution.hold = true;
-													next = false; // Yeah, I know, it's not needed on the last one.
-												}
-											}
-
-											visible(button_batteries, show.batts);
-											visible(button_car, show.car);
-											visible(button_frk, show.frk);
-
-											if (!solutionFound()) {
-												console.log("No solution");
-												document.getElementById("button_solution").innerHTML = "";
-											} else if (solution.click) {
-												console.log("Click it");
-												document.getElementById("button_solution").innerHTML = "Click";
-											} else if (solution.hold) {
-												console.log("Hold it");
-												document.getElementById("button_solution").innerHTML = `
-														Hold<br>
-														Blue strip: 4 <br>
-														Yellow strip: 5 <br>
-														Else: 1
-													`;
-											}
-										}
-									</script>
+									<hr class="solution d-none" />
+									<div class="solution d-none text-success"></div>
 								</div>
 							</div>
 						</div>
@@ -437,12 +308,6 @@
 
 		<script>
 			function setup() {
-
-				// Missile buttons.
-				Array.from(document.querySelectorAll("#MissileButton .btn")).forEach((element) => {
-					element.addEventListener("click", buttonDeselect);
-					element.addEventListener("click", () => setTimeout(button_solve));
-				});
 
 				// Basic wires.
 				Array.from(document.querySelectorAll("#BasicWiresForm .btn")).forEach((element) => {
