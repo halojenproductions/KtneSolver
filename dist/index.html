@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>KTNE Solver</title>
+		<link rel="icon" type="image/png" href="img/favicon.png">
 	</head>
 
 	<body onload="setup()">
@@ -24,8 +25,7 @@
 								<a class="nav-link" href="#MissileButton">Button</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="https://bombmanual.com/web/index.html#Keypads"
-									target="_blank">Keypad</a>
+								<a class="nav-link" href="#Keypad">Keypad</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="https://bombmanual.com/web/index.html#SimonSays"
@@ -64,210 +64,140 @@
 
 				<div class="col">
 					<div class="row">
-						<div class="col-12 pt-3">
+						<header class="col-12 pt-3">
 							<!-- <div class=" w-100 "> -->
 							<h3>Keep Talking and Nobody Explodes</h3>
 							<!-- </div> -->
-						</div>
+						</header>
 					</div>
 					<div class="row">
-						<div class="col module pt-3" id="MissileButton">
+						<div class="col module pt-3" id="BasicWires">
 							<div class="card">
-								<div class="card-header">Button</div>
-								<div class="card-body" id="">
-									<div class="btn-group-vertical align-top" role="group">
-										<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
+								<div class="card-header">
+									<span class="float-start">Basic wires</span>
+									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="BasicWiresForm"></button>
+								</div>
+								<div class="card-body">
+									<form id="BasicWiresForm">
+										<script type="text/javascript">
+											var basicwires_inputs = document.getElementById("BasicWiresForm");
+											var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
 
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour2"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary colour-white"
-											for="button_colour2">White</label>
+											for (i = 1; i <= 6; i++) {
+												var group = document.createElement("div");
+												group.className = "btn-group btn-group-sm d-flex";
+												group.setAttribute("role", "group");
 
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour3"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary colour-yellow"
-											for="button_colour3">Yellow</label>
+												// var label = document.createElement("label");
+												// label.className = `btn-label`;
+												// label.appendChild(document.createTextNode(`Wire ${i}`));
+												// group.appendChild(label);
 
-										<input type="radio" class="btn-check" name="button_colour" id="button_colour4"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
-									</div>
+												for (ii = 0; ii < 5; ii++) {
+													var input = document.createElement("input");
+													input.id = `basicwires_${i}_${ii}`;
+													input.className = `btn-check basicwires basicwires_${colours[ii][1]}`;
+													input.setAttribute("type", "radio");
+													input.setAttribute("name", `basicwires_${i}`);
+													input.setAttribute("autocomplete", "off");
+													input.setAttribute("value", `${colours[ii][1]}`);
 
-									<div class="btn-group-vertical align-top" role="group">
-										<input type="radio" class="btn-check" name="button_word" id="button_word1"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_word1">Abort</label>
+													var label = document.createElement("label");
+													label.className = `btn btn-outline-primary flex-grow-1 colour-${colours[ii][1]}`;
+													label.setAttribute("for", `basicwires_${i}_${ii}`);
+													label.appendChild(document.createTextNode(`${colours[ii][0]}`));
 
-										<input type="radio" class="btn-check" name="button_word" id="button_word2"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
+													group.appendChild(input);
+													group.appendChild(label);
+												}
 
-										<input type="radio" class="btn-check" name="button_word" id="button_word3"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_word3">Hold</label>
-									</div>
-
-									<div class="btn-group-vertical align-top d-none" role="group" id="button_batteries">
-										<input type="radio" class="btn-check" name="button_batts" id="button_batts1"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_batts1">No cells</label>
-
-										<input type="radio" class="btn-check" name="button_batts" id="button_batts2"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_batts2">>1 cell</label>
-
-										<input type="radio" class="btn-check" name="button_batts" id="button_batts3"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_batts3">>2 cells</label>
-									</div>
-
-									<div class="btn-group-vertical align-top d-none" role="group" id="button_car">
-										<input type="radio" class="btn-check" name="button_car" id="button_car1"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_car1">No CAR</label>
-
-										<input type="radio" class="btn-check" name="button_car" id="button_car2"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_car2">CAR</label>
-									</div>
-
-									<div class="btn-group-vertical align-top d-none" role="group" id="button_frk">
-										<input type="radio" class="btn-check" name="button_frk" id="button_frk1"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_frk1">No FRK</label>
-
-										<input type="radio" class="btn-check" name="button_frk" id="button_frk2"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="button_frk2">FRK</label>
-									</div>
-
+												basicwires_inputs.appendChild(group);
+											}
+										</script>
+									</form>
 									<hr />
-									<div class="text-success" id="button_solution"></div>
-
-									<script>
-										function button_solve() {
-											var hold = false;
-											var click = false;
-											var show = { batts: false, car: false, frk: false };
-
-											var button_batteries = document.getElementById("button_batteries");
-											var button_car = document.getElementById("button_car");
-											var button_frk = document.getElementById("button_frk");
-
-											var state = {
-												abort: document.getElementById("button_word1").checked,
-												detonate: document.getElementById("button_word2").checked,
-												hold: document.getElementById("button_word3").checked,
-												blue: document.getElementById("button_colour1").checked,
-												white: document.getElementById("button_colour2").checked,
-												yellow: document.getElementById("button_colour3").checked,
-												red: document.getElementById("button_colour4").checked,
-												battNone: document.getElementById("button_batts1").checked,
-												battMoreThan1: document.getElementById("button_batts2").checked,
-												battMoreThan2: document.getElementById("button_batts3").checked,
-												carNo: document.getElementById("button_car1").checked,
-												carYes: document.getElementById("button_car2").checked,
-												frkNo: document.getElementById("button_frk1").checked,
-												frkYes: document.getElementById("button_frk2").checked,
-											};
-
-											if (state.blue && state.abort) { // 1
-												hold = true;
-											} else if (state.detonate) { // 2
-												show.batts = true;
-												if (state.battMoreThan1) {
-													click = true;
-												}
-											} else if (state.white) { // 3
-												show.car = true;
-												if (state.carYes) {
-													hold = true;
-												}
-											} else { // 4
-												show.batts = true;
-												show.frk = true;
-												if (state.battMoreThan2 && state.frkYes) {
-													click = true;
-												} else if (state.yellow) { // 5
-													hold = true;
-												} else if (state.red && state.hold) { // 6
-													click = true;
-												} else {
-													hold = true;
-												}
-											}
-
-											_utilities.visible(button_batteries, show.batts);
-											_utilities.visible(button_car, show.car);
-											_utilities.visible(button_frk, show.frk);
-
-											battInfoNeeded = () => show.batts && !(state.battNone || state.battMoreThan1 || state.battMoreThan2);
-											carInfoNeeded = () => show.car && !(state.carNo || state.carYes);
-											frkInfoNeeded = () => show.frk && !(state.frkNo || state.frkYes);
-
-											if ((battInfoNeeded() || carInfoNeeded() || frkInfoNeeded())) {
-												console.log("No solution");
-												document.getElementById("button_solution").innerHTML = "";
-											} else {
-												if (click) {
-													console.log("Click it");
-													document.getElementById("button_solution").innerHTML = "Click";
-												} else if (hold) {
-													console.log("Hold it");
-													document.getElementById("button_solution").innerHTML = `Blue strip: 4 <br>
-														Yellow strip: 5 <br>
-														Else: 1`;
-												}
-											}
-										}
-									</script>
+									<div class="text-success" id="basicwires_solution"></div>
 								</div>
 							</div>
 						</div>
 
-						<div class="col module pt-3" id="basicwires">
+						<div class="col module pt-3" id="MissileButton">
 							<div class="card">
-								<div class="card-header">Basic wires</div>
-								<div class="card-body" id="basicwires_inputs">
-									<script type="text/javascript">
-										var basicwires_inputs = document.getElementById("basicwires_inputs");
-										var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
+								<div class="card-header">
+									<span class="float-start">Button</span>
+								</div>
+								<div class="card-body" id="">
+									<form id="MissileButtonForm" class="d-inline">
+										<div class="btn-group-sm btn-group-vertical align-top" role="group">
+											<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off" />
+											<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
 
-										for (i = 1; i <= 6; i++) {
-											var group = document.createElement("div");
-											group.className = "btn-group btn-group-sm d-flex";
-											group.setAttribute("role", "group");
+											<input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off" />
+											<label class="btn btn-outline-primary colour-white" for="button_colour2">White</label>
 
-											// var label = document.createElement("label");
-											// label.className = `btn-label`;
-											// label.appendChild(document.createTextNode(`Wire ${i}`));
-											// group.appendChild(label);
+											<input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off" />
+											<label class="btn btn-outline-primary colour-yellow" for="button_colour3">Yellow</label>
 
-											for (ii = 0; ii < 5; ii++) {
-												var input = document.createElement("input");
-												input.id = `basicwires_${i}_${ii}`;
-												input.className = `btn-check basicwires basicwires_${colours[ii][1]}`;
-												input.setAttribute("type", "radio");
-												input.setAttribute("name", `basicwires_${i}`);
-												input.setAttribute("autocomplete", "off");
-												input.setAttribute("value", `${colours[ii][1]}`);
+											<input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off" />
+											<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
+										</div>
 
-												var label = document.createElement("label");
-												label.className = `btn btn-outline-primary flex-grow-1 colour-${colours[ii][1]}`;
-												label.setAttribute("for", `basicwires_${i}_${ii}`);
-												label.appendChild(document.createTextNode(`${colours[ii][0]}`));
+										<div class="btn-group-sm btn-group-vertical align-top" role="group">
+											<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="button_word1">Abort</label>
 
-												group.appendChild(input);
-												group.appendChild(label);
-											}
+											<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
 
-											basicwires_inputs.appendChild(group);
-										}
-									</script>
-									<hr />
-									<div class="text-success" id="basicwires_solution"></div>
+											<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="button_word3">Hold</label>
+										</div>
+									</form>
+
+									<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_batteries">
+										<input type="radio" class="btn-check" name="button_batts" id="button_batts1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_batts1">&lt;=1 cells</label>
+
+										<input type="radio" class="btn-check" name="button_batts" id="button_batts2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_batts2">&gt;1 cell</label>
+
+										<input type="radio" class="btn-check" name="button_batts" id="button_batts3" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_batts3">&gt;2 cells</label>
+									</div>
+
+									<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_car">
+										<input type="radio" class="btn-check" name="button_car" id="button_car1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_car1">No CAR</label>
+
+										<input type="radio" class="btn-check" name="button_car" id="button_car2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_car2">CAR</label>
+									</div>
+
+									<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_frk">
+										<input type="radio" class="btn-check" name="button_frk" id="button_frk1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_frk1">No FRK</label>
+
+										<input type="radio" class="btn-check" name="button_frk" id="button_frk2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_frk2">FRK</label>
+									</div>
+
+									<hr class="solution d-none" />
+									<div class="solution d-none text-success"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col module pt-3" id="Keypad">
+							<div class="card">
+								<div class="card-header">
+									<span class="float-start">Keypad</span>
+								</div>
+								<div class="card-body">
+									<form id="KeypadForm" class="d-inline">
+									</form>
+
+									<hr class="solution d-none" />
+									<div class="solution d-none text-success fs-2 d-flex justify-content-around"></div>
 								</div>
 							</div>
 						</div>
@@ -276,63 +206,64 @@
 							<div class="card">
 								<div class="card-header">
 									<span class="float-start">Password</span>
-									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="PasswordForm"></button>
 								</div>
 								<div class="card-body">
-									<form id="PasswordForm">
+									<form id="PasswordForm" class="d-inline">
 										<div class="input-group">
-											<input id="passwd_letters1" placeholder="1" type="text" class="possible form-control" />
-											<input id="passwd_letters2" placeholder="2" type="text" class="possible form-control" />
-											<input id="passwd_letters3" placeholder="3" type="text" class="possible form-control" />
-											<input id="passwd_letters4" placeholder="4" type="text" class="possible form-control" />
-											<input id="passwd_letters5" placeholder="5" type="text" class="possible form-control" />
+											<input id="passwd_letters1" placeholder="1" type="text" class="possible form-control" autocomplete="off" />
+											<input id="passwd_letters2" placeholder="2" type="text" class="possible form-control" autocomplete="off" />
+											<input id="passwd_letters3" placeholder="3" type="text" class="possible form-control" autocomplete="off" />
+											<input id="passwd_letters4" placeholder="4" type="text" class="possible form-control" autocomplete="off" />
+											<input id="passwd_letters5" placeholder="5" type="text" class="possible form-control" autocomplete="off" />
 										</div>
 									</form>
-									<hr />
-									<div id="divSolution">
-										<span id="passwd_solution"> </span>
-									</div>
+									<hr class="solution d-none" />
+									<div class="solution d-none text-success"></div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row ">
+
 						<div class="col module pt-3" id="Complicated">
 							<div class="card">
-								<div class="card-header ">Complicated Wires</div>
-								<div class="card-body" id="complicated_inputs"> <!--update to groups -->
-									<script type="text/javascript">
-
-										var attributes = [["Light", ""], ["Red", "colour-red"], ["Blue", "colour-blue"], ["Star", ""], ["Cut", "text-success disabled"]];
-										for (i = 1; i <= 6; i++) {
-											var complicated_inputs = document.getElementById("complicated_inputs");
-
-											var group = document.createElement("div");
-											group.className = `btn-group-vertical align-top`;
-											group.setAttribute("role", "group");
-
-											for (ii = 0; ii <= 4; ii++) {
-												var input = document.createElement("input");
-												input.id = `complicated_${i}_${ii}`;
-												input.className = "btn-check complicated_button";
-												input.setAttribute("type", "checkbox");
-												input.setAttribute("name", `complicated_${i}`);
-												input.setAttribute("autocomplete", "off");
-												input.setAttribute("value", `${attributes[ii][1]}`);
-
-												var label = document.createElement("label");
-												label.className = `btn btn-outline-primary ${attributes[ii][1]}`;
-												label.setAttribute("for", `complicated_${i}_${ii}`);
-												label.appendChild(document.createTextNode(`${attributes[ii][0]}`));
-												label.id = `complicated_${i}_${ii}_label`;
-
-												group.appendChild(input);
-												group.appendChild(label);
-											}
-											complicated_inputs.appendChild(group);
-										}									
-									</script>
+								<div class="card-header ">
+									<span class="float-start">Complicated wires</span>
+									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="ComplexWiresForm"></button>
 								</div>
+								<form id="ComplexWiresForm" class="d-inline">
+									<div class="card-body" id="complicated_inputs"> <!--update to groups -->
+										<script type="text/javascript">
+
+											var attributes = [["Light", ""], ["Red", "colour-red"], ["Blue", "colour-blue"], ["Star", ""], ["Cut", "text-success disabled"]];
+											for (i = 1; i <= 6; i++) {
+												var complicated_inputs = document.getElementById("complicated_inputs");
+
+												var group = document.createElement("div");
+												group.className = `btn-group-sm btn-group-vertical align-top`;
+												group.setAttribute("role", "group");
+
+												for (ii = 0; ii <= 4; ii++) {
+													var input = document.createElement("input");
+													input.id = `complicated_${i}_${ii}`;
+													input.className = "btn-check complicated_button";
+													input.setAttribute("type", "checkbox");
+													input.setAttribute("name", `complicated_${i}`);
+													input.setAttribute("autocomplete", "off");
+													input.setAttribute("value", `${attributes[ii][1]}`);
+
+													var label = document.createElement("label");
+													label.className = `btn btn-outline-primary ${attributes[ii][1]}`;
+													label.setAttribute("for", `complicated_${i}_${ii}`);
+													label.appendChild(document.createTextNode(`${attributes[ii][0]}`));
+													label.id = `complicated_${i}_${ii}_label`;
+
+													group.appendChild(input);
+													group.appendChild(label);
+												}
+												complicated_inputs.appendChild(group);
+											}									
+										</script>
+									</div>
+								</form>
 								<div class="card-body" id="complicated_optional">
 									<div class="btn-group d-none" id="complicated_batteries">
 										<input type="checkbox" class="btn-check" name="complicated_batts"
@@ -352,7 +283,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col module pt-3" id=""></div>
+
 						<div class="col module pt-3" id=""></div>
 					</div>
 				</div>
@@ -362,14 +293,8 @@
 		<script>
 			function setup() {
 
-				// Missile buttons.
-				Array.from(document.querySelectorAll("#MissileButton .btn")).forEach((element) => {
-					element.addEventListener("click", buttonDeselect);
-					element.addEventListener("click", () => setTimeout(button_solve));
-				});
-
 				// Basic wires.
-				Array.from(document.querySelectorAll("#basicwires_inputs .btn")).forEach((element) => {
+				Array.from(document.querySelectorAll("#BasicWiresForm .btn")).forEach((element) => {
 					element.addEventListener("click", buttonDeselect);
 					element.addEventListener("click", () => setTimeout(basicwires_solve));
 				});
@@ -377,7 +302,7 @@
 				// Complicated wires.
 				Array.from(document.querySelectorAll("#complicated_inputs .btn")).forEach((element) => {
 					element.addEventListener("click", buttonDeselect);
-					element.addEventListener("click", (e) => setTimeout(complicated_solve(e)));
+					element.addEventListener("click", (e) => setTimeout(complicated_solve, 0, e));
 				});
 
 				Array.from(document.querySelectorAll("#complicated_optional .btn")).forEach((element) => {
@@ -622,18 +547,19 @@
 					}
 				}
 
-				_utilities.visible(complicated_batteries, show.batts);
-				_utilities.visible(complicated_serial, show.serial);
-				_utilities.visible(complicated_parallel, show.parallel);
+				visible(complicated_batteries, show.batts);
+				visible(complicated_serial, show.serial);
+				visible(complicated_parallel, show.parallel);
 			}
 
+			// Deprecated.
 			function buttonDeselect(e) {
 				if (document.getElementById(e.target.htmlFor).checked) {
 					document.getElementById(e.target.htmlFor).checked = false;
 					e.preventDefault();
 				}
 			}
-			/*
+			// Deprecated.
 			function visible(e, visible) {
 				const className = "d-none";
 				if (visible && e.classList.contains(className)) {
@@ -642,15 +568,17 @@
 					e.classList.add(className); // Hide.
 				}
 			}
+			// Deprecated.
 			function show(e) {
 				e.classList.remove("d-none"); // Show.
 			}
+			// Deprecated.
 			function hide(e) {
 				e.classList.add("d-none"); // Hide.
-			}	
-			*/
+			}
+
 		</script>
-		<script src="./main.js"></script>
+		<script src="./bundle.js"></script>
 	</body>
 
 </html>

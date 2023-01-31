@@ -1,12 +1,15 @@
 const path = require('path')
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
 	// context: __dirname,
 	entry: './src/js/main.ts',
+	devtool: 'inline-source-map',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'main.js',
+		filename: 'bundle.js',
 		// publicPath: '/dist/',
+		clean: true,
 	},
 	devServer: {
 		static: path.resolve(__dirname, 'src'),
@@ -21,6 +24,7 @@ module.exports = {
 					/node_modules/,
 					/playwright/,
 					/\.config.ts$/,
+					/\.config.js$/,
 					/\.spec.ts$/
 				],
 				use: {
@@ -55,5 +59,13 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx'],
-	}
+	},
+	plugins: [
+		new CopyPlugin({
+			patterns: [
+				{ from: "src/img", to: "img/" },
+				{ from: "src/index.html", to: "index.html" },
+			],
+		}),
+	],
 }
