@@ -19,8 +19,10 @@ body {
 	min-width: 380px;
 }
 
-#passwd_solution {
-	text-transform: uppercase;
+#Password {
+	div.solution {
+		text-transform: uppercase;
+	}
 }
 
 input[type="text"] {
@@ -44,19 +46,25 @@ button[type="reset"] {
 	}
 }
 
+
 $symbolFont: 'Times New Roman', Times, serif;
 
-#KeypadForm .btn {
-	font-family: $symbolFont;
-}
+#Keypad {
 
-#keypad_solution {
-	span {
-		font-family: $symbolFont;
+	form {
+		.btn {
+			font-family: $symbolFont;
+		}
+	}
 
-		&.selected {
-			color: $black;
-			background-color: $primary;
+	div.solution {
+		span {
+			font-family: $symbolFont;
+
+			&.selected {
+				color: $black;
+				background-color: $primary;
+			}
 		}
 	}
 }
