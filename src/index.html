@@ -239,43 +239,70 @@
 												!frkInfoNeeded() &&
 												(solution.hold || solution.click);
 
+											let next = true;
+
 											if (!colourInfoNeeded() && !wordInfoNeeded()) {
+
 												// 1
 												if (state.blue && state.abort) {
 													solution.hold = true;
+													next = false;
 												}
 
 												// 2
-												if (!solutionFound() && state.detonate) {
+												if (next && state.detonate) {
 													show.batts = true;
-													if (state.battMoreThan1 || state.battMoreThan2) {
+													if (battInfoNeeded()) {
+														next = false;
+													} else if (state.battMoreThan1 || state.battMoreThan2) {
 														solution.click = true;
-													} else if (state.battNone) {
-														solution.hold = true;
+														next = false;
 													}
 												}
 
 												// 3
-												if (!solutionFound() && !battInfoNeeded() && state.white) {
+												if (next && state.white) {
 													show.car = true;
-													if (state.carYes) {
+													if (carInfoNeeded()) {
+														next = false;
+													} else if (state.carYes) {
 														solution.hold = true;
+														next = false;
 													}
 												}
 
 												// 4
-												if (!solutionFound() && !battInfoNeeded() && !carInfoNeeded()) {
+												if (next) {
 													show.batts = true;
-													show.frk = true;
-													if (state.battMoreThan2 && state.frkYes) {
-														solution.click = true;
-													} else if (state.yellow) { // 5
-														solution.hold = true;
-													} else if (state.red && state.hold) { // 6
-														solution.click = true;
-													} else {
-														solution.hold = true;
+													if (battInfoNeeded()) {
+														next = false;
+													} else if (state.battMoreThan2) {
+														show.frk = true;
+														if (frkInfoNeeded()) {
+															next = false;
+														} else if (state.frkYes) {
+															solution.click = true;
+															next = false;
+														}
 													}
+												}
+
+												// 5
+												if (next && state.yellow) {
+													solution.hold = true;
+													next = false;
+												}
+
+												// 6
+												if (next && state.red && state.hold) {
+													solution.click = true;
+													next = false;
+												}
+
+												// 7
+												if (next) {
+													solution.hold = true;
+													next = false; // Yeah, I know, it's not needed on the last one.
 												}
 											}
 
@@ -283,7 +310,7 @@
 											visible(button_car, show.car);
 											visible(button_frk, show.frk);
 
-											if (battInfoNeeded() || carInfoNeeded() || frkInfoNeeded()) {
+											if (!solutionFound()) {
 												console.log("No solution");
 												document.getElementById("button_solution").innerHTML = "";
 											} else if (solution.click) {
@@ -314,7 +341,7 @@
 									<form id="KeypadForm">
 									</form>
 
-									<hr class="solution d-none"/>
+									<hr class="solution d-none" />
 									<div class="solution d-none text-success fs-2 d-flex justify-content-around"></div>
 								</div>
 							</div>
