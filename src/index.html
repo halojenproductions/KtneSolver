@@ -359,7 +359,7 @@
 				switch (count.total) {
 					case 3: {
 						if (count.red == 0) {
-							result.join(cut.second);
+							result.push(cut.second);
 						} else if (lastwire() == colour.white) {
 							result.push(cut.last);
 						} else if (count.blue > 1) {
