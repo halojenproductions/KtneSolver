@@ -1,5 +1,5 @@
 import { keypad_solve } from './solverKeypad';
-import { buttonDeselect } from './../utilities';
+import { buttonDeselect } from '../utilities';
 
 
 export function setupKeypad(): void {
