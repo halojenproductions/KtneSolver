@@ -4,10 +4,13 @@ import { renderClearButton } from './utilities';
 import { setupPassword } from './password/setupPassword';
 import { setupKeypad } from './keypad/setupKeypad';
 import { renderKeypad } from './keypad/renderKeypad';
+import { setupMissileButton } from './button/setupButton';
 
 // Basic wires
 
 // Button
+renderClearButton('MissileButton');
+setupMissileButton();
 
 // Keypad
 renderClearButton('Keypad');
