@@ -127,75 +127,59 @@
 									<span class="float-start">Button</span>
 								</div>
 								<div class="card-body" id="">
-									<form id="MissileButtonForm">
+									<form id="MissileButtonForm" class="d-inline">
 										<div class="btn-group-sm btn-group-vertical align-top" role="group">
-											<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1"
-												autocomplete="off" />
+											<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off" />
 											<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
 
-											<input type="radio" class="btn-check" name="button_colour" id="button_colour2"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary colour-white"
-												for="button_colour2">White</label>
+											<input type="radio" class="btn-check" name="button_colour" id="button_colour2" autocomplete="off" />
+											<label class="btn btn-outline-primary colour-white" for="button_colour2">White</label>
 
-											<input type="radio" class="btn-check" name="button_colour" id="button_colour3"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary colour-yellow"
-												for="button_colour3">Yellow</label>
+											<input type="radio" class="btn-check" name="button_colour" id="button_colour3" autocomplete="off" />
+											<label class="btn btn-outline-primary colour-yellow" for="button_colour3">Yellow</label>
 
-											<input type="radio" class="btn-check" name="button_colour" id="button_colour4"
-												autocomplete="off" />
+											<input type="radio" class="btn-check" name="button_colour" id="button_colour4" autocomplete="off" />
 											<label class="btn btn-outline-primary colour-red" for="button_colour4">Red</label>
 										</div>
 
 										<div class="btn-group-sm btn-group-vertical align-top" role="group">
-											<input type="radio" class="btn-check" name="button_word" id="button_word1"
-												autocomplete="off" />
+											<input type="radio" class="btn-check" name="button_word" id="button_word1" autocomplete="off" />
 											<label class="btn btn-outline-primary" for="button_word1">Abort</label>
 
-											<input type="radio" class="btn-check" name="button_word" id="button_word2"
-												autocomplete="off" />
+											<input type="radio" class="btn-check" name="button_word" id="button_word2" autocomplete="off" />
 											<label class="btn btn-outline-primary" for="button_word2">Detonate</label>
 
-											<input type="radio" class="btn-check" name="button_word" id="button_word3"
-												autocomplete="off" />
+											<input type="radio" class="btn-check" name="button_word" id="button_word3" autocomplete="off" />
 											<label class="btn btn-outline-primary" for="button_word3">Hold</label>
 										</div>
-
-										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_batteries">
-											<input type="radio" class="btn-check" name="button_batts" id="button_batts1"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_batts1">&lt;=1 cells</label>
-
-											<input type="radio" class="btn-check" name="button_batts" id="button_batts2"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_batts2">&gt;1 cell</label>
-
-											<input type="radio" class="btn-check" name="button_batts" id="button_batts3"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_batts3">&gt;2 cells</label>
-										</div>
-
-										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_car">
-											<input type="radio" class="btn-check" name="button_car" id="button_car1"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_car1">No CAR</label>
-
-											<input type="radio" class="btn-check" name="button_car" id="button_car2"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_car2">CAR</label>
-										</div>
-
-										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_frk">
-											<input type="radio" class="btn-check" name="button_frk" id="button_frk1"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_frk1">No FRK</label>
-
-											<input type="radio" class="btn-check" name="button_frk" id="button_frk2"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="button_frk2">FRK</label>
-										</div>
 									</form>
+
+									<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_batteries">
+										<input type="radio" class="btn-check" name="button_batts" id="button_batts1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_batts1">&lt;=1 cells</label>
+
+										<input type="radio" class="btn-check" name="button_batts" id="button_batts2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_batts2">&gt;1 cell</label>
+
+										<input type="radio" class="btn-check" name="button_batts" id="button_batts3" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_batts3">&gt;2 cells</label>
+									</div>
+
+									<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_car">
+										<input type="radio" class="btn-check" name="button_car" id="button_car1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_car1">No CAR</label>
+
+										<input type="radio" class="btn-check" name="button_car" id="button_car2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_car2">CAR</label>
+									</div>
+
+									<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="button_frk">
+										<input type="radio" class="btn-check" name="button_frk" id="button_frk1" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_frk1">No FRK</label>
+
+										<input type="radio" class="btn-check" name="button_frk" id="button_frk2" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="button_frk2">FRK</label>
+									</div>
 
 									<hr class="solution d-none" />
 									<div class="solution d-none text-success"></div>
@@ -209,7 +193,7 @@
 									<span class="float-start">Keypad</span>
 								</div>
 								<div class="card-body">
-									<form id="KeypadForm">
+									<form id="KeypadForm" class="d-inline">
 									</form>
 
 									<hr class="solution d-none" />
@@ -224,7 +208,7 @@
 									<span class="float-start">Password</span>
 								</div>
 								<div class="card-body">
-									<form id="PasswordForm">
+									<form id="PasswordForm" class="d-inline">
 										<div class="input-group">
 											<input id="passwd_letters1" placeholder="1" type="text" class="possible form-control" autocomplete="off" />
 											<input id="passwd_letters2" placeholder="2" type="text" class="possible form-control" autocomplete="off" />
@@ -245,7 +229,7 @@
 									<span class="float-start">Complicated wires</span>
 									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="ComplexWiresForm"></button>
 								</div>
-								<form id="ComplexWiresForm">
+								<form id="ComplexWiresForm" class="d-inline">
 									<div class="card-body" id="complicated_inputs"> <!--update to groups -->
 										<script type="text/javascript">
 
@@ -279,24 +263,24 @@
 											}									
 										</script>
 									</div>
-									<div class="card-body" id="complicated_optional">
-										<div class="btn-group d-none" id="complicated_batteries">
-											<input type="checkbox" class="btn-check" name="complicated_batts"
-												id="complicated_batts" autocomplete="off" />
-											<label class="btn btn-outline-primary" for="complicated_batts">2+ cells</label>
-										</div>
-										<div class="btn-group d-none" id="complicated_serial">
-											<input type="checkbox" class="btn-check" name="complicated_batts"
-												id="complicated_seri" autocomplete="off" />
-											<label class="btn btn-outline-primary" for="complicated_seri">Even serial</label>
-										</div>
-										<div class="btn-group d-none" id="complicated_parallel">
-											<input type="checkbox" class="btn-check" name="complicated_par" id="complicated_par"
-												autocomplete="off" />
-											<label class="btn btn-outline-primary" for="complicated_par">Parallel</label>
-										</div>
-									</div>
 								</form>
+								<div class="card-body" id="complicated_optional">
+									<div class="btn-group d-none" id="complicated_batteries">
+										<input type="checkbox" class="btn-check" name="complicated_batts"
+											id="complicated_batts" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="complicated_batts">2+ cells</label>
+									</div>
+									<div class="btn-group d-none" id="complicated_serial">
+										<input type="checkbox" class="btn-check" name="complicated_batts"
+											id="complicated_seri" autocomplete="off" />
+										<label class="btn btn-outline-primary" for="complicated_seri">Even serial</label>
+									</div>
+									<div class="btn-group d-none" id="complicated_parallel">
+										<input type="checkbox" class="btn-check" name="complicated_par" id="complicated_par"
+											autocomplete="off" />
+										<label class="btn btn-outline-primary" for="complicated_par">Parallel</label>
+									</div>
+								</div>
 							</div>
 						</div>
 
