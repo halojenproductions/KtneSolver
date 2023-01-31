@@ -1,3 +1,5 @@
+export type ModuleId = "Button" | "Keypad" | "Password";
+
 export function visible(e: HTMLInputElement, visible: boolean) {
 	const className = "d-none";
 	if (visible && e.classList.contains(className)) {
@@ -15,7 +17,6 @@ export function hide(e: HTMLInputElement) {
 	e.classList.add("d-none"); // Hide.
 }
 
-export type ModuleId = "Keypad" | "Button";
 export function showSolution(moduleId: ModuleId, visible: boolean = true): void {
 	let targ: NodeListOf<Element> = document.querySelectorAll(`#${moduleId} .solution`);
 
@@ -33,10 +34,24 @@ export function getById(id: string): HTMLInputElement {
 	return <HTMLInputElement>document.getElementById(id);
 }
 
+export function getSolutionDiv(moduleId: ModuleId): HTMLDivElement {
+	return <HTMLDivElement>document.querySelector(`#${moduleId} div.solution`);
+}
+
+
 export function buttonDeselect(e: Event) {
 	let targ = <HTMLLabelElement>e.target;
 	if (getById(targ.htmlFor).checked) {
 		getById(targ.htmlFor).checked = false;
 		e.preventDefault();
 	}
+}
+
+export function renderClearButton(moduleId: ModuleId) {
+	var header = <HTMLDivElement>document.querySelector(`#${moduleId} .card-header`);
+	let clearButton = document.createElement("button");
+	clearButton.setAttribute("type", "reset");
+	clearButton.setAttribute("form", `${moduleId}Form`);
+	clearButton.className = "btn btn-sm btn-outline-secondary float-end";
+	header.appendChild(clearButton);
 }
