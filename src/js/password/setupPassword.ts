@@ -13,4 +13,7 @@ export function setupPassword(): void {
 			}
 		}) as EventListener);
 	});
+	// Hook up the clear button so it solves after clearing, thus hiding the solution.
+	document.querySelector("#Password button[type='reset']")
+		?.addEventListener("click", () => setTimeout(passwd_solve));
 }

@@ -1,4 +1,4 @@
-import { getById } from '../utilities';
+import { showSolution } from '../utilities';
 import { symbolSet } from './renderKeypad';
 
 const keypadSymbols: readonly string[][] = [
@@ -24,7 +24,7 @@ export function keypad_solve(): void {
 			}
 		});
 
-	let sol: HTMLDivElement = getById("keypad_solution");
+	let sol: HTMLDivElement = <HTMLDivElement>document.querySelector("#Keypad div.solution");
 	sol.innerHTML = "";
 
 	if (sequenceMatches.length == 1) {
@@ -39,9 +39,10 @@ export function keypad_solve(): void {
 				symDisplay.innerHTML = `&${sym};`;
 				sol.appendChild(symDisplay);
 			});
-
+		showSolution('Keypad');
 	} else {
 		// No [definitive] match.
+		showSolution('Keypad', false);
 	}
 }
 

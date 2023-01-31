@@ -1,4 +1,4 @@
-import { getById } from './utilities';
+import { getById, getSolutionDiv, showSolution } from './../utilities';
 
 const passwdookups: readonly string[] = [
 	"about", "after", "again", "below", "could",
@@ -19,7 +19,7 @@ export function passwd_solve(): void {
 		getById("passwd_letters5").value.toLowerCase().split(""),
 	];
 
-	
+
 	let matches = passwdookups.filter((lookupWord) => {
 		let wordLetters = lookupWord.split("");
 
@@ -29,12 +29,14 @@ export function passwd_solve(): void {
 		}
 		return hasMatch;
 	});
-	if (matches.length > 0) {
-		getById("passwd_solution").innerHTML = matches.join("<br>");
+
+	if (matches.length > 0 && inputs.some(l => l.length > 0)) {
 		console.log(matches);
+		getSolutionDiv('Password').innerHTML = matches.join("<br>");
+		showSolution('Password');
 	} else {
-		getById("passwd_solution").innerHTML = ""; 
-		// TODO: Put the <hr> inside the solution div and hide the div when there's no solution.
+		getSolutionDiv('Password').innerHTML = "";
+		showSolution('Password', false);
 	}
 }
 
