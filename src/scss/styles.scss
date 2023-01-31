@@ -19,8 +19,10 @@ body {
 	min-width: 380px;
 }
 
-#passwd_solution {
-	text-transform: uppercase;
+#Password {
+	div.solution {
+		text-transform: uppercase;
+	}
 }
 
 input[type="text"] {
@@ -44,9 +46,11 @@ button[type="reset"] {
 	}
 }
 
+
 $symbolFont: 'Times New Roman', Times, serif;
 
 #Keypad {
+
 	form {
 		.btn {
 			font-family: $symbolFont;

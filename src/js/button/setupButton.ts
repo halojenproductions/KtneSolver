@@ -1,5 +1,5 @@
-import { keypad_solve } from './solverKeypad';
-import { buttonDeselect } from './../utilities';
+/*import { keypad_solve } from './solverKeypad';
+import { buttonDeselect } from '../utilities';
 
 
 export function setupKeypad(): void {
@@ -9,5 +9,5 @@ export function setupKeypad(): void {
 	});
 	// Hook up the clear button so it solves after clearing, thus hiding the solution.
 	document.querySelector("#Keypad button[type='reset']")
-	?.addEventListener("click", () => setTimeout(keypad_solve));
-}
+	?.addEventListener("click", () => setTimeout(button_solve));
+}*/

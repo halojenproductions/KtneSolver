@@ -335,7 +335,6 @@
 							<div class="card">
 								<div class="card-header">
 									<span class="float-start">Keypad</span>
-									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="KeypadForm"></button>
 								</div>
 								<div class="card-body">
 									<form id="KeypadForm">
@@ -351,7 +350,6 @@
 							<div class="card">
 								<div class="card-header">
 									<span class="float-start">Password</span>
-									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="PasswordForm"></button>
 								</div>
 								<div class="card-body">
 									<form id="PasswordForm">
@@ -363,10 +361,8 @@
 											<input id="passwd_letters5" placeholder="5" type="text" class="possible form-control" autocomplete="off" />
 										</div>
 									</form>
-									<hr />
-									<div id="divSolution">
-										<span class="text-success" id="passwd_solution"> </span>
-									</div>
+									<hr class="solution d-none" />
+									<div class="solution d-none text-success"></div>
 								</div>
 							</div>
 						</div>
