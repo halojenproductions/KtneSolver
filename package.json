@@ -5,7 +5,7 @@
 	"main": "main.ts",
 	"scripts": {
 		"start": "webpack serve --mode development",
-		"build": "webpack  --mode production && copy src\\index.html dist\\index.html",
+		"build": "webpack  --mode production",
 		"test": "npx playwright test --reporter=html",
 		"record": "npx playwright codegen http://localhost:8080/"
 	},
@@ -17,6 +17,7 @@
 		"@playwright/test": "^1.29.2",
 		"@types/bootstrap": "^5.2.6",
 		"autoprefixer": "^10.4.13",
+		"copy-webpack-plugin": "^11.0.0",
 		"css-loader": "^6.7.3",
 		"playwright": "^1.29.2",
 		"postcss-loader": "^7.0.2",
