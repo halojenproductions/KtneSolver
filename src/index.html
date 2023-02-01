@@ -88,11 +88,6 @@
 												group.className = "btn-group btn-group-sm d-flex";
 												group.setAttribute("role", "group");
 
-												// var label = document.createElement("label");
-												// label.className = `btn-label`;
-												// label.appendChild(document.createTextNode(`Wire ${i}`));
-												// group.appendChild(label);
-
 												for (ii = 0; ii < 5; ii++) {
 													var input = document.createElement("input");
 													input.id = `basicwires_${i}_${ii}`;
@@ -115,8 +110,9 @@
 											}
 										</script>
 									</form>
-									<hr />
-									<div class="text-success" id="basicwires_solution"></div>
+
+									<hr class="solution d-none" />
+									<div class="solution d-none text-success"></div>
 								</div>
 							</div>
 						</div>
@@ -297,12 +293,6 @@
 		<script>
 			function setup() {
 
-				// Basic wires.
-				Array.from(document.querySelectorAll("#BasicWiresForm .btn")).forEach((element) => {
-					element.addEventListener("click", buttonDeselect);
-					element.addEventListener("click", () => setTimeout(basicwires_solve));
-				});
-
 				// Complicated wires.
 				Array.from(document.querySelectorAll("#complicated_inputs .btn")).forEach((element) => {
 					element.addEventListener("click", buttonDeselect);
@@ -315,113 +305,6 @@
 				});
 
 
-			}
-
-			function basicwires_solve(e) {
-
-				const colour = {
-					white: "white",
-					yellow: "yellow",
-					blue: "blue",
-					red: "red",
-					black: "black"
-				};
-
-				const cut = {
-					last: "last",
-					first: "first",
-					second: "2nd",
-					fourth: "4th",
-					third: "3rd"
-				};
-
-				getcount = (c) =>
-					document.querySelectorAll(`.basicwires_${c}:checked`).length;
-
-				let count = {
-					red: getcount(colour.red),
-					blue: getcount(colour.blue),
-					yellow: getcount(colour.yellow),
-					white: getcount(colour.white),
-					black: getcount(colour.black),
-					total: 0
-				};
-
-				lastwire = () => {
-					w = document.querySelectorAll('.basicwires:checked');
-					return w[w.length - 1].value;
-				}
-
-				count.total = count.red + count.blue + count.yellow + count.black + count.white;
-
-				if (count.total < 3) {
-					document.getElementById("basicwires_solution").innerHTML = "";
-					return;
-				}
-
-				let result = [];
-				switch (count.total) {
-					case 3: {
-						if (count.red == 0) {
-							result.push(cut.second);
-						} else if (lastwire() == colour.white) {
-							result.push(cut.last);
-						} else if (count.blue > 1) {
-							result.push(`${cut.last} ${colour.blue}`);
-						} else {
-							result.push(cut.last);
-						}
-						break;
-					}
-					case 4: {
-						if (count.red > 1) {
-							result.push(`Serial odd: ${cut.last} ${colour.red}. Else: `);
-						}
-						if (lastwire() == colour.yellow && count.red == 0) {
-							result.push(cut.first);
-						} else if (count.blue == 1) {
-							result.push(cut.first);
-						} else if (count.yellow > 1) {
-							result.push(cut.last);
-						} else {
-							result.push(cut.second);
-						}
-						break;
-					}
-					case 5: {
-						if (lastwire() == colour.black) {
-							result.push(`Serial odd: ${cut.fourth}. Else: `);
-						}
-						if (count.red == 1 && count.yellow > 1) {
-							result.push(cut.first);
-						} else if (count.black == 0) {
-							result.push(cut.second);
-						} else {
-							result.push(cut.first);
-						}
-						break;
-					}
-					case 6: {
-						if (count.yellow == 0) {
-							result.push(`Serial odd: ${cut.third}. Else: `);
-						}
-						if (count.yellow == 1 && count.white > 1) {
-							result.appendChild(cut.fourth);
-						} else if (count.red == 0) {
-							result.push(cut.last);
-						} else {
-							result.push(cut.fourth);
-						}
-						break;
-					}
-					default: {
-						document.getElementById("basicwires_solution").innerHTML = "";
-						return;
-					}
-				}
-
-				console.log(`${result.join("")}`);
-				document.getElementById("basicwires_solution").innerHTML = `Count= ${count.total}.<br />${result.join("")}`;
 			}
 
 			function complicated_solve_many() {
