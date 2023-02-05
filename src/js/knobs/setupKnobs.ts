@@ -7,7 +7,7 @@ export function setupKnobs(): void {
 		element.addEventListener("click", buttonDeselect);
 		element.addEventListener("click", () => setTimeout(knobs_solve));
 	});
-	// Hook up the clear button so it solves after clearing, thus hiding the solution.
+
 	document.querySelector("#Knobs button[type='reset']")
 	?.addEventListener("click", () => setTimeout(knobs_solve));
 }
