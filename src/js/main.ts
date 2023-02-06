@@ -4,6 +4,8 @@ import { renderClearButton } from './utilities';
 import { setupPassword } from './password/setupPassword';
 import { setupKeypad } from './keypad/setupKeypad';
 import { renderKeypad } from './keypad/renderKeypad';
+import { setupSimon } from './simon/setupSimon';
+import { renderSimon } from './simon/renderSimon';
 import { setupMissileButton } from './button/setupButton';
 
 // Basic wires
@@ -18,6 +20,9 @@ renderKeypad();
 setupKeypad();
 
 // Simon Says
+renderClearButton('Simon');
+renderSimon();
+setupSimon();
 
 // Who's On First
 
