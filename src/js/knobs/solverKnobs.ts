@@ -3,15 +3,15 @@ import { getById, showSolution } from '../utilities';
 export function knobs_solve(): void {
 	let config = {
 		top1: getById("knobs_1_1")?.checked,
-		top2: getById("knobs_2_1")?.checked,
-		top3: getById("knobs_3_1")?.checked,
-		bottom1: getById("knobs_1_2")?.checked,
+		top2: getById("knobs_1_2")?.checked,
+		top3: getById("knobs_1_3")?.checked,
+		bottom1: getById("knobs_2_1")?.checked,
 		bottom2: getById("knobs_2_2")?.checked,
-		bottom3: getById("knobs_3_2")?.checked
+		bottom3: getById("knobs_2_3")?.checked
 	}
 
 	const sol: HTMLDivElement = <HTMLDivElement>document.querySelector("#Knobs div.solution");
-	debugger
+
 	let solution = "";
 
 	if ((!config.top1 && config.top2 && config.top3 && config.bottom1 && !config.bottom2 && config.bottom3) ||
