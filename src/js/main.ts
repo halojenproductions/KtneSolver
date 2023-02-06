@@ -7,6 +7,8 @@ import { renderKeypad } from './keypad/renderKeypad';
 import { setupMissileButton } from './button/setupButton';
 import { setupKnobs } from './knobs/setupKnobs';
 import { renderKnobs } from './knobs/renderKnobs';
+import { setupComplicated} from './complicated/setupComplicated';
+import { renderComplicated } from './complicated/renderComplicated';
 
 // Basic wires
 
@@ -28,6 +30,9 @@ setupKeypad();
 // Morse Code
 
 // Complicated Wires
+renderClearButton('Complicated');
+renderComplicated();
+setupComplicated();
 
 // Wire Sequences
 
