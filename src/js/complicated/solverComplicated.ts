@@ -6,14 +6,8 @@ export function complicated_solve_many() {
 	}
 }
 
-export function complicated_solve(e: any): void {
-	let id = "";
-	if (typeof e === "string") {
-		id = e;
-	} else {
-		id = e.target.control.name;
-	}
-
+export function complicated_solve(id: string): void {
+	
 	var complicated_batteries = getById("complicated_batteries");
 	var complicated_serial = getById("complicated_serial");
 	var complicated_parallel = getById("complicated_parallel");
