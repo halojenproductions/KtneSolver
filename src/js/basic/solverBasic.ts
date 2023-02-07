@@ -105,5 +105,5 @@ export function basic_solve(): void {
 	}
 
 	console.log(`${result.join("")}`);
-	sol.innerHTML = `Count= ${count.total}.<br />${result.join("")}`;
+	sol.innerHTML = `${result.join("")}`;
 }
