@@ -1,4 +1,4 @@
-import { showSolution } from '../utilities';
+import { showSolution, getById, visible } from '../utilities';
 
 export function basic_solve(): void {
 		const colour = {
@@ -37,67 +37,83 @@ export function basic_solve(): void {
 
 	const sol: HTMLDivElement = <HTMLDivElement>document.querySelector("#Basic div.solution"); // Could be a utility that takes the ID.
 
-	let result : string[] = [];
-	switch (count.total) {
-		case 3: {
-			if (count.red == 0) {
-				result.push(cut.second);
-			} else if (lastwire() == colour.white) {
-				result.push(cut.last);
-			} else if (count.blue > 1) {
-				result.push(`${cut.last} ${colour.blue}`);
-			} else {
-				result.push(cut.last);
-			}
-			break;
-		}
-		case 4: {
-			if (count.red > 1) {
-				result.push(`Serial odd: ${cut.last} ${colour.red}. Else: `);
-			}
-			if (lastwire() == colour.yellow && count.red == 0) {
-				result.push(cut.first);
-			} else if (count.blue == 1) {
-				result.push(cut.first);
-			} else if (count.yellow > 1) {
-				result.push(cut.last);
-			} else {
-				result.push(cut.second);
-			}
-			break;
-		}
-		case 5: {
-			if (lastwire() == colour.black) {
-				result.push(`Serial odd: ${cut.fourth}. Else: `);
-			}
-			if (count.red == 1 && count.yellow > 1) {
-				result.push(cut.first);
-			} else if (count.black == 0) {
-				result.push(cut.second);
-			} else {
-				result.push(cut.first);
-			}
-			break;
-		}
-		case 6: {
-			if (count.yellow == 0) {
-				result.push(`Serial odd: ${cut.third}. Else: `);
-			}
-			if (count.yellow == 1 && count.white > 1) {
-				result.push(cut.fourth);
-			} else if (count.red == 0) {
-				result.push(cut.last);
-			} else {
-				result.push(cut.fourth);
-			}
-			break;
-		}
-		default: {
-			sol.innerHTML = "";			
-		}
-	}
+	let showSerial : boolean = false;
+	let serialOdd : boolean =  getById("basic_s2").checked;
+	let serialEven : boolean =  getById("basic_s1").checked;
 
-	console.log(`${result.join("")}`);
-	sol.innerHTML = result.join("");
-	showSolution('Basic', result.length > 0);
+	let cutWireLogic = (() => {
+		switch (count.total) {
+			case 3: {
+				if (count.red == 0) {
+					return cut.second;
+				}
+				if (lastwire() == colour.white) {
+					return cut.last;
+				}
+				if (count.blue > 1) {
+					return `${cut.last} ${colour.blue}`;
+				} 
+				return cut.last;
+			}
+			case 4: {
+				if (count.red > 1) {
+					showSerial = true;
+					if (serialOdd) {
+						return `${cut.last} ${colour.red}`;
+					} 				
+				}
+				if (lastwire() == colour.yellow && count.red == 0) {
+					return cut.first;
+				} 
+				if (count.blue == 1) {
+					return cut.first;
+				} 
+				if (count.yellow > 1) {
+					return cut.last;
+				}
+				return cut.second;				
+			}
+			case 5: {
+				if (lastwire() == colour.black) {
+					showSerial = true;
+					if (serialOdd) {
+						return cut.fourth;					
+					}
+				}
+				if (count.red == 1 && count.yellow > 1) {
+					return cut.first;
+				} 
+				if (count.black == 0) {
+					return cut.second;
+				}
+				return cut.first;				
+			}
+			case 6: {
+				if (count.yellow == 0) {				
+					showSerial = true;
+					if (serialOdd) {
+						return cut.third;					
+					}					
+				}
+				if (count.yellow == 1 && count.white > 1) {
+					return cut.fourth;
+				} 
+				if (count.red == 0) {
+					return cut.last;
+				} 
+				return cut.fourth;			
+				
+			}
+			default: {
+				return "";		
+			}
+		
+		}
+	})();
+
+	visible(getById("basic_serial"), showSerial || serialOdd || serialEven);
+
+	console.log(cutWireLogic);
+	sol.innerHTML = cutWireLogic.toString();
+	showSolution('Basic', cutWireLogic.length > 0);
 }
