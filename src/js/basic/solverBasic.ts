@@ -1,9 +1,7 @@
-//import { getById, showSolution, visible } from '../utilities';
+import { showSolution } from '../utilities';
 
 export function basic_solve(): void {
-	const sol: HTMLDivElement = <HTMLDivElement>document.querySelector("#BasicWires div.solution"); // Could be a utility that takes the ID.
-
-	const colour = {
+		const colour = {
 		white: "white",
 		yellow: "yellow",
 		blue: "blue",
@@ -35,15 +33,11 @@ export function basic_solve(): void {
 		return w[w.length - 1].value;
 	}
 
-	// Todo: https://dirask.com/posts/TypeScript-sum-subtract-numbers-in-array-with-reduce-D9W7Zj
-	count.total = count.red + count.blue + count.yellow + count.black + count.white;
+	count.total = document.querySelectorAll(`.basicwires:checked`).length;
 
-	if (count.total < 3) {
-		sol.innerHTML = "";
-		return;
-	}
+	const sol: HTMLDivElement = <HTMLDivElement>document.querySelector("#Basic div.solution"); // Could be a utility that takes the ID.
 
-	let result = [];
+	let result : string[] = [];
 	switch (count.total) {
 		case 3: {
 			if (count.red == 0) {
@@ -99,11 +93,11 @@ export function basic_solve(): void {
 			break;
 		}
 		default: {
-			sol.innerHTML = "";
-			return;
+			sol.innerHTML = "";			
 		}
 	}
 
 	console.log(`${result.join("")}`);
-	sol.innerHTML = `${result.join("")}`;
+	sol.innerHTML = result.join("");
+	showSolution('Basic', result.length > 0);
 }

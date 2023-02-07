@@ -1,4 +1,4 @@
-export type ModuleId = "MissileButton" | "Keypad" | "Password" | "Knobs" | "Complicated";
+export type ModuleId = "MissileButton" | "Keypad" | "Password" | "Knobs" | "Complicated" | "Basic";
 
 export function visible(e: HTMLInputElement, visible: boolean) {
 	const className = "d-none";
