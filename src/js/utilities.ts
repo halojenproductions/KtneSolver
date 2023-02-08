@@ -1,5 +1,32 @@
 export type ModuleId = "MissileButton" | "Keypad" | "Password" | "Simon" | "Knobs" | "Complicated";
 
+export class BuildColour {
+	id: string;
+	name: string;
+	
+	constructor(value: string) {
+		this.id = value.toLowerCase();
+		this.name = sentenceCase(value);
+	}
+}
+
+export const Colour = {
+	Red: "Red",
+	Blue: "Blue",
+	Green: "Green",
+	Yellow: "Yellow",
+	White: "White",
+	Black: "Black"
+}
+
+//todo: make an extension method 
+export function ToLowerArray(array : string[]) : string[]
+{
+	return array.map(e =>{
+		return e.toLowerCase();
+	})
+}
+
 export function visible(e: HTMLInputElement, visible: boolean) {
 	const className = "d-none";
 	if (visible && e.classList.contains(className)) {
@@ -54,4 +81,15 @@ export function renderClearButton(moduleId: ModuleId) {
 	clearButton.setAttribute("form", `${moduleId}Form`);
 	clearButton.className = "btn btn-sm btn-outline-secondary float-end";
 	header.appendChild(clearButton);
+}
+
+function sentenceCase (str: string) : string {
+    if ((str===null) || (str===''))
+        return "";
+    else
+    str = str.toString();
+     
+    return str.replace(/\w\S*/g,
+    function(txt){return txt.charAt(0).toUpperCase() +
+        txt.substring(1).toLowerCase();});
 }

@@ -1,42 +1,51 @@
-import { showSolution } from '../utilities';
+import { showSolution, Colour, ToLowerArray, BuildColour } from '../utilities';
 
 export function simon_solve(): void {
 
-	let result: string[] = [];
+	const flash = ToLowerArray([
+		Colour.Red,
+		Colour.Blue,
+		Colour.Green,
+		Colour.Yellow
+	]);
 
-	const flash = ["red","blue","green","yellow"];
-
-	const button = [ //[any vowel colours][no vowels colours]
-		[["blue", "yellow", "green"], ["blue", "red", "yellow"]], //red
-		[["red", "green", "red"], ["yellow", "blue", "green"]], //blue
-		[["yellow", "blue", "yellow"], ["green", "yellow", "blue"]], //green
-		[["green", "red", "blue"], ["red", "green", "red"]] //yellow
-	]
+	const button = [
+		[ToLowerArray([Colour.Blue, Colour.Yellow, Colour.Green]),
+			ToLowerArray([Colour.Blue, Colour.Red, Colour.Yellow])], //red
+		[ToLowerArray([Colour.Red, Colour.Green, Colour.Red]), 
+			ToLowerArray([Colour.Yellow, Colour.Blue, Colour.Green])], //blue
+		[ToLowerArray([Colour.Yellow, Colour.Blue, Colour.Yellow]), 
+			ToLowerArray([Colour.Green, Colour.Yellow, Colour.Blue])], //green
+		[ToLowerArray([Colour.Green, Colour.Red, Colour.Blue]), 
+			ToLowerArray([Colour.Red, Colour.Green, Colour.Red])] //yellow
+	]	
 
 	let serial_input: NodeListOf<HTMLInputElement> = document.querySelectorAll('.simon_serial:checked');
 	let strikes_input: NodeListOf<HTMLInputElement> = document.querySelectorAll('.simon_strikes:checked');
 
-	let serial;
-	if (serial_input.length > 0) {
-		if (serial_input[0].value == "vowel") {
-			serial = 0;
-		} else serial = 1;
-	} else {
-		return; //maybe add message?
+	if (serial_input.length == 0) {		
+		return;
 	}
+	let serial_idx
+	if (serial_input[0].value == "vowel") {
+		serial_idx = 0
+	} else {
+		serial_idx = 1
+	}
+
 
 	if (strikes_input.length == 0) {
-		return; //message?
+		return; 
 	}
-	let strikes: number = parseInt(strikes_input[0].value);
+	let strikes_idx: number = parseInt(strikes_input[0].value);
 
+	let result: string[] = [];
 	for (let i = 0; i <= 5; i++) {
 
 		let html: NodeListOf<HTMLInputElement> = document.querySelectorAll(`.simon_${i}:checked`);
 		if (html.length > 0) {
-			let input: string = html[0].value;
-	
-			result.push(button[flash.indexOf(input)][serial][strikes]);
+			let colour = new BuildColour(html[0].value);			
+			result.push(button[flash.indexOf(colour.id)][serial_idx][strikes_idx]);				
 		}
 	}
 
