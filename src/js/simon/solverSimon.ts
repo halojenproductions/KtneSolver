@@ -28,7 +28,7 @@ export function simon_solve(): void {
 	if (strikes_input.length == 0) {
 		return; //message?
 	}
-	let strikes: number = +strikes_input[0].value;
+	let strikes: number = parseInt(strikes_input[0].value);
 
 	for (let i = 0; i <= 5; i++) {
 
