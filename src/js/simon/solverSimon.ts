@@ -25,13 +25,8 @@ export function simon_solve(): void {
 
 	if (serial_input.length == 0) {		
 		return;
-	}
-	let serial_idx
-	if (serial_input[0].value == "vowel") {
-		serial_idx = 0
-	} else {
-		serial_idx = 1
-	}
+	}	
+	let serial_idx: number = parseInt(serial_input[0].value);
 
 
 	if (strikes_input.length == 0) {

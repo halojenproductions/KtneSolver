@@ -10,35 +10,33 @@ export function renderSimon(): void {
 	]	
 
 	var bomb_inputs = getById("SimonAttributes");
-	var bomb = [["serial", "vowel,no vowel"], ["strikes", "0,1,2"]]
+	var bomb = [["serial", ["vowel","no vowel"]], 
+				["strikes", ["0","1","2"]]]
 
 	for (var ii = 0; ii <= bomb.length - 1; ii++) {
-		var group = document.createElement("div")
+		var group = document.createElement("div") //todo: dynamic groups render without a gap
 		group.className = "btn-group-sm btn-group align-top";
 		group.setAttribute("role", "group");
 
-		var options = bomb[ii][1].split(","); 
-
-		for (var iii = 0; iii <= options.length - 1; iii++) {
+		for (var iii = 0; iii <= bomb[ii][1].length - 1; iii++) {			
 			var input = document.createElement("input");
-			input.id = `simon_${bomb[ii][0]}_${options[iii]}`;
+			input.id = `simon_${bomb[ii][0]}_${bomb[ii][1][iii]}`;
 			input.className = `btn-check simon_${bomb[ii][0]}`;
 			input.setAttribute("type", "radio");
 			input.setAttribute("name", `simon_${bomb[ii][0]}`);
 			input.setAttribute("autocomplete", "off");
-			input.setAttribute("value", `${options[iii]}`)
+			input.setAttribute("value", `${iii}`)
 
 			var label = document.createElement("label");
 			label.className = `btn btn-outline-primary`;
-			label.setAttribute("for", `simon_${bomb[ii][0]}_${options[iii]}`);
-			label.appendChild(document.createTextNode(`${options[iii]} ${bomb[ii][0]}`.substring(0, 10)));
+			label.setAttribute("for", `simon_${bomb[ii][0]}_${bomb[ii][1][iii]}`);
+			label.appendChild(document.createTextNode(`${bomb[ii][1][iii]} ${bomb[ii][0]}`.substring(0, 10)));
 
 			group.appendChild(input);
 			group.appendChild(label);
 		}
 
-		bomb_inputs.appendChild(group);
-		bomb_inputs.appendChild(document.createTextNode(" "));
+		bomb_inputs.appendChild(group);		
 	}
 
 	var simon_inputs = getById("SimonForm");

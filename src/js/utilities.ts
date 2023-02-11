@@ -6,7 +6,7 @@ export class BuildColour {
 	
 	constructor(value: string) {
 		this.id = value.toLowerCase();
-		this.name = sentenceCase(value);
+		this.name = value;
 	}
 }
 
@@ -19,7 +19,6 @@ export const Colour = {
 	Black: "Black"
 }
 
-//todo: make an extension method 
 export function ToLowerArray(array : string[]) : string[]
 {
 	return array.map(e =>{
@@ -81,15 +80,4 @@ export function renderClearButton(moduleId: ModuleId) {
 	clearButton.setAttribute("form", `${moduleId}Form`);
 	clearButton.className = "btn btn-sm btn-outline-secondary float-end";
 	header.appendChild(clearButton);
-}
-
-function sentenceCase (str: string) : string {
-    if ((str===null) || (str===''))
-        return "";
-    else
-    str = str.toString();
-     
-    return str.replace(/\w\S*/g,
-    function(txt){return txt.charAt(0).toUpperCase() +
-        txt.substring(1).toLowerCase();});
 }
