@@ -1,6 +1,6 @@
 import { getById, visible } from '../utilities';
 
-var check = {
+var need = {
 	batteries: false,
 	serial: false,
 	parallel: false
@@ -37,26 +37,26 @@ function solveWire(id: string): void {
 					if (wire.light) {
 						return false;
 					}
-					check.parallel = true;
+					need.parallel = true;
 					return bomb.parallel;
 				} else {
-					check.serial = true;
+					need.serial = true;
 					return bomb.serial;
 				}
 			} else {
 				if (wire.star) {
 					if (wire.light) {
-						check.batteries = true
+						need.batteries = true
 						return bomb.batteries;
 					} else {
 						return true;
 					}
 				} else {
 					if (wire.light) {
-						check.batteries = true
+						need.batteries = true
 						return bomb.batteries;
 					} else {
-						check.serial = true;
+						need.serial = true;
 						return bomb.serial;
 					}
 				}
@@ -65,23 +65,23 @@ function solveWire(id: string): void {
 		if (wire.blue) {
 			if (wire.star) {
 				if (wire.light) {
-					check.parallel = true;
+					need.parallel = true;
 					return bomb.parallel;
 				}
 				return false;
 			} else {
 				if (wire.light) {
-					check.parallel = true;
+					need.parallel = true;
 					return bomb.parallel;
 				} else {
-					check.serial = true;
+					need.serial = true;
 					return bomb.serial;
 				}
 			}
 		} else {
 			if (wire.star) {
 				if (wire.light) {
-					check.batteries = true
+					need.batteries = true
 					return bomb.batteries;
 				} else {
 					return true;
@@ -119,15 +119,15 @@ function visibleBombDetails () : void {
 		parallel: getById("complicated_p1").checked || getById("complicated_p2").checked
 	};
 
-	if (bomb.batteries || check.batteries) {
+	if (bomb.batteries || need.batteries) {
 		visible(complicated_batteries, true);
 	}
 
-	if (bomb.serial || check.serial) {
+	if (bomb.serial || need.serial) {
 		visible(complicated_serial, true);
 	}
 
-	if (bomb.parallel || check.parallel) {
+	if (bomb.parallel || need.parallel) {
 		visible(complicated_parallel, true);
 	}	
 }
