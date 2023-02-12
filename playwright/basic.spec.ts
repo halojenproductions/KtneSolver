@@ -29,7 +29,7 @@ test('red, red, blue, blue', async ({ page }) => {
 	await module.locator('label[for="basicwires_3_1"]').click(); //blue
 	await module.locator('label[for="basicwires_4_1"]').click(); //blue
 	await expect(answer).toBeVisible();
-	await expect(answer).toContainText('2nd'); 
+	await expect(answer).toContainText('2nd');
 });
 
 
@@ -61,7 +61,7 @@ test('red, red, blue, blue, serial', async ({ page }) => {
 	await module.locator('label[for="basicwires_4_1"]').click(); //blue
 	await module.locator('label[for="basic_s2"]').click(); //serial
 	await expect(answer).toBeVisible();
-	await expect(answer).toContainText('last red'); 
+	await expect(answer).toContainText('last red');
 });
 
 test('black, black, black, black, black, serial', async ({ page }) => {
