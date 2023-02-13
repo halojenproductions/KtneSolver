@@ -1,4 +1,30 @@
-export type ModuleId = "MissileButton" | "Keypad" | "Password" | "Knobs" | "Complicated" | "Basic";
+export type ModuleId = "MissileButton" | "Keypad" | "Password" | "Simon" | "Knobs" | "Complicated" | "Basic";
+
+export class BuildColour {
+	id: string;
+	name: string;
+	
+	constructor(value: string) {
+		this.id = value.toLowerCase();
+		this.name = value;
+	}
+}
+
+export const Colour = {
+	Red: "Red",
+	Blue: "Blue",
+	Green: "Green",
+	Yellow: "Yellow",
+	White: "White",
+	Black: "Black"
+}
+
+export function ToLowerArray(array : string[]) : string[]
+{
+	return array.map(e =>{
+		return e.toLowerCase();
+	})
+}
 
 export function visible(e: HTMLInputElement, visible: boolean) {
 	const className = "d-none";
