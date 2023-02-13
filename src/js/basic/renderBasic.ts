@@ -1,7 +1,7 @@
 import { getById } from '../utilities';
 
 export function renderBasic(): void {
-	var basicwires_inputs = getById("basic_inputs");
+	var basicForm = getById("BasicForm");
 	var colours = [["Red", "red"], ["Blue", "blue"], ["Yellow", "yellow"], ["Black", "black"], ["White", "white"]];
 
 	for (let i = 1; i <= 6; i++) {
@@ -27,7 +27,7 @@ export function renderBasic(): void {
 			group.appendChild(label);
 		}
 
-		basicwires_inputs.appendChild(group);
+		basicForm.appendChild(group);
 	}
 	
 	var basic_optional = getById("basic_optional");
