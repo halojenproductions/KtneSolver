@@ -14,14 +14,12 @@ export function complicated_solve() {
 	visibleBombDetails();	
 }
 
-function solveWire(id: string): void {
-	
+function solveWire(id: string): void {	
 	var wire = {
 		light: getById(`${id}_0`).checked,
 		red: getById(`${id}_1`).checked,
 		blue: getById(`${id}_2`).checked,
-		star: getById(`${id}_3`).checked,
-		result: getById(`${id}_4_label`).innerHTML
+		star: getById(`${id}_3`).checked
 	};
 
 	var bomb = {
@@ -95,12 +93,12 @@ function solveWire(id: string): void {
 		return false;
 	}
 
-	if (cut()) {
+	if (cut()) {		
 		console.log("Cut wire");
-		wire.result = "Cut";
+		getById(`${id}_4_label`).innerHTML = "Cut";
 	} else {
 		console.log("Leave wire");
-		wire.result = "Leave";
+		getById(`${id}_4_label`).innerHTML = "Leave";
 	}
 }
 
