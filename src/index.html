@@ -184,6 +184,20 @@
 							</div>
 						</div>
 
+						<div class="col module pt-3" id="Memory" data-why="https://youtu.be/mdBVJbzkoqo">
+							<div class="card">
+								<div class="card-header">
+									<span class="float-start">Memory</span>
+								</div>
+								<div class="card-body">
+									<form id="MemoryForm" class="d-inline">									
+									</form>	
+									<hr class="solution d-none" />
+									<div class="solution d-none text-success fs-2 d-flex justify-content-around"></div>
+								</div>							
+							</div>
+						</div>	
+
 						<div class="col module pt-3" id="Password">
 							<div class="card">
 								<div class="card-header">
@@ -245,9 +259,7 @@
 									</div>
 								</div>
 							</div>
-						</div>						
-					</div>
-					<div class="row">
+						</div>
 						<div class="col module pt-3" id="Knobs">
 							<div class="card">
 								<div class="card-header">
@@ -261,39 +273,11 @@
 								</div>
 							</div>
 						</div>
-						<div class="col module pt-3" id=""></div>
-						<div class="col module pt-3" id=""></div>
+						<div class="col module pt-3" id=""></div>						
 					</div>
 				</div>
 			</div>
 		</div>
-		<script>
-			// Deprecated.
-			function buttonDeselect(e) {
-				if (document.getElementById(e.target.htmlFor).checked) {
-					document.getElementById(e.target.htmlFor).checked = false;
-					e.preventDefault();
-				}
-			}
-			// Deprecated.
-			function visible(e, visible) {
-				const className = "d-none";
-				if (visible && e.classList.contains(className)) {
-					e.classList.remove(className); // Show.
-				} else if (!visible && !e.classList.contains(className)) {
-					e.classList.add(className); // Hide.
-				}
-			}
-			// Deprecated.
-			function show(e) {
-				e.classList.remove("d-none"); // Show.
-			}
-			// Deprecated.
-			function hide(e) {
-				e.classList.add("d-none"); // Hide.
-			}
-
-		</script>
 		<script src="./bundle.js"></script>
 	</body>
 
