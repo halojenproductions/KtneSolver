@@ -7,6 +7,7 @@ var need = {
 };
 
 export function complicated_solve() {
+	};
 	for (let i = 1; i <= 6; i++) {
 		let id = `complicated_${i}`;
 		solveWire(id);
