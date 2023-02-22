@@ -13,6 +13,8 @@ import { setupKnobs } from './knobs/setupKnobs';
 import { renderKnobs } from './knobs/renderKnobs';
 import { setupComplicated } from './complicated/setupComplicated';
 import { renderComplicated } from './complicated/renderComplicated';
+import { setupMemory } from './memory/setupMemory';
+import { renderMemory } from './memory/renderMemory';
 
 // Basic wires
 renderClearButton('Basic');
@@ -36,6 +38,9 @@ setupSimon();
 // Who's On First
 
 // Memory
+renderClearButton('Memory');
+renderMemory();
+setupMemory();
 
 // Morse Code
 
