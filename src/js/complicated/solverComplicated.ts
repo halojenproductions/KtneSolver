@@ -7,7 +7,12 @@ var need = {
 };
 
 export function complicated_solve() {
+	need = {
+		batteries: false,
+		serial: false,
+		parallel: false
 	};
+
 	for (let i = 1; i <= 6; i++) {
 		let id = `complicated_${i}`;
 		solveWire(id);
