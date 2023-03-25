@@ -16,7 +16,7 @@ export const symbolSet: { [key: string]: string } = {
 	Copyright: "#169",
 	SaggyBoobs: "#1148",
 	MirrorK: "#1046",
-	Melting3: "#1134",
+	Melting3: "#1286",
 	Sigma: "#1004",
 	CarriageReturn: "#182",
 	B: "#384",
