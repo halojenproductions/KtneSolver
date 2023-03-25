@@ -223,14 +223,14 @@
 							</div>
 						</div>
 
-						<div class="col module pt-3" id="Complicated">
+						<div class="col module pt-3" id="Complicated" data-why="https://youtu.be/5NPBIwQyPWE">
 							<div class="card">
-								<div class="card-header ">
+								<div class="card-header">
 									<span class="float-start">Complicated wires</span>
-									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="ComplexWiresForm"></button>
+									<button type="reset" class="btn btn-sm btn-outline-secondary float-end" form="ComplicatedWiresForm"></button>
 								</div>
-								<form id="ComplexWiresForm" class="d-inline">
-									<div class="card-body" id="complicated_inputs"> <!--update to groups -->
+								<form id="ComplicatedWiresForm" class="d-inline">
+									<div class="card-body" id="complicated_inputs">
 										<script type="text/javascript">
 
 											var attributes = [["Light", ""], ["Red", "colour-red"], ["Blue", "colour-blue"], ["Star", ""], ["Cut", "text-success disabled"]];
@@ -248,7 +248,6 @@
 													input.setAttribute("type", "checkbox");
 													input.setAttribute("name", `complicated_${i}`);
 													input.setAttribute("autocomplete", "off");
-													input.setAttribute("value", `${attributes[ii][1]}`);
 
 													var label = document.createElement("label");
 													label.className = `btn btn-outline-primary ${attributes[ii][1]}`;
@@ -263,24 +262,29 @@
 											}									
 										</script>
 									</div>
+
+
+									<div class="card-body" id="complicated_optional">
+										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="complicated_batteries">
+											<input type="radio" class="btn-check" name="complicated_b" id="complicated_b1" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="complicated_b1">&lt;2 cells</label>
+											<input type="radio" class="btn-check" name="complicated_b" id="complicated_b2" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="complicated_b2">&ge;2 cells</label>
+										</div>
+										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="complicated_serial">
+											<input type="radio" class="btn-check" name="complicated_s" id="complicated_s1" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="complicated_s1">Even serial</label>
+											<input type="radio" class="btn-check" name="complicated_s" id="complicated_s2" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="complicated_s2">Odd serial</label>
+										</div>
+										<div class="btn-group-sm btn-group-vertical align-top d-none" role="group" id="complicated_parallel">
+											<input type="radio" class="btn-check" name="complicated_p" id="complicated_p1" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="complicated_p1">Parallel Port</label>
+											<input type="radio" class="btn-check" name="complicated_p" id="complicated_p2" autocomplete="off" />
+											<label class="btn btn-outline-primary" for="complicated_p2">No Parallel Port</label>
+										</div>
+									</div>
 								</form>
-								<div class="card-body" id="complicated_optional">
-									<div class="btn-group d-none" id="complicated_batteries">
-										<input type="checkbox" class="btn-check" name="complicated_batts"
-											id="complicated_batts" autocomplete="off" />
-										<label class="btn btn-outline-primary" for="complicated_batts">2+ cells</label>
-									</div>
-									<div class="btn-group d-none" id="complicated_serial">
-										<input type="checkbox" class="btn-check" name="complicated_batts"
-											id="complicated_seri" autocomplete="off" />
-										<label class="btn btn-outline-primary" for="complicated_seri">Even serial</label>
-									</div>
-									<div class="btn-group d-none" id="complicated_parallel">
-										<input type="checkbox" class="btn-check" name="complicated_par" id="complicated_par"
-											autocomplete="off" />
-										<label class="btn btn-outline-primary" for="complicated_par">Parallel</label>
-									</div>
-								</div>
 							</div>
 						</div>
 
@@ -359,7 +363,7 @@
 				switch (count.total) {
 					case 3: {
 						if (count.red == 0) {
-							result.join(cut.second);
+							result.push(cut.second);
 						} else if (lastwire() == colour.white) {
 							result.push(cut.last);
 						} else if (count.blue > 1) {
@@ -427,11 +431,11 @@
 			}
 
 			function complicated_solve(e) {
-				let id = ""; //really want this to be an inline if but you dont like them.	 		
+				let id = "";
 				if (typeof e === "string") {
 					id = e;
 				} else {
-					id = e.target.id.substring(0, 13); //use data attributes instead
+					id = e.target.control.name;
 				}
 
 				var complicated_batteries = document.getElementById("complicated_batteries");
@@ -445,9 +449,9 @@
 					red: document.getElementById(`${id}_1`).checked,
 					blue: document.getElementById(`${id}_2`).checked,
 					star: document.getElementById(`${id}_3`).checked,
-					batt: document.getElementById("complicated_batts").checked,
-					serial: document.getElementById("complicated_seri").checked,
-					parallel: document.getElementById("complicated_par").checked
+					batteries: document.getElementById("complicated_b2").checked,
+					serial: document.getElementById("complicated_s1").checked,
+					parallel: document.getElementById("complicated_p1").checked
 				};
 				cut = () => {
 					if (state.red) {
@@ -464,13 +468,13 @@
 						} else {
 							if (state.star) {
 								if (state.light) {
-									return state.batt;
+									return state.batteries;
 								} else {
 									return true;
 								}
 							} else {
 								if (state.light) {
-									return state.batt;
+									return state.batteries;
 								} else {
 									return state.serial;
 								}
@@ -494,7 +498,7 @@
 					} else {
 						if (state.star) {
 							if (state.light) {
-								return state.batt;
+								return state.batteries;
 							} else {
 								return true;
 							}
@@ -516,7 +520,7 @@
 				}
 
 				var show = {
-					batts: false,
+					batteries: false,
 					serial: false,
 					parallel: false
 				};
@@ -529,16 +533,16 @@
 						red: document.getElementById(`${id}_1`).checked,
 						blue: document.getElementById(`${id}_2`).checked,
 						star: document.getElementById(`${id}_3`).checked,
-						batt: document.getElementById("complicated_batts").checked,
-						serial: document.getElementById("complicated_seri").checked,
-						parallel: document.getElementById("complicated_par").checked
+						batteries: document.getElementById("complicated_b2").checked,
+						serial: document.getElementById("complicated_s1").checked,
+						parallel: document.getElementById("complicated_p1").checked
 					};
 
-					if (state.batt || (state.red && !state.blue && state.light) || (!state.red && state.blue && state.light && state.star)) {
-						show.batts = true;
+					if (state.batteries || (state.red && !state.blue && state.light) || (!state.red && !state.blue && state.light && state.star)) {
+						show.batteries = true;
 					}
 
-					if (state.serial || ((state.red || state.blue) && !state.light && !state.star) || (state.red && state.blue && !state.light && state.star)) {
+					if (state.serial || ((state.red || state.blue) && !state.light && !state.star) || (state.red && state.blue && state.light && !state.star)) {
 						show.serial = true;
 					}
 
@@ -547,7 +551,7 @@
 					}
 				}
 
-				visible(complicated_batteries, show.batts);
+				visible(complicated_batteries, show.batteries);
 				visible(complicated_serial, show.serial);
 				visible(complicated_parallel, show.parallel);
 			}
