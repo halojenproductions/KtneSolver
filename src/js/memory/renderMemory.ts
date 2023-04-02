@@ -7,73 +7,34 @@ export function renderMemory(): void {
 		var row = document.createElement("div");
 		row.className = `d-flex`;
 
-		var display = document.createElement("div");
-		display.className = `btn-group align-top`;
-		display.setAttribute("role", "group");
+		var attribute = [["display", "d", "btn-outline-primary"], ["text", "#", "btn-outline-secondary"], ["position", "p", "btn-outline-primary"]]
+		for (let iii = 0; iii <= 2; iii++) {
 
-		for (let ii = 1; ii <= 4; ii++) {
-			var input = document.createElement("input");
-			input.id = `memory_display_${i}_${ii}`;
-			input.className = "btn-check memory_button";
-			input.setAttribute("type", "radio");
-			input.setAttribute("name", `memory_display_${i}`);
-			input.setAttribute("autocomplete", "off");
+			var group = document.createElement("div");
+			group.className = `btn-group btn-group-sm align-top`;
+			group.setAttribute("role", "group");
 
-			var label = document.createElement("label");
-			label.className = `btn btn-outline-primary`;
-			label.setAttribute("for", `memory_display_${i}_${ii}`);
-			label.appendChild(document.createTextNode(`#${ii}`));
-			label.id = `memory_${i}_${ii}_label`;
+			for (let ii = 1; ii <= 4; ii++) {
+				var input = document.createElement("input");
+				input.id = `memory_${attribute[iii][0]}_${i}_${ii}`;
+				input.className = `btn-check memory_${attribute[iii][0]} memory_${attribute[iii][0]}_${i}`;
+				input.setAttribute("type", "radio");
+				input.setAttribute("name", `memory_${attribute[iii][0]}_${i}`);
+				input.setAttribute("autocomplete", "off");
+				input.setAttribute("value", `${attribute[iii][1]}${ii}`);
 
-			display.appendChild(input);
-			display.appendChild(label);
+				var label = document.createElement("label");
+				label.className = `btn ${attribute[iii][2]}`;
+				label.setAttribute("for", `memory_${attribute[iii][0]}_${i}_${ii}`);
+				label.appendChild(document.createTextNode(`${attribute[iii][1]}${ii}`));
+				label.id = `memory_${i}_${ii}_label`;
+
+				group.appendChild(input);
+				group.appendChild(label);
+			}
+			row.appendChild(group);
 		}
-		row.appendChild(display);
-
-		var position = document.createElement("div");
-		position.className = `btn-group align-top`;
-		position.setAttribute("role", "group");
-
-		for (let ii = 1; ii <= 4; ii++) {
-			var input = document.createElement("input");
-			input.id = `memory_position_${i}_${ii}`;
-			input.className = "btn-check memory_button";
-			input.setAttribute("type", "radio");
-			input.setAttribute("name", `memory_position_${i}`);
-			input.setAttribute("autocomplete", "off");
-
-			var label = document.createElement("label");
-			label.className = `btn btn-outline-secondary`;
-			label.setAttribute("for", `memory_position_${i}_${ii}`);
-			label.appendChild(document.createTextNode(`p${ii}`));
-			label.id = `memory_${i}_${ii}_label`;
-
-			position.appendChild(input);
-			position.appendChild(label);
-		}
-		row.appendChild(position)
-
-		var solution = document.createElement("div");
-		solution.className = `btn-group align-top`;
-		solution.setAttribute("role", "group");
-
-		var input = document.createElement("input");
-		input.id = `memory_solution_${i}`;
-		input.className = "btn-check memory_button disabled";
-		input.setAttribute("type", "check");
-		input.setAttribute("name", `memory_solution_${i}`);
-		input.setAttribute("autocomplete", "off");
-
-		var label = document.createElement("label");
-		label.className = `btn btn-outline-tertiary`;
-		label.setAttribute("for", `memory_solution_${i}`);
-		label.appendChild(document.createTextNode("NaN")); //remove
-		label.id = `memory_solution_${i}_label`;
-
-		solution.appendChild(input);
-		solution.appendChild(label);
 		
-		row.appendChild(solution)
 		memory_inputs.appendChild(row);		
 	}	
 }
