@@ -18,6 +18,7 @@ export function button_solve(): void {
 		abort: getById("button_word1")?.checked,
 		detonate: getById("button_word2")?.checked,
 		hold: getById("button_word3")?.checked,
+		other: getById("button_word4")?.checked,
 		battNone: getById("button_batts1")?.checked,
 		battMoreThan1: getById("button_batts2")?.checked,
 		battMoreThan2: getById("button_batts3")?.checked,
@@ -28,7 +29,7 @@ export function button_solve(): void {
 	};
 
 	const colourInfoNeeded = () => !(state.blue || state.white || state.yellow || state.red);
-	const wordInfoNeeded = () => !(state.abort || state.detonate || state.hold);
+	const wordInfoNeeded = () => !(state.abort || state.detonate || state.hold || state.other);
 	const battInfoNeeded = () => show.batts && !(state.battNone || state.battMoreThan1 || state.battMoreThan2);
 	const carInfoNeeded = () => show.car && !(state.carNo || state.carYes);
 	const frkInfoNeeded = () => show.frk && !(state.frkNo || state.frkYes);
