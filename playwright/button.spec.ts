@@ -86,6 +86,7 @@ test('White, abort or hold, no CAR', async ({ page }) => {
 	await expect(answer).toContainText('Hold');
 });
 
+// Case #8.
 test('Any colour, detonate, no cells', async ({ page }) => {
 	await module.getByText('Blue').click();
 	await module.getByText('Detonate').click();
@@ -93,3 +94,14 @@ test('Any colour, detonate, no cells', async ({ page }) => {
 	await expect(answer).toBeVisible();
 	await expect(answer).toContainText('Hold');
 });
+
+// Case #9.
+test('Any colour, press', async ({ page }) => {
+	await module.getByText('Blue').click();
+	await module.getByText('Other').click();
+
+	await expect(answer).toBeVisible();
+	await expect(answer).toContainText('Hold');
+});
+
+
