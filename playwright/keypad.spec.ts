@@ -46,7 +46,7 @@ test('group3', async ({ page }) => {
 	await expect(answer).toContainText('Ѽ');
 	await expect(answer).toContainText('Ҩ');
 	await expect(answer).toContainText('Ж');
-	await expect(answer).toContainText('Ѯ'); //this might break
+	await expect(answer).toContainText('Ԇ');
 	await expect(answer).toContainText('ƛ');
 	await expect(answer).toContainText('☆');
 });
@@ -60,7 +60,7 @@ test('group4', async ({ page }) => {
 	await expect(answer).toContainText('¶');
 	await expect(answer).toContainText('ƀ');
 	await expect(answer).toContainText('Ѭ');
-	await expect(answer).toContainText('Ж'); 
+	await expect(answer).toContainText('Ж');
 	await expect(answer).toContainText('¿');
 	await expect(answer).toContainText('ټ');
 });
@@ -74,8 +74,8 @@ test('group5', async ({ page }) => {
 	await expect(answer).toContainText('ټ');
 	await expect(answer).toContainText('ƀ');
 	await expect(answer).toContainText('Ͼ');
-	await expect(answer).toContainText('¶'); 
-	await expect(answer).toContainText('Ѯ');//this might break
+	await expect(answer).toContainText('¶');
+	await expect(answer).toContainText('Ѯ');
 	await expect(answer).toContainText('★');
 });
 
@@ -88,7 +88,7 @@ test('group6', async ({ page }) => {
 	await expect(answer).toContainText('Ӭ');
 	await expect(answer).toContainText('҂');
 	await expect(answer).toContainText('æ');
-	await expect(answer).toContainText('ψ'); 
+	await expect(answer).toContainText('ψ');
 	await expect(answer).toContainText('Ҋ');
 	await expect(answer).toContainText('Ω');
 });
