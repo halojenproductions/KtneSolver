@@ -91,17 +91,17 @@ test('Any colour, detonate, no cells', async ({ page }) => {
 	await module.getByText('Blue').click();
 	await module.getByText('Detonate').click();
 	await module.locator('label[for="button_batts1"]').click();
+
 	await expect(answer).toBeVisible();
 	await expect(answer).toContainText('Hold');
 });
 
 // Case #9.
-test('Any colour, press', async ({ page }) => {
-	await module.getByText('Blue').click();
+test('Red, press', async ({ page }) => {
+	await module.getByText('Red').click();
 	await module.getByText('Other').click();
+	await module.locator('label[for="button_batts2"]').click();
 
 	await expect(answer).toBeVisible();
 	await expect(answer).toContainText('Hold');
 });
-
-
