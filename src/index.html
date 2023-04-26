@@ -19,7 +19,7 @@
 						</p>
 						<ul class="nav nav-pills flex-column mb-auto">
 							<li class="nav-item">
-								<a class="nav-link" href="#BasicWires">Basic wires</a>
+								<a class="nav-link" href="#Basic">Basic wires</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="#MissileButton">Button</a>
@@ -28,8 +28,9 @@
 								<a class="nav-link" href="#Keypad">Keypad</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="https://bombmanual.com/web/index.html#SimonSays"
-									target="_blank">Simon Says</a>
+								<a class="nav-link" href="#Simon" data-href="https://bombmanual.com/web/index.html#SimonSays">
+									Simon Says
+								</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="https://bombmanual.com/web/index.html#WhosOnFirst"
@@ -43,8 +44,8 @@
 									target="_blank">Morse Code</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="https://bombmanual.com/web/index.html#ComplicatedWires"
-									target="_blank">Complicated Wires</a>
+								<a class="nav-link" href="#Complicated" data-href="https://bombmanual.com/web/index.html#ComplicatedWires">
+									Complicated Wires</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="https://bombmanual.com/web/index.html#WireSequences"
@@ -56,6 +57,10 @@
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="#Password">Password</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#Knobs" data-href="https://bombmanual.com/web/index.html#Knobs">
+									Knobs</a>
 							</li>
 						</ul>
 					</div>
@@ -170,6 +175,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col module pt-3" id="Simon">
 							<div class="card">
 								<div class="card-header">
@@ -183,6 +189,18 @@
 									<hr class="solution d-none" />
 									<div class="solution d-none text-success d-flex justify-content-around"></div>
 								</div>
+							</div>
+						</div>
+
+						<div class="col module pt-3" id="Complicated" data-why="https://youtu.be/5NPBIwQyPWE">
+							<div class="card">
+								<div class="card-header">
+									<span class="float-start">Complicated wires</span>
+								</div>
+								<form id="ComplicatedForm" class="d-inline">
+									<div class="card-body" id="complicated_inputs"></div>
+								</form>
+								<div class="card-body" id="complicated_optional"></div>
 							</div>
 						</div>
 
@@ -221,17 +239,6 @@
 							</div>
 						</div>
 
-						<div class="col module pt-3" id="Complicated" data-why="https://youtu.be/5NPBIwQyPWE">
-							<div class="card">
-								<div class="card-header">
-									<span class="float-start">Complicated wires</span>
-								</div>
-								<form id="ComplicatedForm" class="d-inline">
-									<div class="card-body" id="complicated_inputs"></div>
-								</form>
-								<div class="card-body" id="complicated_optional"></div>
-							</div>
-						</div>
 						<div class="col module pt-3" id="Knobs">
 							<div class="card">
 								<div class="card-header">
