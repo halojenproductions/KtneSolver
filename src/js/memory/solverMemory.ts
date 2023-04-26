@@ -1,245 +1,233 @@
 import { getById } from '../utilities';
 
-export function memory_solve(): void {	
-	
-	var display : HTMLInputElement[] = [
-		<HTMLInputElement> document.querySelector(`.memory_display_1:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_display_2:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_display_3:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_display_4:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_display_5:checked`)		
-	];
-	var label : HTMLInputElement[] = [
-		<HTMLInputElement> document.querySelector(`.memory_text_1:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_text_2:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_text_3:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_text_4:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_text_5:checked`)		
-	];
-	var position : HTMLInputElement[] = [
-		<HTMLInputElement> document.querySelector(`.memory_position_1:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_position_2:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_position_3:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_position_4:checked`),
-		<HTMLInputElement> document.querySelector(`.memory_position_5:checked`)		
-	]
+const position = "Position";
+const label = "Label";
 
-	//stage1
-	if (display[0] == undefined)	{
-		console.log("No stage1 input detected");
-		clear_elements(".memory_text_1, .memory_position_1");
-		return;
-	}
-	else if (display[0].value == "d1" || display[0].value == "d2")	{
-		//select p2
-		getById("memory_position_1_2").checked = true; 
-		clear_elements(".memory_text_1");
-	}	
-	else if (display[0].value == "d3")	{
-		//select p3
-		getById("memory_position_1_3").checked = true; 
-		clear_elements(".memory_text_1");
-	}
-	else if (display[0].value == "d4")	{
-		//select p4
-		getById("memory_position_1_4").checked = true; 
-		clear_elements(".memory_text_1");
-	}	
 
-	//stage2
-	if (display[1] == undefined)	{
-		console.log("No stage2 input detected");
-		clear_elements(".memory_text_2, .memory_position_2");
-		return;
-	}
-	else if (display[1].value == "d1")	{
-		//text 4	
-		getById("memory_text_2_4").checked = true; 
-		clear_elements(".memory_position_2");
-	}
-	else if (display[1].value == "d2" || display[1].value == "d4")	{
-		//select postition from stage1
-		if (label[0] == undefined || position[0] == undefined) {
-			console.log("Stage1 incomplete");		
-			return;
-		}			
-		let stage1p = <HTMLInputElement>document.querySelector(`.memory_position_1:checked`);		
-		let stage2p : NodeListOf<HTMLInputElement> =document.querySelectorAll(`.memory_position_2`)
-		stage2p.forEach(p => {
-			if (p.value == stage1p.value)
-				p.checked = true;
-		});
-		clear_elements(".memory_text_2");
-	}
-	else if (display[1].value == "d3")	{
-		//select p1
-		getById("memory_position_2_1").checked = true; 
-		clear_elements(".memory_text_2");
-	}
-	
-	//stage3	
-	if (display[2] == undefined)	{
-		console.log("No stage3 input detected");
-		clear_elements(".memory_text_3, .memory_position_3");
-		return;
-	}
-	else if (display[2].value == "d1")	{
-		//stage 2 label		
-		if (label[1] == undefined || position[1] == undefined) {
-			console.log("Stage2 incomplete");		
-			return;
-		}
-		let stage2t = <HTMLInputElement>document.querySelector(`.memory_text_2:checked`);		
-		let stage3t : NodeListOf<HTMLInputElement> =document.querySelectorAll(`.memory_text_3`)
-		stage3t.forEach(t => {
-			if (t.value == stage2t.value)
-				t.checked = true;
-		});		
-		clear_elements(".memory_position_3");
-	}
-	else if (display[2].value == "d2")	{
-		//stage 1 label		
-		if (label[0] == undefined || position[0] == undefined) {
-			console.log("Stage1 incomplete");		
-			return;
-		}
-		let stage1t = <HTMLInputElement>document.querySelector(`.memory_text_1:checked`);		
-		let stage3t : NodeListOf<HTMLInputElement> =document.querySelectorAll(`.memory_text_3`)
-		stage3t.forEach(t => {
-			if (t.value == stage1t.value)
-				t.checked = true;
-		});		
-		clear_elements(".memory_position_3");	
-	}
-	else if (display[2].value == "d3")	{
-		//select p3
-		getById("memory_position_3_3").checked = true; 
-		clear_elements(".memory_text_3");
+export function memory_solve(e : Element): void {	
+	clean_form();
 
-	} else if (display[2].value == "d4")	{
-		//select l4
-		getById("memory_text_3_4").checked = true; 
-		clear_elements(".memory_position_3");
-	}
+	//todo: rewrite this to use this object instead of immediately creating another varible!
+	var element = { 
+		name: e.getAttribute("data-elementname"),
+		stage: e.getAttribute("data-elementstage"),
+		value: e.getAttribute("data-elementvalue"),
+	} 
+	 
+	var type : string = "";
 	
-	//stage4	
-	if (display[3] == undefined)	{
-		console.log("No stage4 input detected");
-		clear_elements(".memory_text_4, .memory_position_4");
-		return;
-	}
-	else if (display[3].value == "d1")	{			
-		//select postition from stage1	
-		if (label[0] == undefined || position[0] == undefined) {
-			console.log("Stage1 incomplete");		
-			return;
+	var value = element.value != undefined ? parseInt(element.value) : 0; //todo: I guess i'll change this since YOU dont like inline if
+	var stage = element.stage != undefined ? parseInt(element.stage) : 0;
+
+	if (element.name === "display")	{	
+		clear_stage(stage);	
+		var number : number = 0;
+		switch (stage) {
+			case 1 : {
+				switch (value) {
+						case 1:
+						case 2:
+							type = position;
+							number = 2;
+							break;			
+						case 3:
+							type = position;
+							number = 3;
+							break;				
+						case 4:
+							type = position;
+							number = 4;
+							break; 
+						default:
+							break;;					
+					};	
+				break;
+			}
+			case 2: {				
+				switch (value) {
+					case 1:						
+						type = label;
+						number = 4;
+						break;	
+					case 2:
+					case 4:						
+						type = position;
+						var data = getById("memory_stage_1").getAttribute("data-position");
+						if (data == undefined)
+						{
+							console.log("stage 1 missing data");
+							return;
+						}
+						number = parseInt(data);
+						break;	
+					case 3:
+						type = position;
+						number = 1;
+						break;
+					default:
+						break;					
+				};	
+				break;
+			}
+			case 3: {				
+				switch (value) {
+					case 1:
+						type = label;
+						var data = getById("memory_stage_2").getAttribute("data-label");
+						if (data == undefined)
+						{
+							console.log("stage 2 missing data");
+							return;
+						}
+						number = parseInt(data);						
+						break;							
+					case 2:	
+						type = label;
+						var data = getById("memory_stage_1").getAttribute("data-label");
+						
+						if (data == undefined)
+						{
+							console.log("stage 1 missing data");
+							return;
+						}
+						number = parseInt(data);
+						break;	
+					case 3:
+						type = position;
+						number = 3;
+						break;
+					case 4:	
+						type = label;
+						number = 4;
+						break;
+					default:
+						break;					
+				};							
+				break;
+			}
+			case 4: {
+				switch (value) {
+					case 1:
+						type = position;
+						var data = getById("memory_stage_1").getAttribute("data-position");
+						if (data == undefined)
+						{
+							console.log("stage 1 missing data");
+							return;
+						}
+						number = parseInt(data);
+						break;	
+					case 2:	
+						type = position;
+						number = 1;							
+						break;	
+					case 3:
+					case 4:	
+						type = position;
+						var data = getById("memory_stage_2").getAttribute("data-position");
+						if (data == undefined)
+						{
+							console.log("stage 2 missing data");
+							return;
+						}
+						number = parseInt(data);
+						break;
+					default:
+						break;					
+				};			
+				break;
+			}
+			case 5: {				
+				switch (value) {
+					case 1:
+						type = label;
+						var data = getById("memory_stage_1").getAttribute("data-label");
+						if (data == undefined)
+						{
+							console.log("stage 1 missing data");
+							return;
+						}
+						number = parseInt(data);
+						break;	
+					case 2:	
+						type = label;
+						var data = getById("memory_stage_2").getAttribute("data-label");
+						if (data == undefined)
+						{
+							console.log("stage 2 missing data");
+							return;
+						}
+						number = parseInt(data);
+						break;		
+					case 3:
+						type = label;
+						var data = getById("memory_stage_4").getAttribute("data-label");
+						if (data == undefined)
+						{
+							console.log("stage 4 missing data");
+							return;
+						}
+						number = parseInt(data);
+						break;	
+					case 4:	
+						type = label;
+						var data = getById("memory_stage_3").getAttribute("data-label");
+						if (data == undefined)
+						{
+							console.log("stage 3 missing data");
+							return;
+						}
+						number = parseInt(data);
+						break;
+					default:
+						break;					
+				};			
+				break;
+			}
 		}	
-		let stage1p = <HTMLInputElement>document.querySelector(`.memory_position_1:checked`);		
-		let stage4p : NodeListOf<HTMLInputElement> =document.querySelectorAll(`.memory_position_4`)
-		stage4p.forEach(p => {
-			if (p.value == stage1p.value)
-				p.checked = true;
-		});	
-		clear_elements(".memory_text_4");
-	}
-	else if (display[3].value == "d2")	{
-		//select p1
-		getById("memory_position_4_1").checked = true; 	
-		clear_elements(".memory_text_4");
-	}
-	else if (display[3].value == "d3" || display[3].value == "d4")	{
-		//select postition from stage2		
-		if (label[1] == undefined || position[1] == undefined) {
-			console.log("Stage2 incomplete");		
-			return;
-		}
-		let stage2p = <HTMLInputElement>document.querySelector(`.memory_position_2:checked`);		
-		let stage4p : NodeListOf<HTMLInputElement> =document.querySelectorAll(`.memory_position_4`)
-		stage4p.forEach(p => {
-			if (p.value == stage2p.value)
-				p.checked = true;
-		});
-		clear_elements(".memory_text_4");
-	}
-	
-	//stage5
-	if (label[3] == undefined || position[3] == undefined) {
-		console.log("Stage4 incomplete");		
-		return;
-	}	
-	if (display[4] == undefined)	{
-		console.log("No stage5 input detected");
-		clear_elements(".memory_text_5, .memory_position_5");
-		return;
-	}
-	else if (display[4].value == "d1")	{			
-		//select label from stage1	
-		if (label[0] == undefined || position[0] == undefined) {
-			console.log("Stage1 incomplete");		
-			return;
-		}	
-		let stage1t = <HTMLInputElement>document.querySelector(`.memory_text_1:checked`);		
-		let stage5t : NodeListOf<HTMLInputElement> =document.querySelectorAll(`.memory_text_5`)
-		stage5t.forEach(t => {
-			if (t.value == stage1t.value)
-				t.checked = true;
-		});	
-		clear_elements(".memory_position_5");
-		
-	}
-	else if (display[4].value == "d2")	{
-		//select label from stage2
-		if (label[1] == undefined || position[1] == undefined) {
-			console.log("Stage2 incomplete");		
-			return;
-		}
-		let stage2t = <HTMLInputElement>document.querySelector(`.memory_text_2:checked`);		
-		let stage5t : NodeListOf<HTMLInputElement> =document.querySelectorAll(`.memory_text_5`)
-		stage5t.forEach(t => {
-			if (t.value == stage2t.value)
-				t.checked = true;
-		});
-		clear_elements(".memory_position_5");
-		
-	}
-	else if (display[4].value == "d3")	{
-		//select label from stage4	
-		if (label[3] == undefined || position[3] == undefined) {
-			console.log("Stage4 incomplete");		
-			return;
-		}
-		let stage4t = <HTMLInputElement>document.querySelector(`.memory_text_4:checked`);		
-		let stage5t : NodeListOf<HTMLInputElement> =document.querySelectorAll(`.memory_text_5`)
-		stage5t.forEach(t => {
-			if (t.value == stage4t.value)
-				t.checked = true;
-		});	
-		clear_elements(".memory_position_5");
-		
-	}
-	else if (display[4].value == "d4")	{
-		//select label from stage3
-		if (label[2] == undefined || position[2] == undefined) {
-			console.log("Stage3 incomplete");		
-			return;
-		}
-		let stage3t = <HTMLInputElement>document.querySelector(`.memory_text_3:checked`);		
-		let stage5t : NodeListOf<HTMLInputElement> =document.querySelectorAll(`.memory_text_5`)
-		stage5t.forEach(t => {
-			if (t.value == stage3t.value)
-				t.checked = true;
-		});	
-		clear_elements(".memory_position_5");
 
+		data_persistance(stage, type, number);
+		getById(`memory_label_${stage}`).appendChild(document.createTextNode(`${type} ${number}`));
+
+	} else if (element.name === "input") {
+		//maybe also retrieve the selected display value to determin stuff?
+		//clear data attributes
+		//STOP WORKING ON THIS AND MAKE A PLAN
+		var array = getById(`memory_stage_${stage}`).attributes;
+				
+		const data = array[1].name;
+		if(data.includes(label.toLowerCase())) {
+			data_persistance(stage, position, value);			
+		}
+		else if(data.includes(position.toLowerCase())) {
+			data_persistance(stage, label, value);	
+			
+		}	
 	}
-	
 }
 
-function clear_elements(e : string): void {	
-		//todo: helper function to clear form without clearing user inputs
-		// let elements: NodeListOf<HTMLInputElement> = document.querySelectorAll(`${e}`)
-		// elements.forEach(p => {
-		// 	p.checked = false;
-		// });
-		console.log(e);
+function data_persistance(stage : number, type : string, number : number) {
+	var element = getById(`memory_stage_${stage}`);
+	element.setAttribute(`data-${type}`, number.toString())
 }
+
+function clear_stage(stage : number) {
+	//todo: clear attributes
+	getById(`memory_label_${stage}`).replaceChildren(""); //don't tell the courts I wrote this code!
+	var inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(`.memory_input_${stage}`);
+	if (inputs != null) {
+		inputs.forEach((element) => {
+			element.checked = false;
+		});
+		
+	}
+}
+
+function clean_form() {
+	//check any missing data
+	//check all inputs have matching display else all clear stage
+	//check all labels have mathcing display else call clear stage
+	//check all attributes match inputs and display	
+	throw new Error('Function not implemented.');
+}
+	

@@ -1,40 +1,57 @@
 import { getById } from '../utilities';
 
 export function renderMemory(): void {	
-	for (let i = 1; i <= 5; i++) {
-		var memory_inputs = getById("MemoryForm");
-		
-		var row = document.createElement("div");
-		row.className = `d-flex`;
+	const memoryForm = getById('MemoryForm');
+	const attributes = [
+		{ name: 'display', input: true },
+		{ name: 'label', input: false },
+		{ name: 'input', input: true },
+	];
 
-		var attribute = [["display", "d", "btn-outline-primary"], ["text", "#", "btn-outline-secondary"], ["position", "p", "btn-outline-primary"]]
-		for (let iii = 0; iii <= 2; iii++) {
+	for (let i = 1; i <= 5; i++) { //i is the stage
+		const row = document.createElement('div');
+		row.id = `memory_stage_${i}`		
+		attributes.forEach(attribute => { 
+			const group = document.createElement('div');
+			group.className = 'btn-group btn-group-sm align-top';
+			group.setAttribute('role', 'group');
+			group.style.width = `${100 / (attributes.length)}%`;
+			
 
-			var group = document.createElement("div");
-			group.className = `btn-group btn-group-sm align-top`;
-			group.setAttribute("role", "group");
+			if (attribute.input) { //ii is the value
+				for (let ii = 1; ii <= 4; ii++) {
+					const inputId = `memory_${attribute.name}_${i}_${ii}`;
+					const input = document.createElement('input');
+					input.id = inputId;
+					input.name = `memory_${attribute.name}_${i}`;
+					input.className = `btn-check memory_${attribute.name}_${i}`;
+					input.setAttribute('type', 'radio');					
+					input.setAttribute('autocomplete', 'off');
+					input.setAttribute('data-elementname', `${attribute.name}`);					
+					input.setAttribute('data-elementstage', `${i}`);
+					input.setAttribute('data-elementvalue', `${ii}`);
 
-			for (let ii = 1; ii <= 4; ii++) {
-				var input = document.createElement("input");
-				input.id = `memory_${attribute[iii][0]}_${i}_${ii}`;
-				input.className = `btn-check memory_${attribute[iii][0]} memory_${attribute[iii][0]}_${i}`;
-				input.setAttribute("type", "radio");
-				input.setAttribute("name", `memory_${attribute[iii][0]}_${i}`);
-				input.setAttribute("autocomplete", "off");
-				input.setAttribute("value", `${attribute[iii][1]}${ii}`);
+					const label = document.createElement('label');
+					label.className = 'btn btn-outline-primary';
+					label.setAttribute('for', inputId);
+					label.id = `memory_${attribute.name}_${i}_${ii}_label`;
+					label.appendChild(document.createTextNode(ii.toString()));
 
-				var label = document.createElement("label");
-				label.className = `btn ${attribute[iii][2]}`;
-				label.setAttribute("for", `memory_${attribute[iii][0]}_${i}_${ii}`);
-				label.appendChild(document.createTextNode(`${attribute[iii][1]}${ii}`));
-				label.id = `memory_${i}_${ii}_label`;
+					group.appendChild(input);
+					group.appendChild(label);
+				}
+			} else {
+				const label = document.createElement('label');
+				label.className = 'text-primary text-center w-100';
+				label.id = `memory_${attribute.name}_${i}`;				
 
-				group.appendChild(input);
+				
 				group.appendChild(label);
 			}
+
 			row.appendChild(group);
-		}
+		});
 		
-		memory_inputs.appendChild(row);		
+		memoryForm.appendChild(row);		
 	}	
 }
