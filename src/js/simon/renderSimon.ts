@@ -3,22 +3,25 @@ import { getById, BuildColour, Colour } from '../utilities';
 export function renderSimon(): void {
 
 	const colours = [
-		 new BuildColour(Colour.Red),
-		 new BuildColour(Colour.Blue),
-		 new BuildColour(Colour.Green),
-		 new BuildColour(Colour.Yellow)
-	]	
+		new BuildColour(Colour.Red),
+		new BuildColour(Colour.Blue),
+		new BuildColour(Colour.Green),
+		new BuildColour(Colour.Yellow)
+	]
 
 	var bomb_inputs = getById("SimonAttributes");
-	var bomb = [["serial", ["vowel","no vowel"]], 
-				["strikes", ["0","1","2"]]]
+	var bomb = [["serial", ["vowel", "no vowel"]],
+	["strikes", ["0", "1", "2"]]]
 
-	for (var ii = 0; ii <= bomb.length - 1; ii++) {
+	for (var ii = 0; ii < bomb.length; ii++) {
 		var group = document.createElement("div") //todo: dynamic groups render without a gap
 		group.className = "btn-group-sm btn-group align-top";
+		if (ii < bomb.length - 1) {
+			group.classList.add("mb-1");
+		}
 		group.setAttribute("role", "group");
 
-		for (var iii = 0; iii <= bomb[ii][1].length - 1; iii++) {			
+		for (var iii = 0; iii <= bomb[ii][1].length - 1; iii++) {
 			var input = document.createElement("input");
 			input.id = `simon_${bomb[ii][0]}_${bomb[ii][1][iii]}`;
 			input.className = `btn-check simon_${bomb[ii][0]}`;
@@ -36,7 +39,7 @@ export function renderSimon(): void {
 			group.appendChild(label);
 		}
 
-		bomb_inputs.appendChild(group);		
+		bomb_inputs.appendChild(group);
 	}
 
 	var simon_inputs = getById("SimonForm");
@@ -44,6 +47,9 @@ export function renderSimon(): void {
 	for (let i = 0; i <= 5; i++) {
 		var group = document.createElement("div");
 		group.className = "btn-group btn-group-sm d-flex";
+		if (ii < 5) {
+			group.classList.add("mb-1");
+		}
 		group.setAttribute("role", "group");
 
 		for (let ii = 0; ii <= 3; ii++) {

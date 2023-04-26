@@ -7,6 +7,9 @@ export function renderComplicated(): void {
 
 		var group = document.createElement("div");
 		group.className = `btn-group-sm btn-group-vertical align-top`;
+		if (i < 6) {
+			group.classList.add("me-1");
+		}
 		group.setAttribute("role", "group");
 
 		for (let ii = 0; ii <= 4; ii++) {
@@ -40,6 +43,10 @@ export function renderComplicated(): void {
 		var g = groups[iii][0].toString(); //todo: no gap between groups
 		var group = document.createElement("div");
 		group.className = "btn-group-sm btn-group-vertical align-top d-none";
+		if (iii < groups.length) {
+			group.classList.add("me-1");
+		}
+
 		group.setAttribute("role", "group");
 		group.id = `complicated_${g}`;
 		
