@@ -14,7 +14,9 @@ export function memory_solve(e : HTMLInputElement): void {
 	var s =  e.getAttribute("data-elementstage");
 	var  v = e.getAttribute("data-elementvalue");
 
-	handle_inputs(n,s,v);
+	if (n && s && v) {
+		handle_inputs(n,s,v); //todo: split this into display and input logic
+	}
 }
 
 function handle_inputs(name: string, stage: string, value: string): void {	 	 
@@ -22,8 +24,8 @@ function handle_inputs(name: string, stage: string, value: string): void {
 
 	var element = { 
 		name: name,
-		stage: stage != undefined ? parseInt(stage) : 0,
-		value: value != undefined ? parseInt(value) : 0,
+		stage: parseInt(stage),
+		value: parseInt(value)
 	} 		
 
 	if (element.name === "display")	{	
@@ -197,9 +199,7 @@ function handle_inputs(name: string, stage: string, value: string): void {
 		getById(`memory_label_${element.stage}`).appendChild(document.createTextNode(`${type} ${number}`));
 
 	} else if (element.name === "input") {
-		//maybe also retrieve the selected display value to determin stuff?
-		//clear data attributes
-		debugger
+
 		var array = getById(`memory_stage_${element.stage}`).attributes;
 				
 		const data = array[1].name;
@@ -210,7 +210,7 @@ function handle_inputs(name: string, stage: string, value: string): void {
 			data_persistance(element.stage, label, element.value);			
 		}	
 
-		//repeat display logic?
+		//todo: call display logic in loop to regen the labels. 
 	}
 }
 
