@@ -30,6 +30,7 @@ export function renderMemory(): void {
 					input.setAttribute('data-elementname', `${attribute.name}`);					
 					input.setAttribute('data-elementstage', `${i}`);
 					input.setAttribute('data-elementvalue', `${ii}`);
+					input.value = ii.toString();
 
 					const label = document.createElement('label');
 					label.className = 'btn btn-outline-primary';
