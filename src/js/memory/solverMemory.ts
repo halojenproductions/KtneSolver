@@ -4,7 +4,7 @@ const position = "Position";
 const label = "Label";
 
 interface ElementData {
-	name: string;
+	name: string | null;
 	stage: number;
 	value: number;
   }
@@ -12,21 +12,13 @@ interface ElementData {
 export function memory_solve(e : HTMLInputElement): void {		
 	clean_form();
 
-	//only solve if checking a button
-	if (!e.checked) {
-		return;
-	}
+	const element: ElementData = {
+		name: e.getAttribute("data-elementname"),
+		stage: parseInt((e.getAttribute("data-elementstage") || "0").toString()),
+		value: parseInt((e.getAttribute("data-elementvalue") || "0").toString())
+	};
 
-	var n = e.getAttribute("data-elementname");
-	var s =  e.getAttribute("data-elementstage");
-	var  v = e.getAttribute("data-elementvalue");
-
-	if (n && s && v) {
-		const element: ElementData = {
-			name: n,
-			stage: parseInt(s),
-			value: parseInt(v),
-		  };
+	if (element.name && element.stage && element.value) {
 
 		if (element.name === "display")	{	
 			handle_display(element);
@@ -73,7 +65,7 @@ function handle_display(element: ElementData) {
 						number = 4;
 						break; 
 					default:
-						break;;					
+						break;				
 				};	
 			break;
 		}

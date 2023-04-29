@@ -8,9 +8,9 @@ export function renderMemory(): void {
 		{ name: 'input', input: true },
 	];
 
-	for (let i = 1; i <= 5; i++) { //i is the stage
+	for (let stage = 1; stage <= 5; stage++) {
 		const row = document.createElement('div');
-		row.id = `memory_stage_${i}`		
+		row.id = `memory_stage_${stage}`		
 		attributes.forEach(attribute => { 
 			const group = document.createElement('div');
 			group.className = 'btn-group btn-group-sm align-top';
@@ -18,25 +18,25 @@ export function renderMemory(): void {
 			group.style.width = `${100 / (attributes.length)}%`;
 			
 
-			if (attribute.input) { //ii is the value
-				for (let ii = 1; ii <= 4; ii++) {
-					const inputId = `memory_${attribute.name}_${i}_${ii}`;
+			if (attribute.input) { 
+				for (let value = 1; value <= 4; value++) {
+					const inputId = `memory_${attribute.name}_${stage}_${value}`;
 					const input = document.createElement('input');
 					input.id = inputId;
-					input.name = `memory_${attribute.name}_${i}`;
-					input.className = `btn-check memory_${attribute.name}_${i}`;
+					input.name = `memory_${attribute.name}_${stage}`;
+					input.className = `btn-check memory_${attribute.name}_${stage}`;
 					input.setAttribute('type', 'radio');					
 					input.setAttribute('autocomplete', 'off');
 					input.setAttribute('data-elementname', `${attribute.name}`);					
-					input.setAttribute('data-elementstage', `${i}`);
-					input.setAttribute('data-elementvalue', `${ii}`);
-					input.value = ii.toString();
+					input.setAttribute('data-elementstage', `${stage}`);
+					input.setAttribute('data-elementvalue', `${value}`);
+					input.value = value.toString();
 
 					const label = document.createElement('label');
 					label.className = 'btn btn-outline-primary';
 					label.setAttribute('for', inputId);
-					label.id = `memory_${attribute.name}_${i}_${ii}_label`;
-					label.appendChild(document.createTextNode(ii.toString()));
+					label.id = `memory_${attribute.name}_${stage}_${value}_label`;
+					label.appendChild(document.createTextNode(value.toString()));
 
 					group.appendChild(input);
 					group.appendChild(label);
@@ -44,7 +44,7 @@ export function renderMemory(): void {
 			} else {
 				const label = document.createElement('label');
 				label.className = 'text-primary text-center w-100';
-				label.id = `memory_${attribute.name}_${i}`;				
+				label.id = `memory_${attribute.name}_${stage}`;				
 
 				
 				group.appendChild(label);

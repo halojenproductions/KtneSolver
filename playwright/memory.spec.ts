@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
 
 let module;
-let s1, s2, s3, s4, s5;
+let stage1, stage2, stage3, stage4, stage5;
 
 test.beforeEach(async ({ page }, testInfo) => {
 	await page.goto('http://localhost:8080/');
 	module = await page.locator('#Memory .card');
-	s1 = await module.locator('#memory_label_1');
-	s2 = await module.locator('#memory_label_2');
-	s3 = await module.locator('#memory_label_3');
-	s4 = await module.locator('#memory_label_4');
-	s5 = await module.locator('#memory_label_5');
+	stage1 = await module.locator('#memory_label_1');
+	stage2 = await module.locator('#memory_label_2');
+	stage3 = await module.locator('#memory_label_3');
+	stage4 = await module.locator('#memory_label_4');
+	stage5 = await module.locator('#memory_label_5');
 });
 
 test('one', async ({ page }) => {
@@ -29,11 +29,11 @@ test('one', async ({ page }) => {
 	await module.locator('label[for="memory_display_5_1"]').click(); 
 	await module.locator('label[for="memory_input_5_1"]').click(); 
 
-	await expect(s1).toContainText('Position 2');
-	await expect(s2).toContainText('Label 4');
-	await expect(s3).toContainText('Label 4');
-	await expect(s4).toContainText('Position 2');
-	await expect(s5).toContainText('Label 1');
+	await expect(stage1).toContainText('Position 2');
+	await expect(stage2).toContainText('Label 4');
+	await expect(stage3).toContainText('Label 4');
+	await expect(stage4).toContainText('Position 2');
+	await expect(stage5).toContainText('Label 1');
 });
 
 test('two', async ({ page }) => {
@@ -52,11 +52,11 @@ test('two', async ({ page }) => {
 	await module.locator('label[for="memory_display_5_2"]').click(); 
 	await module.locator('label[for="memory_input_5_2"]').click(); 
 
-	await expect(s1).toContainText('Position 2');
-	await expect(s2).toContainText('Position 2');
-	await expect(s3).toContainText('Label 2');
-	await expect(s4).toContainText('Position 1');
-	await expect(s5).toContainText('Label 2');
+	await expect(stage1).toContainText('Position 2');
+	await expect(stage2).toContainText('Position 2');
+	await expect(stage3).toContainText('Label 2');
+	await expect(stage4).toContainText('Position 1');
+	await expect(stage5).toContainText('Label 2');
 });
 
 test('three', async ({ page }) => {
@@ -75,11 +75,11 @@ test('three', async ({ page }) => {
 	await module.locator('label[for="memory_display_5_3"]').click(); 
 	await module.locator('label[for="memory_input_5_3"]').click(); 
 
-	await expect(s1).toContainText('Position 3');
-	await expect(s2).toContainText('Position 1');
-	await expect(s3).toContainText('Position 3');
-	await expect(s4).toContainText('Position 1');
-	await expect(s5).toContainText('Label 3');
+	await expect(stage1).toContainText('Position 3');
+	await expect(stage2).toContainText('Position 1');
+	await expect(stage3).toContainText('Position 3');
+	await expect(stage4).toContainText('Position 1');
+	await expect(stage5).toContainText('Label 3');
 });
 
 test('four', async ({ page }) => {
@@ -98,9 +98,9 @@ test('four', async ({ page }) => {
 	await module.locator('label[for="memory_display_5_4"]').click(); 
 	await module.locator('label[for="memory_input_5_4"]').click(); 
 
-	await expect(s1).toContainText('Position 4');
-	await expect(s2).toContainText('Position 4');
-	await expect(s3).toContainText('Label 4');
-	await expect(s4).toContainText('Position 4');
-	await expect(s5).toContainText('Label 4');
+	await expect(stage1).toContainText('Position 4');
+	await expect(stage2).toContainText('Position 4');
+	await expect(stage3).toContainText('Label 4');
+	await expect(stage4).toContainText('Position 4');
+	await expect(stage5).toContainText('Label 4');
 });
