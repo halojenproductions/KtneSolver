@@ -18,7 +18,7 @@ creds.js
  
 # Distribution / packaging
 build/
-#dist/
+dist/
 downloads/
 lib/
 lib64/
