@@ -1,6 +1,6 @@
 import { getById } from '../utilities';
 
-export function renderMemory(): void {	
+export function renderMemory(): void {
 	const memoryForm = getById('MemoryForm');
 	const attributes = [
 		{ name: 'display', input: true },
@@ -14,9 +14,12 @@ export function renderMemory(): void {
 		attributes.forEach(attribute => { 
 			const group = document.createElement('div');
 			group.className = 'btn-group btn-group-sm align-top';
+			if (stage < 5) {
+				group.classList.add("mb-1");
+			}
 			group.setAttribute('role', 'group');
 			group.style.width = `${100 / (attributes.length)}%`;
-			
+
 
 			if (attribute.input) { 
 				for (let value = 1; value <= 4; value++) {
@@ -46,13 +49,13 @@ export function renderMemory(): void {
 				label.className = 'text-primary text-center w-100';
 				label.id = `memory_${attribute.name}_${stage}`;				
 
-				
+
 				group.appendChild(label);
 			}
 
 			row.appendChild(group);
 		});
-		
-		memoryForm.appendChild(row);		
-	}	
+
+		memoryForm.appendChild(row);
+	}
 }
