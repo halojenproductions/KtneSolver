@@ -13,12 +13,11 @@ export function renderMemory(): void {
 		row.id = `memory_stage_${stage}`		
 		attributes.forEach(attribute => { 
 			const group = document.createElement('div');
-			group.className = 'btn-group btn-group-sm align-top';
+			group.className = 'btn-group btn-group-sm align-top w-25';
 			if (stage < 5) {
 				group.classList.add("mb-1");
 			}
-			group.setAttribute('role', 'group');
-			group.style.width = `${100 / (attributes.length)}%`;
+			group.setAttribute('role', 'group');		
 
 
 			if (attribute.input) { 
