@@ -10,26 +10,27 @@ export function renderMemory(): void {
 
 	for (let stage = 1; stage <= 5; stage++) {
 		const row = document.createElement('div');
-		row.id = `memory_stage_${stage}`		
-		attributes.forEach(attribute => { 
+		row.id = `memory_stage_${stage}`
+		row.classList.add("d-flex");
+
+		attributes.forEach(attribute => {
 			const group = document.createElement('div');
-			group.className = 'btn-group btn-group-sm align-top w-25';
+			group.className = 'btn-group btn-group-sm align-top w-25 flex-grow-1';
 			if (stage < 5) {
 				group.classList.add("mb-1");
 			}
-			group.setAttribute('role', 'group');		
+			group.setAttribute('role', 'group');
 
-
-			if (attribute.input) { 
+			if (attribute.input) {
 				for (let value = 1; value <= 4; value++) {
 					const inputId = `memory_${attribute.name}_${stage}_${value}`;
 					const input = document.createElement('input');
 					input.id = inputId;
 					input.name = `memory_${attribute.name}_${stage}`;
 					input.className = `btn-check memory_${attribute.name}_${stage}`;
-					input.setAttribute('type', 'radio');					
+					input.setAttribute('type', 'radio');
 					input.setAttribute('autocomplete', 'off');
-					input.setAttribute('data-elementname', `${attribute.name}`);					
+					input.setAttribute('data-elementname', `${attribute.name}`);
 					input.setAttribute('data-elementstage', `${stage}`);
 					input.setAttribute('data-elementvalue', `${value}`);
 					input.value = value.toString();
@@ -45,8 +46,8 @@ export function renderMemory(): void {
 				}
 			} else {
 				const label = document.createElement('label');
-				label.className = 'text-primary text-center w-100';
-				label.id = `memory_${attribute.name}_${stage}`;				
+				label.className = 'text-primary text-center flex-grow-1';
+				label.id = `memory_${attribute.name}_${stage}`;
 
 
 				group.appendChild(label);
