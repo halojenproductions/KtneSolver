@@ -6,7 +6,7 @@ export function renderComplicated(): void {
 		var complicated_inputs = getById("complicated_inputs");
 
 		var group = document.createElement("div");
-		group.className = `btn-group-sm btn-group-vertical align-top`;
+		group.className = `btn-group-sm btn-group-vertical align-top d-flex flex-row`;
 		group.setAttribute("role", "group");
 
 		for (let ii = 0; ii <= 4; ii++) {
@@ -31,20 +31,20 @@ export function renderComplicated(): void {
 
 	var complicated_optional = getById("complicated_optional");
 
-	var groups = 
-		 [["batteries",["< 2 cells",">= 2 cells"]],
-		["serial", ["Even serial","Odd serial"]],
-		["parallel", ["Parallel Port","No Parallel Port"]]]
-	;
-	for (let iii = 0; iii <= groups.length - 1; iii++) {		
+	var groups =
+		[["batteries", ["< 2 cells", ">= 2 cells"]],
+		["serial", ["Even serial", "Odd serial"]],
+		["parallel", ["Parallel Port", "No Parallel Port"]]]
+		;
+	for (let iii = 0; iii <= groups.length - 1; iii++) {
 		var g = groups[iii][0].toString(); //todo: no gap between groups
 		var group = document.createElement("div");
 		group.className = "btn-group-sm btn-group-vertical align-top d-none";
 		group.setAttribute("role", "group");
 		group.id = `complicated_${g}`;
-		
+
 		for (let iiii = 0; iiii <= 1; iiii++) {
-			
+
 			var x = g[0];
 			var input = document.createElement("input");
 			input.id = `complicated_${x}${iiii + 1}`;
@@ -55,13 +55,13 @@ export function renderComplicated(): void {
 
 			var label = document.createElement("label");
 			label.className = `btn btn-outline-primary`;
-			label.setAttribute("for", `complicated_${x}${iiii + 1}`);			
-			label.appendChild(document.createTextNode(`${groups[iii][1][iiii]}`));	
+			label.setAttribute("for", `complicated_${x}${iiii + 1}`);
+			label.appendChild(document.createTextNode(`${groups[iii][1][iiii]}`));
 
 			group.appendChild(input);
 			group.appendChild(label);
 		}
 		complicated_optional.appendChild(group);
 	}
-	
+
 }
