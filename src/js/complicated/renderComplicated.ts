@@ -2,11 +2,11 @@ import { getById } from '../utilities';
 
 export function renderComplicated(): void {
 	let attributes = [["Light", ""], ["Red", "colour-red"], ["Blue", "colour-blue"], ["Star", ""], ["Cut", "text-success disabled"]];
-	for (let i = 1; i <= 6; i++) {
-		let complicated_inputs = getById("ComplicatedForm");
+	let complicated_inputs = getById("ComplicatedForm");
 
+	for (let i = 1; i <= 6; i++) {
 		let group: HTMLDivElement = document.createElement("div");
-		group.className = `btn-group-sm btn-group-vertical align-top`;
+		group.className = `btn-group-sm btn-group-vertical align-top flex-fill`;
 		if (i < 6) {
 			group.classList.add("me-1");
 		}
