@@ -1,11 +1,12 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
+	testDir: './playwright',
 	timeout: 2000,
 	globalTimeout: 60000,
 	fullyParallel: true,
-	reporter: 'html',
-	testDir: './playwright',
+	//reporter: 'html',
+	forbidOnly: !!process.env.CI,
 	webServer: {
 		command: 'npm run start',
 		url: 'http://localhost:8080/',
@@ -14,13 +15,13 @@ const config: PlaywrightTestConfig = {
 	},
 	use: {
 		baseURL: 'http://localhost:8080/',
-		headless: false,
+		headless: true,
 	},
 	projects: [
 		{
 			name: 'Default',
 			//testIgnore: /.*smoke.spec.ts/,
-			retries: 0,
+			retries: 1,
 		},
 	],
 
