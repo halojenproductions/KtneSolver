@@ -1,11 +1,11 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
+	testDir: './playwright',
 	timeout: 2000,
 	globalTimeout: 60000,
 	fullyParallel: true,
 	reporter: 'html',
-	testDir: './playwright',
 	webServer: {
 		command: 'npm run start',
 		url: 'http://localhost:8080/',
