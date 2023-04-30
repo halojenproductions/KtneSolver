@@ -30,23 +30,23 @@ jobs:
     - run: npm run build --if-present
     - run: npm run testci
     
-  publish:
-    runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [test]
-     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v3
-    - name: Run something
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16.x
-    - run: npm ci
-    - run: npm run build --if-present
-    - name: Deploy to bukkit
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: aws s3 sync dist/ s3://solver.halojenproductions.com --delete
-    
+publish:
+  runs-on: ubuntu-latest
+  if: ${{ github.ref == 'refs/heads/main' }}
+  needs: [test]
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+  - uses: actions/checkout@v3
+  - name: Run something
+    uses: actions/setup-node@v3
+    with:
+      node-version: 16.x
+  - run: npm ci
+  - run: npm run build --if-present
+  - name: Deploy to bukkit
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    run: aws s3 sync dist/ s3://solver.halojenproductions.com --delete
+  
 
