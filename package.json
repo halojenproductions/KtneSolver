@@ -8,7 +8,7 @@
 		"test": "npx playwright test",
 		"record": "npx playwright codegen http://localhost:8080/",
 		"build": "webpack --mode production",
-		"test-ci": "npx playwright test -c playwright.ci.config.ts",
+		"testci": "npx playwright test -c playwright.ci.config.ts",
 		"publish": "aws s3 sync dist/ s3://solver.halojenproductions.com"
 	},
 	"dependencies": {
