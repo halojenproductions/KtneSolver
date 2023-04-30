@@ -1,29 +1,25 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Workflow
 
-# Controls when the workflow will run
+# Controls when the workflow will run.
 on:
   push:
     branches: '*'
   pull_request:
     branches: [ main ]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually from the Actions tab.
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   test:
-    name: Tests
+    name: Playwright tests
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
 
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v3
-    - name: Run something
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
       with:
         node-version: 16.x
     - run: npm ci
@@ -31,19 +27,19 @@ jobs:
     - run: npm run testci
     
   publish:
+    name: Publish
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: [test]
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v3
-    - name: Run something
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
       with:
         node-version: 16.x
     - run: npm ci
     - run: npm run build --if-present
-    - name: Deploy to bukkit
+    - name: Deploying to sssbukkit.
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
