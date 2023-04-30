@@ -269,7 +269,33 @@
 						<div class="col module pt-3" id="Knobs">
 							<div class="card">
 								<div class="card-header">
-									<span class="float-start">Knobs</span>
+									<span class="float-start">Knobs
+										<a class="icon-link" data-bs-toggle="offcanvas" href="#offcanvasScrolling" role="button" aria-controls="offcanvasExample">
+											<svg class="bi" fill="currentColor" aria-hidden="true">
+												<use xlink:href="icons/bootstrap-icons.svg#info-circle"></use>
+											</svg>
+											
+										</a>
+
+										<button class="btn btn-sm float-end icon-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+											aria-controls="offcanvasScrolling">
+											<svg class="bi" fill="currentColor" aria-hidden="true">
+												<use xlink:href="icons/bootstrap-icons.svg#info-circle"></use>
+											</svg>
+										</button>
+
+									</span>
+									<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling"
+										aria-labelledby="offcanvasScrollingLabel">
+										<div class="offcanvas-header">
+											<h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+										</div>
+										<div class="offcanvas-body">
+											<p>Try scrolling the rest of the page to see this option in action.</p>
+										</div>
+									</div>
+
 								</div>
 								<div class="card-body">
 									<form id="KnobsForm" class="">

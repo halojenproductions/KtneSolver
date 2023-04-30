@@ -1,6 +1,6 @@
 import '../scss/styles.scss';
 import * as _bootstrap from 'bootstrap';
-import { renderClearButton } from './utilities';
+import { renderClearButton, /*renderInfo*/ } from './utilities';
 import { setupBasic } from './basic/setupBasic';
 import { renderBasic } from './basic/renderBasic';
 import { setupPassword } from './password/setupPassword';
@@ -58,6 +58,8 @@ renderClearButton('Password');
 setupPassword();
 
 //Knobs
+//renderInfo('Knobs');
 renderClearButton('Knobs');
+new _bootstrap.Offcanvas('#offcanvasScrolling');
 renderKnobs();
 setupKnobs();
