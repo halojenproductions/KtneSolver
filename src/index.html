@@ -19,7 +19,7 @@
 						</p>
 						<ul class="nav nav-pills flex-column mb-auto">
 							<li class="nav-item">
-								<a class="nav-link" href="#BasicWires">Basic wires</a>
+								<a class="nav-link" href="#Basic">Basic wires</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="#MissileButton">Button</a>
@@ -28,16 +28,17 @@
 								<a class="nav-link" href="#Keypad">Keypad</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="https://bombmanual.com/web/index.html#SimonSays"
-									target="_blank">Simon Says</a>
+								<a class="nav-link" href="#Simon" data-href="https://bombmanual.com/web/index.html#SimonSays">
+									Simon Says
+								</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="https://bombmanual.com/web/index.html#WhosOnFirst"
 									target="_blank">Who's On First</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="https://bombmanual.com/web/index.html#Memory"
-									target="_blank">Memory</a>
+								<a class="nav-link" href="#Memory" 
+									data-href="https://bombmanual.com/web/index.html#Memory">Memory</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link icon-link" href="https://bombmanual.com/web/index.html#MorseCode" target="_blank">
@@ -48,8 +49,8 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="https://bombmanual.com/web/index.html#ComplicatedWires"
-									target="_blank">Complicated Wires</a>
+								<a class="nav-link" href="#Complicated" data-href="https://bombmanual.com/web/index.html#ComplicatedWires">
+									Complicated Wires</a>
 							</li>
 							<li class="nav-item icon-link">
 								<a class="nav-link" href="https://bombmanual.com/web/index.html#WireSequences" target="_blank">
@@ -70,6 +71,10 @@
 							<li class="nav-item">
 								<a class="nav-link" href="#Password">Password</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#Knobs" data-href="https://bombmanual.com/web/index.html#Knobs">
+									Knobs</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -88,8 +93,8 @@
 								<div class="card-header">
 									<span class="float-start">Basic wires</span>
 								</div>
-								<div class="card-body" id="basic_inputs">
-									<form id="BasicForm" class="d-inline"></form>
+								<div class="card-body">
+									<form id="BasicForm" class=""></form>
 								</div>
 								<div class="card-body">
 									<div id="basic_optional"></div>
@@ -105,8 +110,8 @@
 								<div class="card-header">
 									<span class="float-start">Button</span>
 								</div>
-								<div class="card-body" id="">
-									<form id="MissileButtonForm" class="d-inline">
+								<div class="card-body" >
+									<form id="MissileButtonForm" class="">
 										<div class="btn-group-sm btn-group-vertical align-top" role="group">
 											<input type="radio" class="btn-check blue" name="button_colour" id="button_colour1" autocomplete="off" />
 											<label class="btn btn-outline-primary colour-blue" for="button_colour1">Blue</label>
@@ -175,7 +180,7 @@
 									<span class="float-start">Keypad</span>
 								</div>
 								<div class="card-body">
-									<form id="KeypadForm" class="d-inline">
+									<form id="KeypadForm" class="">
 									</form>
 
 									<hr class="solution d-none" />
@@ -183,6 +188,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col module pt-3" id="Simon">
 							<div class="card">
 								<div class="card-header">
@@ -190,12 +196,39 @@
 								</div>
 								<div class="card-body" id="SimonAttributes"></div>
 								<div class="card-body">
-									<form id="SimonForm" class="d-inline">
+									<form id="SimonForm" class="">
 									</form>
 
 									<hr class="solution d-none" />
 									<div class="solution d-none text-success d-flex justify-content-around"></div>
 								</div>
+							</div>
+						</div>
+						
+						<div class="col module pt-3" id="Memory" data-light="https://youtu.be/mdBVJbzkoqo&t=84s">
+							<div class="card">
+								<div class="card-header">
+									<span class="float-start">Memory</span>
+								</div>
+								<div class="card-body">
+									<form id="MemoryForm" class="d-flex flex-column">
+									</form>
+									<hr class="solution d-none" />
+									<div class="solution d-none text-success fs-2 d-flex justify-content-around"></div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col module pt-3" id="Complicated" data-why="https://youtu.be/5NPBIwQyPWE">
+							<div class="card">
+								<div class="card-header">
+									<span class="float-start">Complicated wires</span>
+								</div>
+								<div class="card-body">
+									<form id="ComplicatedForm" class="d-flex">
+									</form>
+								</div>
+								<div class="card-body" id="complicated_optional"></div>
 							</div>
 						</div>
 
@@ -205,7 +238,7 @@
 									<span class="float-start">Password</span>
 								</div>
 								<div class="card-body">
-									<form id="PasswordForm" class="d-inline">
+									<form id="PasswordForm" class="">
 										<div class="input-group">
 											<input id="passwd_letters1" placeholder="1" type="text" class="possible form-control" autocomplete="off" />
 											<input id="passwd_letters2" placeholder="2" type="text" class="possible form-control" autocomplete="off" />
@@ -220,26 +253,13 @@
 							</div>
 						</div>
 
-						<div class="col module pt-3" id="Complicated" data-why="https://youtu.be/5NPBIwQyPWE">
-							<div class="card">
-								<div class="card-header">
-									<span class="float-start">Complicated wires</span>
-								</div>
-								<form id="ComplicatedForm" class="d-inline">
-									<div class="card-body" id="complicated_inputs"></div>
-								</form>
-								<div class="card-body" id="complicated_optional"></div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
 						<div class="col module pt-3" id="Knobs">
 							<div class="card">
 								<div class="card-header">
 									<span class="float-start">Knobs</span>
 								</div>
 								<div class="card-body">
-									<form id="KnobsForm" class="d-inline">
+									<form id="KnobsForm" class="">
 									</form>
 									<hr class="solution d-none" />
 									<div class="solution d-none text-success fs-2 d-flex justify-content-around"></div>
@@ -247,38 +267,10 @@
 							</div>
 						</div>
 						<div class="col module pt-3" id=""></div>
-						<div class="col module pt-3" id=""></div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script>
-			// Deprecated.
-			function buttonDeselect(e) {
-				if (document.getElementById(e.target.htmlFor).checked) {
-					document.getElementById(e.target.htmlFor).checked = false;
-					e.preventDefault();
-				}
-			}
-			// Deprecated.
-			function visible(e, visible) {
-				const className = "d-none";
-				if (visible && e.classList.contains(className)) {
-					e.classList.remove(className); // Show.
-				} else if (!visible && !e.classList.contains(className)) {
-					e.classList.add(className); // Hide.
-				}
-			}
-			// Deprecated.
-			function show(e) {
-				e.classList.remove("d-none"); // Show.
-			}
-			// Deprecated.
-			function hide(e) {
-				e.classList.add("d-none"); // Hide.
-			}
-
-		</script>
 		<script src="./bundle.js"></script>
 	</body>
 

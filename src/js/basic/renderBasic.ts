@@ -7,6 +7,9 @@ export function renderBasic(): void {
 	for (let i = 1; i <= 6; i++) {
 		var group = document.createElement("div");
 		group.className = "btn-group btn-group-sm d-flex";
+		if (i < 6) {
+			group.classList.add("mb-1");
+		}
 		group.setAttribute("role", "group");
 
 		for (let ii = 0; ii < 5; ii++) {
@@ -29,32 +32,32 @@ export function renderBasic(): void {
 
 		basicForm.appendChild(group);
 	}
-	
+
 	var basic_optional = getById("basic_optional");
 
-		group = document.createElement("div");
-		group.className = "btn-group-sm btn-group align-top d-none";
-		group.setAttribute("role", "group");
-		group.id = "basic_serial"
+	group = document.createElement("div");
+	group.className = "btn-group-sm btn-group align-top d-none";
+	group.setAttribute("role", "group");
+	group.id = "basic_serial"
 
-		var serial = ["Even Serial","Odd Serial"]
+	var serial = ["Even Serial", "Odd Serial"]
 
-		for (let ii = 0; ii <= 1; ii++) {
-			var input = document.createElement("input");
-			input.id = `basic_s${ii +1}`;
-			input.className = "btn-check";
-			input.setAttribute("type", "radio");
-			input.setAttribute("name", `basic_s`);
-			input.setAttribute("autocomplete", "off");
+	for (let ii = 0; ii <= 1; ii++) {
+		var input = document.createElement("input");
+		input.id = `basic_s${ii + 1}`;
+		input.className = "btn-check";
+		input.setAttribute("type", "radio");
+		input.setAttribute("name", `basic_s`);
+		input.setAttribute("autocomplete", "off");
 
-			var label = document.createElement("label");
-			label.className = "btn btn-outline-primary";
-			label.setAttribute("for", `basic_s${ii +1}`);
-			label.appendChild(document.createTextNode(`${serial[ii]}`));
+		var label = document.createElement("label");
+		label.className = "btn btn-outline-primary";
+		label.setAttribute("for", `basic_s${ii + 1}`);
+		label.appendChild(document.createTextNode(`${serial[ii]}`));
 
-			group.appendChild(input);
-			group.appendChild(label);
-		}
+		group.appendChild(input);
+		group.appendChild(label);
+	}
 
-		basic_optional.appendChild(group);
+	basic_optional.appendChild(group);
 }

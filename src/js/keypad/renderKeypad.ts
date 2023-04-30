@@ -59,6 +59,9 @@ export function renderKeypad(): void {
 
 		if ((idx + 1) % 9 == 0) {
 			group.className = "btn-group d-flex";
+			/*if (idx < Object.keys(symbolSet).length) {
+				group.classList.add("mb-1");
+			}*/
 			group.setAttribute("role", "group");
 			keypad_inputs.appendChild(group);
 
