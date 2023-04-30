@@ -4,7 +4,7 @@ let module;
 let answer;
 test.beforeEach(async ({ page }, testInfo) => {
 	await page.goto('http://localhost:8080/');
-	module = await page.locator('#Basic .card');
+	module = await page.locator('aoeu #Basic .card');
 	answer = await module.locator('div.solution');
 });
 
