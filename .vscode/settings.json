@@ -4,7 +4,7 @@
 	// 	"editor.defaultFormatter": "vscode.html-language-features"
 	// }
 	"editor.defaultFormatter": null,
-	//"editor.formatOnSave": true,
+	"editor.formatOnSave": true,
 	"editor.formatOnSaveMode": "file",
 	"files.autoSave": "afterDelay",
 	"editor.minimap.maxColumn": 220,
