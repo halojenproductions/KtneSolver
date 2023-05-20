@@ -2,13 +2,13 @@ import { getById } from '../utilities';
 
 export function renderSequences(): void {
   const attributes = [
-    { text: "Red", name: "wireColour", class: "colour-red" },
-    { text: "Blue", name: "wireColour", class: "colour-blue" },
-    { text: "Black", name: "wireColour", class: "colour-black" },
-    { text: "A", name: "wireConnection", class: "" },
-    { text: "B", name: "wireConnection", class: "" },
-    { text: "C", name: "wireConnection", class: "" },
-    { text: "Leave", name: "wireSolution", class: "text-success disabled" }
+    { text: "Red", name: "wireColour", value: "red", class: "colour-red" },
+    { text: "Blu", name: "wireColour", value: "blue", class: "colour-blue" },
+    { text: "Blk", name: "wireColour", value: "black", class: "colour-black" },
+    { text: "A", name: "wireConnection", value: "A", class: "" },
+    { text: "B", name: "wireConnection", value: "B", class: "" },
+    { text: "C", name: "wireConnection", value: "C", class: "" },
+    { text: "Lve", name: "wireSolution", value: "", class: "text-success disabled" }
   ];
 
   const Sequences_inputs = getById("SequencesForm");
@@ -22,14 +22,15 @@ export function renderSequences(): void {
     group.setAttribute("role", "group");
 
     for (let ii = 0; ii < attributes.length; ii++) {
-      const { text, name, class: textColor } = attributes[ii];
+      const { text, name, value, class: textColor } = attributes[ii];
 
       const input: HTMLInputElement = document.createElement("input");
       input.id = `Sequences_${i}_${ii}`;
-      input.className = "btn-check Sequences_button";
+      input.className = `btn-check Sequences_${i}_${name}`;
       input.type = "radio";
       input.name = `Sequences_${i}_${name}`;
       input.autocomplete = "off";
+	  input.value = value
 
       const label: HTMLLabelElement = document.createElement("label");
       label.className = `btn btn-outline-primary ${textColor}`;
