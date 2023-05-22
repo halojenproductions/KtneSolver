@@ -36,8 +36,7 @@ function solveWire(id: string): void {
 
   let cut = false;
 
-  switch (wireColour) {
-    case Colour.Red:
+  if  (wireColour == Colour.Red) {    
       count.red++;
       switch (wireConnection) {
         case "A":
@@ -50,9 +49,8 @@ function solveWire(id: string): void {
           cut = [1, 4, 6, 7].includes(count.red);
           break;
       }
-      break;
-
-    case Colour.Blue:
+	}
+    else if (wireColour ==  Colour.Blue) {
       count.blue++;
       switch (wireConnection) {
         case "A":
@@ -65,9 +63,8 @@ function solveWire(id: string): void {
           cut = [2, 6, 7, 8].includes(count.blue);
           break;
       }
-      break;
-
-    case Colour.Black:
+	}
+    else if (wireColour == Colour.Black) {	
       count.black++;
       switch (wireConnection) {
         case "A":
@@ -80,11 +77,7 @@ function solveWire(id: string): void {
           cut = [1, 2, 4, 6, 8, 9].includes(count.black);
           break;
       }
-      break;
-
-    default:
-      break;
-  }
+    }
 
   if (cut) {
     console.log("Cut wire");
