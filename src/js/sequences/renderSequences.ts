@@ -3,21 +3,22 @@ import { getById } from '../utilities';
 export function renderSequences(): void {
   const attributes = [
     { text: "Red", name: "wireColour", value: "red", class: "colour-red" },
-    { text: "Blu", name: "wireColour", value: "blue", class: "colour-blue" },
-    { text: "Blk", name: "wireColour", value: "black", class: "colour-black" },
+    { text: "Blue", name: "wireColour", value: "blue", class: "colour-blue" },
+    { text: "Black", name: "wireColour", value: "black", class: "colour-black" },
     { text: "A", name: "wireConnection", value: "A", class: "" },
     { text: "B", name: "wireConnection", value: "B", class: "" },
     { text: "C", name: "wireConnection", value: "C", class: "" },
-    { text: "Lve", name: "wireSolution", value: "", class: "text-success disabled" }
+    { text: "Leave", name: "wireSolution", value: "", class: "text-success disabled" }
   ];
 
   const Sequences_inputs = getById("SequencesForm");
-
-  for (let i = 1; i <= 9; i++) {
+  
+  const wireSequenceLength = 10;
+  for (let i = 1; i <= wireSequenceLength; i++) {
     const group: HTMLDivElement = document.createElement("div");
-    group.className = `btn-group-sm btn-group-vertical align-top flex-fill`;
-    if (i < 9) {
-      group.classList.add("me-1");
+    group.className = "btn-group btn-group-sm d-flex";
+    if (i < wireSequenceLength) {
+      group.classList.add("mb-1");
     }
     group.setAttribute("role", "group");
 

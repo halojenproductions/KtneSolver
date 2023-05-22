@@ -88,7 +88,7 @@ function solveWire(id: string): void {
 
   if (cut) {
     console.log("Cut wire");
-    getById(`${id}_6_label`).innerHTML = "Cut";
+    getById(`${id}_6_label`).innerHTML = "&nbsp;Cut&nbsp;";
   } else {
     console.log("Leave wire");
     getById(`${id}_6_label`).innerHTML = "Lve";
