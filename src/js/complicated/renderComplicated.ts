@@ -6,9 +6,9 @@ export function renderComplicated(): void {
 
 	for (let i = 1; i <= 6; i++) {
 		let group: HTMLDivElement = document.createElement("div");
-		group.className = `btn-group-sm btn-group-vertical align-top flex-fill`;
+		group.className = `btn-group btn-group-sm d-flex flex-fill`;
 		if (i < 6) {
-			group.classList.add("me-1");
+			group.classList.add("mb-1");
 		}
 		group.setAttribute("role", "group");
 
@@ -21,7 +21,7 @@ export function renderComplicated(): void {
 			input.setAttribute("autocomplete", "off");
 
 			let label: HTMLLabelElement = document.createElement("label");
-			label.className = `btn btn-outline-primary ${attributes[ii][1]}`;
+			label.className = `btn btn-outline-primary flex-grow-1 ${attributes[ii][1]}`;
 			label.setAttribute("for", `complicated_${i}_${ii}`);
 			label.appendChild(document.createTextNode(`${attributes[ii][0]}`));
 			label.id = `complicated_${i}_${ii}_label`;
@@ -42,9 +42,9 @@ export function renderComplicated(): void {
 	for (let iii = 0; iii <= groups.length - 1; iii++) {
 		var g = groups[iii][0].toString(); //todo: no gap between groups
 		var group = document.createElement("div");
-		group.className = "btn-group-sm btn-group-vertical align-top d-none";
+		group.className = "btn-group-sm d-none";
 		if (iii < groups.length) {
-			group.classList.add("me-1");
+			group.classList.add("mb-1");
 		}
 		group.setAttribute("role", "group");
 		group.id = `complicated_${g}`;
