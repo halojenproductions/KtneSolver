@@ -35,18 +35,22 @@ function solveWire(id: string): void {
 	const wireConnection: string = wireConnectionInput?.value || "";
 
 	let cut = false;
+	let leave = false;
 
 	if (wireColour == Colour.Red) {
 		count.red++;
 		switch (wireConnection) {
 			case "A":
 				cut = [3, 4, 6, 7, 8].includes(count.red);
+				leave = !cut;
 				break;
 			case "B":
 				cut = [2, 5, 7, 8, 9].includes(count.red);
+				leave = !cut;
 				break;
 			case "C":
 				cut = [1, 4, 6, 7].includes(count.red);
+				leave = !cut;
 				break;
 		}
 	}
@@ -55,12 +59,15 @@ function solveWire(id: string): void {
 		switch (wireConnection) {
 			case "A":
 				cut = [2, 4, 8, 9].includes(count.blue);
+				leave = !cut;
 				break;
 			case "B":
 				cut = [1, 3, 5, 6].includes(count.blue);
+				leave = !cut;
 				break;
 			case "C":
 				cut = [2, 6, 7, 8].includes(count.blue);
+				leave = !cut;
 				break;
 		}
 	}
@@ -69,21 +76,27 @@ function solveWire(id: string): void {
 		switch (wireConnection) {
 			case "A":
 				cut = [1, 2, 4, 7].includes(count.black);
+				leave = !cut;
 				break;
 			case "B":
 				cut = [1, 3, 5, 6, 7].includes(count.black);
+				leave = !cut;
 				break;
 			case "C":
 				cut = [1, 2, 4, 6, 8, 9].includes(count.black);
+				leave = !cut;
 				break;
 		}
 	}
 
 	if (cut) {
 		console.log("Cut wire");
-		getById(`${id}_6_label`).innerHTML = "&nbsp;Cut&nbsp;";
-	} else {
+		getById(`${id}_6_label`).innerHTML = "Cut";
+	} else if (leave) {
 		console.log("Leave wire");
-		getById(`${id}_6_label`).innerHTML = "Lve";
+		getById(`${id}_6_label`).innerHTML = "Leave";
+	} else {
+		console.log("Unsolved wire");
+		getById(`${id}_6_label`).innerHTML = "";
 	}
 }
