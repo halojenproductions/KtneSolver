@@ -15,6 +15,8 @@ import { setupComplicated } from './complicated/setupComplicated';
 import { renderComplicated } from './complicated/renderComplicated';
 import { setupMemory } from './memory/setupMemory';
 import { renderMemory } from './memory/renderMemory';
+import { setupWords } from './words/setupWords';
+import { renderWords } from './words/renderWords';
 
 // Basic wires
 renderClearButton('Basic');
@@ -36,6 +38,9 @@ renderSimon();
 setupSimon();
 
 // Who's On First
+renderClearButton('Words');
+renderWords();
+setupWords();
 
 // Memory
 renderClearButton('Memory');
