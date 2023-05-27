@@ -12,7 +12,7 @@ class LinkClass {
 }
 
 const links: Array<LinkClass> = [
-	new LinkClass("Basic wires aoeu", "Basic", "Wires"),
+	new LinkClass("Basic wires", "Basic", "Wires"),
 	new LinkClass("Button", "MissileButton", "TheButton"),
 	new LinkClass("Keypad", "Keypad", "Keypads"),
 	new LinkClass("Simon says", "Simon", "SimonSays"),
@@ -20,7 +20,7 @@ const links: Array<LinkClass> = [
 	new LinkClass("Memory", "Memory", "Memory"),
 	new LinkClass("Morse code", "", "MorseCode"),
 	new LinkClass("Complicated wires", "Complicated", "ComplicatedWires"),
-	new LinkClass("Wire sequences", "", "WireSequences"),
+	new LinkClass("Wire sequences", "Sequences", "WireSequences"),
 	new LinkClass("Mazes", "", "Mazes"),
 	new LinkClass("Password", "Password", "Passwords"),
 	new LinkClass("Knobs", "Knobs", "Knobs"),
