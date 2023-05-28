@@ -13,6 +13,8 @@ import { setupKnobs } from './knobs/setupKnobs';
 import { renderKnobs } from './knobs/renderKnobs';
 import { setupComplicated } from './complicated/setupComplicated';
 import { renderComplicated } from './complicated/renderComplicated';
+import { setupSequences } from './sequences/setupSequences';
+import { renderSequences } from './sequences/renderSequences';
 import { setupMemory } from './memory/setupMemory';
 import { renderMemory } from './memory/renderMemory';
 
@@ -50,6 +52,9 @@ renderComplicated();
 setupComplicated();
 
 // Wire Sequences
+renderClearButton('Sequences');
+renderSequences();
+setupSequences();
 
 // Mazes
 
