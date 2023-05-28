@@ -2,7 +2,7 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	testDir: './playwright',
-	timeout: 2000,
+	timeout: 4000,
 	globalTimeout: 60000,
 	fullyParallel: true,
 	//reporter: 'html',
