@@ -11,12 +11,12 @@ interface ElementData {
 
 export function memory_solve(e: HTMLInputElement): void {
 	clean_form();
-
+	
 	const element: ElementData = {
-		name: e.getAttribute("data-elementname"),
-		stage: parseInt((e.getAttribute("data-elementstage") || "0").toString()),
-		value: parseInt((e.getAttribute("data-elementvalue") || "0").toString())
-	};
+		name: e?.getAttribute("data-elementname") ?? null,
+		stage: parseInt(e?.getAttribute("data-elementstage") ?? "0"),
+		value: parseInt(e?.getAttribute("data-elementvalue") ?? "0")
+	  };
 
 	if (element.name && element.stage && element.value) {
 
