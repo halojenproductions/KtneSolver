@@ -15,6 +15,23 @@ body {
 	background-color: black;
 }
 
+#Nav {
+	li.nav-item {
+		a {
+			display: inline-flex;
+		}
+
+		a:first-of-type {
+			padding-right: 8px;
+
+			&+a {
+				padding-left: 4px;
+				margin-left: 2px;
+			}
+		}
+	}
+}
+
 .card {
 	min-width: 380px;
 }
