@@ -17,6 +17,10 @@ import { setupSequences } from './sequences/setupSequences';
 import { renderSequences } from './sequences/renderSequences';
 import { setupMemory } from './memory/setupMemory';
 import { renderMemory } from './memory/renderMemory';
+import { renderNav } from './nav/renderNav';
+
+// Navigation Menu
+renderNav();
 import { setupWords } from './words/setupWords';
 import { renderWords } from './words/renderWords';
 
