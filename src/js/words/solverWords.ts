@@ -22,7 +22,7 @@ interface WordsDictionary {
   "press": { description: "", words: "RIGHT, MIDDLE, YES, READY, PRESS" },
   "ready": { description: "", words: "YES, OKAY, WHAT, MIDDLE, LEFT, PRESS, RIGHT, BLANK, READY" },
   "right": { description: "", words: "YES, NOTHING, READY, PRESS, NO, WAIT, WHAT, RIGHT" },
-  "sure": { description: "", words: "E, DONE, LIKE, YOU'RE, YOU, HOLD, UH HUH, UR, SURE" },
+  "sure": { description: "", words: "You ARE, DONE, LIKE, YOU'RE, YOU, HOLD, UH HUH, UR, SURE" },
   "u": { description: "", words: "UH HUH, SURE, NEXT, WHAT?, YOU'RE, UR, UH UH, DONE, U" },
   "uhhuh": { description: "", words: "UH HUH" },
   "uhuh": { description: "", words: "UR, U, YOU ARE, YOU'RE, NEXT, UH UH" },

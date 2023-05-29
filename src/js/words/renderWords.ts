@@ -5,7 +5,7 @@ export const wordsSet: { [key: string]: string } = {
   c: "C",
   cee: "Cee",
   display: "Display",
-  done: "DONE",
+  done: "Done",
   first: "First",
   holdon: "Hold On",
   lead: "Lead",
