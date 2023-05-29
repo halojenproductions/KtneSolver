@@ -7,7 +7,7 @@ interface WordsDictionary {
 	};
   }
   
-  const wordsDictionary: WordsDictionary = {
+  const wordsDictionary: WordsDictionary = { //todo: add rendered word to dictionary
   "blank": { description: "Right middle", words: "WAIT, RIGHT, OKAY, MIDDLE, BLANK" },
   "done": { description: "", words: "SURE, UH HUH, NEXT, WHAT?, YOUR, UR, YOU'RE, HOLD, LIKE, YOU, U, YOU ARE, UH UH, DONE" },
   "first": { description: "Right top", words: "LEFT, OKAY, YES, MIDDLE, NO, RIGHT, NOTHING, UHHH, WAIT, READY, BLANK, WHAT, PRESS, FIRST" },
@@ -55,12 +55,14 @@ interface WordsDictionary {
   "space": { description: "Left bottom", words: "" }
 };
 
-export function words_solve(): void {
+export function words_solve(): void { //todo: add input as parameter
+	
   const stage: HTMLInputElement | null = document.querySelector(".words_stage:checked"); // ["View", "Push"]
   const word: HTMLInputElement | null = document.querySelector(".words_display:checked");
 
   const sol: HTMLDivElement = document.querySelector("#Words div.solution") as HTMLDivElement;
-  showSolution('Words', false);
+  var show = false;
+  //todo: is element is the stage group then clear and return;
 
   if (stage?.value === "View") {
     const selectedWord = word?.value;
@@ -74,7 +76,7 @@ export function words_solve(): void {
         sol.innerHTML = "No position available";
       }
 	  sol.classList.add("fs-2"); 
-      showSolution('Words', true);
+      show = true;
     }
   } else if (stage?.value === "Push") {
     const selectedWord = word?.value;
@@ -88,7 +90,8 @@ export function words_solve(): void {
         sol.innerHTML = "No word available";
       }
 	  sol.classList.remove("fs-2"); 
-      showSolution('Words', true);
-    }
+      show =  true;
+    }	
   }
+  showSolution("Words", show)
 }

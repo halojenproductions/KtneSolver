@@ -1,6 +1,6 @@
 import { getById } from '../utilities';
 
-export const wordsSet: { [key: string]: string } = {
+export const wordsSet: { [key: string]: string } = { //todo import wordsDictionary instead of duplicate object
   blank: "Blank",
   c: "C",
   cee: "Cee",
@@ -55,7 +55,7 @@ export function renderWords(): void {
   group.className = "btn-group btn-group align-top center mb-1";
   group.setAttribute("role", "group");
 
-  var stage = ["View", "Push"];
+  var stage = ["View", "Push"]; //todo: what could this be?
 
   for (let i = 0; i < stage.length; i++) {
     var input = document.createElement("input");
