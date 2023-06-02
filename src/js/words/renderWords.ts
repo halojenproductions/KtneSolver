@@ -1,52 +1,5 @@
 import { getById } from '../utilities';
-
-export const wordsSet: { [key: string]: string } = { //todo import wordsDictionary instead of duplicate object
-  blank: "Blank",
-  c: "C",
-  cee: "Cee",
-  display: "Display",
-  done: "Done",
-  first: "First",
-  holdon: "Hold On",
-  lead: "Lead",
-  led: "LED",
-  leed: "Leed",
-  no: "No",
-  nothing: "Nothing",
-  okay: "Okay",
-  read: "Read",
-  red: "Red",
-  reed: "Reed",
-  says: "Says",
-  see: "See",
-  their: "Their",
-  there: "There",
-  theyare: "They Are",
-  theyre: "They're",
-  ur: "UR",
-  yes: "Yes",
-  you: "You",
-  youare: "You Are",
-  your: "YOUR",
-  youre: "You're",
-  space: "&nbsp",
-  hold: "Hold",
-  left: "Left",
-  like: "Like",
-  middle: "Middle",
-  next: "Next",
-  press: "Press",
-  ready: "Ready",
-  right: "Right",
-  sure: "Sure",
-  u: "U",
-  uhhuh: "Uh Huh",
-  uhuh: "Uh Uh",
-  uhhh: "Uhhh",
-  wait: "Wait",
-  what: "What",
-  whatq: "What?"
-};
+import { wordsDictionary } from './solverWords';
 
 export function renderWords(): void {
   var words_inputs = getById("WordsForm");
@@ -81,7 +34,7 @@ export function renderWords(): void {
   group.className = "btn-group btn-group-sm d-flex";
   group.setAttribute("role", "group");
 
-  let sortedEntries = Object.entries(wordsSet).sort((a, b) => a[0].localeCompare(b[0]));
+  let sortedEntries = Object.entries(wordsDictionary).sort((a, b) => a[0].localeCompare(b[0]));
 
   let index = 0;
 
@@ -97,15 +50,15 @@ export function renderWords(): void {
     let label = document.createElement("label");
     label.className = `btn  btn-outline-primary `;
     label.setAttribute("for", `words_display${index}`);
-    label.setAttribute("data-wordsCode", `${value}`);
-    label.insertAdjacentHTML('beforeend', `${value}`);
+    label.setAttribute("data-wordsCode", `${value.display}`);
+    label.insertAdjacentHTML('beforeend', `${value.display}`);
 
     group.appendChild(input);
     group.appendChild(label);
 
     index++;
 
-    if (index % 8 === 0 || index === Object.keys(wordsSet).length) {
+    if (index % 8 === 0 || index === Object.keys(wordsDictionary).length) {
       words_inputs.appendChild(group);
       group = document.createElement("div");
       group.className = "btn-group btn-group-sm d-flex";
