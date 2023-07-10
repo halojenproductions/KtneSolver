@@ -1,9 +1,9 @@
-export type ModuleId = "Basic" | "Complicated" | "Sequences" | "Keypad" | "Knobs" | "Memory" | "MissileButton" | "Password" | "Simon";
+export type ModuleId = "Basic" | "Complicated" | "Sequences" | "Keypad" | "Knobs" | "Memory" | "MissileButton" | "Mazes" | "Password" | "Simon";
 
 export class BuildColour {
 	id: string;
 	name: string;
-	
+
 	constructor(value: string) {
 		this.id = value.toLowerCase();
 		this.name = value;
@@ -19,9 +19,8 @@ export const Colour = {
 	Black: "Black"
 }
 
-export function ToLowerArray(array : string[]) : string[]
-{
-	return array.map(e =>{
+export function ToLowerArray(array: string[]): string[] {
+	return array.map(e => {
 		return e.toLowerCase();
 	})
 }

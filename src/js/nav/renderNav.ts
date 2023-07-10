@@ -21,7 +21,7 @@ const links: Array<LinkClass> = [
 	new LinkClass("Morse code", "", "MorseCode"),
 	new LinkClass("Complicated wires", "Complicated", "ComplicatedWires"),
 	new LinkClass("Wire sequences", "Sequences", "WireSequences"),
-	new LinkClass("Mazes", "", "Mazes"),
+	new LinkClass("Mazes", "Mazes", "Mazes"),
 	new LinkClass("Password", "Password", "Passwords"),
 	new LinkClass("Knobs", "Knobs", "Knobs"),
 ];
