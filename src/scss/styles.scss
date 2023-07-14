@@ -36,6 +36,42 @@ body {
 	min-width: 380px;
 }
 
+#Mazes {
+	#MazesForm{
+		display: block;
+	.maze {
+		//width: 100%;
+		border-color: #00BB00;
+		border-width: 2px;
+		border-style: solid;
+		display: block;
+
+		.maze-row {
+			//position: relative;
+			//height: 16px;
+			display: flex;
+			flex-wrap: wrap;
+
+			.cell {
+				position: relative;
+				width: 12%;
+				padding:0;
+				margin:-1px;
+				border-color: aqua;
+				border-width: 2px;
+				border-style: solid;
+				
+
+				&:after {
+					content: "";
+					display: block;
+					padding-bottom: 100%;
+				}
+			}
+		}
+	}
+}}
+
 #Password {
 	div.solution {
 		text-transform: uppercase;
