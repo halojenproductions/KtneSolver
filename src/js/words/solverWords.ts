@@ -42,7 +42,7 @@ interface WordsDictionary {
   "display": {  display: "Display", description: "Right bottom", words: "" },
   "holdon": {  display: "Hold On", description: "Right bottom", words: "" },
   "lead": {  display: "Lead", description: "Right bottom", words: "" },
-  "led": {  display: "Led", description: "Left Middle", words: "" },
+  "led": {  display: "Led", description: "Left middle", words: "" },
   "leed": {  display: "Leed", description: "Left bottom", words: "" },
   "read": {  display: "Read", description: "Right middle", words: "" },
   "red": {  display: "Red", description: "Right middle", words: "" },
@@ -65,7 +65,7 @@ export function words_solve(): void { //todo: add input as parameter
   var show = false;
   //todo: is element is the stage group then clear and return;
 
-  if (stage?.value === "View") {
+  if (stage?.value === "Step 1") {
     const selectedWord = word?.value;
     if (selectedWord !== undefined) {
       const position = wordsDictionary[selectedWord].description;
@@ -79,7 +79,7 @@ export function words_solve(): void { //todo: add input as parameter
 	  sol.classList.add("fs-2"); 
       show = true;
     }
-  } else if (stage?.value === "Push") {
+  } else if (stage?.value === "Step 2") {
     const selectedWord = word?.value;
     if (selectedWord !== undefined) {
       const words = wordsDictionary[selectedWord].words;

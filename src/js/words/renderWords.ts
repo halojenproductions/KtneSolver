@@ -5,10 +5,10 @@ export function renderWords(): void {
   var words_inputs = getById("WordsForm");
 
   let group = document.createElement("div");
-  group.className = "btn-group btn-group align-top center mb-1";
+  group.className = "btn-group btn-group align-top mb-1";
   group.setAttribute("role", "group");
 
-  var stage = ["View", "Push"]; //todo: what could this be?
+  var stage = ["Step 1", "Step 2"];
 
   for (let i = 0; i < stage.length; i++) {
     var input = document.createElement("input");
@@ -16,7 +16,7 @@ export function renderWords(): void {
     input.className = "btn-check words_stage";
     input.setAttribute("type", "radio");
     input.setAttribute("name", `words_stage`);
-    input.setAttribute("autocomplete", "off");
+    input.setAttribute("autocomplete", "off");	
     input.value = stage[i];
 
     var label = document.createElement("label");
@@ -40,7 +40,7 @@ export function renderWords(): void {
 
   sortedEntries.forEach(([key, value]) => {
     let input = document.createElement("input");
-    input.id = `words_display${index}`;
+    input.id = `words_display_${key}`;
     input.className = `btn-check words_display`;
     input.setAttribute("type", "radio");
     input.setAttribute("name", `words_display`);
@@ -49,7 +49,7 @@ export function renderWords(): void {
 
     let label = document.createElement("label");
     label.className = `btn  btn-outline-primary `;
-    label.setAttribute("for", `words_display${index}`);
+    label.setAttribute("for", `words_display_${key}`);
     label.setAttribute("data-wordsCode", `${value.display}`);
     label.insertAdjacentHTML('beforeend', `${value.display}`);
 
