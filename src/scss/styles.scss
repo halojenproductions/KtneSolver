@@ -78,13 +78,15 @@ body {
 
 						}
 
-						&[identifier="1"] .cell-div {
+						&.identifier .cell-div {
 							background-color: white;
 						}
-						&[start="1"] .cell-div {
+
+						&.start .cell-div {
 							background-color: #00FF00;
 						}
-						&[finish="1"] .cell-div {
+
+						&.finish .cell-div {
 							background-color: brown;
 						}
 					}

@@ -1,6 +1,13 @@
-export type MazeCoords = {
-	X: Number;
-	Y: Number;
+export class MazeCoords {
+	Row: number | null = null;
+	Col: number | null = null;
+	constructor(r: number, c: number) {
+		this.Row = r;
+		this.Col = c;
+	}
+	toString(): String {
+		return `${this.Row},${this.Col}`;
+	}
 }
 
 export class MazeCell {
@@ -28,7 +35,7 @@ function AddMazeRow(input: String): Array<MazeCell> {
 
 export const Mazes: Maze[] = [
 	{
-		Dots: [{ X: 0, Y: 1 }, { X: 5, Y: 2 }],
+		Dots: [{ Row: 0, Col: 1 }, { Row: 5, Col: 2 }],
 		Cells: [
 			AddMazeRow("00 01 10 00 01 01"),
 			AddMazeRow("10 00 11 01 01 00"),
@@ -39,7 +46,7 @@ export const Mazes: Maze[] = [
 		]
 	},
 	{
-		Dots: [{ X: 4, Y: 1 }, { X: 1, Y: 3 }],
+		Dots: [{ Row: 4, Col: 1 }, { Row: 1, Col: 3 }],
 		Cells: [
 			AddMazeRow("01 00 11 00 00 01"),
 			AddMazeRow("00 11 00 11 01 00"),
