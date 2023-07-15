@@ -1,249 +1,86 @@
 import { getById } from '../utilities';
+import { Mazes, MazeCoords } from './dataMazes';
 
-const position = "Position";
-const label = "Label";
-
-interface ElementData {
-	name: string | null;
-	stage: number;
-	value: number;
-}
 
 export function mazes_solve(e: HTMLInputElement): void {
-	clean_form();
-	
-	const element: ElementData = {
-		name: e?.getAttribute("data-elementname") ?? null,
-		stage: parseInt(e?.getAttribute("data-elementstage") ?? "0"),
-		value: parseInt(e?.getAttribute("data-elementvalue") ?? "0")
-	  };
+	console.log('solve me ' + e.parentElement?.id);
+	if (e.parentElement == null) {
+		return;
+	}
 
-	if (element.name && element.stage && element.value) {
 
-		if (element.name === "display") {
-			handle_display(element);
+	let clickCoords: MazeCoords | null = {
+		X: parseInt(e.parentElement.getAttribute('row') ?? ''),
+		Y: parseInt(e.parentElement.getAttribute('col') ?? '')
+	};
 
-		} else if (element.name === "input") {
-			handle_inputs(element);
+	console.log(clickCoords);
 
-			//clears any inputs above this stage, and any labels that are affected by this change
-			refresh_labels(element.stage);
+	let identifierCoords: MazeCoords | null = null;
+	let startCoords: MazeCoords | null = null;
+	let finishCoords: MazeCoords | null = null;
+
+
+
+	for (let iRow = 0; iRow < 6; iRow++) {
+		for (let iCol = 0; iCol < 6; iCol++) {
+			let cellId = `cell_${iRow}_${iCol}`;
+			let aoeu = getById(cellId);
+
+			if (aoeu.getAttribute('identifier') == '1') {
+				console.log("got an attribute");
+				identifierCoords = { X: iRow, Y: iCol };
+			}
+			if (aoeu.getAttribute('start') == '1') {
+				startCoords = { X: iRow, Y: iCol };
+			}
+			if (aoeu.getAttribute('finish') == '1') {
+				finishCoords = { X: iRow, Y: iCol };
+			}
+		}
+	}
+
+	if (checkCells(identifierCoords, clickCoords)) {
+		identifierCoords = null;
+	} else if (checkCells(startCoords, clickCoords)) {
+		startCoords = null;
+	} else if (checkCells(finishCoords, clickCoords)) {
+		finishCoords = null;
+	} else if (identifierCoords == null) {
+		identifierCoords = clickCoords;
+	} else if (startCoords == null) {
+		startCoords = clickCoords;
+	} else if (finishCoords == null) {
+		finishCoords = clickCoords;
+	}
+
+	for (let iRow = 0; iRow < 6; iRow++) {
+		for (let iCol = 0; iCol < 6; iCol++) {
+			let cellId = `cell_${iRow}_${iCol}`;
+			let aoeu1 = getById(cellId);
+			let cellCoords: MazeCoords = { X: iRow, Y: iCol };
+
+
+			aoeu1.setAttribute('identifier', '0');
+			aoeu1.setAttribute('start', '0'); // Why the fuck doesn't this work.
+			aoeu1.setAttribute('finish', '0'); // Why the fuck doesn't this work.
+
+			if (checkCells(cellCoords, identifierCoords)) {
+				aoeu1.setAttribute('identifier', '1');
+			} else
+
+				if (checkCells(cellCoords, startCoords)) {
+					aoeu1.setAttribute('start', '1');
+
+				} else
+
+					if (checkCells(cellCoords, finishCoords)) {
+						aoeu1.setAttribute('finish', '1');
+					}
 		}
 	}
 }
 
-function handle_inputs(element: ElementData) {
-	let row = getById(`memory_stage_${element.stage}`);
-	if (row.getAttribute("data-label")) {
-		data_persistance(element.stage, position, element.value);
-	} else if (row.getAttribute("data-position")) {
-		data_persistance(element.stage, label, element.value);
-	}
-}
-
-function handle_display(element: ElementData) {
-	clear_stage(element.stage);
-	var number: number = 0;
-	var type: string = "";
-	switch (element.stage) {
-		case 1: {
-			switch (element.value) {
-				case 1:
-				case 2:
-					type = position;
-					number = 2;
-					break;
-				case 3:
-					type = position;
-					number = 3;
-					break;
-				case 4:
-					type = position;
-					number = 4;
-					break;
-				default:
-					break;
-			};
-			break;
-		}
-		case 2: {
-			switch (element.value) {
-				case 1:
-					type = label;
-					number = 4;
-					break;
-				case 2:
-				case 4:
-					type = position;
-					var data = getById("memory_stage_1").getAttribute("data-position");
-					if (data == undefined) {
-						console.log("stage 1 missing data");
-						return;
-					}
-					number = parseInt(data);
-					break;
-				case 3:
-					type = position;
-					number = 1;
-					break;
-				default:
-					break;
-			};
-			break;
-		}
-		case 3: {
-			switch (element.value) {
-				case 1:
-					type = label;
-					var data = getById("memory_stage_2").getAttribute("data-label");
-					if (data == undefined) {
-						console.log("stage 2 missing data");
-						return;
-					}
-					number = parseInt(data);
-					break;
-				case 2:
-					type = label;
-					var data = getById("memory_stage_1").getAttribute("data-label");
-
-					if (data == undefined) {
-						console.log("stage 1 missing data");
-						return;
-					}
-					number = parseInt(data);
-					break;
-				case 3:
-					type = position;
-					number = 3;
-					break;
-				case 4:
-					type = label;
-					number = 4;
-					break;
-				default:
-					break;
-			};
-			break;
-		}
-		case 4: {
-			switch (element.value) {
-				case 1:
-					type = position;
-					var data = getById("memory_stage_1").getAttribute("data-position");
-					if (data == undefined) {
-						console.log("stage 1 missing data");
-						return;
-					}
-					number = parseInt(data);
-					break;
-				case 2:
-					type = position;
-					number = 1;
-					break;
-				case 3:
-				case 4:
-					type = position;
-					var data = getById("memory_stage_2").getAttribute("data-position");
-					if (data == undefined) {
-						console.log("stage 2 missing data");
-						return;
-					}
-					number = parseInt(data);
-					break;
-				default:
-					break;
-			};
-			break;
-		}
-		case 5: {
-			switch (element.value) {
-				case 1:
-					type = label;
-					var data = getById("memory_stage_1").getAttribute("data-label");
-					if (data == undefined) {
-						console.log("stage 1 missing data");
-						return;
-					}
-					number = parseInt(data);
-					break;
-				case 2:
-					type = label;
-					var data = getById("memory_stage_2").getAttribute("data-label");
-					if (data == undefined) {
-						console.log("stage 2 missing data");
-						return;
-					}
-					number = parseInt(data);
-					break;
-				case 3:
-					type = label;
-					var data = getById("memory_stage_4").getAttribute("data-label");
-					if (data == undefined) {
-						console.log("stage 4 missing data");
-						return;
-					}
-					number = parseInt(data);
-					break;
-				case 4:
-					type = label;
-					var data = getById("memory_stage_3").getAttribute("data-label");
-					if (data == undefined) {
-						console.log("stage 3 missing data");
-						return;
-					}
-					number = parseInt(data);
-					break;
-				default:
-					break;
-			};
-			break;
-		}
-	}
-
-	data_persistance(element.stage, type, number);
-	getById(`memory_label_${element.stage}`).appendChild(document.createTextNode(`${type} ${number}`));
-}
-
-function data_persistance(stage: number, type: string, number: number) {
-	var element = getById(`memory_stage_${stage}`);
-	element.setAttribute(`data-${type.toLowerCase()}`, number.toString())
-}
-
-function clear_stage(stage: number) {
-	getById(`memory_label_${stage}`).replaceChildren("");
-	var inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(`.memory_input_${stage}`);
-	if (inputs != null) {
-		inputs.forEach((element) => {
-			element.checked = false;
-		});
-	}
-
-	var persistance = getById(`memory_stage_${stage}`)
-
-	persistance.removeAttribute("data-label")
-	persistance.removeAttribute("data-position")
-}
-
-function clean_form() {
-	for (let i = 1; i <= 5; i++) {
-		var display = document.querySelector(`.memory_display_${i}:checked`)
-		if (display == undefined) {
-			clear_stage(i);
-		}
-	}
-}
-
-function refresh_labels(currentStage: number) {
-	for (let i = currentStage + 1; i <= 5; i++) {
-		const display: HTMLInputElement | null = document.querySelector(`.memory_display_${i}:checked`);
-		if (display) {
-			let element: ElementData = {
-				name: 'display',
-				stage: i,
-				value: parseInt(display.value)
-			};
-
-			handle_display(element);
-		}
-	}
+function checkCells(A: MazeCoords | null, B: MazeCoords | null) {
+	return A?.X == B?.X && A?.Y == B?.Y;
 }

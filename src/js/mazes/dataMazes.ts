@@ -1,4 +1,4 @@
-export type MazeDot = {
+export type MazeCoords = {
 	X: Number;
 	Y: Number;
 }
@@ -13,7 +13,7 @@ export class MazeCell {
 }
 
 export type Maze = {
-	Dots: MazeDot[];
+	Dots: MazeCoords[];
 	Cells: MazeCell[][];
 }
 

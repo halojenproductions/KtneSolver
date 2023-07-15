@@ -37,40 +37,62 @@ body {
 }
 
 #Mazes {
-	#MazesForm{
-		display: block;
-	.maze {
-		//width: 100%;
-		border-color: #00BB00;
-		border-width: 2px;
-		border-style: solid;
-		display: block;
+	#MazesForm {
 
-		.maze-row {
-			//position: relative;
-			//height: 16px;
-			display: flex;
-			flex-wrap: wrap;
+		.maze-table {
+			width: 80%;
 
-			.cell {
-				position: relative;
-				width: 12%;
-				padding:0;
-				margin:-1px;
-				border-color: aqua;
+			//border-collapse: separate;
+			//border-spacing: 0px;
+			.maze-body {
+				border-color: #00BB00;
 				border-width: 2px;
 				border-style: solid;
-				
 
-				&:after {
-					content: "";
-					display: block;
-					padding-bottom: 100%;
+				.maze-row {
+					.cell {
+						margin: 0;
+						padding: 0;
+
+						border-color: aqua;
+						border-width: 2px;
+						border-style: solid;
+
+						&.top-left {
+							border-top-left-radius: 5px;
+						}
+
+						&.wall-right {
+							border-right-color: gold;
+						}
+
+						&.wall-bottom {
+							border-bottom-color: gold;
+						}
+
+						.cell-div {
+							appearance: none;
+							display: block;
+							aspect-ratio: 1 / 1; // Makes it square.
+							padding: 2px;
+
+						}
+
+						&[identifier="1"] .cell-div {
+							background-color: white;
+						}
+						&[start="1"] .cell-div {
+							background-color: #00FF00;
+						}
+						&[finish="1"] .cell-div {
+							background-color: brown;
+						}
+					}
 				}
 			}
 		}
 	}
-}}
+}
 
 #Password {
 	div.solution {
