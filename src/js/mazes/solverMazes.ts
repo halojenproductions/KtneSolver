@@ -54,17 +54,22 @@ export function mazes_solve(e: HTMLInputElement): void {
 
 	for (let iRow = 0; iRow < 6; iRow++) {
 		for (let iCol = 0; iCol < 6; iCol++) {
-			let cellId = `cell_${iRow}_${iCol}`;
-			let aoeu1 = getById(cellId);
 			let cellCoords: MazeCoords = { Row: iRow, Col: iCol };
+			let aoeu1 = getById(`cell_${iRow}_${iCol}`);
+			let aoeuDiv: HTMLDivElement = <HTMLDivElement>aoeu1.firstChild;
 
 			aoeu1.classList.remove('identifier', 'start', 'finish');
 			if (cellsEqual(cellCoords, identifierCoords)) {
 				aoeu1.classList.add('identifier');
+				aoeuDiv.innerHTML = 'm';
 			} else if (cellsEqual(cellCoords, startCoords)) {
 				aoeu1.classList.add('start');
+				aoeuDiv.innerHTML = 's';
 			} else if (cellsEqual(cellCoords, finishCoords)) {
 				aoeu1.classList.add('finish');
+				aoeuDiv.innerHTML = 'f';
+			} else {
+				aoeuDiv.innerHTML = '&nbsp;';
 			}
 		}
 	}
