@@ -45,11 +45,21 @@ body {
 			//border-collapse: separate;
 			//border-spacing: 0px;
 			.maze-body {
-				border-color: #00BB00;
-				border-width: 2px;
-				border-style: solid;
+				//border-color: #00BB00;
+				//border-width: 2px;
+				//border-style: solid;
+
+				tr {
+					border-style: none;
+				}
+
+				th {
+					border-style: none;
+					text-align: center;
+				}
 
 				.maze-row {
+
 					.cell {
 						margin: 0;
 						padding: 0;

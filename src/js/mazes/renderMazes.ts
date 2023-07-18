@@ -20,13 +20,26 @@ export function renderMazes(): void {
 	let mazeBody = document.createElement("tbody");
 	mazeBody.classList.add('maze-body');
 
+	let ohDear = ["", "A", "B", "C", "D", "E", "F"];
+	let headerRow = document.createElement("tr");
+	for (let iCol = 0; iCol < 6+1; iCol++) {
+		let blurg = document.createElement("th");
+		blurg.innerHTML = ohDear[iCol];
+		headerRow.appendChild(blurg);
+	}
+	mazeBody.appendChild(headerRow);
 
 	for (let iRow = 0; iRow < 6; iRow++) {
 		let row = document.createElement("tr");
 		row.id = `row_${iRow}`;
 		row.classList.add('maze-row');
 
+		let headerCell = document.createElement("th");
+		headerCell.innerHTML = `${iRow + 1}`;
+		row.appendChild(headerCell);
+
 		for (let iCol = 0; iCol < 6; iCol++) {
+
 			let cell = document.createElement("td");
 			cell.id = `cell_${iRow}_${iCol}`;
 			cell.classList.add('cell');
