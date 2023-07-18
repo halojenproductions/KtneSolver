@@ -35,7 +35,7 @@ function AddMazeRow(input: String): Array<MazeCell> {
 
 export const Mazes: Maze[] = [
 	{
-		Dots: [{ Row: 0, Col: 1 }, { Row: 5, Col: 2 }],
+		Dots: [{ Row: 1, Col: 0 }, { Row: 2, Col: 5 }],
 		Cells: [
 			AddMazeRow("00 01 10 00 01 01"),
 			AddMazeRow("10 00 11 01 01 00"),
@@ -46,7 +46,7 @@ export const Mazes: Maze[] = [
 		]
 	},
 	{
-		Dots: [{ Row: 4, Col: 1 }, { Row: 1, Col: 3 }],
+		Dots: [{ Row: 1, Col: 4 }, { Row: 3, Col: 1 }],
 		Cells: [
 			AddMazeRow("01 00 11 00 00 01"),
 			AddMazeRow("00 11 00 11 01 00"),

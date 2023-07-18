@@ -1,5 +1,5 @@
 import { getById } from '../utilities';
-import { Mazes, MazeCoords } from './dataMazes';
+import { Mazes, MazeCoords, Maze } from './dataMazes';
 
 
 export function mazes_solve(e: HTMLInputElement): void {
@@ -46,8 +46,7 @@ export function mazes_solve(e: HTMLInputElement): void {
 	mazes_form.setAttribute('finish', coordToString(finishCoords));
 
 	// Identify maze.
-
-
+	let maze: Maze | null = identifyMaze(identifierCoords);
 
 	// Set all the things!
 
@@ -71,6 +70,11 @@ export function mazes_solve(e: HTMLInputElement): void {
 			} else {
 				aoeuDiv.innerHTML = '&nbsp;';
 			}
+
+			if (maze) {
+				//console.log(maze);
+
+			}
 		}
 	}
 }
@@ -78,6 +82,15 @@ export function mazes_solve(e: HTMLInputElement): void {
 function cellsEqual(A: MazeCoords | null, B: MazeCoords | null) {
 	return A?.Row == B?.Row && A?.Col == B?.Col;
 }
+
+function identifyMaze(co: MazeCoords | null): Maze | null {
+	return Mazes.find(m =>
+		m.Dots.find(c =>
+			cellsEqual(c, co)
+		)
+	) ?? null;
+}
+
 function stringToCoord(s: string | null): MazeCoords | null {
 	if (s === '' || s == null) {
 		return null;
