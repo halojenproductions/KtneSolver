@@ -72,12 +72,20 @@ body {
 							border-top-left-radius: 5px;
 						}
 
+						&.wall-top {
+							border-top-color: #00FF00;
+						}
+
 						&.wall-right {
 							border-right-color: #00FF00;
 						}
 
 						&.wall-bottom {
 							border-bottom-color: #00FF00;
+						}
+
+						&.wall-left {
+							border-left-color: #00FF00;
 						}
 
 						.cell-div {

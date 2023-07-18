@@ -54,36 +54,48 @@ export function mazes_solve(e: HTMLInputElement): void {
 	for (let iRow = 0; iRow < 6; iRow++) {
 		for (let iCol = 0; iCol < 6; iCol++) {
 			let cellCoords: MazeCoords = { Row: iRow, Col: iCol };
-			let aoeu1 = getById(`cell_${iRow}_${iCol}`);
-			let aoeuDiv: HTMLDivElement = <HTMLDivElement>aoeu1.firstChild;
+			let pussy = getById(`cell_${iRow}_${iCol}`);
+			let aoeuDiv: HTMLDivElement = <HTMLDivElement>pussy.firstChild;
 
-			aoeu1.classList.remove('identifier', 'start', 'finish');
+			pussy.classList.remove('identifier', 'start', 'finish');
 			if (cellsEqual(cellCoords, identifierCoords)) {
-				aoeu1.classList.add('identifier');
+				pussy.classList.add('identifier');
 				aoeuDiv.innerHTML = 'm';
 			} else if (cellsEqual(cellCoords, startCoords)) {
-				aoeu1.classList.add('start');
+				pussy.classList.add('start');
 				aoeuDiv.innerHTML = 's';
 			} else if (cellsEqual(cellCoords, finishCoords)) {
-				aoeu1.classList.add('finish');
+				pussy.classList.add('finish');
 				aoeuDiv.innerHTML = 'f';
 			} else {
 				aoeuDiv.innerHTML = '&nbsp;';
 			}
 
-
-			aoeu1.classList.remove('wall-right');
-			aoeu1.classList.remove('wall-bottom');
+			// Clear all walls.
+			pussy.classList.remove('wall-top', 'wall-right', 'wall-bottom', 'wall-left');
 
 			if (maze) {
-				//console.log(maze);
+				// Set outer perimeter.
+				if (iRow == 0) {
+					pussy.classList.add('wall-top');
+				}
+				if (iRow == 5) {
+					pussy.classList.add('wall-bottom');
+				}
+				if (iCol == 0) {
+					pussy.classList.add('wall-left');
+				}
+				if (iCol == 5) {
+					pussy.classList.add('wall-right');
+				}
 
+				// Set inner walls.
 				let dick = maze.Cells[iRow][iCol];
 				if (dick.Right) {
-					aoeu1.classList.add('wall-right');
+					pussy.classList.add('wall-right');
 				}
 				if (dick.Bottom) {
-					aoeu1.classList.add('wall-bottom');
+					pussy.classList.add('wall-bottom');
 				}
 
 			}
