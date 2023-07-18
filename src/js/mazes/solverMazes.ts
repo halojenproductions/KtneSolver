@@ -71,8 +71,20 @@ export function mazes_solve(e: HTMLInputElement): void {
 				aoeuDiv.innerHTML = '&nbsp;';
 			}
 
+
+			aoeu1.classList.remove('wall-right');
+			aoeu1.classList.remove('wall-bottom');
+
 			if (maze) {
 				//console.log(maze);
+
+				let dick = maze.Cells[iRow][iCol];
+				if (dick.Right) {
+					aoeu1.classList.add('wall-right');
+				}
+				if (dick.Bottom) {
+					aoeu1.classList.add('wall-bottom');
+				}
 
 			}
 		}
@@ -90,6 +102,7 @@ function identifyMaze(co: MazeCoords | null): Maze | null {
 		)
 	) ?? null;
 }
+
 
 function stringToCoord(s: string | null): MazeCoords | null {
 	if (s === '' || s == null) {

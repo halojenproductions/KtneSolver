@@ -54,7 +54,7 @@ body {
 						margin: 0;
 						padding: 0;
 
-						border-color: aqua;
+						border-color: $gray-600;
 						border-width: 2px;
 						border-style: solid;
 
@@ -63,11 +63,11 @@ body {
 						}
 
 						&.wall-right {
-							border-right-color: gold;
+							border-right-color: #00FF00;
 						}
 
 						&.wall-bottom {
-							border-bottom-color: gold;
+							border-bottom-color: #00FF00;
 						}
 
 						.cell-div {
