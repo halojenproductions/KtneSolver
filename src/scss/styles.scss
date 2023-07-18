@@ -73,19 +73,19 @@ body {
 						}
 
 						&.wall-top {
-							border-top-color: #00FF00;
+							border-top-color: $primary;
 						}
 
 						&.wall-right {
-							border-right-color: #00FF00;
+							border-right-color: $primary;
 						}
 
 						&.wall-bottom {
-							border-bottom-color: #00FF00;
+							border-bottom-color: $primary;
 						}
 
 						&.wall-left {
-							border-left-color: #00FF00;
+							border-left-color: $primary;
 						}
 
 						.cell-div {
@@ -93,19 +93,19 @@ body {
 							display: block;
 							aspect-ratio: 1 / 1; // Makes it square.
 							padding: 2px;
-
+							margin: 2px;
 						}
 
 						&.identifier .cell-div {
-							background-color: #00FF00;
+							background-color: $primary;
 						}
 
 						&.start .cell-div {
-							background-color: white;
+							background-color: $gray-400;
 						}
 
 						&.finish .cell-div {
-							background-color: brown;
+							background-color: $red;
 						}
 					}
 				}
