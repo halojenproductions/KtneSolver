@@ -25,7 +25,7 @@ interface WordsDictionary {
   "right": {  display: "Right", description: "", words: "YES, NOTHING, READY, PRESS, NO, WAIT, WHAT, RIGHT" },
   "sure": {  display: "Sure", description: "", words: "You ARE, DONE, LIKE, YOU'RE, YOU, HOLD, UH HUH, UR, SURE" },
   "u": {  display: "U", description: "", words: "UH HUH, SURE, NEXT, WHAT?, YOU'RE, UR, UH UH, DONE, U" },
-  "uhhuh": {  display: "Uhh Uh", description: "", words: "UH HUH" },
+  "uhhuh": {  display: "Uh huh", description: "", words: "UH HUH" },
   "uhuh": {  display: "Uh Uh", description: "", words: "UR, U, YOU ARE, YOU'RE, NEXT, UH UH" },
   "uhhh": {  display: "Uhhh", description: "", words: "READY, NOTHING, LEFT, WHAT, OKAY, YES, RIGHT, NO, PRESS, BLANK, UHHH" },
   "ur": {  display: "Ur", description: "Left top", words: "DONE, U, UR" },
@@ -56,16 +56,15 @@ interface WordsDictionary {
   "space": {  display: " ", description: "Left bottom", words: "" }
 };
 
-export function words_solve(): void { //todo: add input as parameter
-	
-  const stage: HTMLInputElement | null = document.querySelector(".words_stage:checked"); // ["View", "Push"]
-  const word: HTMLInputElement | null = document.querySelector(".words_display:checked");
+export function words_solve(): void { 
+  const word: HTMLInputElement | null = document.querySelector(".words:checked");
 
+  var stage = word?.attributes.getNamedItem("stage")
+  
   const sol: HTMLDivElement = document.querySelector("#Words div.solution") as HTMLDivElement;
-  var show = false;
-  //todo: is element is the stage group then clear and return;
+  var show = false;  
 
-  if (stage?.value === "Step 1") {
+  if (stage?.value === "1") {
     const selectedWord = word?.value;
     if (selectedWord !== undefined) {
       const position = wordsDictionary[selectedWord].description;
@@ -79,7 +78,7 @@ export function words_solve(): void { //todo: add input as parameter
 	  sol.classList.add("fs-2"); 
       show = true;
     }
-  } else if (stage?.value === "Step 2") {
+  } else if (stage?.value === "2") {
     const selectedWord = word?.value;
     if (selectedWord !== undefined) {
       const words = wordsDictionary[selectedWord].words;
