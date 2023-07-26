@@ -13,68 +13,93 @@ test.beforeEach(async ({ page }, testInfo) => {
 });
 
 test('red', async ({ page }) => {
-	await module.locator('#complicated_1_1_label').click(); //Red
+	await module.locator('#complicated_1_red_label').click();
 
 	await expect(serial).toBeVisible();
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Leave');
 });
 
 test('red, blue', async ({ page }) => {
-	await module.locator('#complicated_1_1_label').click(); //Red
-	await module.locator('#complicated_1_2_label').click(); //Blue
+	await module.locator('#complicated_1_red_label').click();
+	await module.locator('#complicated_1_blue_label').click();
 
 	await expect(serial).toBeVisible();
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Leave');
 });
 
 test('blue', async ({ page }) => {
-	await module.locator('#complicated_1_2_label').click(); //Blue
+	await module.locator('#complicated_1_blue_label').click();
 
 	await expect(serial).toBeVisible();
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Leave');
 });
 
 test('light, red, star', async ({ page }) => {
-	await module.locator('#complicated_1_0_label').click(); //Light
-	await module.locator('#complicated_1_1_label').click(); //Red
-	await module.locator('#complicated_1_3_label').click(); //Star
+	await module.locator('#complicated_1_light_label').click();
+	await module.locator('#complicated_1_red_label').click();
+	await module.locator('#complicated_1_star_label').click();
 
 	await expect(batteries).toBeVisible();
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Leave');
 });
 
 test('light, red', async ({ page }) => {
-	await module.locator('#complicated_1_0_label').click(); //Light
-	await module.locator('#complicated_1_1_label').click(); //Red
+	await module.locator('#complicated_1_light_label').click();
+	await module.locator('#complicated_1_red_label').click();
 
 	await expect(batteries).toBeVisible();
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Leave');
 });
 
 test('light, star', async ({ page }) => {
-	await module.locator('#complicated_1_0_label').click(); //Light
-	await module.locator('#complicated_1_3_label').click(); //Star
+	await module.locator('#complicated_1_light_label').click();
+	await module.locator('#complicated_1_star_label').click();
 
 	await expect(batteries).toBeVisible();
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Leave');
 });
 
 test('red, blue, star', async ({ page }) => {
-	await module.locator('#complicated_1_1_label').click(); //Red
-	await module.locator('#complicated_1_2_label').click(); //Blue
-	await module.locator('#complicated_1_3_label').click(); //Star
+	await module.locator('#complicated_1_red_label').click();
+	await module.locator('#complicated_1_blue_label').click();
+	await module.locator('#complicated_1_star_label').click();
 
 	await expect(parallel).toBeVisible();
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Leave');
 });
 
 
 test('light, blue, star', async ({ page }) => {
-	await module.locator('#complicated_1_0_label').click(); //Light
-	await module.locator('#complicated_1_2_label').click(); //Blue
-	await module.locator('#complicated_1_3_label').click(); //Star
+	await module.locator('#complicated_1_light_label').click();
+	await module.locator('#complicated_1_blue_label').click();
+	await module.locator('#complicated_1_star_label').click();
 
 	await expect(parallel).toBeVisible();
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Leave');
 });
 
 test('light, blue', async ({ page }) => {
-	await module.locator('#complicated_1_0_label').click(); //Light
-	await module.locator('#complicated_1_2_label').click(); //Blue
+	await module.locator('#complicated_1_light_label').click();
+	await module.locator('#complicated_1_blue_label').click();
 
 	await expect(parallel).toBeVisible();
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Leave');
 });
 
-//todo: test solution values
+test('white', async ({ page }) => {
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Cut');
+});
+
+test('star', async ({ page }) => {
+	await module.locator('#complicated_1_star_label').click();
+	
+
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Cut');
+});
+
+test('star, red', async ({ page }) => {
+	await module.locator('#complicated_1_star_label').click();
+	await module.locator('#complicated_1_red_label').click();
+
+	await expect(module.locator('#complicated_1_result_label')).toContainText('Cut');
+});

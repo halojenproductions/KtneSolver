@@ -1,71 +1,85 @@
 import { getById } from '../utilities';
 
-export function renderComplicated(): void {
-	let props = [["Red", "colour-red"], ["Blue", "colour-blue"], ["Star", ""], ["Light", ""], ["Cut", "text-success disabled"]];
-	let complicated_inputs = getById("ComplicatedForm");
+interface ComplicatedProperty {
+	id: string;
+	name: string;
+	className: string;
+}
 
-	for (let grpCounter = 1; grpCounter <= 6; grpCounter++) {
-		let group: HTMLDivElement = document.createElement("div");
-		group.className = `btn-group btn-group-sm d-flex flex-fill`;
-		if (grpCounter < 6) {
-			group.classList.add("mb-1");
-		}
-		group.setAttribute("role", "group");
+const props: ComplicatedProperty[] = [
+	{ id: "red", name: "Red", className: "colour-red" },
+	{ id: "blue", name: "Blue", className: "colour-blue" },
+	{ id: "star", name: "Star", className: "" },
+	{ id: "light", name: "Light", className: "" },
+	{ id: "result", name: "Cut", className: "text-success disabled" },
+];
 
-		for (let btnCounter = 0; btnCounter <= 4; btnCounter++) {
-			let input: HTMLInputElement = document.createElement("input");
-			input.id = `complicated_${grpCounter}_${btnCounter}`;
-			input.className = "btn-check complicated_button";
-			input.setAttribute("type", "checkbox");
-			input.setAttribute("name", `complicated_${grpCounter}`);
-			input.setAttribute("autocomplete", "off");
+function createComplicatedGroup(grpCounter: number): HTMLDivElement {
+	const group: HTMLDivElement = document.createElement("div");
+	group.className = `btn-group btn-group-sm d-flex flex-fill${grpCounter < 6 ? " mb-1" : ""}`;
+	group.setAttribute("role", "group");
 
-			let label: HTMLLabelElement = document.createElement("label");
-			label.className = `btn btn-outline-primary col-2 ${props[btnCounter][1]}`;
-			label.setAttribute("for", `complicated_${grpCounter}_${btnCounter}`);
-			label.appendChild(document.createTextNode(`${props[btnCounter][0]}`));
-			label.id = `complicated_${grpCounter}_${btnCounter}_label`;
+	for (const prop of props) {
+		const input: HTMLInputElement = document.createElement("input");
+		input.id = `complicated_${grpCounter}_${prop.id}`;
+		input.className = "btn-check complicated_button";
+		input.setAttribute("type", "checkbox");
+		input.setAttribute("name", `complicated_${grpCounter}`);
+		input.setAttribute("autocomplete", "off");
 
-			group.appendChild(input);
-			group.appendChild(label);
-		}
-		complicated_inputs.appendChild(group);
+		const label: HTMLLabelElement = document.createElement("label");
+		label.className = `btn btn-outline-primary col-2 ${prop.className}`;
+		label.setAttribute("for", `complicated_${grpCounter}_${prop.id}`);
+		label.appendChild(document.createTextNode(prop.name));
+		label.id = `complicated_${grpCounter}_${prop.id}_label`;
+
+		group.appendChild(input);
+		group.appendChild(label);
 	}
 
-	var complicated_optional = getById("complicated_optional");
+	return group;
+}
 
-	var groups = [
+export function renderComplicated(): void {
+	const complicatedInputs = getById("ComplicatedForm");
+
+	for (let grpCounter = 1; grpCounter <= 6; grpCounter++) {
+		const group = createComplicatedGroup(grpCounter);
+		complicatedInputs.appendChild(group);
+	}
+
+	const complicatedOptional = getById("complicated_optional");
+
+	const groups = [
 		["batteries", ["< 2 cells", ">= 2 cells"]],
 		["serial", ["Even serial", "Odd serial"]],
-		["parallel", ["Parallel port", "No parallel port"]]
+		["parallel", ["Parallel port", "No parallel port"]],
 	];
 
-	for (let grpCounter = 0; grpCounter <= groups.length - 1; grpCounter++) {
-		var group = groups[grpCounter][0].toString();
-		var prgDiv = document.createElement("div");
-		prgDiv.className = "btn-group btn-group-sm d-flex flex-fill d-none";
-		prgDiv.classList.add("mb-1");
+	for (const [groupName, btnLabels] of groups) {
+		const prgDiv = document.createElement("div");
+		prgDiv.className = "btn-group btn-group-sm d-flex flex-fill d-none mb-1";
 		prgDiv.setAttribute("role", "group");
-		prgDiv.id = `complicated_${group}`;
+		prgDiv.id = `complicated_${groupName}`;
 
-		for (let btnCounter = 0; btnCounter <= 1; btnCounter++) {
-
-			var btnName = group[0];
-			var input = document.createElement("input");
+		for (let btnCounter = 0; btnCounter < btnLabels.length; btnCounter++) {
+			const btnName = groupName[0];
+			const input = document.createElement("input");
 			input.id = `complicated_${btnName}${btnCounter + 1}`;
 			input.className = "btn-check";
 			input.setAttribute("type", "radio");
 			input.setAttribute("name", `complicated_${btnName}`);
 			input.setAttribute("autocomplete", "off");
 
-			var label = document.createElement("label");
-			label.className = `btn btn-outline-primary col-2`;
+			const label = document.createElement("label");
+			label.className = "btn btn-outline-primary col-2";
 			label.setAttribute("for", `complicated_${btnName}${btnCounter + 1}`);
-			label.appendChild(document.createTextNode(`${groups[grpCounter][1][btnCounter]}`));
+			label.appendChild(document.createTextNode(btnLabels[btnCounter]));
 
 			prgDiv.appendChild(input);
 			prgDiv.appendChild(label);
 		}
-		complicated_optional.appendChild(prgDiv);
+
+		complicatedOptional.appendChild(prgDiv);
 	}
 }
