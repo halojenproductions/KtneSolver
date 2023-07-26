@@ -38,6 +38,12 @@ body {
 
 #Mazes {
 	#MazesForm {
+		&.identified {
+			.maze-table .maze-body .maze-row .cell {
+				border-color: shade-color($primary, 75%);
+				//border-style: dotted;
+			}
+		}
 
 		.maze-table {
 			width: 80%;
@@ -65,7 +71,7 @@ body {
 						padding: 0;
 
 						border-color: $gray-600;
-						border-width: 2px;
+						border-width: 1px;
 						border-style: solid;
 
 						&.top-left {
@@ -74,18 +80,22 @@ body {
 
 						&.wall-top {
 							border-top-color: $primary;
+							border-top-style: solid;
 						}
 
 						&.wall-right {
 							border-right-color: $primary;
+							border-right-style: solid;
 						}
 
 						&.wall-bottom {
 							border-bottom-color: $primary;
+							border-bottom-style: solid;
 						}
 
 						&.wall-left {
 							border-left-color: $primary;
+							border-left-style: solid;
 						}
 
 						.cell-div {

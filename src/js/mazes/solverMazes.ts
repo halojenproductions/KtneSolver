@@ -72,9 +72,11 @@ export function mazes_solve(e: HTMLInputElement): void {
 			}
 
 			// Clear all walls.
-			pussy.classList.remove('wall-top', 'wall-right', 'wall-bottom', 'wall-left');
+			mazes_form.classList.remove('identified');
+			pussy.classList.remove('identified', 'wall-top', 'wall-right', 'wall-bottom', 'wall-left');
 
 			if (maze) {
+				mazes_form.classList.add('identified');
 				// Set outer perimeter.
 				if (iRow == 0) {
 					pussy.classList.add('wall-top');

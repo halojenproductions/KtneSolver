@@ -20,14 +20,14 @@ export function renderMazes(): void {
 	let mazeBody = document.createElement("tbody");
 	mazeBody.classList.add('maze-body');
 
-	let ohDear = ["", "A", "B", "C", "D", "E", "F"];
+	let ohDear = ["", "0", "1", "2", "3", "4", "5"];
 	let headerRow = document.createElement("tr");
-	for (let iCol = 0; iCol < 6+1; iCol++) {
+	for (let iCol = 0; iCol < 6 + 1; iCol++) {
 		let blurg = document.createElement("th");
+		blurg.classList.add('text-primary');
 		blurg.innerHTML = ohDear[iCol];
 		headerRow.appendChild(blurg);
 	}
-	mazeBody.appendChild(headerRow);
 
 	for (let iRow = 0; iRow < 6; iRow++) {
 		let row = document.createElement("tr");
@@ -35,7 +35,8 @@ export function renderMazes(): void {
 		row.classList.add('maze-row');
 
 		let headerCell = document.createElement("th");
-		headerCell.innerHTML = `${iRow + 1}`;
+		headerCell.classList.add('text-primary');
+		headerCell.innerHTML = `${(5 - iRow)}`;
 		row.appendChild(headerCell);
 
 		for (let iCol = 0; iCol < 6; iCol++) {
@@ -67,8 +68,9 @@ export function renderMazes(): void {
 			row.appendChild(cell);
 		}
 		mazeBody.appendChild(row);
-		mazeTable.appendChild(mazeBody);
 	}
+	mazeBody.appendChild(headerRow);
+	mazeTable.appendChild(mazeBody);
 	mazes_form.appendChild(mazeTable);
 
 
