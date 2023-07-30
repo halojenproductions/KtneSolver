@@ -1,4 +1,4 @@
-import { getById } from '../utilities';
+import { getById, icon } from '../utilities';
 import { Mazes } from './dataMazes';
 
 let mazes = Mazes;
@@ -65,6 +65,11 @@ export function renderMazes(): void {
 			cellDiv.innerHTML = '&nbsp;';
 
 			cell.appendChild(cellDiv);
+
+			let tit = icon("");
+			cell.appendChild(tit);
+
+
 			row.appendChild(cell);
 		}
 		mazeBody.appendChild(row);

@@ -80,3 +80,18 @@ export function renderClearButton(moduleId: ModuleId) {
 	clearButton.className = "btn btn-sm btn-outline-secondary float-end";
 	header.appendChild(clearButton);
 }
+
+export function icon(icon: string): SVGElement {
+	let symbol: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	symbol.classList.add("bi");
+	symbol.setAttribute("fill", "currentColor");
+	symbol.setAttribute("aria-hidden", "true");
+	symbol.setAttribute("width", "16");
+	symbol.setAttribute("height", "16");
+
+	let use: SVGUseElement = document.createElementNS('http://www.w3.org/2000/svg', "use");
+	use.setAttributeNS("http://www.w3.org/1999/xlink", "href", `icons/bootstrap-icons.svg#${icon}`);
+
+	symbol.appendChild(use);
+	return symbol;
+}

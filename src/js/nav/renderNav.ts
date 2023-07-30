@@ -1,4 +1,4 @@
-import { getById } from '../utilities';
+import { getById, icon } from '../utilities';
 
 class LinkClass {
 	name: string;
@@ -39,21 +39,24 @@ export function renderNav(): void {
 			externLink.href = `https://bombmanual.com/web/index.html#${link.externalAnchor}`;
 			externLink.target = "_blank";
 
-			let symbol: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-			symbol.classList.add("bi");
-			symbol.setAttribute("fill", "currentColor");
-			symbol.setAttribute("aria-hidden", "true");
-			symbol.setAttribute("width", "16");
-			symbol.setAttribute("height", "16");
+			// let symbol: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			// symbol.classList.add("bi");
+			// symbol.setAttribute("fill", "currentColor");
+			// symbol.setAttribute("aria-hidden", "true");
+			// symbol.setAttribute("width", "16");
+			// symbol.setAttribute("height", "16");
 
-			let use: SVGUseElement = document.createElementNS('http://www.w3.org/2000/svg', "use");
-			use.setAttributeNS("http://www.w3.org/1999/xlink", "href", "icons/bootstrap-icons.svg#book");
-			
-			symbol.appendChild(use);
+			// let use: SVGUseElement = document.createElementNS('http://www.w3.org/2000/svg', "use");
+			// use.setAttributeNS("http://www.w3.org/1999/xlink", "href", "icons/bootstrap-icons.svg#book");
+
+			// symbol.appendChild(use);
+
+			let symbol: SVGElement = icon("book");
+
 			externLink.appendChild(symbol);
 
 			if (!link.internalAnchor) {
-				externLink.insertAdjacentHTML('beforeend', "&nbsp;&nbsp;"+link.name);
+				externLink.insertAdjacentHTML('beforeend', "&nbsp;&nbsp;" + link.name);
 			}
 
 			navItem.appendChild(externLink);

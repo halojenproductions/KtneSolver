@@ -73,6 +73,7 @@ body {
 						border-color: $gray-600;
 						border-width: 1px;
 						border-style: solid;
+						position: relative;
 
 						&.top-left {
 							border-top-left-radius: 5px;
@@ -100,23 +101,84 @@ body {
 
 						.cell-div {
 							appearance: none;
-							display: block;
+							display: grid;
 							aspect-ratio: 1 / 1; // Makes it square.
 							padding: 2px;
 							margin: 2px;
+							cursor: pointer;
+
+							opacity: 0;
+							position: relative;
+							z-index: 1;
+							position: absolute;
+							top: 0px;
+							bottom: 0px;
+							left: 0px;
+							right: 0px;
+
 						}
 
-						&.identifier .cell-div {
-							background-color: $primary;
+						//display: grid;
+						align-items: center;
+						align-content: center;
+						vertical-align: middle;
+
+						svg.bi {
+							//z-index: -1;
+							margin: auto;
+							//margin-top: -100%;
+							//opacity: 0;
+							//position: fixed;
+							//float: left;
+							width: 50%;
+							height: 50%;
+							z-index: 0;
+							top: 0;
+							left: 0;
+							display: block;
 						}
 
-						&.start .cell-div {
-							background-color: $gray-400;
+						&.identifier {
+							.cell-div {
+								color: $primary;
+
+								background-image: url('../icons/bootstrap-icons.svg#shop');
+								//circle
+							}
+
+							svg.bi {
+								color: $primary;
+							}
 						}
 
-						&.finish .cell-div {
-							background-color: $red;
+						&.start {
+							.cell-div {
+								background-color: $gray-400;
+
+								//dot
+							}
+
+							svg.bi {
+								color: $gray-400;
+								width: 15%;
+								height: 15%;
+							}
 						}
+
+						&.finish {
+							.cell-div {
+								background-color: $red;
+								//triangle-fill
+							}
+
+							svg.bi {
+								color: $red;
+								width: 40%;
+								height: 40%;
+
+							}
+						}
+
 					}
 				}
 			}

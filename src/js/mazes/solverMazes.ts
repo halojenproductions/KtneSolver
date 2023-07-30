@@ -1,17 +1,20 @@
-import { getById } from '../utilities';
+import { getById, icon } from '../utilities';
 import { Mazes, MazeCoords, Maze } from './dataMazes';
 
 
-export function mazes_solve(e: HTMLInputElement): void {
-	console.log('solve me ' + e.parentElement?.id);
-	if (e.parentElement == null) {
-		return;
-	}
+export function mazes_solve(e: HTMLInputElement | undefined): void {
+
+	// TODO: Reset button doesn't clear the attributes. 
+
+	console.log('solve me ' + e?.parentElement?.id);
+	// if (e?.parentElement == null) {
+	// 	return;
+	// }
 
 
 	let clickCoords: MazeCoords | null = {
-		Row: parseInt(e.parentElement.getAttribute('row') ?? ''),
-		Col: parseInt(e.parentElement.getAttribute('col') ?? '')
+		Row: parseInt(e?.parentElement?.getAttribute('row') ?? ''),
+		Col: parseInt(e?.parentElement?.getAttribute('col') ?? '')
 	};
 
 	console.log(clickCoords);
@@ -56,20 +59,31 @@ export function mazes_solve(e: HTMLInputElement): void {
 			let cellCoords: MazeCoords = { Row: iRow, Col: iCol };
 			let pussy = getById(`cell_${iRow}_${iCol}`);
 			let aoeuDiv: HTMLDivElement = <HTMLDivElement>pussy.firstChild;
+			let ueoa: SVGElement = <SVGElement>pussy.lastChild;
+			let letMeGo: SVGElement = icon("")
+
 
 			pussy.classList.remove('identifier', 'start', 'finish');
+
 			if (cellsEqual(cellCoords, identifierCoords)) {
 				pussy.classList.add('identifier');
-				aoeuDiv.innerHTML = 'm';
+				//aoeuDiv.innerHTML = 'm';
+				letMeGo = icon("circle");
 			} else if (cellsEqual(cellCoords, startCoords)) {
 				pussy.classList.add('start');
 				aoeuDiv.innerHTML = 's';
+				//letMeGo = icon("dot");
+				letMeGo = icon("square-fill");
+
 			} else if (cellsEqual(cellCoords, finishCoords)) {
 				pussy.classList.add('finish');
 				aoeuDiv.innerHTML = 'f';
+				letMeGo = icon("triangle-fill");
 			} else {
 				aoeuDiv.innerHTML = '&nbsp;';
 			}
+			ueoa.replaceWith(letMeGo);
+
 
 			// Clear all walls.
 			mazes_form.classList.remove('identified');
