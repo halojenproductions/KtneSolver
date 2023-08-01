@@ -49,7 +49,7 @@ export function renderKeypad(): void {
 		input.setAttribute("value", `${idx}`);
 
 		let label = document.createElement("label");
-		label.className = `btn btn-outline-primary flex-grow-1 fs-3 `;
+		label.className = `btn btn-outline-primary flex-grow-1 fs-4 `;
 		label.setAttribute("for", `keypad_${idx}`);
 		label.setAttribute("data-symbolCode", `${val}`);
 		label.insertAdjacentHTML('beforeend', `&${val};`);
