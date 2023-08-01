@@ -34,49 +34,51 @@ export function renderMazes(): void {
 		row.id = `row_${iRow}`;
 		row.classList.add('maze-row');
 
-		let headerCell = document.createElement("th");
-		headerCell.classList.add('text-primary');
-		headerCell.innerHTML = `${(5 - iRow)}`;
-		row.appendChild(headerCell);
+		let th = document.createElement("th");
+		th.classList.add('text-primary');
+		th.innerHTML = `${(5 - iRow)}`;
+		row.appendChild(th);
 
 		for (let iCol = 0; iCol < 6; iCol++) {
-
-			let cell = document.createElement("td");
-			cell.id = `cell_${iRow}_${iCol}`;
-			cell.classList.add('cell');
+			let td = document.createElement("td");
+			td.id = `cell_${iRow}_${iCol}`;
+			td.classList.add('cell');
 
 			// Corner radii (doesn't work).
-			if (iRow == 0 && iCol == 0) {
-				cell.classList.add('top-left');
-			} else if (iRow == 0 && iCol == 5) {
-				cell.classList.add('top-right');
-			} else if (iRow == 5 && iCol == 0) {
-				cell.classList.add('bottom-left');
-			} else if (iRow == 5 && iCol == 5) {
-				cell.classList.add('bottom-right');
-			}
+			// if (iRow == 0 && iCol == 0) {
+			// 	td.classList.add('top-left');
+			// } else if (iRow == 0 && iCol == 5) {
+			// 	td.classList.add('top-right');
+			// } else if (iRow == 5 && iCol == 0) {
+			// 	td.classList.add('bottom-left');
+			// } else if (iRow == 5 && iCol == 5) {
+			// 	td.classList.add('bottom-right');
+			// }
 
-			cell.setAttribute('row', iRow.toString());
-			cell.setAttribute('col', iCol.toString());
+			td.setAttribute('row', iRow.toString());
+			td.setAttribute('col', iCol.toString());
 
-			let cellDiv = document.createElement("div");
-			cellDiv.classList.add('cell-div');
+			let divContainer = document.createElement("div");
+			divContainer.classList.add('cell-container');
 
-			cellDiv.innerHTML = '&nbsp;';
+			let divOverlay = document.createElement("div");
+			divOverlay.classList.add('cell-div');
 
-			cell.appendChild(cellDiv);
+			//divOverlay.innerHTML = '&nbsp;';
 
-			let tit = icon("");
-			cell.appendChild(tit);
+			divContainer.appendChild(divOverlay);
+
+			let svgIcon = icon("");
+			divContainer.appendChild(svgIcon);
 
 
-			row.appendChild(cell);
+			td.appendChild(divContainer);
+			row.appendChild(td);
 		}
 		mazeBody.appendChild(row);
 	}
+
 	mazeBody.appendChild(headerRow);
 	mazeTable.appendChild(mazeBody);
 	mazes_form.appendChild(mazeTable);
-
-
 }

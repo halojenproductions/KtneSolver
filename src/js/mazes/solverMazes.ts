@@ -3,32 +3,31 @@ import { Mazes, MazeCoords, Maze } from './dataMazes';
 
 
 export function mazes_solve(e: HTMLInputElement | undefined): void {
-
-	// TODO: Reset button doesn't clear the attributes. 
-
-	console.log('solve me ' + e?.parentElement?.id);
-	// if (e?.parentElement == null) {
-	// 	return;
-	// }
-
-
-	let clickCoords: MazeCoords | null = {
-		Row: parseInt(e?.parentElement?.getAttribute('row') ?? ''),
-		Col: parseInt(e?.parentElement?.getAttribute('col') ?? '')
-	};
-
-	console.log(clickCoords);
-
 	var mazes_form = getById("MazesForm");
 	if (mazes_form == null) {
 		return;
 	}
 
+	let clickCoords: MazeCoords | null;
+	let identifierCoords: MazeCoords | null;
+	let startCoords: MazeCoords | null;
+	let finishCoords: MazeCoords | null;
 
-	let identifierCoords: MazeCoords | null = stringToCoord(mazes_form.getAttribute('identifier'));
-	let startCoords: MazeCoords | null = stringToCoord(mazes_form.getAttribute('start'));
-	let finishCoords: MazeCoords | null = stringToCoord(mazes_form.getAttribute('finish'));
-
+	if (e == undefined) {
+		// Reset button was clicked.
+		clickCoords = null;
+		identifierCoords = null;
+		startCoords = null;
+		finishCoords = null;
+	} else {
+		clickCoords = {
+			Row: parseInt(e?.parentElement?.parentElement?.getAttribute('row') ?? ''),
+			Col: parseInt(e?.parentElement?.parentElement?.getAttribute('col') ?? '')
+		};
+		identifierCoords = stringToCoord(mazes_form.getAttribute('identifier'));
+		startCoords = stringToCoord(mazes_form.getAttribute('start'));
+		finishCoords = stringToCoord(mazes_form.getAttribute('finish'));
+	}
 
 	if (cellsEqual(identifierCoords, clickCoords)) { // If a lit cell was clicked.
 		identifierCoords = null;
@@ -52,68 +51,64 @@ export function mazes_solve(e: HTMLInputElement | undefined): void {
 	let maze: Maze | null = identifyMaze(identifierCoords);
 
 	// Set all the things!
-
-
 	for (let iRow = 0; iRow < 6; iRow++) {
 		for (let iCol = 0; iCol < 6; iCol++) {
 			let cellCoords: MazeCoords = { Row: iRow, Col: iCol };
-			let pussy = getById(`cell_${iRow}_${iCol}`);
-			let aoeuDiv: HTMLDivElement = <HTMLDivElement>pussy.firstChild;
-			let ueoa: SVGElement = <SVGElement>pussy.lastChild;
-			let letMeGo: SVGElement = icon("")
+			let tdCell = getById(`cell_${iRow}_${iCol}`);
+			let divContainer: HTMLDivElement = <HTMLDivElement>tdCell.firstChild;
+			let divOverlay: HTMLDivElement = <HTMLDivElement>divContainer.firstChild;
+			let svgSymbol: SVGElement = <SVGElement>divContainer.lastChild;
+			let svgIcon: SVGElement = icon("")
 
-
-			pussy.classList.remove('identifier', 'start', 'finish');
+			tdCell.classList.remove('identifier', 'start', 'finish');
 
 			if (cellsEqual(cellCoords, identifierCoords)) {
-				pussy.classList.add('identifier');
-				//aoeuDiv.innerHTML = 'm';
-				letMeGo = icon("circle");
+				tdCell.classList.add('identifier');
+				divOverlay.innerHTML = 'M';
+				svgIcon = icon("circle");
 			} else if (cellsEqual(cellCoords, startCoords)) {
-				pussy.classList.add('start');
-				aoeuDiv.innerHTML = 's';
-				//letMeGo = icon("dot");
-				letMeGo = icon("square-fill");
+				tdCell.classList.add('start');
+				divOverlay.innerHTML = 'S';
+				svgIcon = icon("square-fill");
 
 			} else if (cellsEqual(cellCoords, finishCoords)) {
-				pussy.classList.add('finish');
-				aoeuDiv.innerHTML = 'f';
-				letMeGo = icon("triangle-fill");
+				tdCell.classList.add('finish');
+				divOverlay.innerHTML = 'F';
+				svgIcon = icon("triangle-fill");
 			} else {
-				aoeuDiv.innerHTML = '&nbsp;';
+				divOverlay.innerHTML = '&nbsp;';
 			}
-			ueoa.replaceWith(letMeGo);
-
+			svgSymbol.replaceWith(svgIcon);
 
 			// Clear all walls.
 			mazes_form.classList.remove('identified');
-			pussy.classList.remove('identified', 'wall-top', 'wall-right', 'wall-bottom', 'wall-left');
+			tdCell.classList.remove('identified', 'wall-top', 'wall-right', 'wall-bottom', 'wall-left');
 
 			if (maze) {
 				mazes_form.classList.add('identified');
+
 				// Set outer perimeter.
 				if (iRow == 0) {
-					pussy.classList.add('wall-top');
+					tdCell.classList.add('wall-top');
 				}
 				if (iRow == 5) {
-					pussy.classList.add('wall-bottom');
+					tdCell.classList.add('wall-bottom');
 				}
 				if (iCol == 0) {
-					pussy.classList.add('wall-left');
+					tdCell.classList.add('wall-left');
 				}
 				if (iCol == 5) {
-					pussy.classList.add('wall-right');
+					tdCell.classList.add('wall-right');
 				}
 
 				// Set inner walls.
-				let dick = maze.Cells[iRow][iCol];
-				if (dick.Right) {
-					pussy.classList.add('wall-right');
+				let mazeCell = maze.Cells[iRow][iCol];
+				if (mazeCell.Right) {
+					tdCell.classList.add('wall-right');
 				}
-				if (dick.Bottom) {
-					pussy.classList.add('wall-bottom');
+				if (mazeCell.Bottom) {
+					tdCell.classList.add('wall-bottom');
 				}
-
 			}
 		}
 	}
@@ -131,7 +126,6 @@ function identifyMaze(co: MazeCoords | null): Maze | null {
 	) ?? null;
 }
 
-
 function stringToCoord(s: string | null): MazeCoords | null {
 	if (s === '' || s == null) {
 		return null;
@@ -144,6 +138,7 @@ function stringToCoord(s: string | null): MazeCoords | null {
 	}
 	return new MazeCoords(row, col);
 }
+
 function coordToString(co: MazeCoords | null): string {
 	if (co === null) {
 		return "";

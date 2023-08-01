@@ -41,12 +41,20 @@ body {
 		&.identified {
 			.maze-table .maze-body .maze-row .cell {
 				border-color: shade-color($primary, 75%);
-				//border-style: dotted;
+				border-color: $black;
+				border-style: dotted;
 			}
 		}
 
 		.maze-table {
 			width: 80%;
+
+			* {
+				transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+				transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+				transition-delay: 0s, 0s, 0s, 0s;
+				transition-property: color, background-color, border-color, box-shadow;
+			}
 
 			//border-collapse: separate;
 			//border-spacing: 0px;
@@ -99,83 +107,81 @@ body {
 							border-left-style: solid;
 						}
 
-						.cell-div {
-							appearance: none;
-							display: grid;
-							aspect-ratio: 1 / 1; // Makes it square.
+						.cell-container {
+							position: relative;
 							padding: 2px;
 							margin: 2px;
-							cursor: pointer;
+							aspect-ratio: 1 / 1; // Makes it square.
+							display: grid;
+							align-items: center;
+							align-content: center;
+							vertical-align: middle;
 
-							opacity: 0;
-							position: relative;
-							z-index: 1;
-							position: absolute;
-							top: 0px;
-							bottom: 0px;
-							left: 0px;
-							right: 0px;
+							.cell-div {
+								display: grid;
+								cursor: pointer;
+								//aspect-ratio: 1 / 1; // Makes it square.
 
-						}
+								opacity: 0;
+								z-index: 1;
+								position: absolute;
+								top: 0px;
+								bottom: 0px;
+								left: 0px;
+								right: 0px;
 
-						//display: grid;
-						align-items: center;
-						align-content: center;
-						vertical-align: middle;
+							}
 
-						svg.bi {
-							//z-index: -1;
-							margin: auto;
-							//margin-top: -100%;
-							//opacity: 0;
-							//position: fixed;
-							//float: left;
-							width: 50%;
-							height: 50%;
-							z-index: 0;
-							top: 0;
-							left: 0;
-							display: block;
+
+							svg.bi {
+								margin: auto;
+								width: 80%;
+								height: 80%;
+
+								z-index: 0;
+								top: 0;
+								left: 0;
+								display: block;
+							}
 						}
 
 						&.identifier {
-							.cell-div {
-								color: $primary;
+							.cell-container {
+								.cell-div {
+									color: $primary;
+								}
 
-								background-image: url('../icons/bootstrap-icons.svg#shop');
-								//circle
-							}
-
-							svg.bi {
-								color: $primary;
+								svg.bi {
+									color: $primary;
+								}
 							}
 						}
 
 						&.start {
-							.cell-div {
-								background-color: $gray-400;
+							.cell-container {
+								.cell-div {
+									background-color: $gray-400;
+								}
 
-								//dot
-							}
-
-							svg.bi {
-								color: $gray-400;
-								width: 15%;
-								height: 15%;
+								svg.bi {
+									color: $gray-400;
+									width: 45%;
+									height: 45%;
+								}
 							}
 						}
 
 						&.finish {
-							.cell-div {
-								background-color: $red;
-								//triangle-fill
-							}
+							.cell-container {
+								.cell-div {
+									background-color: $red;
+								}
 
-							svg.bi {
-								color: $red;
-								width: 40%;
-								height: 40%;
-
+								svg.bi {
+									color: $red;
+									width: 65%;
+									height: 65%;
+								}
 							}
 						}
 
