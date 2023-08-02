@@ -29,11 +29,11 @@ export function mazes_solve(e: HTMLInputElement | undefined): void {
 		finishCoords = stringToCoord(mazes_form.getAttribute('finish'));
 	}
 
-	if (cellsEqual(identifierCoords, clickCoords)) { // If a lit cell was clicked.
+	if (cellsEqual(clickCoords, identifierCoords)) { // If a lit cell was clicked.
 		identifierCoords = null;
-	} else if (cellsEqual(startCoords, clickCoords)) {
+	} else if (cellsEqual(clickCoords, startCoords)) {
 		startCoords = null;
-	} else if (cellsEqual(finishCoords, clickCoords)) {
+	} else if (cellsEqual(clickCoords, finishCoords)) {
 		finishCoords = null;
 	} else if (identifierCoords == null) {	// If an unlit cell was clicked.
 		identifierCoords = clickCoords;
@@ -41,6 +41,8 @@ export function mazes_solve(e: HTMLInputElement | undefined): void {
 		startCoords = clickCoords;
 	} else if (finishCoords == null) {
 		finishCoords = clickCoords;
+	} else {
+		startCoords = clickCoords; // Moveable start position (i.e. current position).
 	}
 
 	mazes_form.setAttribute('identifier', coordToString(identifierCoords));
