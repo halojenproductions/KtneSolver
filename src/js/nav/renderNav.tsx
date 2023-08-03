@@ -1,6 +1,13 @@
 import { getById } from '../utilities';
+import { createRoot } from "react-dom/client";
+import Nav from "./NavItem";
 
-class LinkClass {
+
+const root = createRoot(getById("Nav"));
+root.render(<Nav />);
+
+
+export class LinkClass {
 	name: string;
 	internalAnchor: string;
 	externalAnchor: string;
@@ -48,12 +55,12 @@ export function renderNav(): void {
 
 			let use: SVGUseElement = document.createElementNS('http://www.w3.org/2000/svg', "use");
 			use.setAttributeNS("http://www.w3.org/1999/xlink", "href", "icons/bootstrap-icons.svg#book");
-			
+
 			symbol.appendChild(use);
 			externLink.appendChild(symbol);
 
 			if (!link.internalAnchor) {
-				externLink.insertAdjacentHTML('beforeend', "&nbsp;&nbsp;"+link.name);
+				externLink.insertAdjacentHTML('beforeend', "&nbsp;&nbsp;" + link.name);
 			}
 
 			navItem.appendChild(externLink);

@@ -19,7 +19,18 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.ts$/,
+				test: /\.(js|jsx)$/,
+				exclude: [
+					/node_modules/,
+					/playwright/,
+					/\.config.ts$/,
+					/\.config.js$/,
+					/\.spec.ts$/
+				],
+				use: ["babel-loader"],
+			},
+			{
+				test: /\.(ts|tsx)$/,
 				exclude: [
 					/node_modules/,
 					/playwright/,
