@@ -32,13 +32,14 @@ export function memory_solve(e: HTMLInputElement): void {
 }
 
 function handle_inputs(element: ElementData) {
-	let text = getById(`memory_label_${element.stage}`).textContent;
+	let type = getById(`memory_label_${element.stage}`).getAttribute('data-type');
 
-	if (text?.startsWith("Label")) {
+	if (type === label) {
 		data_persistance(element.stage, position, element.value);
-	} else if (text?.startsWith("Position")) {
+	} else if (type === position) {
 		data_persistance(element.stage, label, element.value);
 	}
+
 }
 
 function handle_display(element: ElementData) {
@@ -201,7 +202,9 @@ function handle_display(element: ElementData) {
 	}
 
 	data_persistance(element.stage, type, number);
-	getById(`memory_label_${element.stage}`).appendChild(document.createTextNode(`${type} ${number}`));
+	var stageLabel = getById(`memory_label_${element.stage}`)
+	stageLabel.appendChild(document.createTextNode(`${type} ${number}`));
+	stageLabel.setAttribute(`data-type`, type);
 }
 
 function data_persistance(stage: number, type: string, number: number) {
