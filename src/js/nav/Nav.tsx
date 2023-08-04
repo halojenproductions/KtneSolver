@@ -27,6 +27,36 @@ const links: Array<LinkClass> = [
 
 const results: any = [];
 
+const InternalAnchor = (link: LinkClass) =>
+	<a
+		className='nav-link align-self-start'
+		href={`#${link.internalAnchor}`}
+		target='_blank'
+	>
+		{link.name}
+	</a>
+
+const ExternalAnchor = (link: LinkClass) =>
+	<a
+		className='nav-link align-items-center'
+		href={`https://bombmanual.com/web/index.html#${link.externalAnchor}`}
+		target='_blank'
+	>
+		<svg
+			className='bi'
+			fill='currentColor'
+			aria-hidden='true'
+			width="16"
+			height="16"
+		>
+			<use
+				href="icons/bootstrap-icons.svg#book"
+			/>
+		</svg>
+		{!link.internalAnchor &&
+			<>&nbsp;&nbsp;{link.name}</>
+		}
+	</a>
 
 const Nav = () => <>
 	{links.map((link, index) => {
@@ -38,47 +68,12 @@ const Nav = () => <>
 				key={index}
 				className="nav-item d-inline-flex flex-row align-items-center"
 			>
-				{
-					link.externalAnchor &&
-					<a
-						className='nav-link align-items-center'
-						href={`https://bombmanual.com/web/index.html#${link.externalAnchor}`}
-						target='_blank'
-					>
-						<svg
-							className='bi'
-							fill='currentColor'
-							aria-hidden='true'
-							width="16"
-							height="16"
-						>
-							<use
-								href="icons/bootstrap-icons.svg#book"
-							/>
-						</svg>
-						{!link.internalAnchor &&
-							<>&nbsp;&nbsp;{link.name}</>
-						}
-					</a>
-				}
-				{
-					link.internalAnchor &&
-					<a
-						className='nav-link align-self-start'
-						href={`#${link.internalAnchor}`}
-						target='_blank'
-					>
-						{link.name}
-					</a>
-				}
+				{link.externalAnchor && ExternalAnchor(link)}
+				{link.internalAnchor && InternalAnchor(link)}
 			</li>
 		);
 	})}
 	{results}
 </>
-
-const NavItem = () =>
-	<li>
-	</li>
 
 export default Nav;

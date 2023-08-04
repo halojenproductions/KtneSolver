@@ -1,13 +1,6 @@
 import { getById } from '../utilities';
-import { createRoot } from "react-dom/client";
-import Nav from "./NavItem";
 
-
-const root = createRoot(getById("Nav"));
-root.render(<Nav />);
-
-
-export class LinkClass {
+class LinkClass {
 	name: string;
 	internalAnchor: string;
 	externalAnchor: string;
