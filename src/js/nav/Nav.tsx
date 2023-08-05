@@ -20,7 +20,7 @@ const links: Array<LinkClass> = [
 	new LinkClass("Morse code", "", "MorseCode"),
 	new LinkClass("Complicated wires", "Complicated", "ComplicatedWires"),
 	new LinkClass("Wire sequences", "Sequences", "WireSequences"),
-	new LinkClass("Mazes", "", "Mazes"),
+	new LinkClass("Mazes", "Mazes", "Mazes"),
 	new LinkClass("Password", "Password", "Passwords"),
 	new LinkClass("Knobs", "Knobs", "Knobs"),
 ];
@@ -31,7 +31,6 @@ const InternalAnchor = (link: LinkClass) =>
 	<a
 		className='nav-link align-self-start'
 		href={`#${link.internalAnchor}`}
-		target='_blank'
 	>
 		{link.name}
 	</a>
@@ -60,10 +59,7 @@ const ExternalAnchor = (link: LinkClass) =>
 
 const Nav = () => <>
 	{links.map((link, index) => {
-		//console.log("aoeu");
-		//link.externalAnchor && NavItem();
 		results.push(
-
 			<li
 				key={index}
 				className="nav-item d-inline-flex flex-row align-items-center"
