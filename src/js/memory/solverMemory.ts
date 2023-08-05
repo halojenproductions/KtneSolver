@@ -11,15 +11,14 @@ interface ElementData {
 
 export function memory_solve(e: HTMLInputElement): void {
 	clean_form();
-	
+
 	const element: ElementData = {
 		name: e?.getAttribute("data-elementname") ?? null,
 		stage: parseInt(e?.getAttribute("data-elementstage") ?? "0"),
 		value: parseInt(e?.getAttribute("data-elementvalue") ?? "0")
-	  };
+	};
 
 	if (element.name && element.stage && element.value) {
-
 		if (element.name === "display") {
 			handle_display(element);
 
@@ -33,12 +32,14 @@ export function memory_solve(e: HTMLInputElement): void {
 }
 
 function handle_inputs(element: ElementData) {
-	let row = getById(`memory_stage_${element.stage}`);
-	if (row.getAttribute("data-label")) {
+	let type = getById(`memory_label_${element.stage}`).getAttribute('data-type');
+
+	if (type === label) {
 		data_persistance(element.stage, position, element.value);
-	} else if (row.getAttribute("data-position")) {
+	} else if (type === position) {
 		data_persistance(element.stage, label, element.value);
 	}
+
 }
 
 function handle_display(element: ElementData) {
@@ -201,7 +202,9 @@ function handle_display(element: ElementData) {
 	}
 
 	data_persistance(element.stage, type, number);
-	getById(`memory_label_${element.stage}`).appendChild(document.createTextNode(`${type} ${number}`));
+	var stageLabel = getById(`memory_label_${element.stage}`)
+	stageLabel.appendChild(document.createTextNode(`${type} ${number}`));
+	stageLabel.setAttribute(`data-type`, type);
 }
 
 function data_persistance(stage: number, type: string, number: number) {

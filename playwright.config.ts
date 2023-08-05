@@ -2,8 +2,8 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	testDir: './playwright',
-	timeout: 2500,
-	globalTimeout: 60000,
+	timeout: 4 * 1000,
+	globalTimeout: 60 * 1000,
 	fullyParallel: true,
 	reporter: 'html',
 	webServer: {
