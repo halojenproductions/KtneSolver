@@ -31,9 +31,8 @@ export function renderWords(): void {
 		.filter(([_, value]) => value.description !== "")
 		.sort((a, b) => a[0].localeCompare(b[0]));
 
-	let index = 0;
 
-	filteredEntriesStage1.forEach(([key, value]) => {
+	filteredEntriesStage1.forEach(([key, value], index) => {
 		const [input, label] = createWordElement(1, key, value);
 
 		group.setAttribute("data-stage", "1");
@@ -43,12 +42,9 @@ export function renderWords(): void {
 		group.appendChild(input);
 		group.appendChild(label);
 
-		index++;
-
 		if (index % RowWrap === 0 || index === filteredEntriesStage1.length) {
 			words_inputs.appendChild(group);
 			group = document.createElement("div");
-
 		}
 	});
 
@@ -68,9 +64,7 @@ export function renderWords(): void {
 		.filter(([_, value]) => value.words !== "")
 		.sort((a, b) => a[0].localeCompare(b[0]));
 
-	index = 0;
-
-	filteredEntriesStage2.forEach(([key, value]) => {
+	filteredEntriesStage2.forEach(([key, value], index) => {
 		const [input, label] = createWordElement(2, key, value);
 
 		group.setAttribute("role", "group");
@@ -78,8 +72,6 @@ export function renderWords(): void {
 
 		group.appendChild(input);
 		group.appendChild(label);
-
-		index++;
 
 		if (index % RowWrap === 0 || index === filteredEntriesStage2.length) {
 			stage2group.appendChild(group);
