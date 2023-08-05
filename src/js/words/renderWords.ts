@@ -42,9 +42,10 @@ export function renderWords(): void {
 		group.appendChild(input);
 		group.appendChild(label);
 
-		if (index % RowWrap === 0 || index === filteredEntriesStage1.length) {
+		if (++index % RowWrap === 0 || index === filteredEntriesStage1.length) {
 			words_inputs.appendChild(group);
 			group = document.createElement("div");
+
 		}
 	});
 
@@ -73,7 +74,7 @@ export function renderWords(): void {
 		group.appendChild(input);
 		group.appendChild(label);
 
-		if (index % RowWrap === 0 || index === filteredEntriesStage2.length) {
+		if (++index % RowWrap === 0 || index === filteredEntriesStage2.length) {
 			stage2group.appendChild(group);
 			group = document.createElement("div");
 		}
