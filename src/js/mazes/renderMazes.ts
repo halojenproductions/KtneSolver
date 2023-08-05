@@ -1,10 +1,4 @@
 import { getById, icon } from '../utilities';
-import { Mazes } from './dataMazes';
-
-let mazes = Mazes;
-
-console.log(mazes);
-console.log(mazes[0].Cells[1][2]);
 
 export function renderMazes(): void {
 
@@ -20,25 +14,18 @@ export function renderMazes(): void {
 	let mazeBody = document.createElement("tbody");
 	mazeBody.classList.add('maze-body');
 
-	let xAxisLabels = ["", "0", "1", "2", "3", "4", "5"];
-	let headerRow = document.createElement("tr");
-	for (let iCol = 0; iCol < 6 + 1; iCol++) {
-		let blurg = document.createElement("th");
-		blurg.classList.add('text-primary');
-		blurg.innerHTML = xAxisLabels[iCol];
-		headerRow.appendChild(blurg);
-	}
-
 	for (let iRow = 0; iRow < 6; iRow++) {
 		let row = document.createElement("tr");
 		row.id = `row_${iRow}`;
 		row.classList.add('maze-row');
 
+		// Y axis label.
 		let th = document.createElement("th");
 		th.classList.add('text-primary');
 		th.innerHTML = `${(5 - iRow)}`;
 		row.appendChild(th);
 
+		// Maze row cells.
 		for (let iCol = 0; iCol < 6; iCol++) {
 			let td = document.createElement("td");
 			td.id = `cell_${iRow}_${iCol}`;
@@ -66,14 +53,24 @@ export function renderMazes(): void {
 
 			divContainer.appendChild(divOverlay);
 
-			let svgIcon = icon("");
+			let svgIcon = icon(""); // Blank symbol, will be an actual vector in the solver.
 			divContainer.appendChild(svgIcon);
-
 
 			td.appendChild(divContainer);
 			row.appendChild(td);
 		}
 		mazeBody.appendChild(row);
+	}
+
+	// Render footer row (X axis labels).
+	// It's an array because it needs blank in the first column.
+	let xAxisLabels = ["", "0", "1", "2", "3", "4", "5"];
+	let headerRow = document.createElement("tr");
+	for (let iCol = 0; iCol < 6 + 1; iCol++) {
+		let th = document.createElement("th");
+		th.classList.add('text-primary');
+		th.innerHTML = xAxisLabels[iCol];
+		headerRow.appendChild(th);
 	}
 
 	mazeBody.appendChild(headerRow);
