@@ -20,12 +20,12 @@ export function renderMazes(): void {
 	let mazeBody = document.createElement("tbody");
 	mazeBody.classList.add('maze-body');
 
-	let ohDear = ["", "0", "1", "2", "3", "4", "5"];
+	let xAxisLabels = ["", "0", "1", "2", "3", "4", "5"];
 	let headerRow = document.createElement("tr");
 	for (let iCol = 0; iCol < 6 + 1; iCol++) {
 		let blurg = document.createElement("th");
 		blurg.classList.add('text-primary');
-		blurg.innerHTML = ohDear[iCol];
+		blurg.innerHTML = xAxisLabels[iCol];
 		headerRow.appendChild(blurg);
 	}
 
@@ -63,8 +63,6 @@ export function renderMazes(): void {
 
 			let divOverlay = document.createElement("div");
 			divOverlay.classList.add('cell-div');
-
-			//divOverlay.innerHTML = '&nbsp;';
 
 			divContainer.appendChild(divOverlay);
 
