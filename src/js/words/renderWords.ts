@@ -1,6 +1,8 @@
 import { getById, hide } from '../utilities';
 import { wordsDictionary } from './dataWords';
 
+const RowWrap: number = 7;
+
 function createWordElement(stage: number, key: string, value: any) {
 	let input = document.createElement("input");
 	input.id = `words_stage${stage}_${key}`;
@@ -43,7 +45,7 @@ export function renderWords(): void {
 
 		index++;
 
-		if (index % 8 === 0 || index === filteredEntriesStage1.length) {
+		if (index % RowWrap === 0 || index === filteredEntriesStage1.length) {
 			words_inputs.appendChild(group);
 			group = document.createElement("div");
 
@@ -79,7 +81,7 @@ export function renderWords(): void {
 
 		index++;
 
-		if (index % 8 === 0 || index === filteredEntriesStage2.length) {
+		if (index % RowWrap === 0 || index === filteredEntriesStage2.length) {
 			stage2group.appendChild(group);
 			group = document.createElement("div");
 		}
