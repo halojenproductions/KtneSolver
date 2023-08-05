@@ -1,5 +1,5 @@
 import { getById, hide } from '../utilities';
-import { wordsDictionary } from './solverWords';
+import { wordsDictionary } from './dataWords';
 
 function createWordElement(stage: number, key: string, value: any) {
 	let input = document.createElement("input");
