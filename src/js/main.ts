@@ -15,6 +15,8 @@ import { setupComplicated } from './complicated/setupComplicated';
 import { renderComplicated } from './complicated/renderComplicated';
 import { setupSequences } from './sequences/setupSequences';
 import { renderSequences } from './sequences/renderSequences';
+import { setupMazes } from './mazes/setupMazes';
+import { renderMazes } from './mazes/renderMazes';
 import { setupMemory } from './memory/setupMemory';
 import { renderMemory } from './memory/renderMemory';
 import { renderNav } from './nav/renderNav';
@@ -66,6 +68,10 @@ renderSequences();
 setupSequences();
 
 // Mazes
+renderClearButton('Mazes');
+renderMazes();
+setupMazes();
+
 
 // Password
 renderClearButton('Password');

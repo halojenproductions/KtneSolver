@@ -36,6 +36,162 @@ body {
 	min-width: 380px;
 }
 
+#Mazes {
+	#MazesForm {
+		&.identified {
+			.maze-table .maze-body .maze-row .cell {
+				border-color: shade-color($primary, 75%);
+				border-color: $black;
+				border-style: dotted;
+			}
+		}
+
+		.maze-table {
+			width: 80%;
+
+			* {
+				transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+				transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+				transition-delay: 0s, 0s, 0s, 0s;
+				transition-property: color, background-color, border-color, box-shadow;
+			}
+
+			//border-collapse: separate;
+			//border-spacing: 0px;
+			.maze-body {
+				//border-color: #00BB00;
+				//border-width: 2px;
+				//border-style: solid;
+
+				tr {
+					border-style: none;
+				}
+
+				th {
+					border-style: none;
+					text-align: center;
+				}
+
+				.maze-row {
+
+					.cell {
+						margin: 0;
+						padding: 0;
+
+						border-color: $gray-600;
+						border-width: 1px;
+						border-style: solid;
+						position: relative;
+
+						&.top-left {
+							border-top-left-radius: 5px;
+						}
+
+						&.wall-top {
+							border-top-color: $primary;
+							border-top-style: solid;
+						}
+
+						&.wall-right {
+							border-right-color: $primary;
+							border-right-style: solid;
+						}
+
+						&.wall-bottom {
+							border-bottom-color: $primary;
+							border-bottom-style: solid;
+						}
+
+						&.wall-left {
+							border-left-color: $primary;
+							border-left-style: solid;
+						}
+
+						.cell-container {
+							position: relative;
+							padding: 2px;
+							margin: 2px;
+							aspect-ratio: 1 / 1; // Makes it square.
+							display: grid;
+							align-items: center;
+							align-content: center;
+							vertical-align: middle;
+
+							.cell-div {
+								display: grid;
+								cursor: pointer;
+								//aspect-ratio: 1 / 1; // Makes it square.
+
+								opacity: 0;
+								z-index: 1;
+								position: absolute;
+								top: 0px;
+								bottom: 0px;
+								left: 0px;
+								right: 0px;
+
+							}
+
+
+							svg.bi {
+								margin: auto;
+								width: 80%;
+								height: 80%;
+
+								z-index: 0;
+								top: 0;
+								left: 0;
+								display: block;
+							}
+						}
+
+						&.identifier {
+							.cell-container {
+								.cell-div {
+									color: $primary;
+								}
+
+								svg.bi {
+									color: $primary;
+								}
+							}
+						}
+
+						&.start {
+							.cell-container {
+								.cell-div {
+									background-color: $gray-400;
+								}
+
+								svg.bi {
+									color: $gray-400;
+									width: 45%;
+									height: 45%;
+								}
+							}
+						}
+
+						&.finish {
+							.cell-container {
+								.cell-div {
+									background-color: $red;
+								}
+
+								svg.bi {
+									color: $red;
+									width: 65%;
+									height: 65%;
+								}
+							}
+						}
+
+					}
+				}
+			}
+		}
+	}
+}
+
 #Password {
 	div.solution {
 		text-transform: uppercase;

@@ -1,9 +1,9 @@
-export type ModuleId = "Basic" | "Complicated" | "Sequences" | "Keypad" | "Knobs" | "Memory" | "MissileButton" | "Password" | "Simon" | "Words";
+export type ModuleId = "Basic" | "Complicated" | "Sequences" | "Keypad" | "Knobs" | "Memory" | "MissileButton" | "Mazes" | "Password" | "Simon" | "Words";
 
 export class BuildColour {
 	id: string;
 	name: string;
-	
+
 	constructor(value: string) {
 		this.id = value.toLowerCase();
 		this.name = value;
@@ -19,9 +19,8 @@ export const Colour = {
 	Black: "Black"
 }
 
-export function ToLowerArray(array : string[]) : string[]
-{
-	return array.map(e =>{
+export function ToLowerArray(array: string[]): string[] {
+	return array.map(e => {
 		return e.toLowerCase();
 	})
 }
@@ -80,4 +79,19 @@ export function renderClearButton(moduleId: ModuleId) {
 	clearButton.setAttribute("form", `${moduleId}Form`);
 	clearButton.className = "btn btn-sm btn-outline-secondary float-end";
 	header.appendChild(clearButton);
+}
+
+export function icon(icon: string): SVGElement {
+	let symbol: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	symbol.classList.add("bi");
+	symbol.setAttribute("fill", "currentColor");
+	symbol.setAttribute("aria-hidden", "true");
+	symbol.setAttribute("width", "16");
+	symbol.setAttribute("height", "16");
+
+	let use: SVGUseElement = document.createElementNS('http://www.w3.org/2000/svg', "use");
+	use.setAttributeNS("http://www.w3.org/1999/xlink", "href", `icons/bootstrap-icons.svg#${icon}`);
+
+	symbol.appendChild(use);
+	return symbol;
 }
