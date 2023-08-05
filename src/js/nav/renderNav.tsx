@@ -1,4 +1,4 @@
-import { getById, icon } from '../utilities';
+import { getById } from '../utilities';
 
 class LinkClass {
 	name: string;
@@ -21,7 +21,7 @@ const links: Array<LinkClass> = [
 	new LinkClass("Morse code", "", "MorseCode"),
 	new LinkClass("Complicated wires", "Complicated", "ComplicatedWires"),
 	new LinkClass("Wire sequences", "Sequences", "WireSequences"),
-	new LinkClass("Mazes", "Mazes", "Mazes"),
+	new LinkClass("Mazes", "", "Mazes"),
 	new LinkClass("Password", "Password", "Passwords"),
 	new LinkClass("Knobs", "Knobs", "Knobs"),
 ];
@@ -39,20 +39,17 @@ export function renderNav(): void {
 			externLink.href = `https://bombmanual.com/web/index.html#${link.externalAnchor}`;
 			externLink.target = "_blank";
 
-			// let symbol: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-			// symbol.classList.add("bi");
-			// symbol.setAttribute("fill", "currentColor");
-			// symbol.setAttribute("aria-hidden", "true");
-			// symbol.setAttribute("width", "16");
-			// symbol.setAttribute("height", "16");
+			let symbol: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			symbol.classList.add("bi");
+			symbol.setAttribute("fill", "currentColor");
+			symbol.setAttribute("aria-hidden", "true");
+			symbol.setAttribute("width", "16");
+			symbol.setAttribute("height", "16");
 
-			// let use: SVGUseElement = document.createElementNS('http://www.w3.org/2000/svg', "use");
-			// use.setAttributeNS("http://www.w3.org/1999/xlink", "href", "icons/bootstrap-icons.svg#book");
+			let use: SVGUseElement = document.createElementNS('http://www.w3.org/2000/svg', "use");
+			use.setAttributeNS("http://www.w3.org/1999/xlink", "href", "icons/bootstrap-icons.svg#book");
 
-			// symbol.appendChild(use);
-
-			let symbol: SVGElement = icon("book");
-
+			symbol.appendChild(use);
 			externLink.appendChild(symbol);
 
 			if (!link.internalAnchor) {

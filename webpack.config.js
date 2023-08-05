@@ -3,7 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
 	// context: __dirname,
-	entry: './src/js/main.ts',
+	entry: './src/js/main.tsx',
 	devtool: 'inline-source-map',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -19,7 +19,18 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.ts$/,
+				test: /\.(js|jsx)$/,
+				exclude: [
+					/node_modules/,
+					/playwright/,
+					/\.config.ts$/,
+					/\.config.js$/,
+					/\.spec.ts$/
+				],
+				use: ["babel-loader"],
+			},
+			{
+				test: /\.(ts|tsx)$/,
 				exclude: [
 					/node_modules/,
 					/playwright/,

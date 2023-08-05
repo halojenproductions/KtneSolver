@@ -1,6 +1,6 @@
 import '../scss/styles.scss';
 import * as _bootstrap from 'bootstrap';
-import { renderClearButton } from './utilities';
+import { renderClearButton, getById } from './utilities';
 import { setupBasic } from './basic/setupBasic';
 import { renderBasic } from './basic/renderBasic';
 import { setupPassword } from './password/setupPassword';
@@ -20,9 +20,13 @@ import { renderMazes } from './mazes/renderMazes';
 import { setupMemory } from './memory/setupMemory';
 import { renderMemory } from './memory/renderMemory';
 import { renderNav } from './nav/renderNav';
+import { createRoot } from "react-dom/client";
+import Nav from "./nav/Nav";
 
 // Navigation Menu
-renderNav();
+//renderNav();
+createRoot(getById("Nav")).render(<Nav />);
+
 
 // Basic wires
 renderClearButton('Basic');
