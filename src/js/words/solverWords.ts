@@ -1,54 +1,59 @@
 import { getById, showSolution, visible } from '../utilities';
 import { wordsDictionary } from './dataWords';
 
-export function words_solve(): void {
-	const stage2Section = getById("stage2")
+export function words_solve(e: HTMLInputElement): void {
 
-	var showStage2 = false;
+	const stage1Input: HTMLInputElement | null = document.querySelector(".stage1:checked");
+	const stage2Input: HTMLInputElement | null = document.querySelector(".stage2:checked");
 
-	const stage1: HTMLInputElement | null = document.querySelector(".stage1:checked");
-	const stage2: HTMLInputElement | null = document.querySelector(".stage2:checked");
+	if (e?.classList.contains("stage1")) {
+		if (stage2Input) {
+			stage2Input.checked = false;
+		}
+	}
 
-	if (stage1) {
-		const selectedWord = stage1?.value;
-		var instruction: HTMLDivElement = getById("instruction");
+	const stage2Div = getById("stage2")
+
+	var isStage2Visible = false;
+
+
+
+	if (stage1Input) {
+		const selectedWord = stage1Input?.value;
+		var stage1Solution: HTMLDivElement = getById("instruction");
 		if (selectedWord !== undefined) {
 			const position = wordsDictionary[selectedWord].description;
 			if (position !== "") {
 				console.log(position);
-				instruction.innerHTML = position;
+				stage1Solution.innerHTML = position;
 			} else {
-				console.log("Position not found");
-				instruction.innerHTML = "No position available";
+				console.log("Solution not found");
+				stage1Solution.innerHTML = "No solution available";
 			}
 		}
-		showStage2 = true;
-	} else {
-		if (stage2) {
-			stage2.checked = false;
-		}
+		isStage2Visible = true;
 	}
 
 	const sol: HTMLDivElement = document.querySelector("#Words div.solution") as HTMLDivElement;
-	var showStage1 = false;
+	var isSolutionVisible = false;
 
-	if (stage2?.checked) {
+	if (stage2Input?.checked) {
 
-		const selectedWord = stage2?.value;
+		const selectedWord = stage2Input?.value;
 		if (selectedWord !== undefined) {
 			const words = wordsDictionary[selectedWord].words;
 			if (words !== "") {
 				console.log(words);
 				sol.innerHTML = words;
 			} else {
-				console.log("Word list not found");
-				sol.innerHTML = "No word available";
+				console.log("List not found");
+				sol.innerHTML = "No list available";
 			}
-			showStage1 = true;
+			isSolutionVisible = true;
 		}
 	}
 
-	visible(stage2Section, showStage2);
-	showSolution("Words", showStage1)
+	visible(stage2Div, isStage2Visible);
+	showSolution("Words", isSolutionVisible)
 
 }

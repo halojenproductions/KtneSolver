@@ -50,16 +50,15 @@ export function renderWords(): void {
 	});
 
 	var stage2group = document.createElement("div");
-	stage2group.className = "test";
 	stage2group.id = "stage2";
 
 	group = document.createElement("div");
 
 
-	var instruction = document.createElement("div");
-	instruction.className = "text-primary";
-	instruction.id = "instruction"
-	stage2group.appendChild(instruction);
+	var stage1Solution = document.createElement("div");
+	stage1Solution.className = "text-primary";
+	stage1Solution.id = "stage1Solution"
+	stage2group.appendChild(stage1Solution);
 
 	const filteredEntriesStage2 = Object.entries(wordsDictionary)
 		.filter(([_, value]) => value.words !== "")
