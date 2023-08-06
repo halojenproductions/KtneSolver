@@ -2,43 +2,43 @@ import { test, expect } from '@playwright/test';
 
 let module;
 let answer;
-let instructon;
+let stage1Solution;
 test.beforeEach(async ({ page }, testInfo) => {
 	await page.goto('http://localhost:8080/');
 	module = await page.locator('#Words .card');
-	instructon = await module.locator('#instruction');
+	stage1Solution = await module.locator('#stage1Solution');
 	answer = await module.locator('div.solution');
 });
 
 test('step 1, Left middle', async ({ page }) => {
 	await module.locator('label[for="words_stage1_yes"]').click();
-	await expect(instructon).toContainText('Left middle');
+	await expect(stage1Solution).toContainText('Left middle');
 
 	await module.locator('label[for="words_stage1_led"]').click();
-	await expect(instructon).toContainText('Left middle');
+	await expect(stage1Solution).toContainText('Left middle');
 
 	await module.locator('label[for="words_stage1_theyare"]').click();
-	await expect(instructon).toContainText('Left middle');
+	await expect(stage1Solution).toContainText('Left middle');
 });
 
 test('step 1, Right middle', async ({ page }) => {
 	await module.locator('label[for="words_stage1_blank"]').click();
-	await expect(instructon).toContainText('Right middle');
+	await expect(stage1Solution).toContainText('Right middle');
 
 	await module.locator('label[for="words_stage1_you"]').click();
-	await expect(instructon).toContainText('Right middle');
+	await expect(stage1Solution).toContainText('Right middle');
 
 	await module.locator('label[for="words_stage1_their"]').click();
-	await expect(instructon).toContainText('Right middle');
+	await expect(stage1Solution).toContainText('Right middle');
 
 	await module.locator('label[for="words_stage1_red"]').click();
-	await expect(instructon).toContainText('Right middle');
+	await expect(stage1Solution).toContainText('Right middle');
 
 	await module.locator('label[for="words_stage1_your"]').click();
-	await expect(instructon).toContainText('Right middle');
+	await expect(stage1Solution).toContainText('Right middle');
 
 	await module.locator('label[for="words_stage1_read"]').click();
-	await expect(instructon).toContainText('Right middle');
+	await expect(stage1Solution).toContainText('Right middle');
 });
 
 test('step 2', async ({ page }) => {

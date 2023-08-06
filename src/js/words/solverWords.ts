@@ -16,11 +16,9 @@ export function words_solve(e: HTMLInputElement): void {
 
 	var isStage2Visible = false;
 
-
-
 	if (stage1Input) {
 		const selectedWord = stage1Input?.value;
-		var stage1Solution: HTMLDivElement = getById("instruction");
+		var stage1Solution: HTMLDivElement = getById("stage1Solution");
 		if (selectedWord !== undefined) {
 			const position = wordsDictionary[selectedWord].description;
 			if (position !== "") {
