@@ -1,7 +1,7 @@
 import { getById, hide } from '../utilities';
 import { wordsDictionary } from './dataWords';
 
-const RowWrap: number = 7;
+const RowWrap: number = 4;
 
 function createWordElement(stage: number, key: string, value: any) {
 	let input = document.createElement("input");
@@ -14,7 +14,7 @@ function createWordElement(stage: number, key: string, value: any) {
 	input.setAttribute("value", `${key}`);
 
 	let label = document.createElement("label");
-	label.className = `btn btn-outline-primary`;
+	label.className = `btn  col-2 btn-outline-primary`;
 	label.setAttribute("for", `words_stage${stage}_${key}`);
 	label.setAttribute("data-wordsCode", `${value.display}`);
 	label.textContent = `${value.display}`;

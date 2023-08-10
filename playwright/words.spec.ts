@@ -45,20 +45,20 @@ test('step 2', async ({ page }) => {
 	await module.locator('label[for="words_stage1_blank"]').click();
 
 	await module.locator('label[for="words_stage2_ready"]').click();
-	await expect(answer).toContainText('YES, OKAY, WHAT, MIDDLE, LEFT, PRESS, RIGHT, BLANK, READY');
+	await expect(answer).toContainText('Yes, Okay, What, Middle, Left, Press, Right, Blank, Ready');
 
 	await module.locator('label[for="words_stage2_first"]').click();
-	await expect(answer).toContainText('LEFT, OKAY, YES, MIDDLE, NO, RIGHT, NOTHING, UHHH, WAIT, READY, BLANK, WHAT, PRESS, FIRST');
+	await expect(answer).toContainText('Left, Okay, Yes, Middle, No, Right, Nothing, U-H-H-H, Wait, Ready, Blank, What, Press, First');
 
 	await module.locator('label[for="words_stage2_no"]').click();
-	await expect(answer).toContainText('BLANK, UHHH, WAIT, FIRST, WHAT, READY, RIGHT, YES, NOTHING, LEFT, PRESS, OKAY, NO');
+	await expect(answer).toContainText('Blank, U-H-H-H, Wait, First, What, Ready, Right, Yes, Nothing, Left, Press, Okay, No');
 
 	await module.locator('label[for="words_stage2_blank"]').click();
-	await expect(answer).toContainText('WAIT, RIGHT, OKAY, MIDDLE, BLANK');
+	await expect(answer).toContainText('Wait, Right, Okay, Middle, Blank');
 
 	await module.locator('label[for="words_stage2_nothing"]').click();
-	await expect(answer).toContainText('UHHH, RIGHT, OKAY, MIDDLE, YES, BLANK, NO, PRESS, LEFT, WHAT, WAIT, FIRST, NOTHING');
+	await expect(answer).toContainText('U-H-H-H, Right, Okay, Middle, Yes, Blank, No, Press, Left, What, Wait, First, Nothing');
 
 	await module.locator('label[for="words_stage2_yes"]').click();
-	await expect(answer).toContainText('OKAY, RIGHT, UHHH, MIDDLE, FIRST, WHAT, PRESS, READY, NOTHING, YES');
+	await expect(answer).toContainText('Okay, Right, U-H-H-H, Middle, First, What, Press, Ready, Nothing, Yes');
 });
