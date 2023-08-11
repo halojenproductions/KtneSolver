@@ -41,10 +41,13 @@ function createGroupElement(div: HTMLDivElement, stage: number) {
 	let group = document.createElement("div");
 
 	if (stage == 2) {
+
 		var solution = document.createElement("div");
-		solution.className = "text-primary";
+		solution.className = "text-primary fs-2";
 		solution.id = "stage1Solution";
+
 		div.appendChild(solution);
+
 	}
 
 	const filteredEntries = Object.entries(wordsDictionary)
