@@ -9,5 +9,5 @@ export function setupWords(): void {
 	});
 	// Hook up the clear button so it solves after clearing, thus hiding the solution.
 	document.querySelector("#Words button[type='reset']")
-	?.addEventListener("click", () => setTimeout(words_solve));
+		?.addEventListener("click", () => setTimeout(words_solve));
 }
