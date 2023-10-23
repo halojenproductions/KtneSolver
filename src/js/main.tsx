@@ -11,6 +11,8 @@ import { renderSimon } from './simon/renderSimon';
 import { setupMissileButton } from './button/setupButton';
 import { setupKnobs } from './knobs/setupKnobs';
 import { renderKnobs } from './knobs/renderKnobs';
+import { setupWords } from './words/setupWords';
+import { renderWords } from './words/renderWords';
 import { setupComplicated } from './complicated/setupComplicated';
 import { renderComplicated } from './complicated/renderComplicated';
 import { setupSequences } from './sequences/setupSequences';
@@ -48,6 +50,9 @@ renderSimon();
 setupSimon();
 
 // Who's On First
+renderClearButton('Words');
+renderWords();
+setupWords();
 
 // Memory
 renderClearButton('Memory');

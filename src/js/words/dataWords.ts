@@ -1,0 +1,55 @@
+interface WordsDictionary {
+	[key: string]: {
+		display: string,
+		description: string;
+		words: string;
+	};
+}
+
+export const wordsDictionary: WordsDictionary = {
+	"blank": { display: "Blank", description: "Right middle", words: "Wait, Right, Okay, Middle, Blank" },
+	"done": { display: "Done", description: "", words: "Sure, U&#8209;H&nbspH&#8209;U&#8209;H, Next, What?, Y&#8209;O&#8209;U&#8209;R, U&#8209;R, you'R&#8209;E, Hold, Like, Y&#8209;O&#8209;U, U, You&nbspAre, U&#8209;H&nbspU&#8209;H, done" },
+	"first": { display: "First", description: "Right top", words: "Left, Okay, Yes, Middle, No, Right, Nothing, U&#8209;H&#8209;H&#8209;H, Wait, Ready, Blank, What, Press, First" },
+	"hold": { display: "Hold", description: "", words: "You&nbspAre, U, Done, U&#8209;H&nbspU&#8209;H, Y&#8209;O&#8209;U, U&#8209;R, Sure, What?, you'R&#8209;E, Next, Hold" },
+	"left": { display: "Left", description: "", words: "Right, left" },
+	"like": { display: "Like", description: "", words: "you'R&#8209;E, Next, U, U&#8209;R, Hold, Done, U&#8209;H&nbspU&#8209;H, What?, U&#8209;H&nbspH&#8209;U&#8209;H, Y&#8209;O&#8209;U, Like" },
+	"middle": { display: "Middle", description: "", words: "Blank, Ready, Okay, What, Nothing, Press, No, Wait, Left, Middle" },
+	"next": { display: "Next", description: "", words: "What?, U&#8209;H&nbspH&#8209;U&#8209;H, U&#8209;H&nbspU&#8209;H, Y&#8209;O&#8209;U&#8209;R, Hold, Sure, Next" },
+	"no": { display: "No", description: "Right bottom", words: "Blank, U&#8209;H&#8209;H&#8209;H, Wait, First, What, Ready, Right, Yes, Nothing, Left, Press, Okay, No" },
+	"nothing": { display: "Nothing", description: "Left middle", words: "U&#8209;H&#8209;H&#8209;H, Right, Okay, Middle, Yes, Blank, No, Press, Left, What, Wait, First, Nothing" },
+	"okay": { display: "Okay", description: "Right top", words: "Middle, No, First, Yes, U&#8209;H&#8209;H&#8209;H, Nothing, Wait, Okay" },
+	"press": { display: "Press", description: "", words: "Right, Middle, Yes, Ready, Press" },
+	"ready": { display: "Ready", description: "", words: "Yes, Okay, What, Middle, Left, Press, Right, Blank, Ready" },
+	"right": { display: "Right", description: "", words: "Yes, Nothing, Ready, Press, No, Wait, What, Right" },
+	"sure": { display: "Sure", description: "", words: "You&nbspAre, Done, Like, you'R&#8209;E, Y&#8209;O&#8209;U, Hold, U&#8209;H&nbspH&#8209;U&#8209;H, U&#8209;R, Sure" },
+	"u": { display: "U", description: "", words: "U&#8209;H&nbspH&#8209;U&#8209;H, Sure, Next, What?, you'R&#8209;E, U&#8209;R, U&#8209;H&nbspU&#8209;H, Done, U" },
+	"uhhuh": { display: "Uh huh", description: "", words: "U&#8209;H&nbspH&#8209;U&#8209;H" },
+	"uhuh": { display: "Uh Uh", description: "", words: "U&#8209;R, U, You&nbspAre, you'R&#8209;E, Next, U&#8209;H&nbspU&#8209;H" },
+	"uhhh": { display: "Uhhh", description: "", words: "Ready, Nothing, Left, What, Okay, Yes, Right, No, Press, Blank, U&#8209;H&#8209;H&#8209;H" },
+	"ur": { display: "Ur", description: "Left top", words: "Done, U, U&#8209;R" },
+	"wait": { display: "Wait", description: "", words: "U&#8209;H&#8209;H&#8209;H, No, Blank, Okay, Yes, Left, First, Press, What, Wait" },
+	"what": { display: "What", description: "", words: "U&#8209;H&#8209;H&#8209;H, What" },
+	"whatq": { display: "What?", description: "", words: "Y&#8209;O&#8209;U, Hold, you'R&#8209;E, Y&#8209;O&#8209;U&#8209;R, U, Done, U&#8209;H&nbspU&#8209;H, Like, You&nbspAre, U&#8209;H&nbspH&#8209;U&#8209;H, U&#8209;R, Next, What?" },
+	"yes": { display: "Yes", description: "Left middle", words: "Okay, Right, U&#8209;H&#8209;H&#8209;H, Middle, First, What, Press, Ready, Nothing, Yes" },
+	"youare": { display: "You Are", description: "Right bottom", words: "Y&#8209;O&#8209;U&#8209;R, Next, Like, U&#8209;H&nbspH&#8209;U&#8209;H, What?, Done, U&#8209;H&nbspU&#8209;H, Hold, Y&#8209;O&#8209;U, U, you'R&#8209;E, Sure, U&#8209;R, You&nbspAre" },
+	"you": { display: "You", description: "Right middle", words: "Sure, You&nbspAre, Y&#8209;O&#8209;U&#8209;R, Y&#8209;O&#8209;U&#8209;'R&#8209;E, Next, U&#8209;H&nbspH&#8209;U&#8209;H, U&#8209;R, Hold, What?, Y&#8209;O&#8209;U" },
+	"your": { display: "Your", description: "Right middle", words: "U&#8209;H&nbspU&#8209;H, You&nbspAre, U&#8209;H&nbspH&#8209;U&#8209;H, Y&#8209;O&#8209;U&#8209;R" },
+	"youre": { display: "You're", description: "Right middle", words: "Y&#8209;O&#8209;U, you'R&#8209;E" },
+	"c": { display: "C", description: "Right top", words: "" },
+	"cee": { display: "Cee", description: "Right bottom", words: "" },
+	"display": { display: "Display", description: "Right bottom", words: "" },
+	"holdon": { display: "Hold On", description: "Right bottom", words: "" },
+	"lead": { display: "Lead", description: "Right bottom", words: "" },
+	"led": { display: "Led", description: "Left middle", words: "" },
+	"leed": { display: "Leed", description: "Left bottom", words: "" },
+	"read": { display: "Read", description: "Right middle", words: "" },
+	"red": { display: "Red", description: "Right middle", words: "" },
+	"reed": { display: "Reed", description: "Left bottom", words: "" },
+	"says": { display: "Says", description: "Right Bottom", words: "" },
+	"see": { display: "See", description: "Right bottom", words: "" },
+	"their": { display: "Their", description: "Right middle", words: "" },
+	"there": { display: "There", description: "Right bottom", words: "" },
+	"theyare": { display: "They Are", description: "Left middle", words: "" },
+	"theyre": { display: "They're", description: "Left bottom", words: "" },
+	"space": { display: " ", description: "Left bottom", words: "" }
+};

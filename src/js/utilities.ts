@@ -1,4 +1,4 @@
-export type ModuleId = "Basic" | "Complicated" | "Sequences" | "Keypad" | "Knobs" | "Memory" | "MissileButton" | "Mazes" | "Password" | "Simon";
+export type ModuleId = "Basic" | "Complicated" | "Sequences" | "Keypad" | "Knobs" | "Memory" | "MissileButton" | "Mazes" | "Password" | "Simon" | "Words";
 
 export class BuildColour {
 	id: string;
