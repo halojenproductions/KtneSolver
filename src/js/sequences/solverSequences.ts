@@ -1,4 +1,5 @@
 import { getById } from '../utilities';
+import { lineCount } from './setupSequences';
 
 enum Colour {
 	Blue = "blue",
@@ -15,7 +16,7 @@ const count = {
 export function Sequences_solve(): void {
 	resetCount();
 
-	for (let i = 1; i <= 9; i++) {
+	for (let i = 1; i <= lineCount; i++) {
 		const id = `Sequences_${i}`;
 		solveWire(id);
 	}
