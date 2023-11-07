@@ -1,4 +1,5 @@
 import { getById } from '../utilities';
+import { lineCount} from './setupSequences';
 
 export function renderSequences(): void {
 	const attributes = [
@@ -13,11 +14,10 @@ export function renderSequences(): void {
 
 	const Sequences_inputs = getById("SequencesForm");
 
-	const wireSequenceLength = 10;
-	for (let i = 1; i <= wireSequenceLength; i++) {
+	for (let i = 1; i <= lineCount; i++) {
 		const group: HTMLDivElement = document.createElement("div");
 		group.className = "btn-group btn-group-sm d-flex";
-		if (i < wireSequenceLength) {
+		if (i < lineCount) {
 			group.classList.add("mb-1");
 		}
 		group.setAttribute("role", "group");
