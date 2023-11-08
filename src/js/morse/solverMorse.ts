@@ -4,7 +4,7 @@ import { morseSet } from './renderMorse';
 ///... is a spread operator: takes an array of letters and "spreads" them out so 
 ///that they are treated as individual arguments to the map function.
 function generateMorseArray(...letters: string[]): string[] {
-	return letters.map(letter => morseSet[letter].code);
+	return letters.map(letter => morseSet[letter].code.join(' '));
 }
 
 const morseSymbols: { [key: string]: [string, string[]] } = {

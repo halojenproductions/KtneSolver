@@ -1,38 +1,40 @@
 import { getById } from '../utilities';
 
-export interface MorseDefinition {
-	code: string;
+export interface MorseDefinition2 {
+	code: string[];
 	line: number;
 	isSpecial?: boolean;
 }
 
-export const morseSet: { [letter: string]: MorseDefinition } = {
-	E: { code: "#8226", line: 1 },
-	I: { code: "#8226 &#8226", line: 1 },
-	S: { code: "#8226 &#8226 &#8226", line: 1 },
-	H: { code: "#8226 &#8226 &#8226 &#8226", line: 1 },
+export const dit = '8226';
+export const dah = '8213';
 
-	
+export const morseSet: { [letter: string]: MorseDefinition2 } = {
+	E: { code: [dit], line: 1 },
+	I: { code: [dit, dit], line: 1 },
+	S: { code: [dit, dit, dit], line: 1 },
+	H: { code: [dit, dit, dit, dit], line: 1 },
 
-	A: { code: "#8226 &#8213", line: 2 },
-	R: { code: "#8226 &#8213 &#8226", line: 2 },
-	F: { code: "#8226 &#8226 &#8213 &#8226", line: 2, isSpecial: true },
-	V: { code: "#8226 &#8226 &#8226 &#8213", line: 2, isSpecial: true },
-	L: { code: "#8226 &#8213 &#8226 &#8226", line: 2 },
 
-	T: { code: "#8213", line: 3 },
-	M: { code: "#8213 &#8213", line: 3, isSpecial: true },
-	O: { code: "#8213 &#8213 &#8213", line: 3 },
 
-	N: { code: "#8213 &#8226", line: 4, isSpecial: true },
-	K: { code: "#8213 &#8226 &#8213", line: 4 },
-	G: { code: "#8213 &#8213 &#8226", line: 4, isSpecial: true },
+	A: { code: [dit, dah], line: 2 },
+	R: { code: [dit, dah, dit], line: 2 },
+	F: { code: [dit, dit, dah, dit], line: 2, isSpecial: true },
+	V: { code: [dit, dit, dit, dah], line: 2, isSpecial: true },
+	L: { code: [dit, dah, dit, dit], line: 2 },
 
-	B: { code: "#8213 &#8226 &#8226 &#8226", line: 4 },
-	C: { code: "#8213 &#8226 &#8213 &#8226", line: 4 },
-	X: { code: "#8213 &#8226 &#8226 &#8213", line: 4, isSpecial: true }
+	T: { code: [dah], line: 3 },
+	M: { code: [dah, dah], line: 3, isSpecial: true },
+	O: { code: [dah, dah, dah], line: 3 },
+
+	N: { code: [dah, dit], line: 4, isSpecial: true },
+	K: { code: [dah, dit, dah], line: 4 },
+	G: { code: [dah, dah, dit], line: 4, isSpecial: true },
+
+	B: { code: [dah, dit, dit, dit], line: 5 },
+	C: { code: [dah, dit, dah, dit], line: 5 },
+	X: { code: [dah, dit, dit, dah], line: 5, isSpecial: true }
 };
-
 
 
 
@@ -43,7 +45,6 @@ export function renderMorse(): void {
 	let group = document.createElement("div");
 
 	Object.values(morseSet).forEach((val, idx) => {
-		debugger
 		if (val.line != line) {
 			group.className = "btn-group d-flex";
 
@@ -69,8 +70,8 @@ export function renderMorse(): void {
 		}
 
 		label.setAttribute("for", `morse_${idx}`);
-		label.setAttribute("data-symbolCode", `${val.code}`);
-		label.insertAdjacentHTML('beforeend', `&${val.code};`);
+		label.setAttribute("data-symbolCode", `${val.code.join(' ')}`);
+		label.insertAdjacentHTML('beforeend', `&#${val.code.join('; &#')};`);
 
 		group.appendChild(input);
 		group.appendChild(label);
