@@ -27,6 +27,7 @@ import { renderKnobs } from './knobs/renderKnobs';
 import { renderNav } from './nav/renderNav';
 import { createRoot } from "react-dom/client";
 import Nav from "./nav/Nav";
+import MorseModule from './morse/Morse';
 
 // Navigation Menu
 //renderNav();
@@ -63,9 +64,10 @@ renderMemory();
 setupMemory();
 
 // Morse Code
-renderClearButton('Morse');
-renderMorse();
-setupMorse();
+// renderClearButton('Morse');
+// renderMorse();
+// setupMorse();
+createRoot(getById("MorseRoot")).render(<MorseModule />);
 
 // Complicated Wires
 renderClearButton('Complicated');

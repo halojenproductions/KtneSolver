@@ -31,8 +31,9 @@ export function morse_solve(): void {
 
 	let selectedSymbols: string[] = <string[]>Array.from(
 		document.querySelectorAll("#Morse input.btn-check:checked+.btn"),
-		sym => sym.getAttribute("data-symbolCode")
+		sym => sym.getAttribute("data-symbolcode")
 	);
+
 
 	let sequenceMatches: string[] = []; //check the second array for these symbles morseSymbols[i][1]
 

@@ -11,3 +11,4 @@ export function setupMorse(): void {
 	document.querySelector("#Morse button[type='reset']")
 	?.addEventListener("click", () => setTimeout(morse_solve));
 }
+
